@@ -24,7 +24,7 @@
                     <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
                     <li><a href="{{ url('/regras') }}" title="">REGRAS</a></li>
                     <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
-                    <li><a href="{{ url('/login') }}" title="">LOGIN</a></li>
+                    <li><a href="{{ url('/entrar') }}" title="">LOGIN</a></li>
                 </ul>
             </nav>
         </header>
