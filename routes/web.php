@@ -11,9 +11,14 @@
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
 // Site 
 
-Route::get('/', 'SiteController@index');
+//Route::get('/', 'SiteController@index');
 Route::get('/quem-somos', 'SiteController@about');
 Route::get('/contato', 'SiteController@contact');
 Route::get('/regras', 'SiteController@rules');
@@ -90,3 +95,7 @@ Route::put('/admin/agradecimento-usuario/{id}', 'UserThanksAdminController@updat
 Route::delete('/admin/agradecimento-usuario/{id}', 'UserThanksAdminController@destroy');
 
 Route::get('/admin/relatorios', 'ReportAdminController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
