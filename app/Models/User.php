@@ -40,7 +40,7 @@ class User extends Authenticatable
     protected $dates = [
         'expires_at',
         'deleted_at'
-    ]
+    ];
 
     /**
      * Get the user thanks the user sent
