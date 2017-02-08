@@ -11,20 +11,31 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', 'HomeController@index');
+*/
+
+
+// Social login
+ 
+Route::get('/redirect/facebook', 'SocialAuthController@redirectFacebook');
+Route::get('/callback/facebook', 'SocialAuthController@callbackFacebook');
+
+Route::get('/redirect/google', 'SocialAuthController@redirectGoogle');
+Route::get('/callback/google', 'SocialAuthController@callbackGoogle');
+
 
 // Site 
 
-//Route::get('/', 'SiteController@index');
+Route::get('/', 'SiteController@index');
 Route::get('/quem-somos', 'SiteController@about');
 Route::get('/contato', 'SiteController@contact');
 Route::get('/regras', 'SiteController@rules');
 Route::get('/entrar', 'SiteController@login');
-
-//Route::get('/home', 'HomeController@index');
 
 
 // Users Area

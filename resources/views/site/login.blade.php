@@ -6,9 +6,9 @@
         <br><br>
         <div class="col-md-5 col-lg-5">
             <h4 class="text-center">Já sou cadastrado</h4><br><br>
-            <a class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span>Entrar com Facebook</a>
+            <a class="btn btn-block btn-social btn-facebook" href="{{ url('/redirect/facebook') }}"><span class="fa fa-facebook"></span>Entrar com Facebook</a>
             <br>
-            <a class="btn btn-block btn-social btn-google"><span class="fa fa-google-plus"></span>Entrar com Google+</a>
+            <a class="btn btn-block btn-social btn-google" href="{{ url('/redirect/google') }}"><span class="fa fa-google-plus"></span>Entrar com Google+</a>
             <br><br><br>
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -61,9 +61,9 @@
         <div class="col-md-1 col-lg-1"></div>
         <div class="col-md-5 col-lg-5">
             <h4 class="text-center">Quero me cadastrar</h4><br><br>
-            <a class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span>Cadastrar com Facebook</a>
+            <a class="btn btn-block btn-social btn-facebook" href="{{ url('/redirect/facebook') }}"><span class="fa fa-facebook"></span>Cadastrar com Facebook</a>
             <br>
-            <a class="btn btn-block btn-social btn-google"><span class="fa fa-google-plus"></span>Cadastrar com Google+</a>
+            <a class="btn btn-block btn-social btn-google" href="{{ url('/redirect/google') }}"><span class="fa fa-google-plus"></span>Cadastrar com Google+</a>
             <br><br><br>
             <div class="panel panel-default">
                 <div class="panel-body">
