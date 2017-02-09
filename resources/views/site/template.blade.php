@@ -14,10 +14,11 @@
         <link rel="stylesheet" href="{{ URL::asset('css/site.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-social.css') }}">
-        <link rel="stylesheet" property="stylesheet" href="assets/css/app.css">    
+        <link rel="stylesheet" property="stylesheet" href="assets/css/app.css">            
     </head>
     <body>
         <header class="main-header">
+            <img class="logo" src="images/logo.png" />
             <nav class="navbar navbar-default navbar-static-top">                
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/') }}" title="">HOME</a></li>
@@ -37,10 +38,29 @@
         </div>
         @yield('content')
         <footer class="nopadding">
-            <img src="{{ URL::to('/') }}/images/footer.jpg" width="100%" />
+            <img src="{{ URL::to('/') }}/images/footer.png" width="100%" />
         </footer>                                    
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="assets/js/app.js"></script>
+        <script>
+            $(function(){
+                function stripTrailingSlash(str) {
+                    if(str.substr(-1) == '/') {
+                      return str.substr(0, str.length - 1);
+                    }
+                    return str;
+                }                
+                var url = window.location.pathname;                  
+                var activePage = stripTrailingSlash(url);                
+                $('.nav li a').each(function(){
+                    var currentPage = stripTrailingSlash($(this).attr('pathname'));
+                    alert(currentPage);
+                    if (activePage == currentPage) {
+                        $(this).parent().addClass('active'); 
+                    } 
+                });
+            });
+        </script>
     </body>
 </html>

@@ -3,24 +3,54 @@ img {
 	height: auto !important;
 }
 
-ul.nav {
-	padding-top: 10px;
-	background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
-	width: 100%;	
-}
+
+/**
+ *
+ * TEMPLATE
+ * 
+ */
 
 header {
 	padding: 0 !important;
     margin: 0 !important;
+    height: 80px !important;
+    border-bottom: 1px solid #E7E7E7 !important;
 }
 
-nav {
-	height: 40px !important;
-    background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+.logo {
+    float: left;
+    margin-left: 5%;
+    
 }
 
 .navbar {
     margin: 0px !important;
+    height: 80px !important;
+    float: right !important;
+    margin-right: 5% !important;
+    background-color: #FFF;    
+}
+
+ul.nav {
+    padding-top: 10px;
+    /*background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);*/
+    width: 100%;    
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #0065F8;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #004EC1;
+}
+
+.nav > li {
+    margin-right: 50px !important;
+}
+
+.active {
+    border-radius: 5em !important;
 }
 
 .container-fluid {
@@ -34,8 +64,191 @@ nav {
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #FFF;
+    /*color: #FFF;*/
 }
+
+#redes {
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;    
+}
+
+#redes img {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 8px;    
+}
+
+#redes div {    
+    display: inline;
+}
+
+#facebook {
+    float: left;
+    width: 33%;
+}
+
+#facebook a img {
+    display:block;
+    margin:auto;
+}
+
+#google {
+    float: left;
+    width: 33%;
+}
+
+#google a img {
+    display:block;
+    margin:auto;
+}
+
+#youtube {
+    float: right;
+    width: 33%;
+}
+
+#youtube a img {
+    display:block;
+    margin:auto;
+}
+
+#direitos p {
+    margin-top: 2%;
+    color: #DD2A86;
+    font-family: arial, verdana, sans-serif;
+    font-size: 12px;
+    text-align: center;
+}
+
+
+/**
+ *
+ * HOME
+ * 
+ */
+
+#depoimentos {
+    /*position: relative;
+    top: 120px;*/
+    height: 750px; 
+    width: 100%;        
+    background-color: #EDEDED;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#depoimentos h2 {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 100;
+    line-height: 1.3em;
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    text-align:center;
+    color: #3658BA !important;
+}
+
+#depoimentos h3 {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 100;
+    line-height: 1.2em;
+    font-size: 1.1em;
+    letter-spacing: -1px;
+    text-align: justify;
+    text-justify: inter-word;
+    color: #3658BA !important;
+}
+
+#depoimentos h4 {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 100;
+    line-height: 1.3em;
+    font-size: 0.9em;
+    letter-spacing: -1px;
+    text-align: justify;
+    text-justify: inter-word;
+    color: #989CA1 !important;
+    padding-right: 5%;
+}
+
+.foto {
+    display: inline-block;
+    width: 19%;
+}
+
+.depoimento {
+    display: inline-block;
+    width: 79%;
+}
+
+#relato1 { 
+    float: left;
+    width: 50%;
+    height: 150px;
+    margin-left: 20%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: #F4F4F4;
+    border-radius: 3%;
+}
+
+#relato1 img {
+    display: inline;
+    height: 100px; 
+    width: 100px;
+    margin-left: 15%;
+    margin-top: 25px;
+    border-radius: 50%;
+}
+
+#relato2 { 
+    float: right;
+    width: 50%;
+    height: 150px;
+    margin-right: 20%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: #F4F4F4;
+    border-radius: 3%;
+}
+
+#relato2 img {
+    display: inline-block;
+    float: left;
+    height: 100px; 
+    width: 100px;
+    margin-left: 15%;
+    margin-top: 25px;
+    border-radius: 50%;
+}
+
+#relato3 { 
+    float: left;
+    width: 50%;
+    height: 150px;
+    margin-left: 20%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    background-color: #F4F4F4;
+    border-radius: 3%;
+}
+
+#relato3 img {
+    display: inline-block;
+    height: 100px; 
+    width: 100px;
+    margin-left: 15%;
+    margin-top: 25px;
+    border-radius: 50%;
+}
+
+/**
+ *
+ * CONTATO
+ * 
+ */
 
 .contato {
     background-color: #F5F5F5;
