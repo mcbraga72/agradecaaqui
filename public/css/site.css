@@ -130,19 +130,18 @@ ul.nav {
  * 
  */
 
-#depoimentos {
+#testimonies {
     /*position: relative;
     top: 120px;*/
-    height: 750px; 
+    height: 800px; 
     width: 100%;        
     background-color: #EDEDED;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 50px;    
 }
 
-#depoimentos h2 {
+h2.testimony {
     font-family: Lato, Arial, Tahoma, sans-serif;
-    font-weight: 100;
+    font-weight: 20;
     line-height: 1.3em;
     font-size: 1.7em;
     letter-spacing: -1px;
@@ -150,9 +149,9 @@ ul.nav {
     color: #3658BA !important;
 }
 
-#depoimentos h3 {
+h3.testimony {
     font-family: Lato, Arial, Tahoma, sans-serif;
-    font-weight: 100;
+    font-weight: 20;
     line-height: 1.2em;
     font-size: 1.1em;
     letter-spacing: -1px;
@@ -161,9 +160,9 @@ ul.nav {
     color: #3658BA !important;
 }
 
-#depoimentos h4 {
+h4.testimony {
     font-family: Lato, Arial, Tahoma, sans-serif;
-    font-weight: 100;
+    font-weight: 20;
     line-height: 1.3em;
     font-size: 0.9em;
     letter-spacing: -1px;
@@ -178,12 +177,12 @@ ul.nav {
     width: 19%;
 }
 
-.depoimento {
+.client-testimony {
     display: inline-block;
     width: 79%;
 }
 
-#relato1 { 
+#story1 { 
     float: left;
     width: 50%;
     height: 150px;
@@ -194,7 +193,7 @@ ul.nav {
     border-radius: 3%;
 }
 
-#relato1 img {
+#story1 img {
     display: inline;
     height: 100px; 
     width: 100px;
@@ -203,7 +202,7 @@ ul.nav {
     border-radius: 50%;
 }
 
-#relato2 { 
+#story2 { 
     float: right;
     width: 50%;
     height: 150px;
@@ -214,7 +213,7 @@ ul.nav {
     border-radius: 3%;
 }
 
-#relato2 img {
+#story2 img {
     display: inline-block;
     float: left;
     height: 100px; 
@@ -224,18 +223,18 @@ ul.nav {
     border-radius: 50%;
 }
 
-#relato3 { 
+#story3 { 
     float: left;
     width: 50%;
     height: 150px;
     margin-left: 20%;
     margin-top: 2%;
-    margin-bottom: 3%;
+    padding-bottom: 5%;
     background-color: #F4F4F4;
     border-radius: 3%;
 }
 
-#relato3 img {
+#story3 img {
     display: inline-block;
     height: 100px; 
     width: 100px;
@@ -243,6 +242,98 @@ ul.nav {
     margin-top: 25px;
     border-radius: 50%;
 }
+
+h1.counter-stats {
+    margin-top: 5%;
+    margin-bottom: 4%;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 101;
+    line-height: 1.2em;
+    font-size: 3.3em;
+    letter-spacing: -1px;
+    text-align:center;
+    color: #3658BA !important;
+}
+
+.col_half { 
+    width: 49%;
+}
+
+.col_third {
+    width: 32%;
+}
+
+.col_fourth {
+    width: 23.5%;
+}
+
+.col_fifth {
+    width: 18.4%;
+}
+
+.col_sixth {
+    width: 15%;
+}
+
+.col_three_fourth {
+    width: 74.5%;
+}
+
+.col_twothird{
+    width: 66%;
+}
+
+.col_half, .col_third, .col_twothird, .col_fourth, .col_three_fourth, .col_fifth {
+    position: relative;
+    display:inline;
+    display: inline-block;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 20px;
+}
+
+.end {
+    margin-right: 0 !important; 
+}
+
+.wrapper { 
+    height: 300px;
+    width: 80%;
+    margin: 30px auto;
+    position: relative;
+}
+
+.counter { 
+    background-color: #ffffff;
+    padding: 20px 0;
+    border-radius: 5px;
+}
+
+.count-title {
+    font-size: 40px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    color: #888;
+}
+
+.count-text {
+    font-size: 18px;
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    color: #555;
+}
+
+.fa-2x {
+    margin: 0 auto;
+    float: none;
+    display: table;
+    color: #4ad1e5;
+}
+
 
 /**
  *

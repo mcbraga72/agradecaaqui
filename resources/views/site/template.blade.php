@@ -38,11 +38,27 @@
         </div>
         @yield('content')
         <footer class="nopadding">
+            <br>
+            <div id="redes">
+                <div id="facebook">
+                    <a target="_blank" href="https://www.facebook.com/"><img src="images/facebook.png" alt="Perfil no Facebook" title="Perfil no Facebook"></a>
+                </div>
+                <div id="google">
+                    <a target="_blank" href="https://plus.google.com/"><img src="images/google.png" alt="Perfil no Google+" title="Perfil no Google+"></a>
+                </div>
+                <div id="youtube">    
+                    <a target="_blank" href="https://www.youtube.com/"><img src="images/youtube.png" alt="Canal no Youtube" title="Canal no Youtube"></a>
+                </div>
+            </div><br>
+            <div id="direitos">
+                <p>Agradeça Aqui &copy; 2017 - Todos os direitos reservados</p>
+            </div>
             <img src="{{ URL::to('/') }}/images/footer.png" width="100%" />
         </footer>                                    
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="assets/js/app.js"></script>
+        <script src="{{ URL::asset('js/app.js') }}"></script>
+        <script src="{{ URL::asset('js/site.js') }}"></script>
         <script>
             $(function(){
                 function stripTrailingSlash(str) {
