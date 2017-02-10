@@ -6,23 +6,23 @@
         <div class="row">
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
                 <h1 class="counter-stats">Nossos números</h1>
-                <div class="wrapper">
-				    <div class="counter col_fourth">
+                <div class="wrapper-counter">
+				    <div class="counter col-counter first-col-counter">
 				      <i class="fa fa-users fa-2x"></i>
 				      <h2 class="timer count-title count-number" data-to="3214" data-speed="1500"></h2>
 				       <p class="count-text ">Usuários cadastrados</p>
 				    </div>
-				    <div class="counter col_fourth">
+				    <div class="counter col-counter">
 				      <i class="fa fa-institution fa-2x"></i>
 				      <h2 class="timer count-title count-number" data-to="421" data-speed="1500"></h2>
 				      <p class="count-text ">Empresas cadastradas</p>
 				    </div>
-				    <div class="counter col_fourth">
+				    <div class="counter col-counter">
 				      <i class="fa fa-heart fa-2x"></i>
 				      <h2 class="timer count-title count-number" data-to="9268" data-speed="1500"></h2>
 				      <p class="count-text ">Agradecimentos</p>
 				    </div>
-				    <div class="counter col_fourth end">
+				    <div class="counter col-counter end">
 				      <i class="fa fa-bar-chart fa-2x"></i>
 				      <h2 class="timer count-title count-number" data-to="257192" data-speed="1500"></h2>
 				      <p class="count-text ">Visualizações</p>
