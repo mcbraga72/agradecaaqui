@@ -33,7 +33,6 @@ header {
 
 ul.nav {
     padding-top: 10px;
-    /*background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);*/
     width: 100%;    
 }
 
@@ -319,8 +318,9 @@ h4.testimony {
  * 
  */
 
-#rules {
-    padding-top: 3%;    
+.rules {
+    padding-top: 3%;
+    background-color: #EDEFF0 !important;
 }
 
 .rules-howto {
@@ -361,16 +361,25 @@ h4.testimony {
     margin: 0 auto;
     float: none;
     display: table;
-    color: #004EC1;   
+    color: #FFF;
+}
+
+.rule-circle {
+    width: 150px;
+    height: 150px;
+    padding-top: 30px;
+    background-color: #004EC1;
+    border-radius: 50%;
+    margin: auto;
 }
 
 .rules-title {
     font-size: 23px;
     font-weight: 800;
-    margin-top: 10px;
+    margin-top: 50px;
     margin-bottom: 10px;
     text-align: center;
-    color: #888;
+    color: #0066CF;
 }
 
 .rules-text {
@@ -386,6 +395,94 @@ h4.testimony {
     margin-left: 4%;
 }
 
+
+/**
+ *
+ * QUEM SOMOS
+ * 
+ */
+
+.team {
+    background-color: #3D4A67 !important;
+    border-radius: 5px;
+}
+
+h1.mission-title {
+    margin-top: 1%;
+    margin-bottom: 2%;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 101;
+    line-height: 1.2em;
+    font-size: 3.3em;
+    letter-spacing: -1px;
+    text-align:center;
+    color: #3658BA !important;
+}
+
+.team img {
+    display: inline-block;
+    height: 80px; 
+    width: 80px;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    border-radius: 50%;
+}
+
+.fa-2x {
+    margin: 0px 10px 10px 10px;
+    float: right;
+    display: inline-block;
+    color: #FFF;
+    padding-top: 18%;
+    padding-right: 5%;
+}
+
+.col-team {    
+    position: relative;
+    display: inline;
+    display: inline-block;
+    float: left;
+    margin-left: 8%;
+    margin-right: 5%;
+    margin-bottom: 20px;
+    width: 19%;
+}
+
+.team-description {
+    display: inline-block;
+}
+
+.team-description p {
+    font-family: "walkway", sans-serif;
+    text-transform: uppercase;
+    font-size: 17px;
+    color: #FFF;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;    
+}
+
+p.job {
+    font-family: "walkway", sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #3F7FaF;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 3%;
+}
+
+p.job-description {
+    font-family: "walkway", sans-serif;    
+    font-size: 10px;
+    color: #FFF;
+    line-height: 2.1em;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 8%;
+    padding-bottom: 5%;
+}
 
 /**
  *
@@ -409,7 +506,7 @@ h4.testimony {
 }
 
 .contatos img {
-        display: inline-block;
+    display: inline-block;
 }
 
 .contatos h2 {
