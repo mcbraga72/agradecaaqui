@@ -402,12 +402,30 @@ h4.testimony {
  * 
  */
 
-.team {
-    background-color: #3D4A67 !important;
-    border-radius: 5px;
+.team-background {
+    background-color: #F6F6F6;
 }
 
-h1.mission-title {
+.enterprise {
+    display: table;    
+}
+
+.about-image {
+    float: left;
+    width: 55%;
+}
+
+.about-text {
+    float: left;
+    width: 35%;
+    padding-top: 5%;
+}
+
+.about-team {
+    height: 500px;
+}
+
+h1.team-title {
     margin-top: 1%;
     margin-bottom: 2%;
     font-family: Lato, Arial, Tahoma, sans-serif;
@@ -416,7 +434,12 @@ h1.mission-title {
     font-size: 3.3em;
     letter-spacing: -1px;
     text-align:center;
-    color: #3658BA !important;
+    color: #3F7FAF !important;
+}
+
+.team {
+    background-color: #3D4A67 !important;
+    border-radius: 5px;
 }
 
 .team img {
@@ -453,7 +476,7 @@ h1.mission-title {
     display: inline-block;
 }
 
-.team-description p {
+p.name {
     font-family: "walkway", sans-serif;
     text-transform: uppercase;
     font-size: 17px;
@@ -467,7 +490,7 @@ p.job {
     font-family: "walkway", sans-serif;
     text-transform: uppercase;
     font-size: 14px;
-    color: #3F7FaF;
+    color: #3F7FAF;
     padding-left: 5%;
     padding-right: 5%;
     padding-top: 3%;
