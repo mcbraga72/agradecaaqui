@@ -402,27 +402,60 @@ h4.testimony {
  * 
  */
 
-.team-background {
-    background-color: #F6F6F6;
-}
-
 .enterprise {
     display: table;    
 }
 
 .about-image {
     float: left;
-    width: 55%;
+    width: 45%;
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;    
 }
 
 .about-text {
-    float: left;
-    width: 35%;
-    padding-top: 5%;
+    float: right;
+    margin-right: 8%;
+    width: 32%;
+    padding-top: 5%;    
+}
+
+.about {
+    margin-top: 1%;
+    margin-bottom: 2%;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 101;
+    line-height: 1.2em;
+    font-size: 3.3em;
+    letter-spacing: -1px;
+    text-align:center;
+    color: #3D4A67 !important;    
+}
+
+.history {
+    font-family: "walkway", sans-serif;
+    font-size: 18px;
+    color: #3F7FAF;
+    padding-left: 5%;
+    padding-top: 5%;    
+}
+
+.hashtag {
+    font-family: "walkway", sans-serif;
+    font-size: 38px;
+    color: #3D4A67;
+    padding-left: 5%;
+    padding-top: 8%;    
 }
 
 .about-team {
-    height: 500px;
+    padding-top: 3%;
+    height: 600px;
+}
+
+.team-background {
+    background-color: #F6F6F6;
 }
 
 h1.team-title {
@@ -452,7 +485,7 @@ h1.team-title {
     border-radius: 50%;
 }
 
-.fa-2x {
+.contacts {
     margin: 0px 10px 10px 10px;
     float: right;
     display: inline-block;
@@ -620,4 +653,44 @@ p.job-description {
     font-family: arial, verdana, sans-serif;
     font-size: 16px;
     font-weight: bold;
+}
+
+
+/**
+ *
+ * LOGIN
+ * 
+ */
+
+.login-register {
+    background-color: #F5F6F8;
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+img.logo-login {
+    display: block;
+    margin: 0 auto;    
+} 
+
+h1.login-register {
+    margin-top: 1%;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 101;
+    line-height: 1.2em;
+    font-size: 36px;
+    letter-spacing: -1px;
+    text-align:center;
+    color: #3D4A67 !important;   
+}
+
+h2.login-register {
+    margin-bottom: 2%;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 101;
+    line-height: 1.2em;
+    font-size: 26px;
+    letter-spacing: -1px;
+    text-align:center;
+    color: #3F7FAF !important;   
 }

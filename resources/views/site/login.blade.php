@@ -1,11 +1,16 @@
 @extends('site.template')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <br><br>
-        <div class="col-md-5 col-lg-5">
-            <h4 class="text-center">Já sou cadastrado</h4><br><br>
+<div class="container-fluid login-register">
+    <div class="row login-register">
+        <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
+            <img class="logo-login" src="images/logo.png" />
+            <h1 class="text-center login-register">Faça login para registrar seu agradecimento</h1>            
+        </div>
+    </div>
+    <div class="row login-register">
+        <div class="col-xs-4 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1">            
+            <h2 class="text-center login-register">Já sou cadastrado</h2>
             <a class="btn btn-block btn-social btn-facebook" href="{{ url('/redirect/facebook') }}"><span class="fa fa-facebook"></span>Entrar com Facebook</a>
             <br>
             <a class="btn btn-block btn-social btn-google" href="{{ url('/redirect/google') }}"><span class="fa fa-google-plus"></span>Entrar com Google+</a>
@@ -57,10 +62,9 @@
                     </form>
                 </div>
             </div>    
-        </div>
-        <div class="col-md-1 col-lg-1"></div>
-        <div class="col-md-5 col-lg-5">
-            <h4 class="text-center">Quero me cadastrar</h4><br><br>
+        </div>        
+        <div class="col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2">
+            <h2 class="text-center login-register">Quero me cadastrar</h2>
             <a class="btn btn-block btn-social btn-facebook" href="{{ url('/redirect/facebook') }}"><span class="fa fa-facebook"></span>Cadastrar com Facebook</a>
             <br>
             <a class="btn btn-block btn-social btn-google" href="{{ url('/redirect/google') }}"><span class="fa fa-google-plus"></span>Cadastrar com Google+</a>
@@ -152,9 +156,7 @@
                     </form>
                 </div>
             </div>
-        </div>
-        <div class="col-md-1 col-lg-1"></div>
-        <div class="col-md-12 col-lg-12"></div>
+        </div>        
     </div>
 </div>
 @endsection
