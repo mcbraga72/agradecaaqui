@@ -38,13 +38,13 @@ return [
     'facebook' => [
         'client_id' => '752484724908381',
         'client_secret' => '6b7ce7175f6cb452e816ede8c117e091',
-        'redirect' => 'http://agradecaaqui.com.br/callback/facebook',
+        'redirect' => 'http://stark-wildwood-60445.herokuapp.com/callback/facebook',
     ],
 
     'google' => [
         'client_id' => '30447960984-nvemu4fjpm86f0jkkpfpudat393ctj55.apps.googleusercontent.com',
         'client_secret' => 'yMRtskRzKlrsVFDMWPcwR8HW',
-        'redirect' => 'http://agradecaaqui.com.br/callback/google',
+        'redirect' => 'http://stark-wildwood-60445.herokuapp.com/callback/google',
     ],
 
 ];
