@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Requests\UserRequest;
+use App\Http\Requests\UserRequest;
 
 class UserAdminController extends Controller
 {

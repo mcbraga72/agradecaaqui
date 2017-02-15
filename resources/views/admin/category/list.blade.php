@@ -19,8 +19,12 @@
                             @foreach ($categories as $category)
                             <tr>
                                 <td>{{ $category->name }}</td>
-                                <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-                                <td><a href=""><i class="fa fa-pencil-square-o"></i></a></td>
+                                <td><a href="/admin/categoria/{{ $category->id }}/editar"><i class="fa fa-pencil-square-o"></i></a></td>
+                                <!--<td><a href="{{ route('category.delete', $category->id) }}"><i class="fa fa-trash-o"></i></a></td>-->
+                                <td>
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['category.delete', $category->id]]) !!}
+                                    {{Form::button('<i class="fa fa-trash-o"></i>', array('type' => 'submit', 'class' => 'btn btn-danger'))}}
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

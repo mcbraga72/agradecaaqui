@@ -78,7 +78,7 @@ Route::get('/admin/empresa/criar', 'EnterpriseAdminController@create');
 Route::post('/admin/empresa', 'EnterpriseAdminController@store');
 Route::get('/admin/empresa/{id}', 'EnterpriseAdminController@show');
 Route::get('/admin/empresa/{id}/editar', 'EnterpriseAdminController@edit');
-Route::put('/admin/empresa/{id}', 'EnterpriseAdminController@update');
+Route::post('/admin/empresa/{id}', 'EnterpriseAdminController@update');
 Route::delete('/admin/empresa/{id}', 'EnterpriseAdminController@destroy');
 
 Route::get('/admin/categorias', 'CategoryAdminController@index');
@@ -86,16 +86,18 @@ Route::get('/admin/categoria/criar', 'CategoryAdminController@create');
 Route::post('/admin/categoria', 'CategoryAdminController@store');
 Route::get('/admin/categoria/{id}', 'CategoryAdminController@show');
 Route::get('/admin/categoria/{id}/editar', 'CategoryAdminController@edit');
-Route::put('/admin/categoria/{id}', 'CategoryAdminController@update');
-Route::delete('/admin/categoria/{id}', 'CategoryAdminController@destroy');
+Route::put('/admin/categoria/{id}', ['as' => 'category.update', 'uses' => 'CategoryAdminController@update']);
+Route::delete('/admin/categoria/{id}', ['as' => 'category.delete', 'uses' => 'CategoryAdminController@destroy']);
 
 Route::get('/admin/agradecimentos-empresas', 'EnterpriseThanksAdminController@index');
+Route::get('/admin/agradecimento-empresa/teste', 'EnterpriseThanksAdminController@teste');
 Route::get('/admin/agradecimento-empresa/criar', 'EnterpriseThanksAdminController@create');
 Route::post('/admin/agradecimento-empresa', 'EnterpriseThanksAdminController@store');
 Route::get('/admin/agradecimento-empresa/{id}', 'EnterpriseThanksAdminController@show');
 Route::get('/admin/agradecimento-empresa/{id}/editar', 'EnterpriseThanksAdminController@edit');
 Route::put('/admin/agradecimento-empresa/{id}', 'EnterpriseThanksAdminController@update');
 Route::delete('/admin/agradecimento-empresa/{id}', 'EnterpriseThanksAdminController@destroy');
+Route::get('autocomplete', array('as'=>'autocomplete','uses'=>'EnterpriseThanksAdminController@autocomplete'));
 
 Route::get('/admin/agradecimentos-usuarios', 'UserThanksAdminController@index');
 Route::get('/admin/agradecimento-usuario/criar', 'UserThanksAdminController@create');
@@ -106,6 +108,7 @@ Route::put('/admin/agradecimento-usuario/{id}', 'UserThanksAdminController@updat
 Route::delete('/admin/agradecimento-usuario/{id}', 'UserThanksAdminController@destroy');
 
 Route::get('/admin/relatorios', 'ReportAdminController@index');
+
 
 Auth::routes();
 

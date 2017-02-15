@@ -2,7 +2,14 @@
 
 @section('content')
 <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
+<script>
+    tinymce.init({ 
+        selector:'textarea',
+        plugins: 'emoticons',
+        menubar: '',
+        toolbar: 'undo redo | cut copy paste | styleselect | bold italic | link image | emoticons' 
+    });
+</script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">

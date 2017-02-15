@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Enterprise;
-use Illuminate\Http\Requests\EnterpriseRequest;
+use App\Http\Requests\EnterpriseRequest;
 
 class EnterpriseAdminController extends Controller
 {
@@ -29,7 +30,8 @@ class EnterpriseAdminController extends Controller
 	 */
     public function create()
     {    	
-    	return view('admin.enterprise.create');
+    	$categories = Category::all();
+    	return view('admin.enterprise.create')->with('categories', $categories);
     }
 
     /**

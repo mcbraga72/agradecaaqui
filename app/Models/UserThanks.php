@@ -15,7 +15,7 @@ class UserThanks extends Model
      *
      * @var array
      */
-    $protected $dates = [
+    protected $dates = [
     	'expires_at',
     	'deleted_at',
     	'date'

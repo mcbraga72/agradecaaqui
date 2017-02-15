@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EnterpriseThanks;
-use Illuminate\Http\Requests\EnterpriseThanks;
+use App\Http\Requests\EnterpriseThanks;
 
 class EnterpriseThanksAppController extends Controller
 {

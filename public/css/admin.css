@@ -45,3 +45,7 @@
 li.dropdown {
 	z-index: 999999;
 }
+
+.main-header .logo {
+    font-size: 15px !important;
+}
