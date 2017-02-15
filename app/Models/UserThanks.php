@@ -19,7 +19,7 @@ class UserThanks extends Model
     	'expires_at',
     	'deleted_at',
     	'date'
-    ]
+    ];
 
     /**
      * Get the user that received the user thanks.

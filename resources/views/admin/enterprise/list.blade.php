@@ -12,8 +12,8 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
+                                <th>Site</th>
                                 <th>E-mail</th>
-                                <th>Telefone</th>
                                 <th colspan="2"></th>                                
                             </tr>
                         </thead>
@@ -21,8 +21,8 @@
                             @foreach ($enterprises as $enterprise)
                             <tr>
                                 <td>{{ $enterprise->name }}</td>
+                                <td>{{ $enterprise->site }}</td>
                                 <td>{{ $enterprise->email }}</td>
-                                <td>{{ $enterprise->telephone }}</td>
                                 <td><a href=""><i class="fa fa-trash-o"></i></a></td>
                                 <td><a href=""><i class="fa fa-pencil-square-o"></i></a></td>
                             </tr>

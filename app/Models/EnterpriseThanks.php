@@ -20,7 +20,7 @@ class EnterpriseThanks extends Model
     	'expires_at',
     	'deleted_at',
         'date'
-    ]
+    ];
 
     /**
      * Get the enterprise that received the enterprise thanks.
