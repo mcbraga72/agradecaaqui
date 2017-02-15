@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserThanks;
-use Illuminate\Http\Requests\UserThanksRequest;
+use App\Http\Requests\UserThanksRequest;
 
 class UserThanksAdminController extends Controller
 {

@@ -2,7 +2,26 @@
 
 @section('content')
 <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
-<script>tinymce.init({ selector:'textarea' });</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({ 
+        selector:'textarea',
+        plugins: 'emoticons',
+        menubar: '',
+        toolbar: 'undo redo | cut copy paste | styleselect | bold italic | link image | emoticons' 
+    });
+    
+    var path = "{{ route('autocomplete') }}";
+    
+    $('input.typeahead').typeahead({
+        source: function (query, process) {
+            return $.get(path, { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+    
+</script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
@@ -14,7 +33,13 @@
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="enterprise" class="col-md-4 control-label">Empresa</label>
                             <div class="col-md-6">
-                                <input id="enterprise" type="text" class="form-control" name="enterprise" value="{{ old('enterprise') }}" required autofocus>
+                                <!--<input id="enterprise" type="text" class="form-control typeahead" name="enterprise" value="{{ old('enterprise') }}" required autofocus>-->
+                                <select class="selectpicker">
+                                    <option value="0">Selecione a empresa</option>
+                                    @foreach ($enterprises as $enterprise) 
+                                    <option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>           
+                                    @endforeach                         
+                                </select>
                                 @if ($errors->has('enterprise'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('enterprise') }}</strong>

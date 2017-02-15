@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
-use Illuminate\Http\Requests\EnterpriseThanksRequest;
+use App\Http\Requests\EnterpriseThanksRequest;
 
 class EnterpriseThanksAdminController extends Controller
 {
@@ -29,7 +30,8 @@ class EnterpriseThanksAdminController extends Controller
 	 */
     public function create()
     {    	
-    	return view('admin.enterprise-thanks.create');
+    	$enterprises = Enterprise::all();
+    	return view('admin.enterprise-thanks.create')->with('enterprises', $enterprises);
     }
 
     /**
@@ -113,12 +115,33 @@ class EnterpriseThanksAdminController extends Controller
 	 * @return Response
 	 * 
 	 */
-    public function destroy()
+    public function destroy($id)
     {
     	$enterpriseThanks = EnterpriseThanks::findOrFail($id);
     	$enterpriseThanks->delete();
 
     	$enterprisesThanks = EnterpriseThanks::all();
     	return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+    }
+
+    /**
+     *
+     * Select enterprise names to fill autocomplete field
+     * 
+     * @param Request
+     *
+     * @return Response
+     * 
+     */
+    public function autocomplete(Request $request)
+    {
+        //$data = Enterprise::select('name')->where('name',"LIKE","%{$request->input('query')}%")->get();
+        //return response()->json($data);
+        return 'Teste';
+    }
+
+    public function teste() 
+    {
+    	return view('admin.enterprise-thanks.profile');    	
     }
 }

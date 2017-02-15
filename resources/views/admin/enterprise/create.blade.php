@@ -9,6 +9,23 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/empresa') }}">
                         {{ csrf_field() }}
+                        <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                            <label for="category" class="col-md-4 control-label">Categoria</label>
+                            <div class="col-md-6">
+                                <!--<input id="category" type="text" class="form-control" name="category" value="{{ old('category') }}" required autofocus>-->
+                                <select class="selectpicker">
+                                    <option value="0">Selecione a categoria</option>
+                                    @foreach ($categories as $category) 
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>           
+                                    @endforeach                         
+                                </select>
+                                @if ($errors->has('category'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('category') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Nome</label>
                             <div class="col-md-6">

@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-            <a href="{{ url('admin/agradecimento-empresa/criar') }}" class="btn btn-success btn-add"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Cadastrar agradecimento - Empresa</a>
+            <a href="{{ url('admin/agradecimento-usuario/criar') }}" class="btn btn-success btn-add"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Cadastrar agradecimento - Usuário</a>
             <div class="panel panel-default">                
                 <!-- Lista de usuários -->
                 <div class="table-responsive">          

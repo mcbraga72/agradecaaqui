@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Requests\CategoryRequest;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryAdminController extends Controller
 {
@@ -64,7 +64,7 @@ class CategoryAdminController extends Controller
 	 */
     public function show($id)
     {
-    	return view('admin.category.profile', ['user' => Category::findOrFail($id)]);
+    	return view('admin.category.profile', ['category' => Category::findOrFail($id)]);
     }
 
     /**
@@ -78,7 +78,7 @@ class CategoryAdminController extends Controller
 	 */
     public function edit($id)
     {
-    	return view('admin.category.profile', ['user' => Category::findOrFail($id)]);
+    	return view('admin.category.profile', ['category' => Category::findOrFail($id)]);
     }
 
     /**
@@ -111,7 +111,7 @@ class CategoryAdminController extends Controller
 	 * @return Response
 	 * 
 	 */
-    public function destroy()
+    public function destroy($id)
     {
     	$category = Category::findOrFail($id);
     	$category->delete();
