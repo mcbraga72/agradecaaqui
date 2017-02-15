@@ -96,39 +96,6 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
-                            <label for="telephone" class="col-md-4 control-label">Celular</label>
-                            <div class="col-md-6">
-                                <input id="telephone" type="telephone" class="form-control" name="telephone" value="{{ old('telephone') }}" required>
-                                @if ($errors->has('telephone'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('telephone') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Endereço</label>
-                            <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
-                                @if ($errors->has('address'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
-                            <label for="cpf" class="col-md-4 control-label">CPF</label>
-                            <div class="col-md-6">
-                                <input id="cpf" type="text" class="form-control" name="cpf" value="{{ old('cpf') }}" required>
-                                @if ($errors->has('cpf'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('cpf') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Senha</label>
                             <div class="col-md-6">
@@ -148,9 +115,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Enviar
-                                </button>
+                                <button type="submit" class="btn btn-primary">Enviar</button>
                             </div>
                         </div>
                     </form>

@@ -7,7 +7,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Lucky Race | Admin</title>  
+  <title>Agradeça Aqui | Admin</title>  
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -37,7 +37,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="#" class="logo">
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Admin</b> - Agradeça Aqui</span>
     </a>

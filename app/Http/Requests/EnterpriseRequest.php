@@ -25,6 +25,7 @@ class EnterpriseRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'site' => 'required',
             'email' => 'required|email',
         ];
     }

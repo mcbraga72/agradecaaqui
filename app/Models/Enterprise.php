@@ -19,7 +19,7 @@ class Enterprise extends Model
     protected $dates = [
     	'expires_at',
     	'deleted_at'
-    ]
+    ];
 
     /**
      * Get the category that has the enterprise.
