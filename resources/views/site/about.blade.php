@@ -3,13 +3,15 @@
 @section('content')
 
 <div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 nopadding">
+            <img src="{{ URL::to('/') }}/images/banner.png" width="100%" />
+        </div>
+    </div>
 	<div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="col-xs-4 col-xs-offset4- col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
             <section class="enterprise">            	
-            	<div class="about-image">
-            	    <img src="images/mission-bg.png" />
-			    </div>
-			    <div class="about-text">
+          	    <div class="about-text">
 			    	<h1 class="about">Venha para o lado do bem!</h1>
                     <p class="history">Oi, pessoal! Nossa história começou num bate-papo entre amigos, desses que a gente joga conversa fora sem nenhuma pretensão.</p> 
                     <p class="history">Nos demos conta das inúmeras pessoas, situações, produtos, serviços e empresas que poderíamos agradecer.</p>
@@ -20,53 +22,7 @@
 			    </div>
             </section>
         </div>
-    </div>
-    <div class="row team-background">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <section class="about-team">
-            	<h1 class="team-title">Nossa equipe</h1>
-        		<div class="col-team">
-			    	<div class="team"> 
-                    	<img src="images/colaborador1.png" alt="Equipe" title="Equipe" />
-                    	<i class="fa fa-linkedin fa-2x contacts" aria-hidden="true"></i>
-						<i class="fa fa-facebook fa-2x contacts" aria-hidden="true"></i>
-						<i class="fa fa-envelope fa-2x contacts" aria-hidden="true"></i>
-                    	<div class="team-description">
-                    		<p class="name">Cátia Mota</p>
-                    		<p class="job">Diretora de Marketing</p>
-                    		<p class="job-description">Lorem ipsum dolor sit amet consectetur adipiscing elit in pulvinar amet consectetur amet adipiscing elit.</p>
-						</div>
-                	</div>
-			    </div>
-			    <div class="col-team">
-			      	<div class="team"> 
-                    	<img src="images/colaborador2.png" alt="Equipe" title="Equipe" />
-                    	<i class="fa fa-linkedin fa-2x contacts" aria-hidden="true"></i>
-						<i class="fa fa-facebook fa-2x contacts" aria-hidden="true"></i>
-						<i class="fa fa-envelope fa-2x contacts" aria-hidden="true"></i>
-                    	<div class="team-description">
-                    		<p class="name">Vítor Rodrigues</p>
-                    		<p class="job">Diretor</p>
-                    		<p class="job-description">Lorem ipsum dolor sit amet consectetur adipiscing elit in pulvinar amet consectetur amet adipiscing elit.</p>
-						</div>
-                	</div>
-			    </div>
-			    <div class="col-team">
-			      	<div class="team"> 
-                    	<img src="images/colaborador3.png" alt="Equipe" title="Equipe" />
-                    	<i class="fa fa-linkedin fa-2x contacts" aria-hidden="true"></i>
-						<i class="fa fa-facebook fa-2x contacts" aria-hidden="true"></i>
-						<i class="fa fa-envelope fa-2x contacts" aria-hidden="true"></i>
-                    	<div class="team-description">
-                    		<p class="name">Gustavo Dantas</p>
-                    		<p class="job">Diretor de Tecnologia</p>
-                    		<p class="job-description">Lorem ipsum dolor sit amet consectetur adipiscing elit in pulvinar amet consectetur amet adipiscing elit.</p>
-						</div>
-                	</div>
-			    </div>			    
-            </section>            
-        </div>
-    </div>
+    </div>    
 </div>
 
 @endsection
