@@ -1,69 +1,117 @@
 @extends('site.template')
 
 @section('content')
-
+	<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+	<script type="text/javascript">
+	    tinymce.init({ 
+	        selector:'textarea',
+	        plugins: 'emoticons',
+	        menubar: '',
+	        toolbar: 'undo redo | cut copy paste | styleselect | bold italic | link image | emoticons' 
+	    });
+	    
+	    var path = "{{ route('autocomplete') }}";
+	    
+	    $('input.typeahead').typeahead({
+	        source: function (query, process) {
+	            return $.get(path, { query: query }, function (data) {
+	                return process(data);
+	            });
+	        }
+	    });
+	    
+	</script>
 	<div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
-                <h1 class="counter-stats">Nossos números</h1>
-                <div class="wrapper-counter">
-				    <div class="counter col-counter first-col-counter">
-				      <i class="fa fa-users fa-2x"></i>
-				      <h2 class="timer count-title count-number" data-to="3214" data-speed="1500"></h2>
-				       <p class="count-text ">Usuários cadastrados</p>
-				    </div>
-				    <div class="counter col-counter">
-				      <i class="fa fa-institution fa-2x"></i>
-				      <h2 class="timer count-title count-number" data-to="421" data-speed="1500"></h2>
-				      <p class="count-text ">Empresas cadastradas</p>
-				    </div>
-				    <div class="counter col-counter">
-				      <i class="fa fa-heart fa-2x"></i>
-				      <h2 class="timer count-title count-number" data-to="9268" data-speed="1500"></h2>
-				      <p class="count-text ">Agradecimentos</p>
-				    </div>
-				    <div class="counter col-counter end">
-				      <i class="fa fa-bar-chart fa-2x"></i>
-				      <h2 class="timer count-title count-number" data-to="257192" data-speed="1500"></h2>
-				      <p class="count-text ">Visualizações</p>
-				    </div>
-				</div>
-			</div>
-		</div>		
-        <div class="row">
-            <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
-                <section id="testimonies">
-		            <h2 class="testimony">Veja o que andam falando de nós ...</h2>
-		            <div id="story1">
-		                <div class="foto"> 
-		                    <img src="/images/cliente1.png" alt="Depoimentos" title="Depoimentos"/>
-		                </div>
-		                <div class="client-testimony"> 
-		                    <h4 class="testimony"><i class="fa fa-quote-left" aria-hidden="true"></i><i> Com o agradeça aqui ficou muito fácil tornar público depoimentos sobre serviços prestados com excelência! </i><i class="fa fa-quote-right" aria-hidden="true"></i></h4><br><br>
-		                    <h3 class="testimony">Renata Freitas</h3>
-		                </div>
-		            </div>
-		            <div id="story2">
-		                <div class="foto"> 
-		                    <img src="images/cliente2.png" alt="Depoimentos" title="Depoimentos" />
-		                </div>
-		                <div class="client-testimony">
-		                    <h4 class="testimony"><i class="fa fa-quote-left" aria-hidden="true"></i><i> Sempre consulto o site do agradeça aqui para verificar a reputação de empresas! </i><i class="fa fa-quote-right" aria-hidden="true"></i></h4><br><br>
-		                    <h3 class="testimony">Daniel Medeiros</h3>
-		                </div>
-		            </div>
-		            <div id="story3">
-		                <div class="foto"> 
-		                    <img src="images/cliente3.png" alt="Depoimentos" title="Depoimentos" />
-		                </div>
-		                <div class="client-testimony"> 
-		                    <h4 class="testimony"><i class="fa fa-quote-left" aria-hidden="true"></i><i> Parabéns pela iniciativa! Temos que criar o hábito de também elogiar serviços que atendem ou superam nossas expectativas como clientes. </i><i class="fa fa-quote-right" aria-hidden="true"></i></h4><br><br>
-		                    <h3 class="testimony">Juliana Batista</h3>
-		                </div>
-		            </div><br><br>
-				</section>
+		<div class="row">
+            <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 nopadding">
+                <img src="{{ URL::to('/') }}/images/banner.png" width="100%" />
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
+                <img class="logo-login" src="images/logo.png" />
+                <h1 class="support">O que você quer </h1><span class="pink">agradecer</span><h1 class="support"> hoje?</h1>
+			</div>
+			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/agradecimento-empresa') }}">
+                {{ csrf_field() }}
+	                <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
+		                <button type="button" class="home"><img src="images/pessoas.png" /></button>
+		                <button type="button" class="home"><img src="images/empresas.png" /></button>
+		            </div>
+	                <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
+		                <br><br>
+		                <label for="nome" class="col-md-4 control-label">Para</label>
+		                <div class="col-md-6">
+		                    <input id="nome" type="nome" class="form-control" name="nome" value="{{ old('nome') }}" required autofocus>
+		                    @if ($errors->has('nome'))
+		                        <span class="help-block">
+		                            <strong>{{ $errors->first('nome') }}</strong>
+		                        </span>
+		                    @endif
+		                </div>
+		            </div>
+		            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+	                    <br><br>
+	                    <label for="email" class="col-md-4 control-label">E-Mail</label>
+	                    <div class="col-md-6">
+	                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+	                        @if ($errors->has('email'))
+	                            <span class="help-block">
+	                                <strong>{{ $errors->first('email') }}</strong>
+	                            </span>
+	                        @endif
+	                    </div>
+	                </div>
+	                <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
+	                    <label for="content" class="col-md-4 control-label">Agradecimento</label>
+	                    <div class="col-md-6">
+	                        <textarea id="content" name="content" class="form-control" required>{{ old('content') }}</textarea>
+	                        @if ($errors->has('content'))
+	                            <span class="help-block">
+	                                <strong>{{ $errors->first('content') }}</strong>
+	                            </span>
+	                        @endif
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <div class="col-md-6 col-md-offset-4">
+	                        <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span>Enviar</button>                        
+	                    </div>
+	                </div>
+	            </form>
+			</div>
+			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
+                <img class="logo-login" src="images/logo.png" />
+                <h1 class="support">Comentários</h1>			
+				<form class="form-horizontal" role="form" method="POST" action="{{ url('busca') }}">
+	            {{ csrf_field() }}
+					<div class="form-group{{ $errors->has('busca') ? ' has-error' : '' }}">
+		                <br><br>
+		                <div class="col-md-6">
+		                    <input id="busca" type="busca" class="form-control" name="busca" value="{{ old('busca') }}" placeholder="Pesquisar por" required autofocus>
+		                    @if ($errors->has('busca'))
+		                        <span class="help-block">
+		                            <strong>{{ $errors->first('busca') }}</strong>
+		                        </span>
+		                    @endif
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <div class="col-md-6 col-md-offset-4">
+		                    <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span>Pesquisar</button>	                    
+		                </div>
+		            </div>
+		        </form>
+	        </div>
+	        <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
+				@foreach($agradecimentos as $agradecimento)
+					<div>
+					</div>
+				@endforeach
+	        </div>
+		</div>        
     </div>
 
 @endsection

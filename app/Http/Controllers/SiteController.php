@@ -17,13 +17,13 @@ class SiteController extends Controller
     }
 
     /**
-     * Show the about page
+     * Show the about us page
      *
      * @return Response
      */
     public function about()
     {
-    	return view('site.about');	
+        return view('site.about');    
     }
 
     /**
@@ -33,17 +33,17 @@ class SiteController extends Controller
      */
     public function contact()
     {
-    	return view('site.contact');	
+        return view('site.contact');
     }
 
     /**
-     * Show the rules page
+     * Show the support us page
      *
      * @return Response
      */
-    public function rules()
+    public function support()
     {
-    	return view('site.rules');	
+    	return view('site.support');	
     }
 
     /**
