@@ -22,8 +22,8 @@ class CreateEnterpriseThanksTable extends Migration
             $table->date('date');
             $table->time('time');
             $table->text('content');
-            $table->text('replica');
-            $table->text('rejoinder');            
+            $table->text('replica')->nullable();
+            $table->text('rejoinder')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
