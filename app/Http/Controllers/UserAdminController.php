@@ -46,6 +46,13 @@ class UserAdminController extends Controller
     	$user = new User();
 
     	$user->name = $request->name;
+    	$user->surName = $request->surName;
+        $user->gender = $request->gender;
+        $user->dateOfBirth = $request->dateOfBirth;
+        $user->telephone = $request->telephone;
+        $user->cellphone = $request->cellphone;
+        $user->city = $request->city;
+        $user->state = $request->state;
     	$user->email = $request->email;
     	$user->password = bcrypt($request->password);
 
@@ -97,6 +104,13 @@ class UserAdminController extends Controller
     	$user = User::find($id);
 
     	$user->name = $request->name;
+    	$user->surName = $request->surName;
+        $user->gender = $request->gender;
+        $user->dateOfBirth = $request->dateOfBirth;
+        $user->telephone = $request->telephone;
+        $user->cellphone = $request->cellphone;
+        $user->city = $request->city;
+        $user->state = $request->state;
     	$user->email = $request->email;
     	$user->password = bcrypt($request->password);
 
