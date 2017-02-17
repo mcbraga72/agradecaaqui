@@ -34,7 +34,7 @@
                             <label for="enterprise" class="col-md-4 control-label">Empresa</label>
                             <div class="col-md-6">
                                 <!--<input id="enterprise" type="text" class="form-control typeahead" name="enterprise" value="{{ old('enterprise') }}" required autofocus>-->
-                                <select class="selectpicker">
+                                <select class="selectpicker" id="enterprise_id">
                                     <option value="0">Selecione a empresa</option>
                                     @foreach ($enterprises as $enterprise) 
                                     <option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>           

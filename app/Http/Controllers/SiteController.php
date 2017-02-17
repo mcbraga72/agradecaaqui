@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\EnterpriseThanks;
 
 class SiteController extends Controller
 {
@@ -13,7 +14,8 @@ class SiteController extends Controller
      */
     public function index()
     {
-    	return view('site.index');    	
+        $enterpriseThanks = EnterpriseThanks::orderBy('date', 'desc')->take(9)->get();
+    	return view('site.index')->with('enterpriseThanks', $enterpriseThanks);    	
     }
 
     /**

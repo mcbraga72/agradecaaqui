@@ -29,11 +29,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
-                <img class="logo-login" src="images/logo.png" />
-                <h1 class="support">O que você quer </h1><span class="pink">agradecer</span><h1 class="support"> hoje?</h1>
-			</div>
-			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
+            <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
+                <img class="logo" src="images/logo.png" />
+                <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/agradecimento-empresa') }}">
                 {{ csrf_field() }}
 	                <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
@@ -42,9 +40,9 @@
 		            </div>
 	                <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
 		                <br><br>
-		                <label for="nome" class="col-md-4 control-label">Para</label>
+		                <label for="nome" class="col-md-4 control-label">PARA</label>
 		                <div class="col-md-6">
-		                    <input id="nome" type="nome" class="form-control" name="nome" value="{{ old('nome') }}" required autofocus>
+		                    <input id="nome" type="nome" class="form-control" name="nome" value="{{ old('nome') }}" required autofocus placeholder="Nome">
 		                    @if ($errors->has('nome'))
 		                        <span class="help-block">
 		                            <strong>{{ $errors->first('nome') }}</strong>
@@ -54,9 +52,9 @@
 		            </div>
 		            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 	                    <br><br>
-	                    <label for="email" class="col-md-4 control-label">E-Mail</label>
+	                    <label for="email" class="col-md-4 control-label">E-MAIL</label>
 	                    <div class="col-md-6">
-	                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+	                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="E-mail do destinatário">
 	                        @if ($errors->has('email'))
 	                            <span class="help-block">
 	                                <strong>{{ $errors->first('email') }}</strong>
@@ -65,9 +63,9 @@
 	                    </div>
 	                </div>
 	                <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-	                    <label for="content" class="col-md-4 control-label">Agradecimento</label>
+	                    <img src="images/heart.png" style="display: inline-bl" /><label for="content" class="col-md-4 control-label">AGRADEÇA AQUI:</label>
 	                    <div class="col-md-6">
-	                        <textarea id="content" name="content" class="form-control" required>{{ old('content') }}</textarea>
+	                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 	                        @if ($errors->has('content'))
 	                            <span class="help-block">
 	                                <strong>{{ $errors->first('content') }}</strong>
@@ -77,12 +75,11 @@
 	                </div>
 	                <div class="form-group">
 	                    <div class="col-md-6 col-md-offset-4">
-	                        <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span>Enviar</button>                        
+	                        <button type="submit" class="btn pink-button">ENVIAR</button>                        
 	                    </div>
 	                </div>
 	            </form>
-			</div>
-			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
+	            <br><br>	
                 <img class="logo-login" src="images/logo.png" />
                 <h1 class="support">Comentários</h1>			
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('busca') }}">
@@ -90,7 +87,7 @@
 					<div class="form-group{{ $errors->has('busca') ? ' has-error' : '' }}">
 		                <br><br>
 		                <div class="col-md-6">
-		                    <input id="busca" type="busca" class="form-control" name="busca" value="{{ old('busca') }}" placeholder="Pesquisar por" required autofocus>
+		                    <input id="busca" type="busca" class="form-control search" name="busca" value="{{ old('busca') }}" placeholder="Pesquisar por" required autofocus>
 		                    @if ($errors->has('busca'))
 		                        <span class="help-block">
 		                            <strong>{{ $errors->first('busca') }}</strong>
@@ -100,16 +97,17 @@
 		            </div>
 		            <div class="form-group">
 		                <div class="col-md-6 col-md-offset-4">
-		                    <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span>Pesquisar</button>	                    
+		                    <button type="submit" class="btn pink-button">Pesquisar</button>	                    
 		                </div>
 		            </div>
 		        </form>
 	        </div>
-	        <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
-				@foreach($agradecimentos as $agradecimento)
-					<div>
-					</div>
-				@endforeach
+	        <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
+	        	@forelse($enterpriseThanks as $enterpriseThank)
+    				<h2>{{ $enterpriseThank->content }}</h2>
+				@empty
+    				<h2>Não existe nenhum agradecimento cadastrado em nossa base de dados!</h2>
+				@endforelse				
 	        </div>
 		</div>        
     </div>
