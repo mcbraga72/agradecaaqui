@@ -78,8 +78,17 @@ ul.nav {
  * 
  */
 
-h1.support {
-    display: inline;
+div.home {
+    text-align: center !important;
+}
+
+.logo {
+    display: block;
+    margin: 2% auto;
+}
+
+h1.thanks-text {
+    display: inline-block;
     font-family: Lato, Arial, Tahoma, sans-serif;
     font-weight: 900;
     font-size: 30px;
@@ -89,13 +98,15 @@ h1.support {
 }
 
 .pink {
-    display: inline;
+    display: inline-block;
     font-family: Lato, Arial, Tahoma, sans-serif;
     font-weight: 900;
     font-size: 30px;
     letter-spacing: 2px;
     text-align:center;
     color: #FF2257 !important;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 button.home {
@@ -104,6 +115,30 @@ button.home {
     border-radius: 5px;
 }
 
+.pink-button {
+    margin: 2% auto;
+    background-color: #FF2257;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-align:center;
+    border-radius: 5px;
+    color: #FFF;
+}
+
+.control-label {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-align:center;
+    color: #333 !important;
+}
+
+.search {
+    
+}
 
 /**
  *

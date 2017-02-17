@@ -90,7 +90,6 @@ Route::put('/admin/categoria/{id}', ['as' => 'category.update', 'uses' => 'Categ
 Route::delete('/admin/categoria/{id}', ['as' => 'category.delete', 'uses' => 'CategoryAdminController@destroy']);
 
 Route::get('/admin/agradecimentos-empresas', 'EnterpriseThanksAdminController@index');
-Route::get('/admin/agradecimento-empresa/teste', 'EnterpriseThanksAdminController@teste');
 Route::get('/admin/agradecimento-empresa/criar', 'EnterpriseThanksAdminController@create');
 Route::post('/admin/agradecimento-empresa', 'EnterpriseThanksAdminController@store');
 Route::get('/admin/agradecimento-empresa/{id}', 'EnterpriseThanksAdminController@show');
