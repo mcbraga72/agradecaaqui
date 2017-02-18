@@ -110,13 +110,13 @@ h1.thanks-text {
 }
 
 button.home {
-    margin: 5% auto;
+    margin: 5%;
     background-color: #FFF;
     border-radius: 5px;
 }
 
 .pink-button {
-    margin: 2% auto;
+    margin: 2% auto 20% auto;
     background-color: #FF2257;
     font-family: Lato, Arial, Tahoma, sans-serif;
     font-weight: 900;
@@ -136,22 +136,65 @@ button.home {
     color: #333 !important;
 }
 
+.social-network {
+    margin: 2% auto 20% auto;
+    width: 40px;
+    height: 40px;
+    color: #FFF;    
+}
+
+.facebook-button {
+    background-color: #2F5893;
+}
+
+.twitter-button {
+    background-color: #39A7E6;    
+}
+
+.google-button {
+    background-color: #DC4C33;
+}
+
+.whatsapp-button {
+    background-color: #00A500; 
+    margin-right: 20%;
+}
+
+.search {
+    margin-left: 50%;
+}
+
 .thanks-box {
     background-color: #FFF;
-    height: 180px;
+    height: 220px;
     margin-top: 2%;
     margin-bottom: 2%;
     border-radius: 3px;
 }
 
+.header-thanks {
+    position: relative;
+    border: 1px solid #666 !important;
+    margin-bottom: 5%;
+}
+
 .thanks-title {
+    position: relative;
+    bottom: 15%;
+    display: inline-block;
     font-family: Lato, Arial, Tahoma, sans-serif;
     font-weight: 700;
     font-size: 18px;
     letter-spacing: 2px;
     text-align: left;    
     color: #333;
-    margin-top: 3%;
+    margin-top: 0%;
+}
+
+.heart {
+    position: relative;
+    left: 25%;
+    bottom: 15%;
 }
 
 .thaks-content {
@@ -161,8 +204,7 @@ button.home {
     letter-spacing: 2px;
     line-height: 200%;
     text-align: left;    
-    color: #333;   
-    margin-top: 3%;
+    color: #333;       
 }
 
 .user-photo {
@@ -182,6 +224,19 @@ button.home {
     text-align: left;    
     color: #333;       
 }
+
+.show-more {
+    text-align: center;
+}
+
+.plus {    
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    margin-top: 4%;    
+}
+
 
 
 

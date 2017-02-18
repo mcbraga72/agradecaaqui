@@ -63,7 +63,7 @@
 	                    </div>
 	                </div>
 	                <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-	                    <img src="images/heart.png" style="display: inline-bl" /><label for="content" class="col-md-4 control-label">AGRADEÇA AQUI:</label>
+	                    <img src="images/heart.png" /><label for="content" class="col-md-4 control-label">AGRADEÇA AQUI</label>
 	                    <div class="col-md-6">
 	                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 	                        @if ($errors->has('content'))
@@ -75,7 +75,11 @@
 	                </div>
 	                <div class="form-group">
 	                    <div class="col-md-6 col-md-offset-4">
-	                        <button type="submit" class="btn pink-button">ENVIAR</button>                        
+	                    	<button type="submit" class="btn social-network facebook-button"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></button>
+	                    	<button type="submit" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
+	                    	<button type="submit" class="btn social-network google-button"><i class="fa fa-2x fa-google-plus" aria-hidden="true"></i></button>
+	                    	<button type="submit" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
+	                        <button type="submit" class="btn pink-button">ENVIAR</button>
 	                    </div>
 	                </div>
 	            </form>
@@ -96,7 +100,7 @@
 		                </div>
 		            </div>
 		            <div class="form-group">
-		                <div class="col-md-6 col-md-offset-4">
+		                <div class="col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
 		                    <button type="submit" class="btn pink-button">Pesquisar</button>	                    
 		                </div>
 		            </div>
@@ -111,57 +115,69 @@
     				<!--<h2>Não existe nenhum agradecimento cadastrado em nossa base de dados!</h2>-->    				
 					<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Depoimentos" title="Depoimentos" />
+	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
 	                    <span class="user-name">Camila Veiga</span>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente2.png" alt="Depoimentos" title="Depoimentos" />
+	                    <img class="user-photo" src="images/cliente2.png" alt="Agradecimento" title="Agradecimento" />
 	                    <span class="user-name">Gerson Freitas</span>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente3.png" alt="Depoimentos" title="Depoimentos" />
+	                    <img class="user-photo" src="images/cliente3.png" alt="Agradecimento" title="Agradecimento" />
 	                    <span class="user-name">Tatiana Barros</span>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente1.png" alt="Depoimentos" title="Depoimentos" />
+	                    <img class="user-photo" src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
 	                    <span class="user-name">Camila Veiga</span>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente2.png" alt="Depoimentos" title="Depoimentos" />
+	                    <img class="user-photo" src="images/cliente2.png" alt="Agradecimento" title="Agradecimento" />
 	                    <span class="user-name">Gerson Freitas</span>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente3.png" alt="Depoimentos" title="Depoimentos" />
+	                    <img class="user-photo" src="images/cliente3.png" alt="Agradecimento" title="Agradecimento" />
 	                    <span class="user-name">Tatiana Barros</span>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente1.png" alt="Depoimentos" title="Depoimentos" />
+	                    <img class="user-photo" src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
 	                    <span class="user-name">Camila Veiga</span>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />	                    
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente2.png" alt="Depoimentos" title="Depoimentos" />
+	                    <img class="user-photo" src="images/cliente2.png" alt="Agradecimento" title="Agradecimento" />
 	                    <span class="user-name">Gerson Freitas</span>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente3.png" alt="Depoimentos" title="Depoimentos" />
+	                    <img class="user-photo" src="images/cliente3.png" alt="Agradecimento" title="Agradecimento" />
 	                    <span class="user-name">Tatiana Barros</span>
+	                </div>
+	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 show-more">
+						<img class="plus" src="images/plus.png" alt="Mostrar mais" title="Mostrar mais" />
 	                </div>
 				@endforelse				
 	        </div>    
