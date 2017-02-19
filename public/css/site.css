@@ -429,15 +429,19 @@ img.logo-login {
     margin: 0 auto;    
 } 
 
+.between-dash {
+    margin-left: 90%;
+}
+
 h1.login-register {
     margin-top: 1%;
     font-family: Lato, Arial, Tahoma, sans-serif;
-    font-weight: 101;
+    font-weight: 900;
     line-height: 1.2em;
-    font-size: 36px;
-    letter-spacing: -1px;
+    font-size: 26px;
+    letter-spacing: 2px;
     text-align:center;
-    color: #3D4A67 !important;   
+    color: #3F7FAF !important;   
 }
 
 h2.login-register {

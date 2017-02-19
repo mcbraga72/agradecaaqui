@@ -57,4 +57,14 @@ class SiteController extends Controller
     {
     	return view('site.login');	
     }
+
+    /**
+     * Show the register page
+     *
+     * @return Response
+     */
+    public function register()
+    {
+        return view('site.register');  
+    }
 }
