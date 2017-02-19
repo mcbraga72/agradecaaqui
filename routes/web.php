@@ -36,6 +36,7 @@ Route::get('/quem-somos', 'SiteController@about');
 Route::get('/contato', 'SiteController@contact');
 Route::get('/apoiadores', 'SiteController@support');
 Route::get('/entrar', 'SiteController@login');
+Route::get('/cadastro', 'SiteController@register');
 
 
 // Users Area
