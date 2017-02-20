@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -35,9 +37,9 @@ class AppController extends Controller
 	 * @return Response
 	 * 
 	 */
-	public function edit($id)
+	public function edit()
     {
-    	return view('app.user.profile', ['user' => User::findOrFail($id)]);
+    	return view('app.user.profile', ['user' => User::findOrFail(Auth::user()->id)]);
     }
 
     /**
