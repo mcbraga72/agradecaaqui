@@ -1,111 +1,49 @@
-@extends('admin.dashboard')
+@extends('app.dashboard')
 
 @section('content')
+<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>
+    tinymce.init({ 
+        selector:'textarea',
+        plugins: 'emoticons',
+        menubar: '',
+        toolbar: 'undo redo | cut copy paste | styleselect | bold italic | link image | emoticons' 
+    });
+</script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">Cadastro de Usuários</div>
+                <div class="panel-heading">Cadastro de Agradecimentos - Usuários</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/usuario') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('app/agradecimento-usuario') }}">
                         {{ csrf_field() }}
-
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Nome</label>
-
+                            <label for="user" class="col-md-4 control-label">Usuário</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
+                                <input id="user" type="text" class="form-control" name="user" value="{{ old('user') }}" required autofocus>
+                                @if ($errors->has('user'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('user') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail</label>
-
+                        <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
+                            <label for="content" class="col-md-4 control-label">Agradecimento</label>
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
+                                <textarea id="content" name="content" class="form-control" required>{{ old('content') }}</textarea>
+                                @if ($errors->has('content'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('content') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
-                            <label for="telephone" class="col-md-4 control-label">Celular</label>
-
-                            <div class="col-md-6">
-                                <input id="telephone" type="telephone" class="form-control" name="telephone" value="{{ old('telephone') }}" required>
-
-                                @if ($errors->has('telephone'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('telephone') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Endereço</label>
-
-                            <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
-
-                                @if ($errors->has('address'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('cpf') ? ' has-error' : '' }}">
-                            <label for="cpf" class="col-md-4 control-label">CPF</label>
-
-                            <div class="col-md-6">
-                                <input id="cpf" type="text" class="form-control" name="cpf" value="{{ old('cpf') }}" required>
-
-                                @if ($errors->has('cpf'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('cpf') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Senha</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirmar Senha</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span>Cadastrar</button>
-                                <a href="{{ url('admin/usuarios') }}" class="btn btn-danger"><span><i class="fa fa-close"></i></span>Cancelar</a>
+                                <a href="{{ url('app/agradecimentos-usuarios') }}" class="btn btn-danger"><span><i class="fa fa-close"></i></span>Cancelar</a>
                             </div>
                         </div>
                     </form>
