@@ -11,7 +11,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Usuário</th>
                                 <th>Empresa</th>
                                 <th>Agradecimento</th>
                                 <th colspan="2"></th>                                
@@ -20,7 +19,6 @@
                         <tbody>
                             @foreach ($enterprisesThanks as $enterpriseThanks)
                             <tr>
-                                <td>{{ $enterpriseThanks->user()->name }}</td>
                                 <td>{{ $enterpriseThanks->enterprise()->name }}</td>
                                 <td>{{ $enterpriseThanks->content }}</td>
                                 <td><a href=""><i class="fa fa-trash-o"></i></a></td>
