@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\UserThanks;
 use App\Http\Requests\UserRequest;
 
@@ -52,6 +53,8 @@ class UserThanksAppController extends Controller
 
     	$usersThanks = UserThanks::all();
     	return view('app.user-thanks.list')->with('usersThanks', $usersThanks);
+
+    	Mail::to($request->user())->send(new UserThanksMail($user, $userThanks));
     }
 
     /**
@@ -102,6 +105,8 @@ class UserThanksAppController extends Controller
 
     	$usersThanks = UserThanks::all();
     	return view('app.user-thanks.list')->with('usersThanks', $usersThanks);
+
+    	Mail::to($request->user())->send(new UserThanksMail($user, $userThanks));
     }
 
     /**

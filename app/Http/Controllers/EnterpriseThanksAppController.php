@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EnterpriseThanksMail;
+use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
-use App\Http\Requests\EnterpriseThanks;
+use App\Http\Requests\EnterpriseThanksRequest;
 
 class EnterpriseThanksAppController extends Controller
 {
@@ -29,7 +31,8 @@ class EnterpriseThanksAppController extends Controller
 	 */
     public function create()
     {    	
-    	return view('app.enterprise-thanks.create');
+    	$enterprises = Enterprise::all();
+    	return view('app.enterprise-thanks.create')->with('enterprises', $enterprises);
     }
 
     /**
@@ -52,6 +55,8 @@ class EnterpriseThanksAppController extends Controller
 
     	$enterprisesThanks = EnterpriseThanks::all();
     	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+
+    	Mail::to($request->user())->send(new EnterpriseThanksMail($user, $enterpriseThanks));
     }
 
     /**
@@ -102,6 +107,8 @@ class EnterpriseThanksAppController extends Controller
 
     	$enterprisesThanks = EnterpriseThanks::all();
     	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+
+    	Mail::to($request->user())->send(new EnterpriseThanksMail($user, $enterpriseThanks));
     }
 
     /**
