@@ -53,7 +53,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span>Cadastrar</button>
+                                <input type="submit" class="btn btn-success" value="Cadastrar" />
                                 <a href="{{ url('app/agradecimentos-usuarios') }}" class="btn btn-danger"><span><i class="fa fa-close"></i></span>Cancelar</a>
                             </div>
                         </div>

@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\EnterpriseRequest;
 
 class AppController extends Controller
-{
+{	
 	/**
 	 * Dashboard page
 	 *
@@ -73,7 +75,8 @@ class AppController extends Controller
 	 */
     public function createEnterprise()
     {
-    	return view('app.enterprise.create');
+    	$categories = Category::all();
+    	return view('app.enterprise.create')->with('categories', $categories);
     }
 
     /**
@@ -85,8 +88,8 @@ class AppController extends Controller
 	 * @return Response
 	 * 
 	 */
-    public function storeEnterprise(EnterpriseRequest $request)
-    {
+	public function storeEnterprise(EnterpriseRequest $request)
+	{		
     	$enterprise = new Enterprise();
 
     	$enterprise->name = $request->name;
@@ -95,6 +98,7 @@ class AppController extends Controller
     	$enterprise->telephone = $request->telephone;
     	$enterprise->site = $request->site;
     	$enterprise->email = $request->email;
+    	$enterprise->status = 'Pending';
 
     	$enterprise->save();
 

@@ -1,6 +1,13 @@
-@extends('admin.dashboard')
+@extends('app.dashboard')
 
 @section('content')
+<script>
+    $('#submitButton').click(function(event){
+        if (!event.isDefaultPrevented()){
+            alert("Default behaviour not prevented");
+        }
+    });
+</script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
@@ -59,10 +66,43 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('cnpj') ? ' has-error' : '' }}">
+                            <label for="cnpj" class="col-md-4 control-label">CNPJ</label>
+                            <div class="col-md-6">
+                                <input id="cnpj" type="text" class="form-control" name="cnpj" value="{{ old('cnpj') }}" required>
+                                @if ($errors->has('cnpj'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('cnpj') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label for="address" class="col-md-4 control-label">Endereço</label>
+                            <div class="col-md-6">
+                                <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
+                            <label for="telephone" class="col-md-4 control-label">E-Mail</label>
+                            <div class="col-md-6">
+                                <input id="telephone" type="text" class="form-control" name="telephone" value="{{ old('telephone') }}" required>
+                                @if ($errors->has('telephone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('telephone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-success"><span><i class="fa fa-check"></i></span>Cadastrar</button>
-                                <a href="{{ url('admin/empresas') }}" class="btn btn-danger"><span><i class="fa fa-close"></i></span>Cancelar</a>
+                                <button type="submit" class="btn btn-success" id="submitButton"><span><i class="fa fa-check"></i></span>Cadastrar</button>
+                                <a href="{{ url('app') }}" class="btn btn-danger"><span><i class="fa fa-close"></i></span>Cancelar</a>
                             </div>
                         </div>
                     </form>

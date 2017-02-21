@@ -53,6 +53,7 @@ class EnterpriseAdminController extends Controller
     	$enterprise->telephone = $request->telephone;
     	$enterprise->site = $request->site;
     	$enterprise->email = $request->email;
+        $enterprise->status = 'Approved';
 
     	$enterprise->save();
 
@@ -66,12 +67,13 @@ class EnterpriseAdminController extends Controller
 	 * 
 	 * @param int $id
 	 *
-	 * @return Response
+	 * @return Enterprise $enterprise
 	 * 
 	 */
     public function show($id)
     {
-    	return view('admin.enterprise.profile', ['user' => Enterprise::findOrFail($id)]);
+    	$enterprise = Enterprise::findOrFail($id);
+        return $enterprise;
     }
 
     /**

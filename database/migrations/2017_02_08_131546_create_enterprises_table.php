@@ -21,6 +21,7 @@ class CreateEnterprisesTable extends Migration
             $table->string('telephone');
             $table->string('site');
             $table->string('email')->unique();
+            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
         });

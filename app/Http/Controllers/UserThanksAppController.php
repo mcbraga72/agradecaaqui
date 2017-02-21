@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserThanks;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserThanksRequest;
 
 class UserThanksAppController extends Controller
 {
@@ -44,6 +44,7 @@ class UserThanksAppController extends Controller
 	 */
     public function store(UserThanksRequest $request)
     {
+    	dd($request);
     	$userThanks = new UserThanks();
 
     	$userThanks->receipt = $request->receipt;
@@ -51,10 +52,10 @@ class UserThanksAppController extends Controller
 
     	$userThanks->save();
 
+    	Mail::to($request->user())->send(new UserThanksMail($user, $userThanks));
+
     	$usersThanks = UserThanks::all();
     	return view('app.user-thanks.list')->with('usersThanks', $usersThanks);
-
-    	Mail::to($request->user())->send(new UserThanksMail($user, $userThanks));
     }
 
     /**
