@@ -45,7 +45,7 @@ Route::get('/cadastro', 'SiteController@register');
 Route::get('/app', 'AppController@dashboard');
 Route::get('/app/perfil', 'AppController@edit');
 Route::put('/app/perfil/{id}', 'AppController@update');
-Route::put('/app/empresa/criar', 'AppController@createEnterprise');
+Route::get('/app/empresa/criar', 'AppController@createEnterprise');
 Route::post('/app/empresa', 'AppController@storeEnterprise');
 	
 Route::get('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@index');

@@ -50,13 +50,16 @@ class EnterpriseThanksAppController extends Controller
 
     	$enterpriseThanks->enterprise_id = $request->enterprise_id;
     	$enterpriseThanks->content = $request->content;
+    	$enterpriseThanks->status = 'Pending';
 
     	$enterpriseThanks->save();
 
+        $enterprise = new Enterprise();
+
+        Mail::to($enterprise->show()->email)->send(new EnterpriseThanksMail($user, $enterpriseThanks));
+
     	$enterprisesThanks = EnterpriseThanks::all();
     	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
-
-    	Mail::to($request->user())->send(new EnterpriseThanksMail($user, $enterpriseThanks));
     }
 
     /**
@@ -105,10 +108,12 @@ class EnterpriseThanksAppController extends Controller
 
     	$enterpriseThanks->save();
 
-    	$enterprisesThanks = EnterpriseThanks::all();
-    	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+        $enterprise = new Enterprise();
 
-    	Mail::to($request->user())->send(new EnterpriseThanksMail($user, $enterpriseThanks));
+        Mail::to($enterprise->show()->email)->send(new EnterpriseThanksMail($user, $enterpriseThanks));
+
+    	$enterprisesThanks = EnterpriseThanks::all();        
+    	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);   	
     }
 
     /**
