@@ -102,7 +102,7 @@
         </div>            
         <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
             <div class="">
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                     {{ csrf_field() }}
                     <div class="label-register form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-4 col-lg-4">
                         <br><br>
@@ -235,7 +235,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-4">
-                            <button type="submit" class="btn pink-button">ENVIAR</button>                        
+                            <button type="submit" class="btn pink-button pink-button-register">ENVIAR</button>                        
                         </div>
                     </div>
                 </form>

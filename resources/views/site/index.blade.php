@@ -40,7 +40,7 @@
 		            </div>
 	                <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
 		                <br><br>
-		                <label for="nome" class="col-md-4 control-label">PARA</label>
+		                <label for="nome" class="col-md-4 control-label form-home">PARA</label>
 		                <div class="col-md-6">
 		                    <input id="nome" type="nome" class="form-control" name="nome" value="{{ old('nome') }}" required autofocus placeholder="Nome">
 		                    @if ($errors->has('nome'))
@@ -52,7 +52,7 @@
 		            </div>
 		            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 	                    <br><br>
-	                    <label for="email" class="col-md-4 control-label">E-MAIL</label>
+	                    <label for="email" class="col-md-4 control-label form-home">E-MAIL</label>
 	                    <div class="col-md-6">
 	                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="E-mail do destinatário">
 	                        @if ($errors->has('email'))
@@ -63,7 +63,7 @@
 	                    </div>
 	                </div>
 	                <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-	                    <img src="images/heart.png" /><label for="content" class="col-md-4 control-label">AGRADEÇA AQUI</label>
+	                    <img src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
 	                    <div class="col-md-6">
 	                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 	                        @if ($errors->has('content'))

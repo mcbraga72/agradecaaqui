@@ -100,6 +100,10 @@ h1.thanks-text {
     color: #436EC6 !important;
 }
 
+. form-home {
+    text-align: right !important;
+}
+
 .pink {
     display: inline-block;
     font-family: Lato, Arial, Tahoma, sans-serif;
@@ -183,7 +187,6 @@ button.home {
 
 .thanks-title {
     position: relative;
-    bottom: 15%;
     display: inline-block;
     font-family: Lato, Arial, Tahoma, sans-serif;
     font-weight: 700;
@@ -315,7 +318,7 @@ h1.support {
 
 .contato {
     background-color: #F5F5F5;
-        height: 450px;
+    margin-bottom: 10%;    
 }
 
 .contatos {
@@ -335,8 +338,7 @@ h1.support {
     margin-top: 1%;
     padding-top: 50px;
     padding-bottom: 5%;
-    background-color: #F5F6F8;
-    height: 370px;
+    background-color: #F5F6F8;    
 }
 
 .formulario h1 {
@@ -487,4 +489,8 @@ select.label-register {
 .radio-register {
     display: inline-block !important; 
     top: 0px;
+}
+
+.pink-button-register {
+    margin-left: 17% !important;
 }
