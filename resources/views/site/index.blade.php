@@ -32,32 +32,32 @@
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
                 <img class="logo" src="images/logo.png" />
                 <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/agradecimento-empresa') }}">
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('entrar') }}">
                 {{ csrf_field() }}
 	                <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
 		                <button type="button" class="home"><img src="images/pessoas.png" /></button>
 		                <button type="button" class="home"><img src="images/empresas.png" /></button>
-		            </div>
-	                <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
+		            </div>		            
+	                <div class="form-group{{ $errors->has('userName') ? ' has-error' : '' }}">
 		                <br><br>
-		                <label for="nome" class="col-md-4 control-label form-home">PARA</label>
+		                <label for="userName" class="col-md-4 control-label form-home">PARA</label>
 		                <div class="col-md-6">
-		                    <input id="nome" type="nome" class="form-control" name="nome" value="{{ old('nome') }}" required autofocus placeholder="Nome">
-		                    @if ($errors->has('nome'))
+		                    <input id="userName" type="text" class="form-control" name="userName" value="{{ old('userName') }}" required autofocus placeholder="Nome">
+		                    @if ($errors->has('userName'))
 		                        <span class="help-block">
-		                            <strong>{{ $errors->first('nome') }}</strong>
+		                            <strong>{{ $errors->first('userName') }}</strong>
 		                        </span>
 		                    @endif
 		                </div>
 		            </div>
-		            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+		            <div class="form-group{{ $errors->has('userEmail') ? ' has-error' : '' }}">
 	                    <br><br>
-	                    <label for="email" class="col-md-4 control-label form-home">E-MAIL</label>
+	                    <label for="userEmail" class="col-md-4 control-label form-home">E-MAIL</label>
 	                    <div class="col-md-6">
-	                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus placeholder="E-mail do destinatário">
-	                        @if ($errors->has('email'))
+	                        <input id="userEmail" type="email" class="form-control" name="userEmail" value="{{ old('userEmail') }}" required autofocus placeholder="E-mail do destinatário">
+	                        @if ($errors->has('userEmail'))
 	                            <span class="help-block">
-	                                <strong>{{ $errors->first('email') }}</strong>
+	                                <strong>{{ $errors->first('userEmail') }}</strong>
 	                            </span>
 	                        @endif
 	                    </div>
