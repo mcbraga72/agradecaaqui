@@ -93,7 +93,8 @@ class UserAdminController extends Controller
     /**
 	 *
 	 * Update user's data.
-	 *
+     *
+     * @param Request $request
 	 * @param int $id
 	 *
 	 * @return Response

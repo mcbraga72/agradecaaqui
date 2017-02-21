@@ -6,12 +6,12 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Agradeça Aqui | Área do usuário</title>  
+    <title>Agradeça Aqui | Área do cliente</title>  
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/vendor/admin-lte.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/admin.css') }}">      
+    <link rel="stylesheet" href="{{ URL::asset('css/admin.css') }}">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="//codeorigin.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
@@ -31,8 +31,8 @@
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"><span class="sr-only">Toggle navigation</span></a>
                 <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    <li><a href="{{ url('/entrar') }}">Login</a></li>
+                    <li><a href="{{ url('/cadastro') }}">Cadastro</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -56,14 +56,14 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">      
                     <li><a href="{{ url('app/perfil') }}"><i class="fa fa-user"></i> <span>Perfil</span></a></li>
+                    <li><a href="{{ url('app/empresa/criar') }}"><i class="fa fa-industry"></i> <span>Cadastrar Empresa</span></a></li>
                     <li class="treeview">
                         <a href="#"><i class="fa fa-heart"></i> <span>Agradecimentos</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
                         <ul class="treeview-menu">
                             <li><a href="{{ url('app/agradecimentos-empresas') }}"><i class="fa fa-industry"></i> Empresas</a></li>
                             <li><a href="{{ url('app/agradecimentos-usuarios') }}"><i class="fa fa-user"></i> Usuários</a></li>
                         </ul>
-                    </li>        
-                    <li><a href="{{ url('admin/relatorios') }}"><i class="fa fa-bar-chart"></i> <span>Relatórios</span></a></li>
+                    </li>                    
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -72,7 +72,6 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1></h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li class="active">Dashboard</li>
@@ -81,10 +80,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <!-- Info boxes -->
-      <div class="row">
-        
-      <!-- /.row -->
+      
       <div class="row">
         <div class="col-md-12">
           @yield('content')

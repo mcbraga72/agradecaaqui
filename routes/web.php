@@ -36,6 +36,7 @@ Route::get('/quem-somos', 'SiteController@about');
 Route::get('/contato', 'SiteController@contact');
 Route::get('/apoiadores', 'SiteController@support');
 Route::get('/entrar', 'SiteController@login');
+Route::post('/entrar', 'SiteController@loginWithData');
 Route::get('/cadastro', 'SiteController@register');
 
 
@@ -44,6 +45,8 @@ Route::get('/cadastro', 'SiteController@register');
 Route::get('/app', 'AppController@dashboard');
 Route::get('/app/perfil', 'AppController@edit');
 Route::put('/app/perfil/{id}', 'AppController@update');
+Route::put('/app/empresa/criar', 'AppController@createEnterprise');
+Route::post('/app/empresa', 'AppController@storeEnterprise');
 	
 Route::get('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@index');
 Route::get('/app/agradecimento-empresa/criar', 'EnterpriseThanksAppController@create');
