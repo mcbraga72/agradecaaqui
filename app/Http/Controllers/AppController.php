@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Enterprise;
+use App\Models\EnterpriseThanks;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -19,7 +20,8 @@ class AppController extends Controller
 	 */
 	public function dashboard()
 	{
-		return view('app.index');
+		$enterpriseThanks = EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('date', 'desc')->take(9)->get();
+    	return view('app.index')->with('enterpriseThanks', $enterpriseThanks);
 	}
 
 	/**
@@ -64,6 +66,20 @@ class AppController extends Controller
     	$user->save();
     	
     	return view('app.index');
+    }
+
+
+	/**
+	 *
+	 * Shows enterprise and user thanks.
+	 *
+	 * @return Response
+	 * 
+	 */
+	public function thanks()
+    {
+    	$enterpriseThanks = EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('date', 'desc')->take(9)->get();
+    	return view('app.thanks')->with('enterpriseThanks', $enterpriseThanks);
     }
 
 	/**
