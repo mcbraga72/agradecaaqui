@@ -228,11 +228,15 @@
 
 	    $('#peopleButton').click(function(){
 	    	$('#enterpriseThanks').hide();
-	    	$('#userThanks').show();	    	
+	    	$('#userThanks').show();
+	    	$('#peopleButton').addClass('button-selected');
+	    	$('#enterprisesButton').removeClass('button-selected');
 	    });
 	    $('#enterprisesButton').click(function() {
 	    	$('#enterpriseThanks').show();
-	    	$('#userThanks').hide();	    	
+	    	$('#userThanks').hide();
+	    	$('#enterprisesButton').addClass('button-selected');
+	    	$('#peopleButton').removeClass('button-selected');
 	    });
 	</script>
 

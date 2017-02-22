@@ -494,3 +494,16 @@ select.label-register {
 .pink-button-register {
     margin-left: 17% !important;
 }
+
+
+
+/**
+ *
+ * USER AREA 
+ *
+ */
+
+.button-selected {
+    border: 3px solid #FF2257;
+    border-radius: 5px;
+}

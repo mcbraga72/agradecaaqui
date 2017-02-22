@@ -7,15 +7,16 @@
         
     $(document).ready(function () {
     
-        $.getJSON('estados_cidades.json', function (data) {
+        $.getJSON('{{ url('estados_cidades.json') }}', function (data) {
 
             var items = [];
-            var options = '<option value="">Selecione o estado</option>';    
+            var options = '<option value=""></option>';    
 
             $.each(data, function (key, val) {
                 options += '<option value="' + val.nome + '">' + val.nome + '</option>';
             });                 
-            $("#state").html(options);                
+            $("#state").html(options);
+            $("#state").val('{{ $user->state }}');
             
             $("#state").change(function () {              
             
@@ -35,6 +36,7 @@
                 });
 
                 $("#city").html(options_city);
+                $("#city").val('{{ $user->city }}');
                 
             }).change();        
         
@@ -78,7 +80,7 @@
                     <div class="label-register form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-4 col-lg-4">
                         <br><br>
                         <label for="name" class="col-md-4 control-label label-register">NOME</label>                        
-                        <input id="name" type="text" class="form-control label-register" name="name" value="{{ old('name') }}" required autofocus>
+                        <input id="name" type="text" class="form-control label-register" name="name" value="{{ $user->name }}" required autofocus>
                         @if ($errors->has('name'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -88,7 +90,7 @@
                     <div class="label-register form-group{{ $errors->has('surName') ? ' has-error' : '' }} col-md-8 col-lg-8">
                         <br><br>
                         <label for="surName" class="col-md-4 control-label label-register">SOBRENOME</label>                        
-                        <input id="surName" type="text" class="form-control label-register" name="surName" value="{{ old('surName') }}" required autofocus>
+                        <input id="surName" type="text" class="form-control label-register" name="surName" value="{{ $user->surName }}" required autofocus>
                         @if ($errors->has('surName'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('surName') }}</strong>
@@ -99,13 +101,13 @@
                         <br><br>
                         <p style="display: block;" class="col-md-1 control-label">SEXO</p><br><br>
                         <label class="radio-inline col-lg-3">
-                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="masculino" {{-- @if(in_array("masculino", old('gender'))) checked @endif --}} required>MASCULINO
+                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="Masculino" @if($user->gender === 'Masculino') checked @endif required>MASCULINO
                         </label>
                         <label class="radio-inline col-lg-3">    
-                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="feminino" {{-- @if(in_array("feminino", old('gender'))) checked @endif --}} required>FEMININO
+                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="Feminino" @if($user->gender === 'Feminino') checked @endif required>FEMININO
                         </label>
                         <label class="radio-inline col-lg-3">
-                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="outros" {{-- @if(in_array("outros", old('gender'))) checked @endif --}} required>OUTROS
+                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="Outros" @if($user->gender === 'Outros') checked @endif required>OUTROS
                         </label>
                         @if ($errors->has('gender'))
                             <span class="help-block">
@@ -116,7 +118,7 @@
                     <div class="label-register form-group{{ $errors->has('dateOfBirth') ? ' has-error' : '' }} col-md-4 col-lg-4">
                         <br><br>
                         <label for="dateOfBirth" class="col-md-12 control-label label-register">DATA DE NASCIMENTO</label>                        
-                        <input id="dateOfBirth" type="date" class="form-control label-register" name="dateOfBirth" value="{{ old('dateOfBirth') }}" required autofocus maxlength="10" onkeypress="formatDateOfBirth(this)">
+                        <input id="dateOfBirth" type="date" class="form-control label-register" name="dateOfBirth" value="{{ $user->dateOfBirth }}" required autofocus maxlength="10" onkeypress="formatDateOfBirth(this)">
                         @if ($errors->has('dateOfBirth'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('dateOfBirth') }}</strong>
@@ -126,7 +128,7 @@
                     <div class="label-register form-group{{ $errors->has('telephone') ? ' has-error' : '' }} col-md-4 col-lg-4">
                         <br><br>
                         <label for="telephone" class="col-md-4 control-label label-register">TELEFONE</label>                        
-                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ old('telephone') }}" required autofocus maxlength="14" onkeypress="formatTelephone(this)">
+                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ $user->telephone }}" required autofocus maxlength="14" onkeypress="formatTelephone(this)">
                         @if ($errors->has('telephone'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('telephone') }}</strong>
@@ -136,7 +138,7 @@
                     <div class="label-register form-group{{ $errors->has('cellphone') ? ' has-error' : '' }} col-md-4 col-lg-4">
                         <br><br>
                         <label for="cellphone" class="col-md-4 control-label label-register">CELULAR</label>                        
-                        <input id="cellphone" type="text" class="form-control label-register" name="cellphone" value="{{ old('cellphone') }}" required autofocus maxlength="15" onkeypress="formatCellphone(this)">
+                        <input id="cellphone" type="text" class="form-control label-register" name="cellphone" value="{{ $user->cellphone }}" required autofocus maxlength="15" onkeypress="formatCellphone(this)">
                         @if ($errors->has('cellphone'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('cellphone') }}</strong>
@@ -146,7 +148,7 @@
                     <div class="label-register form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="email" class="col-md-4 control-label label-register">E-MAIL</label>                        
-                        <input id="email" type="email" class="form-control label-register" name="email" value="{{ old('email') }}" required autofocus>
+                        <input id="email" type="email" class="form-control label-register" name="email" value="{{ $user->email }}" required autofocus>
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -156,7 +158,7 @@
                     <div class="label-register form-group{{ $errors->has('confirmEmail') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="confirmEmail" class="col-md-12 control-label label-register">CONFIRME SEU E-MAIL</label>                        
-                        <input id="confirmEmail" type="email" class="form-control label-register" name="confirmEmail" value="{{ old('confirmEmail') }}" required autofocus>
+                        <input id="confirmEmail" type="email" class="form-control label-register" name="confirmEmail" value="{{ $user->email }}" required autofocus>
                         @if ($errors->has('confirmEmail'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('confirmEmail') }}</strong>
@@ -185,28 +187,10 @@
                                 <strong>{{ $errors->first('city') }}</strong>
                             </span>
                         @endif
-                    </div>
-                    <div class="label-register form-group{{ $errors->has('password') ? ' has-error' : '' }} col-md-4 col-lg-4">
-                        <label for="password" class="col-md-4 control-label label-register">SENHA</label>                        
-                        <input id="password" type="password" class="form-control label-register" name="password" required>
-                        @if ($errors->has('password'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                    <div class="label-register form-group{{ $errors->has('confirmPassword') ? ' has-error' : '' }} col-md-4 col-lg-4">
-                        <label for="confirmPassword" class="col-md-12 control-label label-register">CONFIRME SUA SENHA</label>                        
-                        <input id="confirmPassword" type="password" class="form-control col-md-4 label-register" name="confirmPassword" required>
-                        @if ($errors->has('confirmPassword'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('confirmPassword') }}</strong>
-                            </span>
-                        @endif
-                    </div>
+                    </div>                    
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-4">
-                            <button type="submit" class="btn pink-button pink-button-register">ENVIAR</button>                        
+                            <button type="submit" class="btn pink-button pink-button-register">SALVAR</button>                        
                         </div>
                     </div>
                 </form>

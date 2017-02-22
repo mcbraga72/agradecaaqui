@@ -21,6 +21,7 @@
         <header class="main-header">
             <nav class="navbar navbar-default navbar-static-top">                
                 <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/app') }}" title="">HOME</a></li>
                     <li><a href="{{ url('/app/agradecimentos') }}" title="">AGRADECIMENTOS</a></li>
                     <li><a href="{{ url('/app/perfil') }}" title="">PERFIL</a></li>                    
                 </ul>
