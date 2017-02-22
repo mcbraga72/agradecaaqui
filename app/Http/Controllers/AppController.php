@@ -20,8 +20,11 @@ class AppController extends Controller
 	 */
 	public function dashboard()
 	{
-		$enterpriseThanks = EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('date', 'desc')->take(9)->get();
-    	return view('app.index')->with('enterpriseThanks', $enterpriseThanks);
+		$data = array(
+			'enterprises' => Enterprise::all(),
+			'enterpriseThanks' => EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->take(9)->get()
+		);
+    	return view('app.index')->with('data', $data);    	
 	}
 
 	/**
@@ -57,7 +60,6 @@ class AppController extends Controller
         $user->gender = $request->gender;
         $user->dateOfBirth = $request->dateOfBirth;
         $user->telephone = $request->telephone;
-        $user->cellphone = $request->cellphone;
         $user->city = $request->city;
         $user->state = $request->state;
     	$user->email = $request->email;
@@ -78,7 +80,7 @@ class AppController extends Controller
 	 */
 	public function thanks()
     {
-    	$enterpriseThanks = EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('date', 'desc')->take(9)->get();
+    	$enterpriseThanks = EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->take(9)->get();
     	return view('app.thanks')->with('enterpriseThanks', $enterpriseThanks);
     }
 
@@ -119,5 +121,25 @@ class AppController extends Controller
     	$enterprise->save();
 
     	return view('app.index');
+    }
+
+    /**
+     *
+     * Autocomplete field - Enterprise names
+     *
+     * @param string $name
+     *
+     * @return Response
+     * 
+     */
+    public function findEnterprise(Request $request)
+    {
+    	$enterprises = Enterprise::where('name', 'LIKE', '%' . Input::get('enterpriseName') . '%')->orderBy('name', 'asc');
+    	
+    	foreach ($enterprises as $enterprise) {
+	    	$results[] = ['id' => $enterprise->id, 'name' => $enterprise->name];
+		}
+		
+		return Response::json($results);
     }
 }

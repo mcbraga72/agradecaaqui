@@ -25,11 +25,10 @@ class EnterpriseRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'cnpj' => 'required',
-            'address' => 'required',
-            'telephone' => 'required',
-            'site' => 'required',
+            'contact' => 'required',
             'email' => 'required|email',
+            'telephone' => 'required',
+            'address' => 'required'                        
         ];
     }
 }

@@ -19,12 +19,11 @@ class CreateEnterpriseThanksTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('enterprise_id')->unsigned();
             $table->foreign('enterprise_id')->references('id')->on('enterprises');
-            $table->date('date');
-            $table->time('time');
+            $table->datetime('thanksDateTime');            
             $table->text('content');
             $table->text('replica')->nullable();
             $table->text('rejoinder')->nullable();
-            $table->time('status');
+            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -142,7 +142,7 @@
                             </span>
                         @endif
                     </div>
-                    <div class="label-register form-group{{ $errors->has('dateOfBirth') ? ' has-error' : '' }} col-md-4 col-lg-4">
+                    <div class="label-register form-group{{ $errors->has('dateOfBirth') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="dateOfBirth" class="col-md-12 control-label label-register">DATA DE NASCIMENTO</label>                        
                         <input id="dateOfBirth" type="date" class="form-control label-register" name="dateOfBirth" value="{{ old('dateOfBirth') }}" required autofocus maxlength="10" onkeypress="formatDateOfBirth(this)">
@@ -152,7 +152,7 @@
                             </span>
                         @endif
                     </div>
-                    <div class="label-register form-group{{ $errors->has('telephone') ? ' has-error' : '' }} col-md-4 col-lg-4">
+                    <div class="label-register form-group{{ $errors->has('telephone') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="telephone" class="col-md-4 control-label label-register">TELEFONE</label>                        
                         <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ old('telephone') }}" required autofocus maxlength="14" onkeypress="formatTelephone(this)">
@@ -161,17 +161,7 @@
                                 <strong>{{ $errors->first('telephone') }}</strong>
                             </span>
                         @endif
-                    </div>
-                    <div class="label-register form-group{{ $errors->has('cellphone') ? ' has-error' : '' }} col-md-4 col-lg-4">
-                        <br><br>
-                        <label for="cellphone" class="col-md-4 control-label label-register">CELULAR</label>                        
-                        <input id="cellphone" type="text" class="form-control label-register" name="cellphone" value="{{ old('cellphone') }}" required autofocus maxlength="15" onkeypress="formatCellphone(this)">
-                        @if ($errors->has('cellphone'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('cellphone') }}</strong>
-                            </span>
-                        @endif
-                    </div>
+                    </div>                    
                     <div class="label-register form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="email" class="col-md-4 control-label label-register">E-MAIL</label>                        
@@ -224,12 +214,12 @@
                             </span>
                         @endif
                     </div>
-                    <div class="label-register form-group{{ $errors->has('confirmPassword') ? ' has-error' : '' }} col-md-4 col-lg-4">
-                        <label for="confirmPassword" class="col-md-12 control-label label-register">CONFIRME SUA SENHA</label>                        
-                        <input id="confirmPassword" type="password" class="form-control col-md-4 label-register" name="confirmPassword" required>
-                        @if ($errors->has('confirmPassword'))
+                    <div class="label-register form-group{{ $errors->has('password-confirm') ? ' has-error' : '' }} col-md-4 col-lg-4">
+                        <label for="password-confirm" class="col-md-12 control-label label-register">CONFIRME SUA SENHA</label>                        
+                        <input id="password-confirm" type="password" class="form-control col-md-4 label-register" name="password-confirm" required>
+                        @if ($errors->has('password-confirm'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('confirmPassword') }}</strong>
+                                <strong>{{ $errors->first('password-confirm') }}</strong>
                             </span>
                         @endif
                     </div>

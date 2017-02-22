@@ -17,10 +17,9 @@ class CreateUserThanksTable extends Migration
             $table->increments('id');
             $table->integer('sender')->unsigned();
             $table->foreign('sender')->references('id')->on('users');
-            $table->integer('receipt')->unsigned();
-            $table->foreign('receipt')->references('id')->on('users');
-            $table->date('date');
-            $table->time('time');
+            $table->string('receiptName');
+            $table->string('receiptEmail');
+            $table->datetime('thanksDateTime');
             $table->text('content');
             $table->text('replica')->nullable();
             $table->text('rejoinder')->nullable();            
