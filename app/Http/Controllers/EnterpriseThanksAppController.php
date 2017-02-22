@@ -6,6 +6,7 @@ use App\Mail\EnterpriseThanksMail;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use App\Http\Requests\EnterpriseThanksRequest;
+use Auth;
 
 class EnterpriseThanksAppController extends Controller
 {
@@ -46,10 +47,14 @@ class EnterpriseThanksAppController extends Controller
 	 */
     public function store(EnterpriseThanksRequest $request)
     {
-    	$enterpriseThanks = new EnterpriseThanks();
+        $date = new \DateTime();        
+        
+        $enterpriseThanks = new EnterpriseThanks();
 
+        $enterpriseThanks->user_id = Auth::user()->id;
     	$enterpriseThanks->enterprise_id = $request->enterprise_id;
-    	$enterpriseThanks->content = $request->content;
+        $enterpriseThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
+        $enterpriseThanks->content = $request->content;
     	$enterpriseThanks->status = 'Pending';
 
     	$enterpriseThanks->save();

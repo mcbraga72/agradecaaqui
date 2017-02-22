@@ -50,7 +50,6 @@ class UserAdminController extends Controller
         $user->gender = $request->gender;
         $user->dateOfBirth = $request->dateOfBirth;
         $user->telephone = $request->telephone;
-        $user->cellphone = $request->cellphone;
         $user->city = $request->city;
         $user->state = $request->state;
     	$user->email = $request->email;
@@ -68,7 +67,7 @@ class UserAdminController extends Controller
 	 * 
 	 * @param int $id
 	 *
-	 * @return Response
+	 * @return User $user
 	 * 
 	 */
     public function show($id)
@@ -109,7 +108,6 @@ class UserAdminController extends Controller
         $user->gender = $request->gender;
         $user->dateOfBirth = $request->dateOfBirth;
         $user->telephone = $request->telephone;
-        $user->cellphone = $request->cellphone;
         $user->city = $request->city;
         $user->state = $request->state;
     	$user->email = $request->email;

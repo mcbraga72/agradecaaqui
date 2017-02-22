@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'telephone', 'address', 'cpf', 'password'
+        'name', 'surName', 'gender', 'dateOfBirth', 'telephone', 'city', 'state', 'email', 'password', 'role'
     ];
 
     /**
@@ -41,26 +41,6 @@ class User extends Authenticatable
         'expires_at',
         'deleted_at'
     ];
-
-    /**
-     * Get the user thanks the user sent
-     * 
-     * @return UserThanks[]
-     */
-    public function sentUserThanks()
-    {
-        return $this->hasMany('UserThanks', 'sender', 'user_id');
-    }
-
-    /**
-     * Get the user thanks the user received
-     * 
-     * @return UserThanks[]
-     */
-    public function receivedUserThanks()
-    {
-        return $this->hasMany('UserThanks', 'receipt', 'user_id');
-    }
 
     /**
      * Get the enterprise thanks the user sent

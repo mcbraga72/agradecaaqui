@@ -29,11 +29,10 @@ class UserRequest extends FormRequest
             'gender' => 'required',
             'dateOfBirth' => 'required|before:13 years ago',
             'telephone' => 'required',
-            'cellphone' => 'required',
             'city' => 'required',
             'state' => 'required',
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required|between:8,255|confirmed'
         ];
     }
 }

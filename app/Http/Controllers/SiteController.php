@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HomeRequest;
+use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,11 @@ class SiteController extends Controller
      */
     public function index()
     {
-        $enterpriseThanks = EnterpriseThanks::orderBy('date', 'desc')->take(9)->get();
-    	return view('site.index')->with('enterpriseThanks', $enterpriseThanks);    	
+        $data = array(
+            'enterprises' => Enterprise::all(),
+            'enterpriseThanks' => EnterpriseThanks::orderBy('thanksDateTime', 'desc')->take(9)->get()
+        );
+        return view('app.index')->with('data', $data);        
     }
 
     /**

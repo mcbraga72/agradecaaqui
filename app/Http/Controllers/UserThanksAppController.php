@@ -44,15 +44,19 @@ class UserThanksAppController extends Controller
 	 */
     public function store(UserThanksRequest $request)
     {
-    	dd($request);
-    	$userThanks = new UserThanks();
+    	$date = new \DateTime();        
+        
+        $userThanks = new EnterpriseThanks();
 
-    	$userThanks->receipt = $request->receipt;
-    	$userThanks->content = $request->content;
-
+        $userThanks->user_id = Auth::user()->id;
+    	$userThanks->receiptName = $request->receiptName;
+    	$userThanks->receiptEmail = $request->receiptEmail;
+        $userThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
+        $userThanks->content = $request->content;
+    	
     	$userThanks->save();
 
-    	Mail::to($request->user())->send(new UserThanksMail($user, $userThanks));
+        Mail::to($request->receiptEmail)->send(new UserThanksMail($user, $userThanks));
 
     	$usersThanks = UserThanks::all();
     	return view('app.user-thanks.list')->with('usersThanks', $usersThanks);

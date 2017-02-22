@@ -48,11 +48,10 @@ class EnterpriseAdminController extends Controller
     	$enterprise = new Enterprise();
 
     	$enterprise->name = $request->name;
-    	$enterprise->cnpj = $request->cnpj;
-    	$enterprise->address = $request->address;
+    	$enterprise->contact = $request->contact;
+    	$enterprise->email = $request->email;        
     	$enterprise->telephone = $request->telephone;
-    	$enterprise->site = $request->site;
-    	$enterprise->email = $request->email;
+    	$enterprise->address = $request->address;
         $enterprise->status = 'Approved';
 
     	$enterprise->save();
@@ -104,11 +103,10 @@ class EnterpriseAdminController extends Controller
     	$enterprise = Enterprise::find($id);
 
     	$enterprise->name = $request->name;
-    	$enterprise->cnpj = $request->cnpj;
-    	$enterprise->address = $request->address;
-    	$enterprise->telephone = $request->telephone;
-    	$enterprise->site = $request->site;
-    	$enterprise->email = $request->email;
+        $enterprise->contact = $request->contact;
+        $enterprise->email = $request->email;        
+        $enterprise->telephone = $request->telephone;
+        $enterprise->address = $request->address;
 
     	$enterprise->save();
 

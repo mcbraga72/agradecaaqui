@@ -1,7 +1,7 @@
 @extends('app.template')
 
 @section('content')
-	<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+	<script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=0zfrot4cp11wye4w5un16jq685zt2zsd0pqlbmpgobuylmno"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 	<script type="text/javascript">
 	    tinymce.init({ 
@@ -9,18 +9,7 @@
 	        plugins: 'emoticons',
 	        menubar: '',
 	        toolbar: 'undo redo | cut copy paste | styleselect | bold italic | link image | emoticons' 
-	    });
-	    
-	    var path = "{{ route('autocomplete') }}";
-	    
-	    /*$('input.typeahead').typeahead({
-	        source: function (query, process) {
-	            return $.get(path, { query: query }, function (data) {
-	                return process(data);
-	            });
-	        }
-	    });*/	    
-	    
+	    });	    
 	</script>
 
 	<div class="container-fluid">
@@ -28,22 +17,28 @@
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
                 <img class="logo" src="images/logo.png" />
                 <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
-                {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}
-                {{ csrf_field() }}
+                {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}                
                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
 	                <button id="peopleButton" type="button" class="home"><img src="images/pessoas.png" /></button>
 	                <button id="enterprisesButton" type="button" class="home"><img src="images/empresas.png" /></button>
 	            </div>
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-empresa') }}">                
+                	{{ csrf_field() }}
 	                <div id="enterpriseThanks">		                
-			            <div class="form-group{{ $errors->has('enterpriseName') ? ' has-error' : '' }}">
+			            <div class="form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">
 			                <br><br>
-			                <label for="enterpriseName" class="col-md-4 control-label form-home">EMPRESA</label>
+			                <label for="enterprise_id" class="col-md-4 control-label form-home">EMPRESA</label>
 			                <div class="col-md-6">
-			                    <input id="enterpriseName" type="text" class="form-control" name="enterpriseName" value="{{ old('enterpriseName') }}" required autofocus placeholder="Empresa">
-			                    @if ($errors->has('enterpriseName'))
+			                    {{--<input id="enterprise_id" type="text" class="form-control" name="enterprise_id" value="{{ old('enterprise_id') }}" required autofocus placeholder="Empresa">--}}
+			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control">
+                                    <option value="0">Selecione a empresa</option>
+                                    @foreach ($data['enterprises'] as $enterprise) 
+                                    <option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>           
+                                    @endforeach                         
+                                </select>
+			                    @if ($errors->has('enterprise_id'))
 			                        <span class="help-block">
-			                            <strong>{{ $errors->first('enterpriseName') }}</strong>
+			                            <strong>{{ $errors->first('enterprise_id') }}</strong>
 			                        </span>
 			                    @endif
 			                </div>
@@ -65,7 +60,7 @@
 		                    	<button type="submit" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
 		                    	<button type="submit" class="btn social-network google-button"><i class="fa fa-2x fa-google-plus" aria-hidden="true"></i></button>
 		                    	<button type="submit" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
-		                        <button type="submit" class="btn pink-button">ENVIAR</button>
+		                        <input type="submit" class="btn pink-button" value="ENVIAR">
 		                    </div>
 		                </div>
 	                </div>
@@ -144,7 +139,7 @@
 		</div>    
 		<div class="row">
 			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-	        	@forelse($enterpriseThanks as $enterpriseThank)
+	        	@forelse($data['enterpriseThanks'] as $enterpriseThank)
     				<h2>{{ $enterpriseThank->content }}</h2>
 				@empty
     				<!--<h2>Não existe nenhum agradecimento cadastrado em nossa base de dados!</h2>-->    				
@@ -219,11 +214,17 @@
 	    </div>
     </div>
 
-	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
     		$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
+	    	$('#enterprisesButton').addClass('button-selected');
+
+	    	$("#enterprise_id").autocomplete('/app/busca/empresa', {
+                selectFirst: true
+            });
 		});
 
 	    $('#peopleButton').click(function(){

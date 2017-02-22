@@ -37,13 +37,13 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('site') ? ' has-error' : '' }}">
-                            <label for="site" class="col-md-4 control-label">Site</label>
+                        <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
+                            <label for="contact" class="col-md-4 control-label">Contato</label>
                             <div class="col-md-6">
-                                <input id="site" type="text" class="form-control" name="site" value="{{ old('site') }}" required>
-                                @if ($errors->has('site'))
+                                <input id="contact" type="text" class="form-control" name="contact" value="{{ old('contact') }}" required>
+                                @if ($errors->has('contact'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('site') }}</strong>
+                                        <strong>{{ $errors->first('contact') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -59,13 +59,13 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('cnpj') ? ' has-error' : '' }}">
-                            <label for="cnpj" class="col-md-4 control-label">CNPJ</label>
+                        <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
+                            <label for="telephone" class="col-md-4 control-label">Telefone</label>
                             <div class="col-md-6">
-                                <input id="cnpj" type="text" class="form-control" name="cnpj" value="{{ old('cnpj') }}" required>
-                                @if ($errors->has('cnpj'))
+                                <input id="telephone" type="text" class="form-control" name="telephone" value="{{ old('telephone') }}" required>
+                                @if ($errors->has('telephone'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('cnpj') }}</strong>
+                                        <strong>{{ $errors->first('telephone') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -77,17 +77,6 @@
                                 @if ($errors->has('address'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
-                            <label for="telephone" class="col-md-4 control-label">E-Mail</label>
-                            <div class="col-md-6">
-                                <input id="telephone" type="text" class="form-control" name="telephone" value="{{ old('telephone') }}" required>
-                                @if ($errors->has('telephone'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('telephone') }}</strong>
                                     </span>
                                 @endif
                             </div>

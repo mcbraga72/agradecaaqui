@@ -24,7 +24,7 @@ class EnterpriseThanksRequest extends FormRequest
     public function rules()
     {
         return [
-            'empresa_id' => 'required',
+            'enterprise_id' => 'required',
             'content' => 'required',
         ];
     }
