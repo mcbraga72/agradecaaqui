@@ -45,8 +45,10 @@ Route::get('/cadastro', 'SiteController@register');
 Route::get('/app', 'AppController@dashboard');
 Route::get('/app/perfil', 'AppController@edit');
 Route::put('/app/perfil/{id}', 'AppController@update');
+Route::get('/app/agradecimentos', 'AppController@thanks');
 Route::get('/app/empresa/criar', 'AppController@createEnterprise');
 Route::post('/app/empresa', 'AppController@storeEnterprise');
+Route::post('/app/busca/empresa', 'AppController@findEnterprise');
 	
 Route::get('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@index');
 Route::get('/app/agradecimento-empresa/criar', 'EnterpriseThanksAppController@create');
