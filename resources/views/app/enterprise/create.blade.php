@@ -1,4 +1,4 @@
-@extends('app.dashboard')
+@extends('app.template')
 
 @section('content')
 <script>

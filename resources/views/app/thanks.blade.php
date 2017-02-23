@@ -30,10 +30,15 @@
 		<div class="row">
 			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 	        	@forelse($enterpriseThanks as $enterpriseThank)
-    				<h2>{{ $enterpriseThank->content }}</h2>
+	        		<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
+	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="{{asset('images/heart.png')}}"" />
+	                    <p class="thaks-content">{{ $enterpriseThank->content }}</p>
+	                    <img class="user-photo"src="{{asset('images/cliente1.png')}}"" alt="Agradecimento" title="Agradecimento" />
+	                    <span class="user-name">Camila Veiga</span>
+	                </div>    				
 				@empty
-    				<!--<h2>Não existe nenhum agradecimento cadastrado em nossa base de dados!</h2>-->    				
-					<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
+    				<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Lorem Ipsum</p>
 	                    <img class="heart" src="{{asset('images/heart.png')}}"" />
 	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

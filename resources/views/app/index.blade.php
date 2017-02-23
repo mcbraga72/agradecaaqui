@@ -17,7 +17,6 @@
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
                 <img class="logo" src="images/logo.png" />
                 <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
-                {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}                
                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
 	                <button id="peopleButton" type="button" class="home"><img src="images/pessoas.png" /></button>
 	                <button id="enterprisesButton" type="button" class="home"><img src="images/empresas.png" /></button>
@@ -32,8 +31,13 @@
 			                    {{--<input id="enterprise_id" type="text" class="form-control" name="enterprise_id" value="{{ old('enterprise_id') }}" required autofocus placeholder="Empresa">--}}
 			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control">
                                     <option value="0">Selecione a empresa</option>
-                                    @foreach ($data['enterprises'] as $enterprise) 
-                                    <option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>           
+                                    @foreach ($data['enterprises'] as $enterprise)
+                                    	<option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>
+                                    	{{--@if (Session::has('enterprise_id') && {{ $enterprise->id }} == Session::get('enterprise_id'))
+                                    		<option value="{{ $enterprise->id }}" selected>{{ $enterprise->name }}</option>
+                                    	@else
+											<option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>
+                                    	@endif--}}
                                     @endforeach                         
                                 </select>
 			                    @if ($errors->has('enterprise_id'))
@@ -46,7 +50,7 @@
 			            <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 		                    <img src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
 		                    <div class="col-md-6">
-		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
+		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
 		                                <strong>{{ $errors->first('content') }}</strong>
@@ -65,13 +69,14 @@
 		                </div>
 	                </div>
 	            </form>
-				<form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-usuario') }}">                		            
+				<form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-usuario') }}">
+					{{ csrf_field() }}
 					<div id="userThanks">
 		                <div class="form-group{{ $errors->has('userName') ? ' has-error' : '' }}">
 			                <br><br>
 			                <label for="userName" class="col-md-4 control-label form-home">PARA</label>
 			                <div class="col-md-6">
-			                    <input id="userName" type="text" class="form-control" name="userName" value="{{ old('userName') }}" required autofocus placeholder="Nome">
+			                    <input id="userName" type="text" class="form-control" name="userName" @if(Session::has('userName')) value="{{ Session::get('userEmail') }}" @else value="{{ old('userName') }}" @endif required autofocus placeholder="Nome">
 			                    @if ($errors->has('userName'))
 			                        <span class="help-block">
 			                            <strong>{{ $errors->first('userName') }}</strong>
@@ -83,7 +88,7 @@
 		                    <br><br>
 		                    <label for="userEmail" class="col-md-4 control-label form-home">E-MAIL</label>
 		                    <div class="col-md-6">
-		                        <input id="userEmail" type="email" class="form-control" name="userEmail" value="{{ old('userEmail') }}" required autofocus placeholder="E-mail do destinatário">
+		                        <input id="userEmail" type="email" class="form-control" name="userEmail" @if(Session::has('userEmail')) value="{{ Session::get('userEmail') }}" @else value="{{ old('userEmail') }}" @endif required autofocus placeholder="E-mail do destinatário">
 		                        @if ($errors->has('userEmail'))
 		                            <span class="help-block">
 		                                <strong>{{ $errors->first('userEmail') }}</strong>
@@ -94,7 +99,7 @@
 		                <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 		                    <img src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
 		                    <div class="col-md-6">
-		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
+		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
 		                                <strong>{{ $errors->first('content') }}</strong>

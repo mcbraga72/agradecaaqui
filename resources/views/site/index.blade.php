@@ -35,7 +35,7 @@
 			                <div class="col-md-6">
 			                    {{--<input id="enterprise_id" type="text" class="form-control" name="enterprise_id" value="{{ old('enterprise_id') }}" required autofocus placeholder="Empresa">--}}
 			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control">
-                                    <option value="0">Selecione a empresa</option>
+                                    <option value="">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise) 
                                     <option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>           
                                     @endforeach                         
@@ -69,7 +69,8 @@
 		                </div>
 	                </div>
 	            </form>
-				<form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-usuario') }}">                		            
+				<form class="form-horizontal" role="form" method="POST" action="{{ url('entrar') }}">
+					{{ csrf_field() }}
 					<div id="userThanks">
 		                <div class="form-group{{ $errors->has('userName') ? ' has-error' : '' }}">
 			                <br><br>

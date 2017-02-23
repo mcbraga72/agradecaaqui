@@ -70,15 +70,15 @@ class SiteController extends Controller
      */
     public function loginWithData(HomeRequest $request)
     {
-        if(empty($request->enterprise)) {        
-            $request->session()->put('type', 'userThanks');
-            $request->session()->put('userName', $request->userName);
-            $request->session()->put('userEmail', $request->userEmail);
-            $request->session()->put('content', $request->content);
+        if(is_null($request->enterprise_id)) {        
+            session()->put('type', 'userThanks');
+            session()->put('userName', $request->userName);
+            session()->put('userEmail', $request->userEmail);
+            session()->put('content', $request->content);
         } else {
-            $request->session()->put('type', 'enterpriseThanks');
-            $request->session()->put('enterprise', $request->enterprise);
-            $request->session()->put('content', $request->content);
+            session()->put('type', 'enterpriseThanks');
+            session()->put('enterprise_id', $request->enterprise_id);
+            session()->put('content', $request->content);
         }        
         return view('site.login');
     }
