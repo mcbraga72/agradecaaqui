@@ -19,7 +19,7 @@ class CreateUserThanksTable extends Migration
             $table->foreign('sender')->references('id')->on('users');
             $table->string('receiptName');
             $table->string('receiptEmail');
-            $table->datetime('thanksDateTime');
+            $table->dateTime('thanksDateTime');
             $table->text('content');
             $table->text('replica')->nullable();
             $table->text('rejoinder')->nullable();            
