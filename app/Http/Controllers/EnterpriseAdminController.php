@@ -47,6 +47,7 @@ class EnterpriseAdminController extends Controller
     {
     	$enterprise = new Enterprise();
 
+        $enterprise->category_id = $request->category_id;
     	$enterprise->name = $request->name;
     	$enterprise->contact = $request->contact;
     	$enterprise->email = $request->email;        
@@ -102,6 +103,7 @@ class EnterpriseAdminController extends Controller
     {
     	$enterprise = Enterprise::find($id);
 
+        $enterprise->category_id = $request->category_id;
     	$enterprise->name = $request->name;
         $enterprise->contact = $request->contact;
         $enterprise->email = $request->email;        

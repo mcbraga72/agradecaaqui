@@ -15,7 +15,8 @@
             $.each(data, function (key, val) {
                 options += '<option value="' + val.nome + '">' + val.nome + '</option>';
             });                 
-            $("#state").html(options);                
+            $("#state").html(options);
+            $("#state").val('{{ old('state') }}');
             
             $("#state").change(function () {              
             
@@ -35,6 +36,7 @@
                 });
 
                 $("#city").html(options_city);
+                $("#city").val('{{ old('city') }}');
                 
             }).change();        
         
@@ -47,17 +49,8 @@
             telephone.value = '(' + telephone.value;
         if(telephone.value.length == 3)
             telephone.value = telephone.value + ') ';
-        if(telephone.value.length == 9)
+        if(telephone.value.length == 10)
             telephone.value = telephone.value + '-';  
-    }
-
-    function formatCellphone(cellphone){ 
-        if(cellphone.value.length == 0)
-            cellphone.value = '(' + cellphone.value;
-        if(cellphone.value.length == 3)
-            cellphone.value = cellphone.value + ') ';
-        if(cellphone.value.length == 10)
-            cellphone.value = cellphone.value + '-';  
     }
 
     function formatDateOfBirth(dateOfBirth) {
@@ -128,13 +121,13 @@
                         <br><br>
                         <p style="display: block;" class="col-md-1 control-label">SEXO</p><br><br>
                         <label class="radio-inline col-lg-3">
-                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="masculino" {{-- @if(in_array("masculino", old('gender'))) checked @endif --}} required>MASCULINO
+                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="masculino" @if(old('gender') === 'masculino') checked @endif required>MASCULINO
                         </label>
                         <label class="radio-inline col-lg-3">    
-                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="feminino" {{-- @if(in_array("feminino", old('gender'))) checked @endif --}} required>FEMININO
+                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="feminino" @if(old('gender') === 'feminino') checked @endif required>FEMININO
                         </label>
                         <label class="radio-inline col-lg-3">
-                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="outros" {{-- @if(in_array("outros", old('gender'))) checked @endif --}} required>OUTROS
+                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="outros" @if(old('gender') === 'outros') checked @endif required>OUTROS
                         </label>
                         @if ($errors->has('gender'))
                             <span class="help-block">
@@ -155,7 +148,7 @@
                     <div class="label-register form-group{{ $errors->has('telephone') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="telephone" class="col-md-4 control-label label-register">TELEFONE</label>                        
-                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ old('telephone') }}" required autofocus maxlength="14" onkeypress="formatTelephone(this)">
+                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ old('telephone') }}" required autofocus maxlength="15" onkeypress="formatTelephone(this)">
                         @if ($errors->has('telephone'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('telephone') }}</strong>

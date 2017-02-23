@@ -1,6 +1,19 @@
 @extends('admin.dashboard')
 
 @section('content')
+
+<script type="text/javascript"> 
+        
+    function formatTelephone(telephone){ 
+        if(telephone.value.length == 0)
+            telephone.value = '(' + telephone.value;
+        if(telephone.value.length == 3)
+            telephone.value = telephone.value + ') ';
+        if(telephone.value.length == 9)
+            telephone.value = telephone.value + '-';  
+    }
+
+</script>    
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
@@ -9,19 +22,18 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/empresa') }}">
                         {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
-                            <label for="category" class="col-md-4 control-label">Categoria</label>
+                        <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
+                            <label for="category_id" class="col-md-4 control-label">Categoria</label>
                             <div class="col-md-6">
-                                <!--<input id="category" type="text" class="form-control" name="category" value="{{ old('category') }}" required autofocus>-->
-                                <select class="selectpicker">
-                                    <option value="0">Selecione a categoria</option>
+                                <select  id="category_id" class="form-control label-register" name="category_id" value="{{ old('category_id') }}" required autofocus>
+                                    <option value="">Selecione a categoria</option>
                                     @foreach ($categories as $category) 
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>           
                                     @endforeach                         
                                 </select>
-                                @if ($errors->has('category'))
+                                @if ($errors->has('category_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('category') }}</strong>
+                                        <strong>{{ $errors->first('category_id') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -62,7 +74,7 @@
                         <div class="form-group{{ $errors->has('telephone') ? ' has-error' : '' }}">
                             <label for="telephone" class="col-md-4 control-label">Telefone</label>
                             <div class="col-md-6">
-                                <input id="telephone" type="text" class="form-control" name="telephone" value="{{ old('telephone') }}" required>
+                                <input id="telephone" type="text" class="form-control" name="telephone" value="{{ old('telephone') }}" required maxlength="14" onkeypress="formatTelephone(this)">
                                 @if ($errors->has('telephone'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('telephone') }}</strong>

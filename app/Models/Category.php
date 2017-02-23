@@ -27,7 +27,7 @@ class Category extends Model
      */
 	public function enterprise() 
 	{
-		return $this->hasMany('Enterprise');
+		return $this->hasMany(Enterprise::class);
 	}
     
 }

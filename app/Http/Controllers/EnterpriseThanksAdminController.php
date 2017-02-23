@@ -17,7 +17,7 @@ class EnterpriseThanksAdminController extends Controller
 	 */
     public function index()
     {
-    	$enterprisesThanks = EnterpriseThanks::all();
+    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
     	return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
     }
 
@@ -52,7 +52,7 @@ class EnterpriseThanksAdminController extends Controller
 
     	$enterpriseThanks->save();
 
-    	$enterprisesThanks = EnterpriseThanks::all();
+    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
     	return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
     }
 
@@ -102,7 +102,7 @@ class EnterpriseThanksAdminController extends Controller
 
     	$enterpriseThanks->save();
 
-    	$enterprisesThanks = EnterpriseThanks::all();
+    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
     	return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
     }
 
@@ -120,7 +120,7 @@ class EnterpriseThanksAdminController extends Controller
     	$enterpriseThanks = EnterpriseThanks::findOrFail($id);
     	$enterpriseThanks->delete();
 
-    	$enterprisesThanks = EnterpriseThanks::all();
+    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
     	return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
     }
 
@@ -135,13 +135,8 @@ class EnterpriseThanksAdminController extends Controller
      */
     public function autocomplete(Request $request)
     {
-        //$data = Enterprise::select('name')->where('name',"LIKE","%{$request->input('query')}%")->get();
-        //return response()->json($data);
-        return 'Teste';
-    }
-
-    public function teste() 
-    {
-    	return view('admin.enterprise-thanks.profile');    	
-    }
+        $data = Enterprise::select('name')->where('name',"LIKE","%{$request->input('query')}%")->get();
+        return response()->json($data);
+     
+    }    
 }

@@ -18,18 +18,8 @@ class UserThanks extends Model
     protected $dates = [
     	'expires_at',
     	'deleted_at',
-    	'date'
+    	'thanksDateTime'
     ];
-
-    /**
-     * Get the user that received the user thanks.
-     * 
-     * @return User
-     */
-    public function receipt()
-    {
-    	return $this->belongsTo('User', 'user_id', 'receipt');
-    }
 
     /**
      * Get the user that sent the user thanks.
@@ -38,6 +28,6 @@ class UserThanks extends Model
      */
     public function sender()
     {
-    	return $this->belongsTo('User', 'user_id', 'sender');
+    	return $this->belongsTo(User::class, 'user_id', 'sender');
     }
 }

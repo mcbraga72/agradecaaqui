@@ -56,10 +56,10 @@
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-md-6 col-md-offset-4">
-		                    	<button type="submit" class="btn social-network facebook-button"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></button>
-		                    	<button type="submit" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
-		                    	<button type="submit" class="btn social-network google-button"><i class="fa fa-2x fa-google-plus" aria-hidden="true"></i></button>
-		                    	<button type="submit" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
+		                    	<button type="button" class="btn social-network facebook-button"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></button>
+		                    	<button type="button" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
+		                    	<button type="button" class="btn social-network google-button"><i class="fa fa-2x fa-google-plus" aria-hidden="true"></i></button>
+		                    	<button type="button" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
 		                        <input type="submit" class="btn pink-button" value="ENVIAR">
 		                    </div>
 		                </div>
@@ -140,7 +140,13 @@
 		<div class="row">
 			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 	        	@forelse($data['enterpriseThanks'] as $enterpriseThank)
-    				<h2>{{ $enterpriseThank->content }}</h2>
+	        		<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
+	                    <p class="thanks-title">Lorem Ipsum</p>
+	                    <img class="heart" src="images/heart.png" />
+	                    <p class="thaks-content">{{ $enterpriseThank->content }}</p>
+	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
+	                    <span class="user-name">Camila Veiga</span>
+	                </div>    				
 				@empty
     				<!--<h2>Não existe nenhum agradecimento cadastrado em nossa base de dados!</h2>-->    				
 					<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">

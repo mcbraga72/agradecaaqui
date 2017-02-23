@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\EnterpriseAdminController;
+use App\Http\Requests\EnterpriseThanksRequest;
 use App\Mail\EnterpriseThanksMail;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
-use App\Http\Requests\EnterpriseThanksRequest;
+use App\Models\User;
 use Auth;
+use Mail;
 
 class EnterpriseThanksAppController extends Controller
 {
@@ -19,7 +22,7 @@ class EnterpriseThanksAppController extends Controller
 	 */
     public function index()
     {
-    	$enterprisesThanks = EnterpriseThanks::all();
+    	$enterprisesThanks = EnterpriseThanks::with('enterprise')->get();
     	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
     }
 
@@ -59,12 +62,13 @@ class EnterpriseThanksAppController extends Controller
 
     	$enterpriseThanks->save();
 
-        $enterprise = new Enterprise();
+        $user = new UserAdminController();
+        $enterprise = new EnterpriseAdminController();
 
-        Mail::to($enterprise->show()->email)->send(new EnterpriseThanksMail($user, $enterpriseThanks));
+        Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user->show(Auth::user()->id), $enterpriseThanks));
 
-    	$enterprisesThanks = EnterpriseThanks::all();
-    	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
+        return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
     }
 
     /**
@@ -113,11 +117,11 @@ class EnterpriseThanksAppController extends Controller
 
     	$enterpriseThanks->save();
 
-        $enterprise = new Enterprise();
+        $enterprise = new EnterpriseAdminController();
 
-        Mail::to($enterprise->show()->email)->send(new EnterpriseThanksMail($user, $enterpriseThanks));
+        Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user, $enterpriseThanks));
 
-    	$enterprisesThanks = EnterpriseThanks::all();        
+    	$enterprisesThanks = EnterpriseThanks::with('enterprise')->get();
     	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);   	
     }
 
@@ -135,7 +139,7 @@ class EnterpriseThanksAppController extends Controller
     	$enterpriseThanks = EnterpriseThanks::findOrFail($id);
     	$enterpriseThanks->delete();
 
-    	$enterprisesThanks = EnterpriseThanks::all();
+    	$enterprisesThanks = EnterpriseThanks::with('enterprise')->get();
     	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
     }
 }

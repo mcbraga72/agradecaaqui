@@ -28,7 +28,7 @@ class Enterprise extends Model
      */
 	public function category() 
 	{
-		return $this->belongsTo('Category');
+		return $this->belongsTo(Category::class);
 	}
 
 	/**
@@ -38,6 +38,6 @@ class Enterprise extends Model
      */
 	public function enterpriseThanks() 
 	{
-		return $this->hasMany('EnterpriseThanks');
+		return $this->hasMany(EnterpriseThanks::class);
 	}
 }

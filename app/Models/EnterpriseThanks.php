@@ -19,7 +19,7 @@ class EnterpriseThanks extends Model
     protected $dates = [
     	'expires_at',
     	'deleted_at',
-        'date'
+        'thanksDateTime'
     ];
 
     /**
@@ -29,7 +29,7 @@ class EnterpriseThanks extends Model
      */
     public function enterprise()
     {
-    	return $this->belongsTo('Enterprise');
+    	return $this->belongsTo(Enterprise::class);
     }
 
     /**
@@ -39,6 +39,6 @@ class EnterpriseThanks extends Model
      */
     public function user()
     {
-    	return $this->belongsTo('User');
+    	return $this->belongsTo(User::class);
     }
 }
