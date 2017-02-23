@@ -19,7 +19,7 @@
                         <tbody>
                             @foreach ($usersThanks as $userThanks)
                             <tr>
-                                <td>{{ $userThanks->user()->name }}</td>
+                                <td>{{ $userThanks->receiptName }}</td>
                                 <td>{{ $userThanks->content }}</td>
                                 <td><a href=""><i class="fa fa-trash-o"></i></a></td>
                                 <td><a href=""><i class="fa fa-pencil-square-o"></i></a></td>
