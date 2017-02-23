@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserThanksMail;
 use App\Models\User;
 use App\Models\UserThanks;
 use App\Http\Requests\UserThanksRequest;
+use Auth;
+use Mail;
 
 class UserThanksAppController extends Controller
 {
@@ -44,11 +47,11 @@ class UserThanksAppController extends Controller
 	 */
     public function store(UserThanksRequest $request)
     {
-    	$date = new \DateTime();        
+        $date = new \DateTime();        
         
-        $userThanks = new EnterpriseThanks();
+        $userThanks = new UserThanks();
 
-        $userThanks->user_id = Auth::user()->id;
+        $userThanks->sender = Auth::user()->id;
     	$userThanks->receiptName = $request->receiptName;
     	$userThanks->receiptEmail = $request->receiptEmail;
         $userThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
@@ -56,7 +59,9 @@ class UserThanksAppController extends Controller
     	
     	$userThanks->save();
 
-        Mail::to($request->receiptEmail)->send(new UserThanksMail($user, $userThanks));
+        $user = new UserAdminController();
+
+        Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));
 
     	$usersThanks = UserThanks::all();
     	return view('app.user-thanks.list')->with('usersThanks', $usersThanks);

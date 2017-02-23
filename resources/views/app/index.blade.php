@@ -72,26 +72,26 @@
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-usuario') }}">
 					{{ csrf_field() }}
 					<div id="userThanks">
-		                <div class="form-group{{ $errors->has('userName') ? ' has-error' : '' }}">
+		                <div class="form-group{{ $errors->has('receiptName') ? ' has-error' : '' }}">
 			                <br><br>
-			                <label for="userName" class="col-md-4 control-label form-home">PARA</label>
+			                <label for="receiptName" class="col-md-4 control-label form-home">PARA</label>
 			                <div class="col-md-6">
-			                    <input id="userName" type="text" class="form-control" name="userName" @if(Session::has('userName')) value="{{ Session::get('userEmail') }}" @else value="{{ old('userName') }}" @endif required autofocus placeholder="Nome">
-			                    @if ($errors->has('userName'))
+			                    <input id="receiptName" type="text" class="form-control" name="receiptName" @if(Session::has('receiptName')) value="{{ Session::get('receiptName') }}" @else value="{{ old('receiptName') }}" @endif required autofocus placeholder="Nome">
+			                    @if ($errors->has('receiptName'))
 			                        <span class="help-block">
-			                            <strong>{{ $errors->first('userName') }}</strong>
+			                            <strong>{{ $errors->first('receiptName') }}</strong>
 			                        </span>
 			                    @endif
 			                </div>
 			            </div>
-			            <div class="form-group{{ $errors->has('userEmail') ? ' has-error' : '' }}">
+			            <div class="form-group{{ $errors->has('receiptEmail') ? ' has-error' : '' }}">
 		                    <br><br>
-		                    <label for="userEmail" class="col-md-4 control-label form-home">E-MAIL</label>
+		                    <label for="receiptEmail" class="col-md-4 control-label form-home">E-MAIL</label>
 		                    <div class="col-md-6">
-		                        <input id="userEmail" type="email" class="form-control" name="userEmail" @if(Session::has('userEmail')) value="{{ Session::get('userEmail') }}" @else value="{{ old('userEmail') }}" @endif required autofocus placeholder="E-mail do destinatário">
-		                        @if ($errors->has('userEmail'))
+		                        <input id="receiptEmail" type="email" class="form-control" name="receiptEmail" @if(Session::has('receiptEmail')) value="{{ Session::get('receiptEmail') }}" @else value="{{ old('receiptEmail') }}" @endif required autofocus placeholder="E-mail do destinatário">
+		                        @if ($errors->has('receiptEmail'))
 		                            <span class="help-block">
-		                                <strong>{{ $errors->first('userEmail') }}</strong>
+		                                <strong>{{ $errors->first('receiptEmail') }}</strong>
 		                            </span>
 		                        @endif
 		                    </div>
@@ -113,7 +113,7 @@
 		                    	<button type="submit" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
 		                    	<button type="submit" class="btn social-network google-button"><i class="fa fa-2x fa-google-plus" aria-hidden="true"></i></button>
 		                    	<button type="submit" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
-		                        <button type="submit" class="btn pink-button">ENVIAR</button>
+		                        <input type="submit" class="btn pink-button" value="ENVIAR">
 		                    </div>
 		                </div>
 	                </div>

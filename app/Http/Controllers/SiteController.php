@@ -72,8 +72,8 @@ class SiteController extends Controller
     {
         if(is_null($request->enterprise_id)) {        
             session()->put('type', 'userThanks');
-            session()->put('userName', $request->userName);
-            session()->put('userEmail', $request->userEmail);
+            session()->put('receiptName', $request->receiptName);
+            session()->put('receiptEmail', $request->receiptEmail);
             session()->put('content', $request->content);
         } else {
             session()->put('type', 'enterpriseThanks');

@@ -24,7 +24,8 @@ class UserThanksRequest extends FormRequest
     public function rules()
     {
         return [
-            'recipient' => 'required',
+            'receiptName' => 'required',
+            'receiptEmail' => 'required',
             'content' => 'required'
         ];
     }
