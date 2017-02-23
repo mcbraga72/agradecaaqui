@@ -507,3 +507,11 @@ select.label-register {
     border: 3px solid #FF2257;
     border-radius: 5px;
 }
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color: #FF2257 !important;
+}
+
+.caret-dropdown {
+    width: 100px !important;
+}

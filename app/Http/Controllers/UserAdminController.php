@@ -72,7 +72,8 @@ class UserAdminController extends Controller
 	 */
     public function show($id)
     {
-    	return view('admin.user.profile', ['user' => User::findOrFail($id)]);
+        $user = User::findOrFail($id);
+        return $user;
     }
 
     /**

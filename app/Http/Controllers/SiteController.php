@@ -20,7 +20,7 @@ class SiteController extends Controller
             'enterprises' => Enterprise::all(),
             'enterpriseThanks' => EnterpriseThanks::orderBy('thanksDateTime', 'desc')->take(9)->get()
         );
-        return view('app.index')->with('data', $data);        
+        return view('site.index')->with('data', $data);        
     }
 
     /**

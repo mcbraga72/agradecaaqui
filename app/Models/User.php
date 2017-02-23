@@ -49,6 +49,16 @@ class User extends Authenticatable
      */
     public function enterpriseThanks()
     {
-        return $this->hasMany('EnterpriseThanks');
+        return $this->hasMany(EnterpriseThanks::class);
+    }
+
+    /**
+     * Get the user thanks the user sent
+     * 
+     * @return UserThanks[]
+     */
+    public function userThanks()
+    {
+        return $this->hasMany(UserThanks::class);
     }
 }

@@ -2,14 +2,12 @@
 
 namespace App\Mail;
 
-use App\Models\User;
-use App\Models\UserThanks;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EnterpriseThanks extends Mailable
+class UserThanksMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -49,7 +47,7 @@ class EnterpriseThanks extends Mailable
                     ->with([
                         'userName' => $this->user->name,
                         'userEmail' => $this->user->email,
-                        'content' => $this->enterpriseThanks->content                        
+                        'content' => $this->userThanks->content                        
                     ]);
     }
 }

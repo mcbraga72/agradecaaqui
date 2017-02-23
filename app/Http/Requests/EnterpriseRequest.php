@@ -24,6 +24,7 @@ class EnterpriseRequest extends FormRequest
     public function rules()
     {
         return [
+            'category_id' => 'required',
             'name' => 'required',
             'contact' => 'required',
             'email' => 'required|email',

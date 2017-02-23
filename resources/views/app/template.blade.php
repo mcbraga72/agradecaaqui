@@ -22,8 +22,28 @@
             <nav class="navbar navbar-default navbar-static-top">                
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/app') }}" title="">HOME</a></li>
-                    <li><a href="{{ url('/app/agradecimentos') }}" title="">AGRADECIMENTOS</a></li>
-                    <li><a href="{{ url('/app/perfil') }}" title="">PERFIL</a></li>                    
+                    <li>
+                        <ul class="nav navbar-nav navbar-right">
+                        @if (Auth::guest())
+                            <li><a href="{{ url('/entrar') }}">Login</a></li>
+                            <li><a href="{{ url('/cadastro') }}">Register</a></li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="caret-dropdown">
+                                        <a href="{{ url('/app/agradecimentos') }}" title="">Agradecimentos</a>
+                                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        <a href="{{ url('/app/perfil') }}">Perfil</a>
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                        </ul>
+                    </li>    
                 </ul>
             </nav>
         </header>        

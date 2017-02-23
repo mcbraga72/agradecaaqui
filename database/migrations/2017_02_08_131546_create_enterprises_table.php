@@ -18,7 +18,7 @@ class CreateEnterprisesTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name')->unique();
-            $table->string('contato');
+            $table->string('contact');
             $table->string('email')->unique();
             $table->string('telephone');
             $table->string('address');
