@@ -40,7 +40,7 @@ Route::post('/entrar', 'SiteController@loginWithData');
 Route::get('/cadastro', 'SiteController@register');
 
 
-// Users Area
+// User's Area
 
 Route::get('/app', 'AppController@dashboard');
 Route::get('/app/perfil', 'AppController@edit');
@@ -65,6 +65,34 @@ Route::get('/app/agradecimento-usuario/{id}', 'UserThanksAppController@show');
 Route::get('/app/agradecimento-usuario/{id}/editar', 'UserThanksAppController@edit');
 Route::put('/app/agradecimento-usuario/{id}', 'UserThanksAppController@update');
 Route::delete('/app/agradecimento-usuario/{id}', 'UserThanksAppController@destroy');
+
+
+// Enterprise's Area
+
+// 1 - Auth
+
+Route::get('/empresa/entrar', 'EnterpriseAuth\LoginController@showLoginForm');
+Route::post('/empresa/entrar', 'EnterpriseAuth\LoginController@login');
+Route::post('/empresa/logout', 'EnterpriseAuth\LoginController@logout');
+
+Route::post('/empresa/enviar-senha', 'EnterpriseAuth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('/empresa/trocar-senha', 'EnterpriseAuth\ForgotPasswordController@showLinkRequestForm');
+
+Route::post('/empresa/alterar-senha', 'EnterpriseAuth\ResetPasswordController@reset');
+Route::get('/empresa/alterar-senha/{token}', 'EnterpriseAuth\ResetPasswordController@showResetForm');
+
+Route::get('/empresa/cadastro', 'EnterpriseAuth\RegisterController@showRegistrationForm');
+Route::post('/empresa/cadastro', 'EnterpriseAuth\RegisterController@register');
+
+// 2 - Enterprise Admin
+
+Route::get('/empresa/painel', 'EnterpriseAreaController@dashboard');
+Route::get('/empresa/perfil', 'EnterpriseAreaController@editProfile');
+Route::put('/empresa/perfil/{id}', 'EnterpriseAreaController@updateProfile');
+Route::get('/empresa/agradecimentos', 'EnterpriseAreaController@thanks');
+//Route::get('/empresa/relatorios', 'ReportEnterpriseController@index');
+
+
 
 // Admin
 

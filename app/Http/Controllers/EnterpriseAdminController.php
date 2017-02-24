@@ -54,6 +54,7 @@ class EnterpriseAdminController extends Controller
     	$enterprise->telephone = $request->telephone;
     	$enterprise->address = $request->address;
         $enterprise->status = 'Approved';
+        $enterprise->password = bcrypt(str_random(8));
 
     	$enterprise->save();
 
@@ -108,7 +109,7 @@ class EnterpriseAdminController extends Controller
         $enterprise->contact = $request->contact;
         $enterprise->email = $request->email;        
         $enterprise->telephone = $request->telephone;
-        $enterprise->address = $request->address;
+        $enterprise->address = $request->address;        
 
     	$enterprise->save();
 
