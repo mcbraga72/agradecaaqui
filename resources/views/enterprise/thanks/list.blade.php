@@ -18,11 +18,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($enterprisesThanks as $enterpriseThanks)
+                            @foreach ($enterpriseThanks as $enterpriseThank)
                             <tr>
-                                <td>{{ $enterpriseThanks->user()->name }}</td>
-                                <td>{{ $enterpriseThanks->enterprise()->name }}</td>
-                                <td>{{ $enterpriseThanks->content }}</td>
+                                <td>{{ $enterpriseThank->user()->name }}</td>
+                                <td>{{ $enterpriseThank->enterprise()->name }}</td>
+                                <td>{{ $enterpriseThank->content }}</td>
                                 <td><a href=""><i class="fa fa-trash-o"></i></a></td>
                                 <td><a href=""><i class="fa fa-pencil-square-o"></i></a></td>
                             </tr>
