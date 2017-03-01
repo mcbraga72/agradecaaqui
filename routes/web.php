@@ -94,9 +94,27 @@ Route::get('/empresa/agradecimentos', 'EnterpriseAreaController@thanks');
 
 
 
-// Admin
+// Admin's Area
 
-Route::get('/admin', 'AdminController@index');
+// 1 - Auth
+
+Route::get('/admin/entrar', 'AdminAuth\LoginController@showLoginForm');
+Route::post('/admin/entrar', 'AdminAuth\LoginController@login');
+Route::post('/admin/logout', 'AdminAuth\LoginController@logout');
+
+Route::post('/admin/enviar-senha', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('/admin/trocar-senha', 'AdminAuth\ForgotPasswordController@showLinkRequestForm');
+
+Route::post('/admin/alterar-senha', 'AdminAuth\ResetPasswordController@reset');
+Route::get('/admin/alterar-senha/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
+
+Route::get('/admin/cadastro', 'AdminAuth\RegisterController@showRegistrationForm');
+Route::post('/admin/cadastro', 'AdminAuth\RegisterController@register');
+
+// 2 - Admin
+
+Route::get('/admin/perfil', 'AdminController@editProfile');
+Route::put('/admin/perfil/{id}', 'AdminController@updateProfile');
 Route::get('/admin/painel', 'AdminController@dashboard');
 
 Route::get('/admin/usuarios', 'UserAdminController@index');

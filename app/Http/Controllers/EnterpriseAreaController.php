@@ -61,7 +61,7 @@ class EnterpriseAreaController extends Controller
 
     	$enterprise->save();
 
-    	$enterprisesThanks = EnterpriseThanks::where('enterprise_id', Auth::id())->paginate(10);
+    	$enterprisesThanks = EnterpriseThanks::where('enterprise_id', Auth::guard('enterprises')->user()->id)->paginate(10);
     	return view('enterprise.dashboard')->with('enterprises', $enterprises);
     }
 
@@ -71,7 +71,7 @@ class EnterpriseAreaController extends Controller
 	 */
     public function thanks()
     {
-    	$enterpriseThanks = EnterpriseThanks::where('enterprise_id', Auth::id())->paginate(10);    	
+    	$enterpriseThanks = EnterpriseThanks::where('enterprise_id', Auth::guard('enterprises')->user()->id)->paginate(10);    	
     	return view('enterprise.thanks.list')->with('enterpriseThanks', $enterpriseThanks);
     }
 }

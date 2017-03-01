@@ -25,7 +25,7 @@ class EnterpriseThanksRequest extends FormRequest
     {
         return [
             'enterprise_id' => 'required',
-            'content' => 'required',
+            'content' => 'required'
         ];
     }
 }

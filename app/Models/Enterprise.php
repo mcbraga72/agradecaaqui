@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Category;
 use App\Models\EnterpriseThanks;
-use App\Notifications\AdminResetPasswordNotification;
+use App\Notifications\EnterpriseResetPasswordNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;

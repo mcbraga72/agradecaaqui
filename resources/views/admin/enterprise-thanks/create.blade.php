@@ -28,14 +28,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Cadastro de Agradecimentos - Empresas</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/agradecimento-empresa') }}">
+                    <form class="form-horizontal" novalidate="novalidate" role="form" method="POST" action="{{ url('admin/agradecimento-empresa') }}">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="enterprise" class="col-md-4 control-label">Empresa</label>
                             <div class="col-md-6">
-                                <!--<input id="enterprise" type="text" class="form-control typeahead" name="enterprise" value="{{ old('enterprise') }}" required autofocus>-->
-                                <select class="selectpicker" id="enterprise_id">
-                                    <option value="0">Selecione a empresa</option>
+                                <select class="selectpicker" name="enterprise_id" id="enterprise_id">
+                                    <option value="">Selecione a empresa</option>
                                     @foreach ($enterprises as $enterprise) 
                                     <option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>           
                                     @endforeach                         
