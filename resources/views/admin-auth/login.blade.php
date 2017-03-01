@@ -35,7 +35,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/empresa/painel') }}">Agradeça Aqui - Área da Empresa</a>
+                    <a class="navbar-brand" href="{{ url('/admin/painel') }}">Agradeça Aqui - Área da Empresa</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -50,18 +50,18 @@
                         @if (!Auth::guest())                        
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::guard('enterprises')->user()->name }} <span class="caret"></span>
+                                    {{ Auth::guard('admins')->user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('/empresa/logout') }}"
+                                        <a href="{{ route('/admin/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('/empresa/logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('/admin/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
@@ -78,24 +78,24 @@
                         @elseif(!Auth::guest()) 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::guard('enterprises')->user()->name }} <span class="caret"></span>
+                                    {{ Auth::guard('admins')->user()->name }} <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('/empresa/logout') }}"
+                                        <a href="{{ route('/admin/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-                                        <form id="logout-form" action="{{ route('/empresa/logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('/admin/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
                                 </ul>
                             </li>                            
                         @else
-                            <li><a href="{{ route('/empresa/entrar') }}">Login</a></li>
-                            <li><a href="{{ route('empresa/cadastro') }}">Cadastro</a></li>
+                            <li><a href="{{ route('/admin/entrar') }}">Login</a></li>
+                            <li><a href="{{ route('admin/cadastro') }}">Cadastro</a></li>
                         @endif
                     </ul>--}}
 
@@ -108,7 +108,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Login</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/empresa/entrar') }}">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/entrar') }}">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -155,7 +155,7 @@
                                             Login
                                         </button>
 
-                                        <a class="btn btn-link" href="{{ url('/empresa/trocar-senha') }}">Esqueceu sua senha?</a>
+                                        <a class="btn btn-link" href="{{ url('/admin/trocar-senha') }}">Esqueceu sua senha?</a>
                                     </div>
                                 </div>
                             </form>
