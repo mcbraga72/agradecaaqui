@@ -43,12 +43,21 @@ class UserThanksAdminController extends Controller
 	 */
     public function store(UserThanksRequest $request)
     {
-    	$userThanks = new UserThanks();
+    	$date = new \DateTime();        
+        
+        $userThanks = new UserThanks();
 
-    	$userThanks->receipt = $request->receipt;
-    	$userThanks->content = $request->content;
-
+        $userThanks->sender = Auth::user()->id;
+    	$userThanks->receiptName = $request->receiptName;
+    	$userThanks->receiptEmail = $request->receiptEmail;
+        $userThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
+        $userThanks->content = $request->content;
+    	
     	$userThanks->save();
+
+        $user = new UserAdminController();
+
+        //Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));
 
     	$usersThanks = UserThanks::all();
     	return view('admin.user-thanks.list')->with('usersThanks', $usersThanks);
@@ -102,6 +111,8 @@ class UserThanksAdminController extends Controller
 
     	$usersThanks = UserThanks::all();
     	return view('admin.user-thanks.list')->with('usersThanks', $usersThanks);
+
+    	//Mail::to($request->user())->send(new UserThanksMail($user, $userThanks));    	
     }
 
     /**

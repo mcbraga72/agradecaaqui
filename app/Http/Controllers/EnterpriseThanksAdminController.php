@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use App\Http\Requests\EnterpriseThanksRequest;
+use Auth;
 
 class EnterpriseThanksAdminController extends Controller
 {
@@ -45,15 +46,25 @@ class EnterpriseThanksAdminController extends Controller
 	 */
     public function store(EnterpriseThanksRequest $request)
     {
-    	$enterpriseThanks = new EnterpriseThanks();
+        $date = new \DateTime();        
+        
+        $enterpriseThanks = new EnterpriseThanks();
 
-		$enterpriseThanks->enterprise_id = $request->enterprise_id;
-    	$enterpriseThanks->content = $request->content;
+        $enterpriseThanks->user_id = Auth::user()->id;
+        $enterpriseThanks->enterprise_id = $request->enterprise_id;
+        $enterpriseThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
+        $enterpriseThanks->content = $request->content;
+        $enterpriseThanks->status = 'Approved';
 
-    	$enterpriseThanks->save();
+        $enterpriseThanks->save();
 
-    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
-    	return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+        $user = new UserAdminController();
+        $enterprise = new EnterpriseAdminController();
+
+        //Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user->show(Auth::user()->id), $enterpriseThanks));
+
+        $enterprisesThanks = EnterpriseThanks::with(['User', 'Enterprise'])->get();
+        return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);    	
     }
 
     /**
@@ -97,13 +108,17 @@ class EnterpriseThanksAdminController extends Controller
     {
     	$enterpriseThanks = EnterpriseThanks::find($id);
 
-    	$enterpriseThanks->enterprise_id = $request->enterprise_id;
-    	$enterpriseThanks->content = $request->content;
+        $enterpriseThanks->enterprise_id = $request->enterprise_id;
+        $enterpriseThanks->content = $request->content;
 
-    	$enterpriseThanks->save();
+        $enterpriseThanks->save();
 
-    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
-    	return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+        $enterprise = new EnterpriseAdminController();
+
+        //Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user, $enterpriseThanks));
+
+        $enterprisesThanks = EnterpriseThanks::with('enterprise')->get();
+        return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks); 
     }
 
     /**
