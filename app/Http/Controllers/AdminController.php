@@ -25,7 +25,24 @@ class AdminController extends Controller
 	 */
 	public function index()
 	{
-		return view('admin.login');
+		//$admins = Admin::all();
+		//return view('admin.admin.list')->with('admins', $admins);
+		
+		$items = Admin::latest()->paginate(5);
+
+		$response = [
+            'pagination' => [
+                'total' => $items->total(),
+                'per_page' => $items->perPage(),
+                'current_page' => $items->currentPage(),
+                'last_page' => $items->lastPage(),
+                'from' => $items->firstItem(),
+                'to' => $items->lastItem()
+            ],
+            'data' => $items
+        ];
+
+        return response()->json($response);
 	}
 
 	/**
@@ -40,29 +57,99 @@ class AdminController extends Controller
 
 	/**
 	 *
+	 * Show the form to create a new admin
+	 *
+	 * @return Response
+	 * 
+	 */
+    public function create()
+    {    	
+    	return view('admin.admin.create');
+    }
+
+    /**
+	 *
+	 * Store a new admin.
+	 *
+	 * @param Request $request
+	 *
+	 * @return Response
+	 * 
+	 */
+    public function store(AdminRequest $request)
+    {
+    	$admin = new Admin();
+
+    	$admin->name = $request->name;
+    	$admin->email = $request->email;
+    	$admin->password = bcrypt($request->password);
+
+    	$admin->save();
+
+    	$admins = Admin::all();
+    	return view('admin.admin.list')->with('admins', $admins);
+    }
+
+    /**
+	 *
+	 * Show admin data.
+	 * 
+	 * @param int $id
+	 *
+	 * @return Admin $admin
+	 * 
+	 */
+    public function show($id)
+    {
+        $admin = Admin::findOrFail($id);
+        return $admin;
+    }
+
+    /**
+	 *
 	 * Shows edit profile's page
 	 * 
 	 * @return Response
 	 * 
 	 */
-    public function editProfile()
+    public function edit($id)
     {
-    	return view('admin.profile', ['admin' => Admin::findOrFail($id)]);
+    	$admin = Admin::findOrFail($id);
+    	return view('admin.admin.profile')->with('admin', $admin);
     }
 
     /**
-	 * Update enterprise's data
+	 * Update admin's data
 	 * 
 	 */
-    public function updateProfile(AdminRequest $request)
+    public function update(AdminRequest $request)
     {
-    	$enterprise = new Admin();
+    	$admin = new Admin();
 
-    	$enterprise->name = $request->name;
-    	$enterprise->email = $request->email;        
+    	$admin->name = $request->name;
+    	$admin->email = $request->email;        
     	
-    	$enterprise->save();
+    	$admin->save();
 
-    	return view('admin.dashboard');
+    	$admins = Admin::all();
+    	return view('admin.admin.list')->with('admins', $admins);
+    }
+
+    /**
+	 *
+	 * Remove the administrator.
+	 * 
+	 * @param int $id
+	 *
+	 * @return Response
+	 * 
+	 */
+    public function destroy($id)
+    {
+        $admin = Admin::findOrFail($id);
+        $admin->delete();
+
+        $admins = Admin::all();
+    	return view('admin.admin.list')->with('admins', $admins);
     }
 }

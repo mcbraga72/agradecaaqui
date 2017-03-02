@@ -124,7 +124,7 @@ class UserThanksAdminController extends Controller
 	 * @return Response
 	 * 
 	 */
-    public function destroy()
+    public function destroy($id)
     {
     	$userThanks = UserThanks::findOrFail($id);
     	$userThanks->delete();

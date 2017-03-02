@@ -35,7 +35,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/admin') }}">Agradeça Aqui - Área Administrativa</a>
+                    <a class="navbar-brand" href="{{ url('/admin/entrar') }}">Agradeça Aqui - Área Administrativa</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -55,13 +55,13 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="{{ route('/admin/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('/admin/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
@@ -78,7 +78,7 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">Login</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/entrar') }}">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -125,7 +125,7 @@
                                             Login
                                         </button>
 
-                                        <a class="btn btn-link" href="{{ url('/password/reset') }}">Esqueceu sua senha?</a>
+                                        <a class="btn btn-link" href="{{ url('/admin/trocar-senha') }}">Esqueceu sua senha?</a>
                                     </div>
                                 </div>
                             </form>

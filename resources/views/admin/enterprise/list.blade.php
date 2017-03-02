@@ -22,9 +22,9 @@
                             <tr>
                                 <td>{{ $enterprise->name }}</td>
                                 <td>{{ $enterprise->site }}</td>
-                                <td>{{ $enterprise->email }}</td>
-                                <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-                                <td><a href=""><i class="fa fa-pencil-square-o"></i></a></td>
+                                <td>{{ $enterprise->email }}</td>                                
+                                <td><a href="/admin/empresa/{{ $enterprise->id }}/editar"><i class="fa fa-pencil-square-o"></i></a></td>
+                                <td><a href="{{ route('enterprise.delete', $enterprise->id) }}"><i class="fa fa-trash-o"></i></a></td>
                             </tr>
                             @endforeach
                         </tbody>

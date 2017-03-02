@@ -15,6 +15,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="//codeorigin.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="{{ URL::asset('js/app.js') }}"></script>
     <script src="{{ URL::asset('js/vendor/adminlte/app.min.js') }}"></script>
     <script>
@@ -54,7 +56,8 @@
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
             <!-- sidebar menu: : style can be found in sidebar.less -->
-                <ul class="sidebar-menu">      
+                <ul class="sidebar-menu">
+                    <li><a href="{{ url('admin/administradores') }}"><i class="fa fa-user-plus"></i> <span>Administradores</span></a></li>
                     <li><a href="{{ url('admin/usuarios') }}"><i class="fa fa-user"></i> <span>Usuários</span></a></li>
                     <li><a href="{{ url('admin/empresas') }}"><i class="fa fa-industry"></i> <span>Empresas</span></a></li>
                     <li><a href="{{ url('admin/categorias') }}"><i class="fa fa-sort-alpha-asc"></i> <span>Categorias</span></a></li>

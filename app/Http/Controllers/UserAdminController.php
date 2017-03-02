@@ -129,7 +129,7 @@ class UserAdminController extends Controller
 	 * @return Response
 	 * 
 	 */
-    public function destroy()
+    public function destroy($id)
     {
     	$user = User::findOrFail($id);
     	$user->delete();

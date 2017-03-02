@@ -23,8 +23,8 @@
                                 <td>{{ $userThanks->user()->name }}</td>
                                 <td>{{ $userThanks->enterprise()->name }}</td>
                                 <td>{{ $userThanks->content }}</td>
-                                <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-                                <td><a href=""><i class="fa fa-pencil-square-o"></i></a></td>
+                                <td><a href="/admin/agradecimento-usuario/{{ $userThanks->id }}/editar"><i class="fa fa-pencil-square-o"></i></a></td>
+                                <td><a href="{{ route('userThanks.delete', $userThanks->id) }}"><i class="fa fa-trash-o"></i></a></td>
                             </tr>
                             @endforeach
                         </tbody>

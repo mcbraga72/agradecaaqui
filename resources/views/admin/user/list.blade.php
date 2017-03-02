@@ -21,8 +21,8 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td><a href=""><i class="fa fa-trash-o"></i></a></td>
-                                <td><a href=""><i class="fa fa-pencil-square-o"></i></a></td>
+                                <td><a href="/admin/usuario/{{ $user->id }}/editar"><i class="fa fa-pencil-square-o"></i></a></td>
+                                <td><a href="{{ route('user.delete', $user->id) }}"><i class="fa fa-trash-o"></i></a></td>
                             </tr>
                             @endforeach
                         </tbody>
