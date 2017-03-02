@@ -19,7 +19,7 @@ header {
 .main-header {
     margin: 0px !important;
     height: 50px !important;    
-    background-color: #F60059;    
+    background-color: #FFF;    
 }
 
 .navbar {
@@ -29,6 +29,10 @@ header {
     float: right !important;
     margin-right: 5.5% !important;
     background-color: transparent !important;
+}
+
+.navbar-default {
+    border-color: #FFF !important;
 }
 
 .fa-user-circle-o {
@@ -46,11 +50,11 @@ ul.nav {
     line-height: 1.2em;
     font-size: 16px;
     letter-spacing: -1px;
-    color: #FFF !important;
+    color: #F60059 !important;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-    color: #FFF  !important;
+    color: #F60059  !important;
 }
 
 .nav > li {
