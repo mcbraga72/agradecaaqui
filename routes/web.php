@@ -114,13 +114,14 @@ Route::post('/admin/cadastro', 'AdminAuth\RegisterController@register');
 // 2 - Admin
 
 Route::get('/admin/painel', 'AdminController@dashboard');
-Route::get('/admin/administradores', 'AdminController@index');
-Route::get('/admin/administrador/criar', 'AdminController@create');
+Route::get('/admin/administradores/listar', 'AdminController@list');
+/*Route::get('/admin/administrador/criar', 'AdminController@create');
 Route::post('/admin/administrador', 'AdminController@store');
 Route::get('/admin/administrador/{id}', 'AdminController@show');
 Route::get('/admin/administrador/{id}/editar', 'AdminController@edit');
 Route::put('/admin/administrador/{id}', 'AdminController@update');
-Route::delete('/admin/administrador/{id}', ['as' => 'admin.delete', 'uses' => 'AdminController@destroy']);
+Route::delete('/admin/administrador/{id}', ['as' => 'admin.delete', 'uses' => 'AdminController@destroy']);*/
+Route::resource('/admin/administradores','AdminController');
 
 Route::get('/admin/usuarios', 'UserAdminController@index');
 Route::get('/admin/usuario/criar', 'UserAdminController@create');

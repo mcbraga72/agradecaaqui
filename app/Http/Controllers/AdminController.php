@@ -18,16 +18,33 @@ class AdminController extends Controller
 		$this->middleware('admin.area');
 	}
 
-    /**
-	 * Login page
+	/**
+	 * Dashboard page
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function dashboard()
 	{
-		//$admins = Admin::all();
-		//return view('admin.admin.list')->with('admins', $admins);
-		
+		return view('admin.dashboard');
+	}
+
+	/**
+	 * Admins's list page
+	 *
+	 * @return Response
+	 */
+	public function list()
+	{
+		return view('admin.admin.list');
+	}
+
+    /**
+	 * Index page
+	 *
+	 * @return Response
+	 */
+	public function index(Request $request)
+	{
 		$items = Admin::latest()->paginate(5);
 
 		$response = [
@@ -44,30 +61,8 @@ class AdminController extends Controller
 
         return response()->json($response);
 	}
-
+	
 	/**
-	 * Dashboard page
-	 *
-	 * @return Response
-	 */
-	public function dashboard()
-	{
-		return view('admin.dashboard');
-	}
-
-	/**
-	 *
-	 * Show the form to create a new admin
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function create()
-    {    	
-    	return view('admin.admin.create');
-    }
-
-    /**
 	 *
 	 * Store a new admin.
 	 *
@@ -86,8 +81,7 @@ class AdminController extends Controller
 
     	$admin->save();
 
-    	$admins = Admin::all();
-    	return view('admin.admin.list')->with('admins', $admins);
+    	return response()->json($admin);
     }
 
     /**
@@ -106,33 +100,20 @@ class AdminController extends Controller
     }
 
     /**
-	 *
-	 * Shows edit profile's page
-	 * 
-	 * @return Response
-	 * 
-	 */
-    public function edit($id)
-    {
-    	$admin = Admin::findOrFail($id);
-    	return view('admin.admin.profile')->with('admin', $admin);
-    }
-
-    /**
 	 * Update admin's data
 	 * 
 	 */
-    public function update(AdminRequest $request)
+    public function update(AdminRequest $request, $id)
     {
-    	$admin = new Admin();
+    	$admin = Admin::find($id);
 
     	$admin->name = $request->name;
-    	$admin->email = $request->email;        
-    	
+    	$admin->email = $request->email;
+    	$admin->password = bcrypt($request->password);
+
     	$admin->save();
 
-    	$admins = Admin::all();
-    	return view('admin.admin.list')->with('admins', $admins);
+        return response()->json($update);
     }
 
     /**
@@ -146,10 +127,7 @@ class AdminController extends Controller
 	 */
     public function destroy($id)
     {
-        $admin = Admin::findOrFail($id);
-        $admin->delete();
-
-        $admins = Admin::all();
-    	return view('admin.admin.list')->with('admins', $admins);
+        $delete = Admin::findOrFail($id)->delete();        
+        return response()->json($delete);
     }
 }
