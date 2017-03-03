@@ -77,7 +77,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 class="modal-name" id="myModalLabel">Editar categoria</h4>
+                        <h4 class="modal-name" id="myModalLabel">Editar dados da categoria</h4>
                     </div>
                     <div class="modal-body">
                         <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateCategory(fillCategory.id)">

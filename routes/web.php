@@ -114,27 +114,15 @@ Route::post('/admin/cadastro', 'AdminAuth\RegisterController@register');
 // 2 - Admin
 
 Route::get('/admin/painel', 'AdminController@dashboard');
+
 Route::get('/admin/administradores/listar', 'AdminController@list');
 Route::resource('/admin/administradores','AdminController');
 
-Route::get('/admin/usuarios', 'UserAdminController@index');
-Route::get('/admin/usuario/criar', 'UserAdminController@create');
-Route::post('/admin/usuario', 'UserAdminController@store');
-Route::get('/admin/usuario/{id}', 'UserAdminController@show');
-Route::get('/admin/usuario/{id}/editar', 'UserAdminController@edit');
-Route::put('/admin/usuario/{id}', 'UserAdminController@update');
-Route::delete('/admin/usuario/{id}', ['as' => 'user.delete', 'uses' => 'UserAdminController@destroy']);
-
-Route::get('/admin/empresas', 'EnterpriseAdminController@index');
-Route::get('/admin/empresa/criar', 'EnterpriseAdminController@create');
-Route::post('/admin/empresa', 'EnterpriseAdminController@store');
-Route::get('/admin/empresa/{id}', 'EnterpriseAdminController@show');
-Route::get('/admin/empresa/{id}/editar', 'EnterpriseAdminController@edit');
-Route::post('/admin/empresa/{id}', 'EnterpriseAdminController@update');
-Route::delete('/admin/empresa/{id}', ['as' => 'enterprise.delete', 'uses' => 'EnterpriseAdminController@destroy']);
-
 Route::get('/admin/categorias/listar', 'CategoryAdminController@list');
 Route::resource('/admin/categorias','CategoryAdminController');
+
+Route::get('/admin/empresas/listar', 'EnterpriseAdminController@list');
+Route::resource('/admin/empresas','EnterpriseAdminController');
 
 Route::get('/admin/agradecimentos-empresas', 'EnterpriseThanksAdminController@index');
 Route::get('/admin/agradecimento-empresa/criar', 'EnterpriseThanksAdminController@create');
@@ -144,6 +132,14 @@ Route::get('/admin/agradecimento-empresa/{id}/editar', 'EnterpriseThanksAdminCon
 Route::put('/admin/agradecimento-empresa/{id}', 'EnterpriseThanksAdminController@update');
 Route::delete('/admin/agradecimento-empresa/{id}', ['as' => 'enterpriseThanks.delete', 'uses' => 'EnterpriseThanksAdminController@destroy']);
 Route::get('autocomplete', array('as'=>'autocomplete','uses'=>'EnterpriseThanksAdminController@autocomplete'));
+
+Route::get('/admin/usuarios', 'UserAdminController@index');
+Route::get('/admin/usuario/criar', 'UserAdminController@create');
+Route::post('/admin/usuario', 'UserAdminController@store');
+Route::get('/admin/usuario/{id}', 'UserAdminController@show');
+Route::get('/admin/usuario/{id}/editar', 'UserAdminController@edit');
+Route::put('/admin/usuario/{id}', 'UserAdminController@update');
+Route::delete('/admin/usuario/{id}', ['as' => 'user.delete', 'uses' => 'UserAdminController@destroy']);
 
 Route::get('/admin/agradecimentos-usuarios', 'UserThanksAdminController@index');
 Route::get('/admin/agradecimento-usuario/criar', 'UserThanksAdminController@create');

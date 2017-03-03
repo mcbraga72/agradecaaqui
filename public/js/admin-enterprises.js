@@ -3,10 +3,10 @@ Vue.config.devtools = true
 
 new Vue({
 
-    el: '#administrators',
+    el: '#enterprises',
 
     data: {
-        admins: [],
+        enterprises: [],
         pagination: {
             total: 0, 
             per_page: 2,
@@ -17,8 +17,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newAdmin : {'name':'','email':''},
-        fillAdmin : {'name':'','email':'','id':''}
+        newEnterprise : {'category_id': '','name': '','contact': '','email': '','telephone': '','address': '','password': ''},
+        fillEnterprise : {'category_id': '','name': '','contact': '','email': '','telephone': '','address': '','password': '','id': ''}
     },
 
     computed: {
@@ -47,50 +47,55 @@ new Vue({
     },
 
     ready : function(){
-  	   	this.getVueAdmins(this.pagination.current_page);
+  	   	this.getEnterprises(this.pagination.current_page);
     },
 
     methods : {
 
-        getVueAdmins: function(page){
-            this.$http.get('/admin/administradores?page='+page).then((response) => {
-                this.$set('admins', response.data.data.data);
+        getEnterprises: function(page){
+            this.$http.get('/admin/empresas?page='+page).then((response) => {
+                this.$set('enterprises', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
             });
         },
 
-        createAdmin: function(){
-		        var input = this.newAdmin;
-		        this.$http.post('/admin/administradores',input).then((response) => {
+        createEnterprise: function(){
+		        var input = this.newEnterprise;
+		        this.$http.post('/admin/empresas',input).then((response) => {
 		            this.changePage(this.pagination.current_page);
-			          this.newAdmin = {'name':'','email':''};
-			          $("#createAdmin").modal('hide');
+			          this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','telephone': '','address': '','password': ''};
+			          $("#createEnterprise").modal('hide');
 			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
 		        }, (response) => {
 			          this.formErrors = response.data;
 	          });
 	      },
 
-        deleteAdmin: function(admin){
-            this.$http.delete('/admin/administradores/'+admin.id).then((response) => {
+        deleteEnterprise: function(enterprise){
+            this.$http.delete('/admin/empresas/'+enterprise.id).then((response) => {
                 this.changePage(this.pagination.current_page);
-                toastr.success('Administrador removido com sucesso!', '', {timeOut: 5000});
+                toastr.success('Empresa removida com sucesso!', '', {timeOut: 5000});
             });
         },
 
-        editAdmin: function(admin){
-            this.fillAdmin.name = admin.name;
-            this.fillAdmin.id = admin.id;
-            this.fillAdmin.email = admin.email;
-            $("#editAdmin").modal('show');
+        editEnterprise: function(enterprise){
+            this.fillEnterprise.id = enterprise.id;
+            this.fillEnterprise.category_id = enterprise.category_id;
+            this.fillEnterprise.name = enterprise.name;
+            this.fillEnterprise.contact = enterprise.contact;
+            this.fillEnterprise.email = enterprise.email;
+            this.fillEnterprise.telephone = enterprise.telephone;
+            this.fillEnterprise.address = enterprise.address;
+            this.fillEnterprise.password = enterprise.password;
+            $("#editEnterprise").modal('show');
         },
 
-        updateAdmin: function(id){
-            var input = this.fillAdmin;
-            this.$http.put('/admin/administradores/'+id,input).then((response) => {
+        updateEnterprise: function(id){
+            var input = this.fillEnterprise;
+            this.$http.put('/admin/empresas/'+id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-                this.fillAdmin = {'name':'','email':'','id':''};
-                $("#editAdmin").modal('hide');
+                this.fillEnterprise = {'category_id': '','name':'','contact': '','email':'','telephone': '','address': '','password': '','id':''};
+                $("#editEnterprise").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, (response) => {
                 this.formErrorsUpdate = response.data;
@@ -99,7 +104,7 @@ new Vue({
 
         changePage: function (page) {
             this.pagination.current_page = page;
-            this.getVueAdmins(page);
+            this.getEnterprises(page);
         }
 
     }

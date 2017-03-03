@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
+use Illuminate\Http\Request;
 
 class CategoryAdminController extends Controller
 {
@@ -22,7 +23,7 @@ class CategoryAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function index(CategoryRequest $request)
+	public function index(Request $request)
 	{
 		$categories = Category::latest()->paginate(5);
 		
