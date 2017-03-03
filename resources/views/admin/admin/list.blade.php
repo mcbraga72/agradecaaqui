@@ -111,12 +111,12 @@
                             <div class="form-group">
                                 <label for="password">Senha:</label>
                                 <input type="password" name="password" class="form-control" v-model="fillAdmin.password" />
-                                <span v-if="formErrors['password']" class="error text-danger">@{{ formErrors['password'] }}</span>
+                                <span v-if="formErrorsUpdate['password']" class="error text-danger">@{{ formErrorsUpdate['password'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="password-confirm">Confirmar Senha:</label>
                                 <input type="password" name="password-confirm" class="form-control" v-model="fillAdmin.password" />
-                                <span v-if="formErrors['password-confirm']" class="error text-danger">@{{ formErrors['password-confirm'] }}</span>
+                                <span v-if="formErrorsUpdate['password-confirm']" class="error text-danger">@{{ formErrorsUpdate['password-confirm'] }}</span>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Enviar</button>

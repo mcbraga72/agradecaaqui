@@ -6,51 +6,68 @@ use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use App\Http\Requests\EnterpriseThanksRequest;
 use Auth;
+use Illuminate\Http\Request;
 
 class EnterpriseThanksAdminController extends Controller
 {
+    
     /**
-	 *
-	 * Show enterprise thank's list.
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function index()
+     * Enterprises's list page
+     *
+     * @return Response
+     */
+    public function list()
     {
-    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
-    	return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+        return view('admin.enterprise-thanks.list');
     }
 
     /**
-	 *
-	 * Show de creation form
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function create()
-    {    	
-    	$enterprises = Enterprise::all();
-    	return view('admin.enterprise-thanks.create')->with('enterprises', $enterprises);
-    }
+     * Index page
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $enterpriseThanks = EnterpriseThanks::with(['Enterprise', 'User'])->paginate(5);
+        $enterprises = Enterprise::all();
 
+        $response = [
+            'pagination' => [
+                'total' => $enterpriseThanks->total(),
+                'per_page' => $enterpriseThanks->perPage(),
+                'current_page' => $enterpriseThanks->currentPage(),
+                'last_page' => $enterpriseThanks->lastPage(),
+                'from' => $enterpriseThanks->firstItem(),
+                'to' => $enterpriseThanks->lastItem()
+            ],
+            'data' => $enterpriseThanks,
+            'enterprises' => $enterprises
+        ];
+
+        return response()->json($response);
+    }
+    
     /**
-	 *
-	 * Add new enterprise to the database.
-	 *
-	 * @param Request $request
-	 *
-	 * @return Response
-	 * 
-	 */
+     *
+     * Add new enterprise to the database.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     * 
+     */
     public function store(EnterpriseThanksRequest $request)
     {
+        /**
+         * 
+         * @todo Create a test user for send enterprise thanks
+         * 
+         */
         $date = new \DateTime();        
         
         $enterpriseThanks = new EnterpriseThanks();
 
-        $enterpriseThanks->user_id = Auth::user()->id;
+        $enterpriseThanks->user_id = Auth::guard('admins')->user()->id;
         $enterpriseThanks->enterprise_id = $request->enterprise_id;
         $enterpriseThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
         $enterpriseThanks->content = $request->content;
@@ -58,85 +75,62 @@ class EnterpriseThanksAdminController extends Controller
 
         $enterpriseThanks->save();
 
-        $user = new UserAdminController();
+        /*$user = new UserAdminController();
         $enterprise = new EnterpriseAdminController();
 
-        //Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user->show(Auth::user()->id), $enterpriseThanks));
-
-        $enterprisesThanks = EnterpriseThanks::with(['User', 'Enterprise'])->get();
-        return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);    	
+        /Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user->show(Auth::user()->id), $enterpriseThanks));*/
+        
+        return response()->json($enterpriseThanks);
     }
 
     /**
-	 *
-	 * Show enterprise data.
-	 * 
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
+     *
+     * Show enterprise-thanks data.
+     * 
+     * @param int $id
+     *
+     * @return EnterpriseThanks $enterpriseThanks
+     * 
+     */
     public function show($id)
     {
-    	return view('admin.enterprise-thanks.profile', ['user' => EnterpriseThanks::findOrFail($id)]);
+        $enterpriseThanks = EnterpriseThanks::findOrFail($id);
+        return $enterpriseThanks;
     }
 
     /**
-	 *
-	 * Edit enterprise data.
-	 *
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function edit($id)
-    {
-    	return view('admin.enterprise-thanks.profile', ['user' => EnterpriseThanks::findOrFail($id)]);
-    }
-
-    /**
-	 *
-	 * Update enterprise thank's data.
-	 *
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
+     * Update enterprise thank's data
+     * 
+     */
     public function update(EnterpriseThanksRequest $request, $id)
     {
-    	$enterpriseThanks = EnterpriseThanks::find($id);
+        $enterpriseThanks = EnterpriseThanks::find($id);
 
         $enterpriseThanks->enterprise_id = $request->enterprise_id;
         $enterpriseThanks->content = $request->content;
 
         $enterpriseThanks->save();
 
-        $enterprise = new EnterpriseAdminController();
+        /*$enterprise = new EnterpriseAdminController();
 
-        //Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user, $enterpriseThanks));
-
-        $enterprisesThanks = EnterpriseThanks::with('enterprise')->get();
-        return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks); 
+        Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user, $enterpriseThanks));*/
+        
+        return response()->json($enterpriseThanks);
     }
 
     /**
-	 *
-	 * Delete the enterprise.
-	 *
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
+     *
+     * Remove the enterprise thank.
+     * 
+     * @param int $id
+     *
+     * @return Response
+     * 
+     */
     public function destroy($id)
     {
-    	$enterpriseThanks = EnterpriseThanks::findOrFail($id);
-    	$enterpriseThanks->delete();
-
-    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
-    	return view('admin.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+        $delete = EnterpriseThanks::findOrFail($id)->delete();        
+        return response()->json($delete);
     }
 
     /**

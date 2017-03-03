@@ -28,6 +28,7 @@ class EnterpriseAdminController extends Controller
     public function index(Request $request)
     {
         $enterprises = Enterprise::latest()->paginate(5);
+        $categories = Category::all();
 
         $response = [
             'pagination' => [
@@ -38,7 +39,8 @@ class EnterpriseAdminController extends Controller
                 'from' => $enterprises->firstItem(),
                 'to' => $enterprises->lastItem()
             ],
-            'data' => $enterprises
+            'data' => $enterprises,
+            'categories' => $categories
         ];
 
         return response()->json($response);
@@ -73,21 +75,21 @@ class EnterpriseAdminController extends Controller
 
     /**
      *
-     * Show admin data.
+     * Show enterprise data.
      * 
      * @param int $id
      *
-     * @return Admin $admin
+     * @return Enterprise $enterprise
      * 
      */
     public function show($id)
     {
-        $admin = Admin::findOrFail($id);
-        return $admin;
+        $enterprise = Enterprise::findOrFail($id);
+        return $enterprise;
     }
 
     /**
-     * Update admin's data
+     * Update enterprise's data
      * 
      */
     public function update(EnterpriseRequest $request, $id)
@@ -108,7 +110,7 @@ class EnterpriseAdminController extends Controller
 
     /**
      *
-     * Remove the administrator.
+     * Remove the enterprise.
      * 
      * @param int $id
      *

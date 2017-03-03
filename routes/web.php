@@ -124,14 +124,9 @@ Route::resource('/admin/categorias','CategoryAdminController');
 Route::get('/admin/empresas/listar', 'EnterpriseAdminController@list');
 Route::resource('/admin/empresas','EnterpriseAdminController');
 
-Route::get('/admin/agradecimentos-empresas', 'EnterpriseThanksAdminController@index');
-Route::get('/admin/agradecimento-empresa/criar', 'EnterpriseThanksAdminController@create');
-Route::post('/admin/agradecimento-empresa', 'EnterpriseThanksAdminController@store');
-Route::get('/admin/agradecimento-empresa/{id}', 'EnterpriseThanksAdminController@show');
-Route::get('/admin/agradecimento-empresa/{id}/editar', 'EnterpriseThanksAdminController@edit');
-Route::put('/admin/agradecimento-empresa/{id}', 'EnterpriseThanksAdminController@update');
-Route::delete('/admin/agradecimento-empresa/{id}', ['as' => 'enterpriseThanks.delete', 'uses' => 'EnterpriseThanksAdminController@destroy']);
-Route::get('autocomplete', array('as'=>'autocomplete','uses'=>'EnterpriseThanksAdminController@autocomplete'));
+Route::get('/admin/agradecimentos-empresas/listar', 'EnterpriseThanksAdminController@list');
+Route::resource('/admin/agradecimentos-empresas','EnterpriseThanksAdminController');
+
 
 Route::get('/admin/usuarios', 'UserAdminController@index');
 Route::get('/admin/usuario/criar', 'UserAdminController@create');

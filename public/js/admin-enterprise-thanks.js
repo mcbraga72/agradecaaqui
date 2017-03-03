@@ -3,10 +3,11 @@ Vue.config.devtools = true
 
 new Vue({
 
-    el: '#administrators',
+    el: '#enterpriseThanks',
 
     data: {
-        admins: [],
+        enterprises: [],
+        enterpriseThanks: [],
         pagination: {
             total: 0, 
             per_page: 2,
@@ -17,8 +18,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newAdmin : {'name':'','email':''},
-        fillAdmin : {'name':'','email':'','id':''}
+        newEnterpriseThank : {'enterprise_id':'','content':''},
+        fillEnterpriseThank : {'enterprise_id':'','content':'','id':''}
     },
 
     computed: {
@@ -47,50 +48,51 @@ new Vue({
     },
 
     ready : function(){
-  	   	this.getVueAdmins(this.pagination.current_page);
+  	   	this.getEnterpriseThanks(this.pagination.current_page);
     },
 
     methods : {
 
-        getVueAdmins: function(page){
-            this.$http.get('/admin/administradores?page='+page).then((response) => {
-                this.$set('admins', response.data.data.data);
+        getEnterpriseThanks: function(page){
+            this.$http.get('/admin/agradecimentos-empresas?page='+page).then((response) => {
+                this.$set('enterpriseThanks', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
+                this.$set('enterprises', response.data.enterprises);
             });
         },
 
-        createAdmin: function(){
-		        var input = this.newAdmin;
-		        this.$http.post('/admin/administradores',input).then((response) => {
+        createEnterpriseThank: function(){
+		        var input = this.newEnterpriseThank;
+		        this.$http.post('/admin/agradecimentos-empresas',input).then((response) => {
 		            this.changePage(this.pagination.current_page);
-			          this.newAdmin = {'name':'','email':''};
-			          $("#createAdmin").modal('hide');
-			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
+			          this.newEnterpriseThank = {'enterprise_id':'','content':''};
+			          $("#createEnterpriseThank").modal('hide');
+			          toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 5000});
 		        }, (response) => {
 			          this.formErrors = response.data;
 	          });
 	      },
 
-        deleteAdmin: function(admin){
-            this.$http.delete('/admin/administradores/'+admin.id).then((response) => {
+        deleteEnterpriseThank: function(enterpriseThank){
+            this.$http.delete('/admin/agradecimentos-empresas/'+enterpriseThank.id).then((response) => {
                 this.changePage(this.pagination.current_page);
-                toastr.success('Administrador removido com sucesso!', '', {timeOut: 5000});
+                toastr.success('Agradecimento removido com sucesso!', '', {timeOut: 5000});
             });
         },
 
-        editAdmin: function(admin){
-            this.fillAdmin.name = admin.name;
-            this.fillAdmin.id = admin.id;
-            this.fillAdmin.email = admin.email;
-            $("#editAdmin").modal('show');
+        editEnterpriseThank: function(enterpriseThank){
+            this.fillEnterpriseThank.enterprise_id = enterpriseThank.enterprise_id;
+            this.fillEnterpriseThank.id = enterpriseThank.id;
+            this.fillEnterpriseThank.content = enterpriseThank.content;
+            $("#editEnterpriseThank").modal('show');
         },
 
-        updateAdmin: function(id){
-            var input = this.fillAdmin;
-            this.$http.put('/admin/administradores/'+id,input).then((response) => {
+        updateEnterpriseThank: function(id){
+            var input = this.fillEnterpriseThank;
+            this.$http.put('/admin/agradecimentos-empresas/'+id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-                this.fillAdmin = {'name':'','email':'','id':''};
-                $("#editAdmin").modal('hide');
+                this.fillEnterpriseThank = {'enterprise_id':'','content':'','id':''};
+                $("#editEnterpriseThank").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, (response) => {
                 this.formErrorsUpdate = response.data;
@@ -99,7 +101,7 @@ new Vue({
 
         changePage: function (page) {
             this.pagination.current_page = page;
-            this.getVueAdmins(page);
+            this.getEnterpriseThanks(page);
         }
 
     }

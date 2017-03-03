@@ -6,6 +6,7 @@ new Vue({
     el: '#enterprises',
 
     data: {
+        categories: [],
         enterprises: [],
         pagination: {
             total: 0, 
@@ -56,6 +57,7 @@ new Vue({
             this.$http.get('/admin/empresas?page='+page).then((response) => {
                 this.$set('enterprises', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
+                this.$set('categories', response.data.categories);
             });
         },
 

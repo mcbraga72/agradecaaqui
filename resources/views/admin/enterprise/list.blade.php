@@ -63,7 +63,10 @@
                         <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createEnterprise">
                             <div class="form-group">
                                 <label for="category_id">Categoria:</label>
-                                <input type="text" name="category_id" class="form-control" v-model="newEnterprise.category_id" />
+                                <select name="category_id" class="form-control" v-model="newEnterprise.category_id" />
+                                    <option value="">Selecione a categoria</option>
+                                    <option value="@{{ category.id }}" v-for="category in categories">@{{ category.name }}</option>
+                                </select>
                                 <span v-if="formErrors['category_id']" class="error text-danger">@{{ formErrors['category_id'] }}</span>
                             </div>
                             <div class="form-group">
@@ -122,43 +125,46 @@
                         <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateEnterprise(fillEnterprise.id)">
                             <div class="form-group">
                                 <label for="category_id">Categoria:</label>
-                                <input type="text" name="category_id" class="form-control" v-model="fillEnterprise.category_id" />
-                                <span v-if="formErrors['category_id']" class="error text-danger">@{{ formErrors['category_id'] }}</span>
+                                <select name="category_id" class="form-control" v-model="fillEnterprise.category_id" />
+                                    <option value="">Selecione a categoria</option>
+                                    <option value="@{{ category.id }}" v-for="category in categories">@{{ category.name }}</option>
+                                </select>
+                                <span v-if="formErrorsUpdate['category_id']" class="error text-danger">@{{ formErrorsUpdate['category_id'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="name">Nome:</label>
                                 <input type="text" name="name" class="form-control" v-model="fillEnterprise.name" />
-                                <span v-if="formErrors['name']" class="error text-danger">@{{ formErrors['name'] }}</span>
+                                <span v-if="formErrorsUpdate['name']" class="error text-danger">@{{ formErrorsUpdate['name'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="contact">Contato:</label>
                                 <input type="text" name="contact" class="form-control" v-model="fillEnterprise.contact" />
-                                <span v-if="formErrors['contact']" class="error text-danger">@{{ formErrors['contact'] }}</span>
+                                <span v-if="formErrorsUpdate['contact']" class="error text-danger">@{{ formErrorsUpdate['contact'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="name">E-mail:</label>
                                 <input type="email" name="email" class="form-control" v-model="fillEnterprise.email" />
-                                <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
+                                <span v-if="formErrorsUpdate['email']" class="error text-danger">@{{ formErrorsUpdate['email'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="telephone">Telefone:</label>
                                 <input type="text" name="telephone" class="form-control" v-model="fillEnterprise.telephone" />
-                                <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
+                                <span v-if="formErrorsUpdate['telephone']" class="error text-danger">@{{ formErrorsUpdate['telephone'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="address">Endereço:</label>
                                 <input type="text" name="address" class="form-control" v-model="fillEnterprise.address" />
-                                <span v-if="formErrors['address']" class="error text-danger">@{{ formErrors['address'] }}</span>
+                                <span v-if="formErrorsUpdate['address']" class="error text-danger">@{{ formErrorsUpdate['address'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="password">Senha:</label>
                                 <input type="password" name="password" class="form-control" v-model="fillEnterprise.password" />
-                                <span v-if="formErrors['password']" class="error text-danger">@{{ formErrors['password'] }}</span>
+                                <span v-if="formErrorsUpdate['password']" class="error text-danger">@{{ formErrorsUpdate['password'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="password-confirm">Confirmar Senha:</label>
                                 <input type="password" name="password-confirm" class="form-control" v-model="fillEnterprise.password" />
-                                <span v-if="formErrors['password-confirm']" class="error text-danger">@{{ formErrors['password-confirm'] }}</span>
+                                <span v-if="formErrorsUpdate['password-confirm']" class="error text-danger">@{{ formErrorsUpdate['password-confirm'] }}</span>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Enviar</button>
