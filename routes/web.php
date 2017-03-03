@@ -115,12 +115,6 @@ Route::post('/admin/cadastro', 'AdminAuth\RegisterController@register');
 
 Route::get('/admin/painel', 'AdminController@dashboard');
 Route::get('/admin/administradores/listar', 'AdminController@list');
-/*Route::get('/admin/administrador/criar', 'AdminController@create');
-Route::post('/admin/administrador', 'AdminController@store');
-Route::get('/admin/administrador/{id}', 'AdminController@show');
-Route::get('/admin/administrador/{id}/editar', 'AdminController@edit');
-Route::put('/admin/administrador/{id}', 'AdminController@update');
-Route::delete('/admin/administrador/{id}', ['as' => 'admin.delete', 'uses' => 'AdminController@destroy']);*/
 Route::resource('/admin/administradores','AdminController');
 
 Route::get('/admin/usuarios', 'UserAdminController@index');
@@ -139,13 +133,8 @@ Route::get('/admin/empresa/{id}/editar', 'EnterpriseAdminController@edit');
 Route::post('/admin/empresa/{id}', 'EnterpriseAdminController@update');
 Route::delete('/admin/empresa/{id}', ['as' => 'enterprise.delete', 'uses' => 'EnterpriseAdminController@destroy']);
 
-Route::get('/admin/categorias', 'CategoryAdminController@index');
-Route::get('/admin/categoria/criar', 'CategoryAdminController@create');
-Route::post('/admin/categoria', 'CategoryAdminController@store');
-Route::get('/admin/categoria/{id}', 'CategoryAdminController@show');
-Route::get('/admin/categoria/{id}/editar', 'CategoryAdminController@edit');
-Route::put('/admin/categoria/{id}', ['as' => 'category.update', 'uses' => 'CategoryAdminController@update']);
-Route::delete('/admin/categoria/{id}', ['as' => 'category.delete', 'uses' => 'CategoryAdminController@destroy']);
+Route::get('/admin/categorias/listar', 'CategoryAdminController@list');
+Route::resource('/admin/categorias','CategoryAdminController');
 
 Route::get('/admin/agradecimentos-empresas', 'EnterpriseThanksAdminController@index');
 Route::get('/admin/agradecimento-empresa/criar', 'EnterpriseThanksAdminController@create');

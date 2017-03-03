@@ -45,18 +45,18 @@ class AdminController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$items = Admin::latest()->paginate(5);
+		$admins = Admin::latest()->paginate(5);
 
 		$response = [
             'pagination' => [
-                'total' => $items->total(),
-                'per_page' => $items->perPage(),
-                'current_page' => $items->currentPage(),
-                'last_page' => $items->lastPage(),
-                'from' => $items->firstItem(),
-                'to' => $items->lastItem()
+                'total' => $admins->total(),
+                'per_page' => $admins->perPage(),
+                'current_page' => $admins->currentPage(),
+                'last_page' => $admins->lastPage(),
+                'from' => $admins->firstItem(),
+                'to' => $admins->lastItem()
             ],
-            'data' => $items
+            'data' => $admins
         ];
 
         return response()->json($response);
@@ -113,7 +113,7 @@ class AdminController extends Controller
 
     	$admin->save();
 
-        return response()->json($update);
+        return response()->json($admin);
     }
 
     /**

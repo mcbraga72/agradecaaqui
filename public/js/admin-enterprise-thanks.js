@@ -47,12 +47,12 @@ new Vue({
     },
 
     ready : function(){
-  	   	this.getAdmins(this.pagination.current_page);
+  	   	this.getVueAdmins(this.pagination.current_page);
     },
 
     methods : {
 
-        getAdmins: function(page){
+        getVueAdmins: function(page){
             this.$http.get('/admin/administradores?page='+page).then((response) => {
                 this.$set('admins', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
@@ -99,7 +99,7 @@ new Vue({
 
         changePage: function (page) {
             this.pagination.current_page = page;
-            this.getAdmins(page);
+            this.getVueAdmins(page);
         }
 
     }

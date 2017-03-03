@@ -8,33 +8,42 @@ use App\Http\Requests\CategoryRequest;
 class CategoryAdminController extends Controller
 {
 	/**
-	 *
-	 * Show category's list.
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function index()
-    {
-    	$categories = Category::all();
-    	return view('admin.category.list')->with('categories', $categories);
-    }
-
-    /**
-	 *
-	 * Show de creation form
+	 * Categories's list page
 	 *
 	 * @return Response
-	 * 
 	 */
-    public function create()
-    {    	
-    	return view('admin.category.create');
-    }
+	public function list()
+	{
+		return view('admin.category.list');
+	}
 
     /**
+	 * Index page
 	 *
-	 * Add new category to the database.
+	 * @return Response
+	 */
+	public function index(CategoryRequest $request)
+	{
+		$categories = Category::latest()->paginate(5);
+		
+		$response = [
+            'pagination' => [
+                'total' => $categories->total(),
+                'per_page' => $categories->perPage(),
+                'current_page' => $categories->currentPage(),
+                'last_page' => $categories->lastPage(),
+                'from' => $categories->firstItem(),
+                'to' => $categories->lastItem()
+            ],
+            'data' => $categories
+        ];
+
+        return response()->json($response);
+	}
+	
+	/**
+	 *
+	 * Store a new category.
 	 *
 	 * @param Request $request
 	 *
@@ -44,13 +53,10 @@ class CategoryAdminController extends Controller
     public function store(CategoryRequest $request)
     {
     	$category = new Category();
-
     	$category->name = $request->name;
-
     	$category->save();
 
-    	$categories = Category::all();
-    	return view('admin.category.list')->with('categories', $categories);
+    	return response()->json($category);
     }
 
     /**
@@ -59,53 +65,32 @@ class CategoryAdminController extends Controller
 	 * 
 	 * @param int $id
 	 *
-	 * @return Response
+	 * @return Category $category
 	 * 
 	 */
     public function show($id)
     {
-    	return view('admin.category.profile', ['category' => Category::findOrFail($id)]);
+        $category = Category::findOrFail($id);
+        return $category;
     }
 
     /**
-	 *
-	 * Edit category data.
-	 *
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function edit($id)
-    {
-    	return view('admin.category.profile', ['category' => Category::findOrFail($id)]);
-    }
-
-    /**
-	 *
-	 * Update category's data.
-	 *
-	 * @param int $id
-	 *
-	 * @return Response
+	 * Update category's data
 	 * 
 	 */
     public function update(CategoryRequest $request, $id)
     {
     	$category = Category::find($id);
-
     	$category->name = $request->name;
-
     	$category->save();
 
-    	$categories = Category::all();
-    	return view('admin.category.list')->with('categories', $categories);
+        return response()->json($category);
     }
 
     /**
 	 *
-	 * Delete the category.
-	 *
+	 * Remove the category.
+	 * 
 	 * @param int $id
 	 *
 	 * @return Response
@@ -113,10 +98,7 @@ class CategoryAdminController extends Controller
 	 */
     public function destroy($id)
     {
-    	$category = Category::findOrFail($id);
-    	$category->delete();
-
-    	$categories = Category::all();
-    	return view('admin.category.list')->with('categories', $categories);
+        $delete = Category::findOrFail($id)->delete();        
+        return response()->json($delete);
     }
 }

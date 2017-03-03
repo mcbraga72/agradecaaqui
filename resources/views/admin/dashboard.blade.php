@@ -64,14 +64,14 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li><a href="{{ url('admin/administradores/listar') }}"><i class="fa fa-user-plus"></i> <span>Administradores</span></a></li>
-                    <li><a href="{{ url('admin/usuarios') }}"><i class="fa fa-user"></i> <span>Usuários</span></a></li>
-                    <li><a href="{{ url('admin/empresas') }}"><i class="fa fa-industry"></i> <span>Empresas</span></a></li>
-                    <li><a href="{{ url('admin/categorias') }}"><i class="fa fa-sort-alpha-asc"></i> <span>Categorias</span></a></li>
+                    <li><a href="{{ url('admin/usuarios/listar') }}"><i class="fa fa-user"></i> <span>Usuários</span></a></li>
+                    <li><a href="{{ url('admin/empresas/listar') }}"><i class="fa fa-industry"></i> <span>Empresas</span></a></li>
+                    <li><a href="{{ url('admin/categorias/listar') }}"><i class="fa fa-sort-alpha-asc"></i> <span>Categorias</span></a></li>
                     <li class="treeview">
                         <a href="#"><i class="fa fa-heart"></i> <span>Agradecimentos</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{ url('admin/agradecimentos-empresas') }}"><i class="fa fa-industry"></i> Empresas</a></li>
-                            <li><a href="{{ url('admin/agradecimentos-usuarios') }}"><i class="fa fa-user"></i> Usuários</a></li>
+                            <li><a href="{{ url('admin/agradecimentos-empresas/listar') }}"><i class="fa fa-industry"></i> Empresas</a></li>
+                            <li><a href="{{ url('admin/agradecimentos-usuarios/listar') }}"><i class="fa fa-user"></i> Usuários</a></li>
                         </ul>
                     </li>        
                     <li><a href="{{ url('admin/relatorios') }}"><i class="fa fa-bar-chart"></i> <span>Relatórios</span></a></li>

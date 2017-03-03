@@ -3,10 +3,10 @@ Vue.config.devtools = true
 
 new Vue({
 
-    el: '#administrators',
+    el: '#categories',
 
     data: {
-        admins: [],
+        categories: [],
         pagination: {
             total: 0, 
             per_page: 2,
@@ -17,8 +17,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newAdmin : {'name':'','email':''},
-        fillAdmin : {'name':'','email':'','id':''}
+        newCategory : {'name':''},
+        fillCategory : {'name':'','id':''}
     },
 
     computed: {
@@ -47,50 +47,49 @@ new Vue({
     },
 
     ready : function(){
-  	   	this.getAdmins(this.pagination.current_page);
+  	   	this.getCategories(this.pagination.current_page);
     },
 
     methods : {
 
-        getAdmins: function(page){
-            this.$http.get('/admin/administradores?page='+page).then((response) => {
-                this.$set('admins', response.data.data.data);
+        getCategories: function(page){
+            this.$http.get('/admin/categorias?page='+page).then((response) => {
+                this.$set('categories', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
             });
         },
 
-        createAdmin: function(){
-		        var input = this.newAdmin;
-		        this.$http.post('/admin/administradores',input).then((response) => {
+        createCategory: function(){
+		        var input = this.newCategory;
+		        this.$http.post('/admin/categorias',input).then((response) => {
 		            this.changePage(this.pagination.current_page);
-			          this.newAdmin = {'name':'','email':''};
-			          $("#createAdmin").modal('hide');
+			          this.newCategory = {'name':''};
+			          $("#createCategory").modal('hide');
 			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
 		        }, (response) => {
 			          this.formErrors = response.data;
 	          });
 	      },
 
-        deleteAdmin: function(admin){
-            this.$http.delete('/admin/administradores/'+admin.id).then((response) => {
+        deleteCategory: function(admin){
+            this.$http.delete('/admin/categorias/'+admin.id).then((response) => {
                 this.changePage(this.pagination.current_page);
-                toastr.success('Administrador removido com sucesso!', '', {timeOut: 5000});
+                toastr.success('Categoria removida com sucesso!', '', {timeOut: 5000});
             });
         },
 
-        editAdmin: function(admin){
-            this.fillAdmin.name = admin.name;
-            this.fillAdmin.id = admin.id;
-            this.fillAdmin.email = admin.email;
-            $("#editAdmin").modal('show');
+        editCategory: function(admin){
+            this.fillCategory.name = admin.name;
+            this.fillCategory.id = admin.id;
+            $("#editCategory").modal('show');
         },
 
-        updateAdmin: function(id){
-            var input = this.fillAdmin;
-            this.$http.put('/admin/administradores/'+id,input).then((response) => {
+        updateCategory: function(id){
+            var input = this.fillCategory;
+            this.$http.put('/admin/categorias/'+id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-                this.fillAdmin = {'name':'','email':'','id':''};
-                $("#editAdmin").modal('hide');
+                this.fillCategory = {'name':'','id':''};
+                $("#editCategory").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, (response) => {
                 this.formErrorsUpdate = response.data;
@@ -99,7 +98,7 @@ new Vue({
 
         changePage: function (page) {
             this.pagination.current_page = page;
-            this.getAdmins(page);
+            this.getCategories(page);
         }
 
     }
