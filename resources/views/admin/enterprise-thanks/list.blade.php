@@ -1,27 +1,29 @@
 @extends('admin.dashboard')
 @section('content')
-    <div class="container administrators" id="administrators">
+    <div class="container administrators" id="enterpriseThanks">
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createAdmin"><i class="fa fa-plus fa-fw"></i>Cadastrar Administrador</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnterpriseThank"><i class="fa fa-plus fa-fw"></i>Cadastrar Agradecimento</button>
                 </div>
             </div>
         </div>
 
-        <!-- Admin Listing -->
+        <!-- Enterprises Thanks Listing -->
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Nome</th>
-                <th>E-mail</th>
+                <th>Usuário</th>
+                <th>Empresa</th>
+                <th>Agradecimento</th>
                 <th colspan="2">Ação</th>
             </tr>
-            <tr v-for="admin in admins">
-                <td>@{{ admin.name }}</td>
-                <td>@{{ admin.email }}</td>
+            <tr v-for="enterpriseThank in enterpriseThanks">
+                <td>@{{ enterpriseThank.user.name }}</td>
+                <td>@{{ enterpriseThank.enterprise.name }}</td>
+                <td>@{{ enterpriseThank.content }}</td>
                 <td>    
-                  <button class="btn btn-primary" @click.prevent="editAdmin(admin)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
-                  <button class="btn btn-danger" @click.prevent="deleteAdmin(admin)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
+                  <button class="btn btn-primary" @click.prevent="editEnterpriseThank(enterpriseThank)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
+                  <button class="btn btn-danger" @click.prevent="deleteEnterpriseThank(enterpriseThank)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
                 </td>
             </tr>
         </table>
@@ -49,35 +51,28 @@
             </ul>
         </nav>
 
-        <!-- Create Admin Modal -->
-        <div class="modal fade" id="createAdmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <!-- Create Enterprise Thank Modal -->
+        <div class="modal fade" id="createEnterpriseThank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 class="modal-name" id="myModalLabel">Cadastro de administradores</h4>
+                        <h4 class="modal-name" id="myModalLabel">Cadastro de agradecimentos</h4>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createAdmin">
+                        <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createEnterpriseThank">
                             <div class="form-group">
-                                <label for="name">Nome:</label>
-                                <input type="text" name="name" class="form-control" v-model="newAdmin.name" />
-                                <span v-if="formErrors['name']" class="error text-danger">@{{ formErrors['name'] }}</span>
+                                <label for="enterprise_id">Empresa:</label>
+                                <select name="enterprise_id" class="form-control" v-model="newEnterpriseThank.enterprise_id" />
+                                    <option value="">Selecione a empresa</option>
+                                    <option value="@{{ enterprise.id }}" v-for="enterprise in enterprises">@{{ enterprise.name }}</option>
+                                </select>
+                                <span v-if="formErrors['enterprise_id']" class="error text-danger">@{{ formErrors['enterprise_id'] }}</span>
                             </div>
                             <div class="form-group">
-                                <label for="name">E-mail:</label>
-                                <input type="email" name="email" class="form-control" v-model="newAdmin.email" />
-                                <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Senha:</label>
-                                <input type="password" name="password" class="form-control" v-model="newAdmin.password" />
-                                <span v-if="formErrors['password']" class="error text-danger">@{{ formErrors['password'] }}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="password-confirm">Confirmar Senha:</label>
-                                <input type="password" name="password-confirm" class="form-control" v-model="newAdmin.password" />
-                                <span v-if="formErrors['password-confirm']" class="error text-danger">@{{ formErrors['password-confirm'] }}</span>
+                                <label for="content">Agradecimento:</label>
+                                <textarea name="content" class="form-control" v-model="newEnterpriseThank.content" /></textarea>
+                                <span v-if="formErrors['content']" class="error text-danger">@{{ formErrors['content'] }}</span>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Enviar</button>
@@ -88,36 +83,30 @@
             </div>
         </div>
 
-        <!-- Edit Admin Modal -->
-        <div class="modal fade" id="editAdmin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <!-- Edit Enterprise Thank Modal -->
+        <div class="modal fade" id="editEnterpriseThank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 class="modal-name" id="myModalLabel">Editar</h4>
+                        <h4 class="modal-name" id="myModalLabel">Editar agradecimento</h4>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateAdmin(fillAdmin.id)">
+                        <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateEnterpriseThank(fillEnterpriseThank.id)">
                             <div class="form-group">
-                                <label for="name">Nome:</label>
-                                <input type="text" name="name" class="form-control" v-model="fillAdmin.name" />
-                                <span v-if="formErrorsUpdate['name']" class="error text-danger">@{{ formErrorsUpdate['name'] }}</span>
+                                <label for="name">Empresa:</label>
+                                <select name="name" class="form-control" v-model="fillEnterpriseThank.enterprise_id" />
+                                    <option value="">Selecione a empresa</option>
+                                    <option value="@{{ enterprise.id }}" v-for="enterprise in enterprises">@{{ enterprise.name }}</option>
+                                </select>
+                                <span v-if="formErrorsUpdate['enterprise_id']" class="error text-danger">@{{ formErrorsUpdate['enterprise_id'] }}</span>
                             </div>
                             <div class="form-group">
-                                <label for="name">E-mail:</label>
-                                <input type="email" name="email" class="form-control" v-model="fillAdmin.email" />
-                                <span v-if="formErrorsUpdate['email']" class="error text-danger">@{{ formErrorsUpdate['email'] }}</span>
+                                <label for="content">Agradecimento:</label>
+                                <textarea name="content" class="form-control" v-model="fillEnterpriseThank.content" /></textarea>
+                                <span v-if="formErrorsUpdate['content']" class="error text-danger">@{{ formErrorsUpdate['content'] }}</span>
                             </div>
-                            <div class="form-group">
-                                <label for="password">Senha:</label>
-                                <input type="password" name="password" class="form-control" v-model="newAdmin.password" />
-                                <span v-if="formErrors['password']" class="error text-danger">@{{ formErrors['password'] }}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="password-confirm">Confirmar Senha:</label>
-                                <input type="password" name="password-confirm" class="form-control" v-model="newAdmin.password" />
-                                <span v-if="formErrors['password-confirm']" class="error text-danger">@{{ formErrors['password-confirm'] }}</span>
-                            </div>
+
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Enviar</button>
                             </div>
@@ -133,5 +122,5 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
-    <script type="text/javascript" src="/js/admin-administrators.js"></script>
+    <script type="text/javascript" src="/js/admin-enterprise-thanks.js"></script>
 @endsection

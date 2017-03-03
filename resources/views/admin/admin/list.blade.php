@@ -94,7 +94,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 class="modal-name" id="myModalLabel">Editar</h4>
+                        <h4 class="modal-name" id="myModalLabel">Editar dados do administrador</h4>
                     </div>
                     <div class="modal-body">
                         <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateAdmin(fillAdmin.id)">
@@ -110,13 +110,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="password">Senha:</label>
-                                <input type="password" name="password" class="form-control" v-model="newAdmin.password" />
-                                <span v-if="formErrors['password']" class="error text-danger">@{{ formErrors['password'] }}</span>
+                                <input type="password" name="password" class="form-control" v-model="fillAdmin.password" />
+                                <span v-if="formErrorsUpdate['password']" class="error text-danger">@{{ formErrorsUpdate['password'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="password-confirm">Confirmar Senha:</label>
-                                <input type="password" name="password-confirm" class="form-control" v-model="newAdmin.password" />
-                                <span v-if="formErrors['password-confirm']" class="error text-danger">@{{ formErrors['password-confirm'] }}</span>
+                                <input type="password" name="password-confirm" class="form-control" v-model="fillAdmin.password" />
+                                <span v-if="formErrorsUpdate['password-confirm']" class="error text-danger">@{{ formErrorsUpdate['password-confirm'] }}</span>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Enviar</button>
