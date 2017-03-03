@@ -18,16 +18,6 @@ class AdminController extends Controller
 		$this->middleware('admin.area');
 	}
 
-    /**
-	 * Login page
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		return view('admin.login');
-	}
-
 	/**
 	 * Dashboard page
 	 *
@@ -39,30 +29,105 @@ class AdminController extends Controller
 	}
 
 	/**
+	 * Admins's list page
 	 *
-	 * Shows edit profile's page
-	 * 
+	 * @return Response
+	 */
+	public function list()
+	{
+		return view('admin.admin.list');
+	}
+
+    /**
+	 * Index page
+	 *
+	 * @return Response
+	 */
+	public function index(Request $request)
+	{
+		$admins = Admin::latest()->paginate(5);
+
+		$response = [
+            'pagination' => [
+                'total' => $admins->total(),
+                'per_page' => $admins->perPage(),
+                'current_page' => $admins->currentPage(),
+                'last_page' => $admins->lastPage(),
+                'from' => $admins->firstItem(),
+                'to' => $admins->lastItem()
+            ],
+            'data' => $admins
+        ];
+
+        return response()->json($response);
+	}
+	
+	/**
+	 *
+	 * Store a new admin.
+	 *
+	 * @param Request $request
+	 *
 	 * @return Response
 	 * 
 	 */
-    public function editProfile()
+    public function store(AdminRequest $request)
     {
-    	return view('admin.profile', ['admin' => Admin::findOrFail($id)]);
+    	$admin = new Admin();
+
+    	$admin->name = $request->name;
+    	$admin->email = $request->email;
+    	$admin->password = bcrypt($request->password);
+
+    	$admin->save();
+
+    	return response()->json($admin);
     }
 
     /**
-	 * Update enterprise's data
+	 *
+	 * Show admin data.
+	 * 
+	 * @param int $id
+	 *
+	 * @return Admin $admin
 	 * 
 	 */
-    public function updateProfile(AdminRequest $request)
+    public function show($id)
     {
-    	$enterprise = new Admin();
+        $admin = Admin::findOrFail($id);
+        return $admin;
+    }
 
-    	$enterprise->name = $request->name;
-    	$enterprise->email = $request->email;        
-    	
-    	$enterprise->save();
+    /**
+	 * Update admin's data
+	 * 
+	 */
+    public function update(AdminRequest $request, $id)
+    {
+    	$admin = Admin::find($id);
 
-    	return view('admin.dashboard');
+    	$admin->name = $request->name;
+    	$admin->email = $request->email;
+    	$admin->password = bcrypt($request->password);
+
+    	$admin->save();
+
+        return response()->json($admin);
+    }
+
+    /**
+	 *
+	 * Remove the administrator.
+	 * 
+	 * @param int $id
+	 *
+	 * @return Response
+	 * 
+	 */
+    public function destroy($id)
+    {
+        $delete = Admin::findOrFail($id)->delete();        
+        return response()->json($delete);
     }
 }

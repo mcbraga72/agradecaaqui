@@ -41,11 +41,10 @@ class AdminResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-        return (new MailMessage)
-            ->line('You are receiving this email because we received a password reset request for your account.')
+            ->line('Você recebeu este e-mail devido a uma solicitação de troca de senha relativa à sua conta.')
             ->action('Reset Password', route('password.reset', $this->token))
             //->action('Notification Action', url('/'))
-            ->line('If you did not request a password reset, no further action is required.');
+            ->line('Se você não solicitou a alteração de sua senha, pode ignorar e apagar este e-mail.');
                                         
     }
 

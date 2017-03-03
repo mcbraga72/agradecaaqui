@@ -13,6 +13,7 @@ class CreateEnterprisesTable extends Migration
      */
     public function up()
     {
+        if(Schema::hasTable('enterprises')) return;
         Schema::create('enterprises', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned();

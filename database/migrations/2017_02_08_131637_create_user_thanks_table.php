@@ -13,6 +13,7 @@ class CreateUserThanksTable extends Migration
      */
     public function up()
     {
+        if(Schema::hasTable('user_thanks')) return;
         Schema::create('user_thanks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sender')->unsigned();

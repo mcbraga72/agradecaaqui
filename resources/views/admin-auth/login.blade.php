@@ -35,7 +35,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/admin/painel') }}">Agradeça Aqui - Área da Empresa</a>
+                    <a class="navbar-brand" href="{{ url('/admin/painel') }}">Agradeça Aqui - Área Administrativa</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

@@ -126,7 +126,7 @@ class EnterpriseAdminController extends Controller
 	 * @return Response
 	 * 
 	 */
-    public function destroy()
+    public function destroy($id)
     {
     	$enterprise = Enterprise::findOrFail($id);
     	$enterprise->delete();

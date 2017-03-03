@@ -5,18 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta id="token" name="token" value="{{ csrf_token() }}">
     <title>Agradeça Aqui | Admin</title>  
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ URL::asset('css/vendor/admin-lte.min.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('css/admin.css') }}">      
+    <link rel="stylesheet" href="{{ URL::asset('css/admin.css') }}">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="//codeorigin.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
     <script src="{{ URL::asset('js/app.js') }}"></script>
     <script src="{{ URL::asset('js/vendor/adminlte/app.min.js') }}"></script>
+    <script src="{{ URL::asset('js/admin-administrators.js') }}"></script>
     <script>
           window.Laravel = {!! json_encode([
               'csrfToken' => csrf_token(),
@@ -54,15 +62,16 @@
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
             <!-- sidebar menu: : style can be found in sidebar.less -->
-                <ul class="sidebar-menu">      
-                    <li><a href="{{ url('admin/usuarios') }}"><i class="fa fa-user"></i> <span>Usuários</span></a></li>
-                    <li><a href="{{ url('admin/empresas') }}"><i class="fa fa-industry"></i> <span>Empresas</span></a></li>
-                    <li><a href="{{ url('admin/categorias') }}"><i class="fa fa-sort-alpha-asc"></i> <span>Categorias</span></a></li>
+                <ul class="sidebar-menu">
+                    <li><a href="{{ url('admin/administradores/listar') }}"><i class="fa fa-user-plus"></i> <span>Administradores</span></a></li>
+                    <li><a href="{{ url('admin/usuarios/listar') }}"><i class="fa fa-user"></i> <span>Usuários</span></a></li>
+                    <li><a href="{{ url('admin/empresas/listar') }}"><i class="fa fa-industry"></i> <span>Empresas</span></a></li>
+                    <li><a href="{{ url('admin/categorias/listar') }}"><i class="fa fa-sort-alpha-asc"></i> <span>Categorias</span></a></li>
                     <li class="treeview">
                         <a href="#"><i class="fa fa-heart"></i> <span>Agradecimentos</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{ url('admin/agradecimentos-empresas') }}"><i class="fa fa-industry"></i> Empresas</a></li>
-                            <li><a href="{{ url('admin/agradecimentos-usuarios') }}"><i class="fa fa-user"></i> Usuários</a></li>
+                            <li><a href="{{ url('admin/agradecimentos-empresas/listar') }}"><i class="fa fa-industry"></i> Empresas</a></li>
+                            <li><a href="{{ url('admin/agradecimentos-usuarios/listar') }}"><i class="fa fa-user"></i> Usuários</a></li>
                         </ul>
                     </li>        
                     <li><a href="{{ url('admin/relatorios') }}"><i class="fa fa-bar-chart"></i> <span>Relatórios</span></a></li>
