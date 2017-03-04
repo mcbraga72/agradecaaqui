@@ -3,10 +3,10 @@ Vue.config.devtools = true
 
 new Vue({
 
-    el: '#administrators',
+    el: '#users',
 
     data: {
-        admins: [],
+        users: [],
         pagination: {
             total: 0, 
             per_page: 2,
@@ -17,8 +17,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newAdmin : {'name':'','email':''},
-        fillAdmin : {'name':'','email':'','id':''}
+        newUser : {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':''},
+        fillUser : {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':'','id':''}
     },
 
     computed: {
@@ -47,50 +47,57 @@ new Vue({
     },
 
     ready : function(){
-  	   	this.getVueAdmins(this.pagination.current_page);
+  	   	this.getUsers(this.pagination.current_page);
     },
 
     methods : {
 
-        getVueAdmins: function(page){
-            this.$http.get('/admin/administradores?page='+page).then((response) => {
-                this.$set('admins', response.data.data.data);
+        getUsers: function(page){
+            this.$http.get('/admin/usuarios?page='+page).then((response) => {
+                this.$set('users', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
             });
         },
 
-        createAdmin: function(){
-		        var input = this.newAdmin;
-		        this.$http.post('/admin/administradores',input).then((response) => {
+        createUser: function(){
+		        var input = this.newUser;
+		        this.$http.post('/admin/usuarios',input).then((response) => {
 		            this.changePage(this.pagination.current_page);
-			          this.newAdmin = {'name':'','email':''};
-			          $("#createAdmin").modal('hide');
+			          this.newUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':''};
+			          $("#createUser").modal('hide');
 			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
 		        }, (response) => {
 			          this.formErrors = response.data;
 	          });
 	      },
 
-        deleteAdmin: function(admin){
-            this.$http.delete('/admin/administradores/'+admin.id).then((response) => {
+        deleteUser: function(user){
+            this.$http.delete('/admin/usuarios/'+user.id).then((response) => {
                 this.changePage(this.pagination.current_page);
-                toastr.success('Administrador removido com sucesso!', '', {timeOut: 5000});
+                toastr.success('Usuário removido com sucesso!', '', {timeOut: 5000});
             });
         },
 
-        editAdmin: function(admin){
-            this.fillAdmin.name = admin.name;
-            this.fillAdmin.id = admin.id;
-            this.fillAdmin.email = admin.email;
-            $("#editAdmin").modal('show');
+        editUser: function(user){            
+            this.fillUser.id = user.id;
+            this.fillUser.name = user.name;
+            this.fillUser.surName = user.surName;
+            this.fillUser.gender = user.gender;
+            this.fillUser.dateOfBirth = user.dateOfBirth;
+            this.fillUser.telephone = user.telephone;
+            this.fillUser.city = user.city;
+            this.fillUser.state = user.state;
+            this.fillUser.email = user.email;
+            this.fillUser.password = user.password;
+            $("#editUser").modal('show');
         },
 
-        updateAdmin: function(id){
-            var input = this.fillAdmin;
-            this.$http.put('/admin/administradores/'+id,input).then((response) => {
+        updateUser: function(id){
+            var input = this.fillUser;
+            this.$http.put('/admin/usuarios/'+id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-                this.fillAdmin = {'name':'','email':'','id':''};
-                $("#editAdmin").modal('hide');
+                this.fillUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':'','id':''};
+                $("#editUser").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, (response) => {
                 this.formErrorsUpdate = response.data;
@@ -99,7 +106,7 @@ new Vue({
 
         changePage: function (page) {
             this.pagination.current_page = page;
-            this.getVueAdmins(page);
+            this.getUsers(page);
         }
 
     }

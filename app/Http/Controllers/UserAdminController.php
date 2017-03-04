@@ -4,72 +4,82 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
 
 class UserAdminController extends Controller
 {
+
     /**
-	 *
-	 * Show user's list.
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function index()
+     * User's list page
+     *
+     * @return Response
+     */
+    public function list()
     {
-    	$users = User::all();
-    	return view('admin.user.list')->with('users', $users);    	
+        return view('admin.user.list');
     }
 
     /**
-	 *
-	 * Show the form to create a new user
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function create()
-    {    	
-    	return view('admin.user.create');
-    }
+     * Index page
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $users = User::latest()->paginate(5);
+        
+        $response = [
+            'pagination' => [
+                'total' => $users->total(),
+                'per_page' => $users->perPage(),
+                'current_page' => $users->currentPage(),
+                'last_page' => $users->lastPage(),
+                'from' => $users->firstItem(),
+                'to' => $users->lastItem()
+            ],
+            'data' => $users        
+        ];
 
+        return response()->json($response);
+    }
+    
     /**
-	 *
-	 * Store a new user.
-	 *
-	 * @param Request $request
-	 *
-	 * @return Response
-	 * 
-	 */
+     *
+     * Add new user to the database.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     * 
+     */
     public function store(UserRequest $request)
     {
-    	$user = new User();
+        $user = new User();
 
-    	$user->name = $request->name;
-    	$user->surName = $request->surName;
+        $user->name = $request->name;
+        $user->surName = $request->surName;
         $user->gender = $request->gender;
         $user->dateOfBirth = $request->dateOfBirth;
         $user->telephone = $request->telephone;
         $user->city = $request->city;
         $user->state = $request->state;
-    	$user->email = $request->email;
-    	$user->password = bcrypt($request->password);
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
 
-    	$user->save();
-
-    	$users = User::all();
-    	return view('admin.user.list')->with('users', $users);
+        $user->save();
+        
+        return response()->json($user);
     }
 
     /**
-	 *
-	 * Show user data.
-	 * 
-	 * @param int $id
-	 *
-	 * @return User $user
-	 * 
-	 */
+     *
+     * Show user's data.
+     * 
+     * @param int $id
+     *
+     * @return User $user
+     * 
+     */
     public function show($id)
     {
         $user = User::findOrFail($id);
@@ -77,64 +87,41 @@ class UserAdminController extends Controller
     }
 
     /**
-	 *
-	 * Edit user data.
-	 *
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function edit($id)
-    {
-    	return view('admin.user.profile', ['user' => User::findOrFail($id)]);
-    }
-
-    /**
-	 *
-	 * Update user's data.
-     *
-     * @param Request $request
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
+     * Update user's data
+     * 
+     */
     public function update(UserRequest $request, $id)
     {
-    	$user = User::find($id);
+        $user = User::find($id);
 
-    	$user->name = $request->name;
-    	$user->surName = $request->surName;
+        $user->name = $request->name;
+        $user->surName = $request->surName;
         $user->gender = $request->gender;
         $user->dateOfBirth = $request->dateOfBirth;
         $user->telephone = $request->telephone;
         $user->city = $request->city;
         $user->state = $request->state;
-    	$user->email = $request->email;
-    	$user->password = bcrypt($request->password);
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
 
-    	$user->save();
+        $user->save();
 
-    	$users = User::all();
-    	return view('admin.user.list')->with('users', $users);
+        return response()->json($user);
     }
 
     /**
-	 *
-	 * Delete the user.
-	 *
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
+     *
+     * Remove the user.
+     * 
+     * @param int $id
+     *
+     * @return Response
+     * 
+     */
     public function destroy($id)
     {
-    	$user = User::findOrFail($id);
-    	$user->delete();
-
-    	$users = User::all();
-    	return view('admin.user.list')->with('users', $users);
+        $delete = User::findOrFail($id)->delete();        
+        return response()->json($delete);
     }
+    
 }

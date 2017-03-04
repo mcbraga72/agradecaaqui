@@ -127,14 +127,9 @@ Route::resource('/admin/empresas','EnterpriseAdminController');
 Route::get('/admin/agradecimentos-empresas/listar', 'EnterpriseThanksAdminController@list');
 Route::resource('/admin/agradecimentos-empresas','EnterpriseThanksAdminController');
 
+Route::get('/admin/usuarios/listar', 'UserAdminController@list');
+Route::resource('/admin/usuarios','UserAdminController');
 
-Route::get('/admin/usuarios', 'UserAdminController@index');
-Route::get('/admin/usuario/criar', 'UserAdminController@create');
-Route::post('/admin/usuario', 'UserAdminController@store');
-Route::get('/admin/usuario/{id}', 'UserAdminController@show');
-Route::get('/admin/usuario/{id}/editar', 'UserAdminController@edit');
-Route::put('/admin/usuario/{id}', 'UserAdminController@update');
-Route::delete('/admin/usuario/{id}', ['as' => 'user.delete', 'uses' => 'UserAdminController@destroy']);
 
 Route::get('/admin/agradecimentos-usuarios', 'UserThanksAdminController@index');
 Route::get('/admin/agradecimento-usuario/criar', 'UserThanksAdminController@create');
