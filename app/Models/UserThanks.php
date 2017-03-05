@@ -26,8 +26,8 @@ class UserThanks extends Model
      * 
      * @return User
      */
-    public function sender()
+    public function user()
     {
-    	return $this->belongsTo(User::class, 'user_id', 'sender');
+    	return $this->belongsTo(User::class);
     }
 }

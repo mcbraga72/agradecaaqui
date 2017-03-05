@@ -3,10 +3,10 @@ Vue.config.devtools = true
 
 new Vue({
 
-    el: '#administrators',
+    el: '#userThanks',
 
     data: {
-        admins: [],
+        userThanks: [],
         pagination: {
             total: 0, 
             per_page: 2,
@@ -17,8 +17,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newAdmin : {'name':'','email':''},
-        fillAdmin : {'name':'','email':'','id':''}
+        newUserThank : {'user_id':'','receiptName':'','receiptEmail':'','content':''},
+        fillUserThank : {'user_id':'','receiptName':'','receiptEmail':'','content':'','id':''}
     },
 
     computed: {
@@ -47,50 +47,52 @@ new Vue({
     },
 
     ready : function(){
-  	   	this.getVueAdmins(this.pagination.current_page);
+  	   	this.getUserThanks(this.pagination.current_page);
     },
 
     methods : {
 
-        getVueAdmins: function(page){
-            this.$http.get('/admin/administradores?page='+page).then((response) => {
-                this.$set('admins', response.data.data.data);
-                this.$set('pagination', response.data.pagination);
+        getUserThanks: function(page){
+            this.$http.get('/admin/agradecimentos-usuarios?page='+page).then((response) => {
+                this.$set('userThanks', response.data.data.data);
+                this.$set('pagination', response.data.pagination);                
             });
         },
 
-        createAdmin: function(){
-		        var input = this.newAdmin;
-		        this.$http.post('/admin/administradores',input).then((response) => {
+        createUserThank: function(){
+		        var input = this.newUserThank;
+		        this.$http.post('/admin/agradecimentos-usuarios',input).then((response) => {
 		            this.changePage(this.pagination.current_page);
-			          this.newAdmin = {'name':'','email':''};
-			          $("#createAdmin").modal('hide');
-			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
+			          this.newUserThank = {'user_id':'','receiptName':'','receiptEmail':'','content':''};
+			          $("#createUserThank").modal('hide');
+			          toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 5000});
 		        }, (response) => {
 			          this.formErrors = response.data;
 	          });
 	      },
 
-        deleteAdmin: function(admin){
-            this.$http.delete('/admin/administradores/'+admin.id).then((response) => {
+        deleteUserThank: function(userThank){
+            this.$http.delete('/admin/agradecimentos-usuarios/'+userThank.id).then((response) => {
                 this.changePage(this.pagination.current_page);
-                toastr.success('Administrador removido com sucesso!', '', {timeOut: 5000});
+                toastr.success('Agradecimento removido com sucesso!', '', {timeOut: 5000});
             });
         },
 
-        editAdmin: function(admin){
-            this.fillAdmin.name = admin.name;
-            this.fillAdmin.id = admin.id;
-            this.fillAdmin.email = admin.email;
-            $("#editAdmin").modal('show');
+        editUserThank: function(userThank){
+            this.fillUserThank.id = userThank.id;
+            this.fillUserThank.user_id = userThank.user_id;            
+            this.fillUserThank.receiptName = userThank.receiptName;
+            this.fillUserThank.receiptEmail = userThank.receiptEmail;
+            this.fillUserThank.content = userThank.content;
+            $("#editUserThank").modal('show');
         },
 
-        updateAdmin: function(id){
-            var input = this.fillAdmin;
-            this.$http.put('/admin/administradores/'+id,input).then((response) => {
+        updateUserThank: function(id){
+            var input = this.fillUserThank;
+            this.$http.put('/admin/agradecimentos-usuarios/'+id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-                this.fillAdmin = {'name':'','email':'','id':''};
-                $("#editAdmin").modal('hide');
+                this.fillUserThank = {'user_id':'','receiptName':'','receiptEmail':'','content':'','id':''};
+                $("#editUserThank").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, (response) => {
                 this.formErrorsUpdate = response.data;
@@ -99,7 +101,7 @@ new Vue({
 
         changePage: function (page) {
             this.pagination.current_page = page;
-            this.getVueAdmins(page);
+            this.getUserThanks(page);
         }
 
     }

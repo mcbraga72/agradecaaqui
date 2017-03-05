@@ -51,7 +51,7 @@ class UserThanksAppController extends Controller
         
         $userThanks = new UserThanks();
 
-        $userThanks->sender = Auth::user()->id;
+        $userThanks->user_id = Auth::user()->id;
     	$userThanks->receiptName = $request->receiptName;
     	$userThanks->receiptEmail = $request->receiptEmail;
         $userThanks->thanksDateTime = $date->format('Y-m-d H:i:s');

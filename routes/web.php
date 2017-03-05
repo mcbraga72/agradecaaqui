@@ -19,6 +19,10 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index');
 */
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
 
 // Social login
  
@@ -130,18 +134,7 @@ Route::resource('/admin/agradecimentos-empresas','EnterpriseThanksAdminControlle
 Route::get('/admin/usuarios/listar', 'UserAdminController@list');
 Route::resource('/admin/usuarios','UserAdminController');
 
-
-Route::get('/admin/agradecimentos-usuarios', 'UserThanksAdminController@index');
-Route::get('/admin/agradecimento-usuario/criar', 'UserThanksAdminController@create');
-Route::post('/admin/agradecimento-usuario', 'UserThanksAdminController@store');
-Route::get('/admin/agradecimento-usuario/{id}', 'UserThanksAdminController@show');
-Route::get('/admin/agradecimento-usuario/{id}/editar', 'UserThanksAdminController@edit');
-Route::put('/admin/agradecimento-usuario/{id}', 'UserThanksAdminController@update');
-Route::delete('/admin/agradecimento-usuario/{id}', ['as' => 'userThanks.delete', 'uses' => 'UserThanksAdminController@destroy']);
+Route::get('/admin/agradecimentos-usuarios/listar', 'UserThanksAdminController@list');
+Route::resource('/admin/agradecimentos-usuarios','UserThanksAdminController');
 
 Route::get('/admin/relatorios', 'ReportAdminController@index');
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
