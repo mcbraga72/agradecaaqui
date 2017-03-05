@@ -42,7 +42,7 @@ class UserThanksPolicy
      */
     public function update(User $user, UserThanks $userThanks)
     {
-        return $user->id === $userThanks->sender;
+        return $user->id === $userThanks->user_id;
     }
 
     /**
@@ -54,6 +54,6 @@ class UserThanksPolicy
      */
     public function delete(User $user, UserThanks $userThanks)
     {
-        return $user->id === $userThanks->sender;
+        return $user->id === $userThanks->user_id;
     }
 }

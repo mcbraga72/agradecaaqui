@@ -16,8 +16,8 @@ class CreateUserThanksTable extends Migration
         if(Schema::hasTable('user_thanks')) return;
         Schema::create('user_thanks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sender')->unsigned();
-            $table->foreign('sender')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('receiptName');
             $table->string('receiptEmail');
             $table->dateTime('thanksDateTime');

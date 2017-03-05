@@ -12,41 +12,54 @@
                 $.each(data, function (key, val) {
                     options += '<option value="' + val.nome + '">' + val.nome + '</option>';
                 });                 
-                $("#state").html(options);                
+                $("#stateCreate").html(options);
+                $("#stateUpdate").html(options);
                 
-                $("#state").change(function () {              
+                $("#stateCreate").change(function () {              
                 
-                    var options_city = '';
+                    var options_cityCreate = '';
                     var str = "";                   
                     
-                    $("#state option:selected").each(function () {
+                    $("#stateCreate option:selected").each(function () {
                         str += $(this).text();
                     });
                     
                     $.each(data, function (key, val) {
                         if(val.nome == str) {                           
-                            $.each(val.cidades, function (key_city, val_city) {
-                                options_city += '<option value="' + val_city + '">' + val_city + '</option>';
+                            $.each(val.cidades, function (key_cityCreate, val_cityCreate) {
+                                options_cityCreate += '<option value="' + val_cityCreate + '">' + val_cityCreate + '</option>';
                             });                         
                         }
                     });
 
-                    $("#city").html(options_city);
+                    $("#cityCreate").html(options_cityCreate);
+                    
+                }).change();
+
+                $("#stateUpdate").change(function () {              
+                
+                    var options_cityUpdate = '';
+                    var str = "";                   
+                    
+                    $("#stateUpdate option:selected").each(function () {
+                        str += $(this).text();
+                    });
+                    
+                    $.each(data, function (key, val) {
+                        if(val.nome == str) {                           
+                            $.each(val.cidades, function (key_cityUpdate, val_cityUpdate) {
+                                options_cityUpdate += '<option value="' + val_cityUpdate + '">' + val_cityUpdate + '</option>';
+                            });                         
+                        }
+                    });
+
+                    $("#cityUpdate").html(options_cityUpdate);
                     
                 }).change();        
             
             });
         
         });
-
-        function formatTelephone(telephone){ 
-            if(telephone.value.length == 0)
-                telephone.value = '(' + telephone.value;
-            if(telephone.value.length == 3)
-                telephone.value = telephone.value + ') ';
-            if(telephone.value.length == 9)
-                telephone.value = telephone.value + '-';  
-        }
 
         function formatCellphone(cellphone){ 
             if(cellphone.value.length == 0)
@@ -150,24 +163,24 @@
                             </div>
                             <div class="form-group">
                                 <label for="dateOfBirth">Data de nascimento:</label>
-                                <input type="text" name="dateOfBirth" class="form-control" v-model="newUser.dateOfBirth" />
+                                <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" v-model="newUser.dateOfBirth" maxlength="10" onkeypress="formatDateOfBirth(this)" />
                                 <span v-if="formErrors['dateOfBirth']" class="error text-danger">@{{ formErrors['dateOfBirth'] }}</span>
                             </div>
                             <div class="form-group">
-                                <label for="telephone">Telefone:</label>
-                                <input type="text" name="telephone" class="form-control" v-model="newUser.telephone" />
+                                <label for="telephone">Celular:</label>
+                                <input type="text" id="telephone" name="telephone" class="form-control" v-model="newUser.telephone" maxlength="15" onkeypress="formatCellphone(this)" />
                                 <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="state">Estado:</label>
-                                <select name="state" class="form-control" v-model="newUser.state" />
+                                <select id="stateCreate" name="state" class="form-control" v-model="newUser.state" />
                                     <option value="">Selecione o estado</option>                                    
                                 </select>                                
                                 <span v-if="formErrors['state']" class="error text-danger">@{{ formErrors['state'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="city">Cidade:</label>
-                                <select name="city" class="form-control" v-model="newUser.city" />
+                                <select id="cityCreate" name="city" class="form-control" v-model="newUser.city" />
                                     <option value="">Selecione a cidade</option>                                    
                                 </select>                                
                                 <span v-if="formErrors['city']" class="error text-danger">@{{ formErrors['city'] }}</span>
@@ -220,36 +233,36 @@
                                 <label for="gender">Sexo:</label>
                                 <br>
                                 <label class="radio-inline">
-                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="masculino" v-model="fillUser.gender">MASCULINO
+                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="masculino" v-model="fillUser.gender" v-bind:checked="{ fillUser.gender == 'masculino' }">MASCULINO
                                 </label>
                                 <label class="radio-inline">    
-                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="feminino" v-model="fillUser.gender">FEMININO
+                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="feminino" v-model="fillUser.gender" v-bind:checked="{ fillUser.gender == 'feminino' }">FEMININO
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="outros" v-model="fillUser.gender">OUTROS
+                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="outros" v-model="fillUser.gender" v-bind:checked="{ fillUser.gender == 'outros' }">OUTROS
                                 </label>                                
                                 <span v-if="formErrorsUpdate['gender']" class="error text-danger">@{{ formErrorsUpdate['gender'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="dateOfBirth">Data de nascimento:</label>
-                                <input type="text" name="dateOfBirth" class="form-control" v-model="fillUser.dateOfBirth" />
+                                <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" v-model="fillUser.dateOfBirth" maxlength="10" onkeypress="formatDateOfBirth(this)" />
                                 <span v-if="formErrorsUpdate['dateOfBirth']" class="error text-danger">@{{ formErrorsUpdate['dateOfBirth'] }}</span>
                             </div>
                             <div class="form-group">
-                                <label for="telephone">Telefone:</label>
-                                <input type="text" name="telephone" class="form-control" v-model="fillUser.telephone" />
+                                <label for="telephone">Celular:</label>
+                                <input type="text" id="telephone" name="telephone" class="form-control" v-model="fillUser.telephone" maxlength="15" onkeypress="formatCellphone(this)" />
                                 <span v-if="formErrorsUpdate['telephone']" class="error text-danger">@{{ formErrorsUpdate['telephone'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="state">Estado:</label>
-                                <select name="state" class="form-control" v-model="fillUser.state" />
+                                <select id="stateUpdate" name="state" class="form-control" v-model="fillUser.state" />
                                     <option value="">Selecione o estado</option>                                    
                                 </select>                                
                                 <span v-if="formErrorsUpdate['state']" class="error text-danger">@{{ formErrorsUpdate['state'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="city">Cidade:</label>
-                                <select name="city" class="form-control" v-model="fillUser.city" />
+                                <select id="cityUpdate" name="city" class="form-control" v-model="fillUser.city" />
                                     <option value="">Selecione o estado</option>                                    
                                 </select>                                
                                 <span v-if="formErrorsUpdate['city']" class="error text-danger">@{{ formErrorsUpdate['city'] }}</span>
