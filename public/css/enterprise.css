@@ -1,0 +1,73 @@
+.logo {
+	background-color: #367FA9;
+	color: #F6F6F6;
+}
+
+.navbar {
+	background-color: #3C8DBC;
+}
+
+.sidebar {
+	background-color: #333;
+}
+
+.sidebar a {
+	color: #F6F6F6;
+}
+
+.nav > li > a:focus {
+	color: #F6F6F6;
+}
+
+.sidebar-form {
+	background-color: #475C66; 
+}
+
+.main-sidebar {
+	padding-top: 4%;
+	height:auto;
+	min-height:100%;
+	background-color: #333;
+}
+
+.btn-add {
+	margin-top: 2%;	
+}
+
+.fa-plus {
+	margin-right: 1%;
+}
+
+.panel {
+	margin-top: 3%;
+}
+
+li.dropdown {
+	z-index: 999999;
+}
+
+.main-header .logo {
+    font-size: 15px !important;
+}
+
+.administrators {
+	margin-top: 2% !important;
+}
+
+.table {
+	border: 0.5px solid #DDD;
+	margin-top: 2%;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: 0.5px solid #DDD;
+}
+
+.enterprise-profile {
+	text-align: left !important;
+}
