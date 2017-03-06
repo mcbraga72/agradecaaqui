@@ -91,10 +91,12 @@ Route::post('/empresa/cadastro', 'EnterpriseAuth\RegisterController@register');
 // 2 - Enterprise Admin
 
 Route::get('/empresa/painel', 'EnterpriseAreaController@dashboard');
-Route::get('/empresa/perfil', 'EnterpriseAreaController@editProfile');
-Route::put('/empresa/perfil/{id}', 'EnterpriseAreaController@updateProfile');
+Route::get('/empresa/perfil/{id}/editar', 'EnterpriseAreaController@editProfile');
+Route::post('/empresa/perfil/{id}', 'EnterpriseAreaController@updateProfile');
 Route::get('/empresa/agradecimentos', 'EnterpriseAreaController@thanks');
-//Route::get('/empresa/relatorios', 'ReportEnterpriseController@index');
+Route::get('/empresa/agradecimento/{id}/responder', 'EnterpriseAreaController@replica');
+Route::post('/empresa/agradecimento/{id}', 'EnterpriseAreaController@storeReplica');
+Route::get('/empresa/relatorios', 'ReportEnterpriseController@index');
 
 
 
