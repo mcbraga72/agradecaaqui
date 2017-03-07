@@ -9,6 +9,8 @@ use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use App\Models\User;
 use Auth;
+use DB;
+use Illuminate\Http\Request;
 use Mail;
 
 class EnterpriseThanksAppController extends Controller
@@ -28,7 +30,7 @@ class EnterpriseThanksAppController extends Controller
 
     /**
 	 *
-	 * Show de creation form
+	 * Show the creation form
 	 *
 	 * @return Response
 	 * 
@@ -41,7 +43,7 @@ class EnterpriseThanksAppController extends Controller
 
     /**
 	 *
-	 * Add new enterprise to the database.
+	 * Add new enterprise thanks to the database.
 	 *
 	 * @param Request $request
 	 *
@@ -60,20 +62,21 @@ class EnterpriseThanksAppController extends Controller
         $enterpriseThanks->content = $request->content;
     	$enterpriseThanks->status = 'Pending';
 
-    	$enterpriseThanks->save();
+    	if($enterpriseThanks->save()) {
 
-        $user = new UserAdminController();
-        $enterprise = new EnterpriseAdminController();
+            $user = new UserAdminController();
+            $enterprise = new EnterpriseAdminController();
 
-        Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user->show(Auth::user()->id), $enterpriseThanks));
+            Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user->show(Auth::user()->id), $enterpriseThanks));
 
-    	$enterprisesThanks = EnterpriseThanks::with('Enterprise')->get();
-        return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+            $enterprisesThanks = EnterpriseThanks::with('Enterprise')->orderBy('thanksDateTime', 'desc')->get();
+            return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks)->withSuccess('Agradecimento cadastrado com sucesso!');
+        }    
     }
 
     /**
 	 *
-	 * Show enterprise data.
+	 * Show enterprise thanks data.
 	 * 
 	 * @param int $id
 	 *
@@ -87,7 +90,7 @@ class EnterpriseThanksAppController extends Controller
 
     /**
 	 *
-	 * Edit enterprise data.
+	 * Edit enterprise thanks data.
 	 *
 	 * @param int $id
 	 *
@@ -127,7 +130,7 @@ class EnterpriseThanksAppController extends Controller
 
     /**
 	 *
-	 * Delete the enterprise.
+	 * Delete the enterprise thanks.
 	 *
 	 * @param int $id
 	 *
@@ -141,5 +144,20 @@ class EnterpriseThanksAppController extends Controller
 
     	$enterprisesThanks = EnterpriseThanks::with('enterprise')->get();
     	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+    }
+
+    /**
+     *
+     * Find enterprise thanks based in keywords given by the user.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     * 
+     */
+    public function find(Request $request)
+    {
+        $enterprisesThanks = EnterpriseThanks::where('content', 'LIKE', "%{$request->search}%")->get();
+        return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
     }
 }

@@ -24,6 +24,7 @@ class CreateEnterprisesTable extends Migration
             $table->string('telephone');
             $table->string('address');
             $table->string('status');
+            $table->string('logo');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
