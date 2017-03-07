@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserThanks;
 use App\Http\Requests\UserThanksRequest;
 use Auth;
+use Illuminate\Http\Request;
 use Mail;
 
 class UserThanksAppController extends Controller
@@ -57,14 +58,15 @@ class UserThanksAppController extends Controller
         $userThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
         $userThanks->content = $request->content;
     	
-    	$userThanks->save();
+    	if($userThanks->save()) {
 
-        $user = new UserAdminController();
+            $user = new UserAdminController();
 
-        Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));
+            Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));
 
-    	$usersThanks = UserThanks::all();
-    	return view('app.user-thanks.list')->with('usersThanks', $usersThanks);
+        	$usersThanks = UserThanks::all();
+        	return view('app.user-thanks.list')->with('usersThanks', $usersThanks)->withSuccess('Agradecimento cadastrado com sucesso!');
+        }    
     }
 
     /**
@@ -135,5 +137,20 @@ class UserThanksAppController extends Controller
 
     	$usersThanks = UserThanks::all();
     	return view('app.user-thanks.list')->with('usersThanks', $usersThanks);
+    }
+
+    /**
+     *
+     * Find user thanks based in keywords given by the user.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     * 
+     */
+    public function find(Request $request)
+    {
+        $usersThanks = UserThanks::where('content', 'LIKE', "%{$request->search}%")->get();
+        return view('app.user-thanks.list')->with('usersThanks', $usersThanks);
     }
 }

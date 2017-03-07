@@ -7,6 +7,7 @@ use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use App\Models\User;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\EnterpriseRequest;
@@ -80,8 +81,10 @@ class AppController extends Controller
 	 */
 	public function thanks()
     {
-    	$enterpriseThanks = EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->take(9)->get();
-    	return view('app.thanks')->with('enterpriseThanks', $enterpriseThanks);
+    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"));
+		$enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->union($usersThanks)->get();
+		
+		return view('app.thanks')->with('enterprisesThanks', $enterprisesThanks);
     }
 
 	/**
@@ -141,5 +144,24 @@ class AppController extends Controller
 		}
 		
 		return Response::json($results);
+    }
+
+    /**
+     *
+     * Find enterprise and user thanks based in keywords given by the user.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     * 
+     */
+    public function findThanks(Request $request)
+    {
+    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"));
+		$enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->union($usersThanks)->get();
+		
+		return view('app.thanks')->with('enterprisesThanks', $enterprisesThanks);
+		
+        //$enterprisesThanks = EnterpriseThanks::where('content', 'LIKE', "%{$request->search}%")->get();        
     }
 }

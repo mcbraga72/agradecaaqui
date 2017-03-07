@@ -21,7 +21,7 @@
 	                <button id="peopleButton" type="button" class="home"><img src="images/pessoas.png" /></button>
 	                <button id="enterprisesButton" type="button" class="home"><img src="images/empresas.png" /></button>
 	            </div>
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-empresa') }}">                
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-empresa') }}" novalidate>                
                 	{{ csrf_field() }}
 	                <div id="enterpriseThanks">		                
 			            <div class="form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">
@@ -69,7 +69,7 @@
 		                </div>
 	                </div>
 	            </form>
-				<form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-usuario') }}">
+				<form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-usuario') }}" novalidate>
 					{{ csrf_field() }}
 					<div id="userThanks">
 		                <div class="form-group{{ $errors->has('receiptName') ? ' has-error' : '' }}">
@@ -233,9 +233,9 @@
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');
 
-	    	$("#enterprise_id").autocomplete('/app/busca/empresa', {
+	    	/*$("#enterprise_id").autocomplete('/app/busca/empresa', {
                 selectFirst: true
-            });
+            });*/
 		});
 
 	    $('#peopleButton').click(function(){
