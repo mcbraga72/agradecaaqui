@@ -34,7 +34,11 @@
 	                    <p class="thanks-title">Meus agradecimentos</p>
 	                    <img class="heart" src="{{asset('images/heart.png')}}"" />
 	                    <p class="thaks-content">{{ $enterpriseThank->content }}</p>
-	                    <img class="user-photo"src="{{asset('images/enterprises/' . $enterpriseThank->logo )}}"" alt="Agradecimento" title="Agradecimento" />
+	                    @if($enterpriseThank->logo != 'people')
+	                    	<img class="user-photo"src="{{ asset($enterpriseThank->logo) }}"" alt="Agradecimento" title="Agradecimento" />
+	                    @else
+	                    	<img class="user-photo"src="{{ asset('images/people.png') }}"" alt="Agradecimento" title="Agradecimento" />	                    	
+	                    @endif		
 	                    <span class="user-name">{{ $enterpriseThank->name }}</span>
 	                </div>    				
 				@empty
@@ -42,7 +46,7 @@
 	                    <p class="thaks-content">Você ainda não fez nenhum agradecimento em nossa plataforma.</p>
 	                </div>	                
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 show-more">
-						<img class="plus" src="{{asset('images/plus.png')}}"" alt="Mostrar mais" title="Mostrar mais" />
+						<img class="enterprise-logo" src="{{asset('images/plus.png')}}"" alt="Mostrar mais" title="Mostrar mais" />
 	                </div>
 				@endforelse				
 	        </div>    

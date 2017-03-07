@@ -81,9 +81,9 @@ class AppController extends Controller
 	 */
 	public function thanks()
     {
-    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content', 'photo');
+    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"));
 		$enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->union($usersThanks)->get();
-
+		
 		return view('app.thanks')->with('enterprisesThanks', $enterprisesThanks);
     }
 
@@ -157,10 +157,11 @@ class AppController extends Controller
      */
     public function findThanks(Request $request)
     {
-    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content');
-		$enterprisesThanks = DB::table('enterprise_thanks')->select('enterprise_id', 'content')->union($usersThanks)->get();
+    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"));
+		$enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->union($usersThanks)->get();
 		
-        //$enterprisesThanks = EnterpriseThanks::where('content', 'LIKE', "%{$request->search}%")->get();
-        return view('app.thanks')->with('enterprisesThanks', $enterprisesThanks);
+		return view('app.thanks')->with('enterprisesThanks', $enterprisesThanks);
+		
+        //$enterprisesThanks = EnterpriseThanks::where('content', 'LIKE', "%{$request->search}%")->get();        
     }
 }
