@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
+            <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-8 col-lg-offset-2 col-xl-8 col-xl-offset-2 home">
                 <img class="logo" src="images/logo.png" />
                 <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
                 {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}                
@@ -29,11 +29,11 @@
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('entrar') }}">                
                 	{{ csrf_field() }}
 	                <div id="enterpriseThanks">		                
-			            <div class="form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">
-			                <br><br>
-			                <label for="enterprise_id" class="col-md-4 control-label form-home">EMPRESA</label>
-			                <div class="col-md-6">
+			            <div class="form-home form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">
+			                <br><br>			                
+			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 			                    {{--<input id="enterprise_id" type="text" class="form-control" name="enterprise_id" value="{{ old('enterprise_id') }}" required autofocus placeholder="Empresa">--}}
+			                    <label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>
 			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control">
                                     <option value="">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise) 
@@ -47,9 +47,9 @@
 			                    @endif
 			                </div>
 			            </div>
-			            <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-		                    <img src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
-		                    <div class="col-md-6">
+			            <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
+		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+		                    	<label for="content" class="col-md-4 col-lg-6 control-label">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" />
 		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
@@ -69,13 +69,13 @@
 		                </div>
 	                </div>
 	            </form>
-				<form class="form-horizontal" role="form" method="POST" action="{{ url('entrar') }}">
+				<form class="form-horizontal login-form" role="form" method="POST" action="{{ url('entrar') }}">
 					{{ csrf_field() }}
 					<div id="userThanks">
-		                <div class="form-group{{ $errors->has('userName') ? ' has-error' : '' }}">
+		                <div class="form-home form-group{{ $errors->has('userName') ? ' has-error' : '' }}">
 			                <br><br>
-			                <label for="userName" class="col-md-4 control-label form-home">PARA</label>
-			                <div class="col-md-6">
+			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+			                	<label for="userName" class="col-md-4 control-label">PARA</label>
 			                    <input id="userName" type="text" class="form-control" name="userName" value="{{ old('userName') }}" required autofocus placeholder="Nome">
 			                    @if ($errors->has('userName'))
 			                        <span class="help-block">
@@ -84,10 +84,10 @@
 			                    @endif
 			                </div>
 			            </div>
-			            <div class="form-group{{ $errors->has('userEmail') ? ' has-error' : '' }}">
+			            <div class="form-home form-group{{ $errors->has('userEmail') ? ' has-error' : '' }}">
 		                    <br><br>
-		                    <label for="userEmail" class="col-md-4 control-label form-home">E-MAIL</label>
-		                    <div class="col-md-6">
+		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+		                    	<label for="userEmail" class="col-md-4 control-label">E-MAIL</label>
 		                        <input id="userEmail" type="email" class="form-control" name="userEmail" value="{{ old('userEmail') }}" required autofocus placeholder="E-mail do destinatário">
 		                        @if ($errors->has('userEmail'))
 		                            <span class="help-block">
@@ -96,9 +96,9 @@
 		                        @endif
 		                    </div>
 		                </div>
-		                <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-		                    <img src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
-		                    <div class="col-md-6">
+		                <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">		                    
+		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+		                    	<label for="content" class="col-md-4 col-lg-6 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" />
 		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
@@ -117,104 +117,43 @@
 		                    </div>
 		                </div>
 	                </div>
-	            </form>
-	            <br><br>	
-                <img class="logo-login" src="images/logo.png" />
+	            </form>                
+	        </div>	        
+		</div>    
+		<div class="row">
+			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 col-xl-12 col-xl-offset-0 thanks">
+				<img class="logo-login" src="images/logo.png" />
                 <h1 class="support">Comentários</h1>			
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('busca') }}">
 	            {{ csrf_field() }}
 					<div class="form-group{{ $errors->has('busca') ? ' has-error' : '' }}">
 		                <br><br>
-		                <div class="col-md-6">
-		                    <input id="busca" type="busca" class="form-control search" name="busca" value="{{ old('busca') }}" placeholder="Pesquisar por" required autofocus>
+		                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3">
+		                    <input id="busca" type="busca" class="form-control" name="busca" value="{{ old('busca') }}" placeholder="Pesquisar por" required autofocus>
 		                    @if ($errors->has('busca'))
 		                        <span class="help-block">
 		                            <strong>{{ $errors->first('busca') }}</strong>
 		                        </span>
-		                    @endif
+		                    @endif		                    
 		                </div>
 		            </div>
 		            <div class="form-group">
-		                <div class="col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-		                    <button type="submit" class="btn pink-button">Pesquisar</button>	                    
+		                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-2 col-xl-offset-5">
+		                    <button type="submit" class="btn pink-button">Pesquisar</button>
 		                </div>
 		            </div>
 		        </form>
-	        </div>	        
-		</div>    
-		<div class="row">
-			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 	        	@forelse($data['enterpriseThanks'] as $enterpriseThank)
-	        		<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
+	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-1 col-xl-3 col-xl-offset-1 thanks-box">
+	                    <p class="thanks-title">{{ $enterpriseThank->name }}</p>
 	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
+	                    <img class="user-photo"src="{{ $enterpriseThank->logo }}" alt="Agradecimento" title="Agradecimento" />	                    
 	                </div>    				
 				@empty
-    				<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
+    				<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3 thanks-box">
 	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente2.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Gerson Freitas</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente3.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Tatiana Barros</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente2.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Gerson Freitas</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente3.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Tatiana Barros</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />	                    
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente2.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Gerson Freitas</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo" src="images/cliente3.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Tatiana Barros</span>
+	                    <p class="thaks-content">Ainda não existem agradecimentos cadastrados em nossa plataforma.</p>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 show-more">
 						<img class="plus" src="images/plus.png" alt="Mostrar mais" title="Mostrar mais" />

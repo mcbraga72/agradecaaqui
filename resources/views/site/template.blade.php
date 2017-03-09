@@ -28,6 +28,7 @@
                     <li><a href="{{ url('/entrar') }}" title="">LOGIN</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
                 </ul>
             </nav>
+            /*https://bootstrapbay.com/blog/bootstrap-tutorial-navbar/ */
         </header>        
         @yield('content')
         <footer class="nopadding">        

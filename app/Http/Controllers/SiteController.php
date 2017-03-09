@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\HomeRequest;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
+use DB;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -18,8 +19,10 @@ class SiteController extends Controller
     {
         $data = array(
             'enterprises' => Enterprise::all(),
-            'enterpriseThanks' => EnterpriseThanks::orderBy('thanksDateTime', 'desc')->take(9)->get()
+            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->get()
+            //'enterpriseThanks' => EnterpriseThanks::orderBy('thanksDateTime', 'desc')->take(9)->get()
         );
+        
         return view('site.index')->with('data', $data);        
     }
 
