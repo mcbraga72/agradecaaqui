@@ -14,48 +14,38 @@
         <link rel="stylesheet" property="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ URL::asset('css/site.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-social.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">            
+        <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-social.css') }}">        
     </head>
     <body>
         <header class="main-header">
-            <nav class="navbar navbar-default navbar-static-top">                
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/') }}" title="">HOME</a></li>
-                    <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
-                    <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
-                    <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
-                    <li><a href="{{ url('/entrar') }}" title="">LOGIN</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
-                </ul>
-            </nav>
-            /*https://bootstrapbay.com/blog/bootstrap-tutorial-navbar/ */
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>          
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ url('/') }}" title="">HOME</a></li>
+                            <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
+                            <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
+                            <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
+                            <li><a href="{{ url('/entrar') }}" title="">LOGIN</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>            
         </header>        
         @yield('content')
         <footer class="nopadding">        
             <img src="{{ URL::to('/') }}/images/footer.png" width="100%" />
         </footer>                                    
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="{{ URL::asset('js/app.js') }}"></script>
-        <script src="{{ URL::asset('js/site.js') }}"></script>
-        <script>
-            $(function(){
-                function stripTrailingSlash(str) {
-                    if(str.substr(-1) == '/') {
-                      return str.substr(0, str.length - 1);
-                    }
-                    return str;
-                }                
-                var url = window.location.pathname;                  
-                var activePage = stripTrailingSlash(url);                
-                $('.nav li a').each(function(){
-                    var currentPage = stripTrailingSlash($(this).attr('pathname'));
-                    alert(currentPage);
-                    if (activePage == currentPage) {
-                        $(this).parent().addClass('active'); 
-                    } 
-                });
-            });
-        </script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>        
+        <script src="{{ URL::asset('js/site.js') }}"></script>        
     </body>
 </html>
