@@ -9,7 +9,7 @@
         </div>
     </div>
 	<div class="row">
-        <div class="col-xs-4 col-xs-offset4- col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
             <section class="enterprise">            	
           	    <div class="about-text">
 			    	<h1 class="about">Venha para o lado do bem!</h1>

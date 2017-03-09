@@ -104,6 +104,10 @@ h1.thanks-text {
     color: #436EC6 !important;
 }
 
+.login-form {
+    padding-bottom: 10%;
+}
+
 . form-home {
     text-align: right !important;
 }
@@ -149,25 +153,25 @@ button.home {
 
 .social-network {
     margin: 2% auto 20% auto;
-    width: 40px;
+    width: 55px;
     height: 40px;
     color: #FFF;    
 }
 
 .facebook-button {
-    background-color: #2F5893;
+    background-color: #2F5893;    
 }
 
 .twitter-button {
-    background-color: #39A7E6;    
+    background-color: #39A7E6;        
 }
 
 .google-button {
-    background-color: #DC4C33;
+    background-color: #DC4C33;    
 }
 
 .whatsapp-button {
-    background-color: #00A500; 
+    background-color: #00A500;
     margin-right: 20%;
 }
 
@@ -175,11 +179,14 @@ button.home {
     margin-left: 50%;
 }
 
+.thanks {
+    padding-top: 3% !important;
+}
+
 .thanks-box {
     background-color: #FFF;
     height: 220px;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    margin-top: 4%;
     border-radius: 3px;
 }
 
@@ -329,7 +336,6 @@ h1.support {
     margin-left: 15%;
     margin-right: 1%;
     margin-top: 2%;
-    width: 35%;
     float: left;
     padding-top: 2%;
     background-color: #F5F6F8;
@@ -338,7 +344,6 @@ h1.support {
 
 .formulario {
     float: left;
-    width: 35%;
     margin-top: 1%;
     padding-top: 50px;
     padding-bottom: 5%;
@@ -346,12 +351,12 @@ h1.support {
 }
 
 .formulario h1 {
-        color: #436EC6;
-        font-family: Lato, Arial, Tahoma, sans-serif;
-        font-size: 28px;
-        font-weight: 900;
-        text-align: center;
-        margin-bottom: 3%;
+    color: #436EC6;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 3%;
 }
 
 .formulario h2 {
@@ -369,9 +374,8 @@ h1.support {
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-        padding-left: 15px;
+    padding-left: 15px;
     height: 30px;
-    width: 500px;
     border: solid 2px gray;
     border-radius: 5px 5px 5px 5px;
     -moz-border-radius: 5px 5px 5px 5px;
@@ -390,7 +394,6 @@ h1.support {
     padding-left: 15px;
     padding-top: 15px;
     height: 150px;
-    width: 500px;
     border: solid 2px gray;
     border-radius: 5px 5px 5px 5px;
     -moz-border-radius: 5px 5px 5px 5px;
@@ -406,7 +409,6 @@ h1.support {
     margin-left: auto;
     margin-right: auto;
     height: 40px;
-    width: 200px;
     background-color: #FF2257;
     border-radius: 5px 5px 5px 5px;
     -moz-border-radius: 5px 5px 5px 5px;
@@ -526,4 +528,257 @@ select.label-register {
     width: 25px;
     border-radius: 50%;
     margin-top: 4%;   
+}
+
+
+/* Extra small <576px */
+
+@media (max-width: 575px) {
+    
+    button.home {
+        width: 120px;
+        height: 120px;
+    }
+
+    button.home img {
+        width: 120px;
+        height: 120px;
+    }
+
+    h1.thanks-text {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    
+    .pink {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .heart-form {
+        position: relative;
+        width: 40px;
+        height: 35px;
+        left: 40%;
+        bottom: 10%;
+    }
+
+    .form-home {
+        text-align: left !important;
+    }
+
+    .social-network {
+        margin: 2% auto 20% auto;
+        width: 35px;
+        height: 30px;
+        color: #FFF;    
+    }
+
+    .fa-2x {
+        font-size: 1em;
+    }
+
+    .pink-button {
+        height: 30px;
+    }
+
+    .thanks-box {
+        margin-top: 10%;
+    }
+
+    .heart {
+        width: 40px;
+        height: 35px;
+        left: 40%;
+        bottom: 7%;
+    }
+
+    .formulario input {
+        width: 90% !important;
+    }
+
+    .formulario textarea {
+        width: 90% !important;
+    }
+
+    .formulario input[type="submit"] {
+        width: 70% !important;
+    }
+
+    h1.login-register {
+        font-size: 18px;
+    }
+
+}
+
+
+/* Small ≥576px */
+
+@media (min-width: 576px) and (max-width: 767px) {
+
+    .heart-form {
+        position: relative;
+        width: 40px;
+        height: 35px;
+        left: 40%;
+        bottom: 10%;
+    }
+
+    .form-home {
+        text-align: left !important;
+    }
+
+    .thanks-box {
+        margin-top: 10%;
+    }
+
+    .heart {
+        width: 40px;
+        height: 35px;
+        left: 70%;
+        bottom: 7%;
+    }
+
+    .formulario input {
+        width: 60% !important;
+    }
+
+    .formulario textarea {
+        width: 60% !important;
+    }
+
+    .formulario input[type="submit"] {
+        width: 40% !important;
+    }
+
+}
+
+
+/* Medium ≥768px */
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .navbar {
+        margin-right: 1% !important;    
+    }
+
+    .heart-form {
+        position: relative;
+        width: 40px;
+        height: 35px;
+        left: 40%;
+        bottom: 10%;
+    }
+
+    .form-home {
+        text-align: left !important;
+    }
+
+    .thanks-box {
+        margin-top: 10%;
+    }
+
+    .heart {
+        width: 40px;
+        height: 35px;
+        left: 55%;
+        bottom: 7%;
+    }
+
+    .formulario input {
+        width: 70% !important;
+    }
+
+    .formulario textarea {
+        width: 70% !important;
+    }
+
+    .formulario input[type="submit"] {
+        width: 60% !important;
+    }
+
+}
+
+
+/* Large ≥992px */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    .heart-form {
+        position: relative;
+        width: 40px;
+        height: 35px;
+        left: 40%;
+        bottom: 10%;
+    }
+
+    .form-home {
+        text-align: left !important;
+    }
+
+    .thanks-box {
+        margin-top: 5%;
+    }
+
+    .heart {
+        width: 40px;
+        height: 35px;
+        left: 55%;
+        bottom: 7%;
+    }
+
+    .formulario input {
+        width: 80% !important;
+    }
+
+    .formulario textarea {
+        width: 80% !important;
+    }
+
+    .formulario input[type="submit"] {
+        width: 60% !important;
+    }
+
+}
+
+
+/* Extra large ≥1200px */
+
+@media (min-width: 1200px) {
+
+    .heart-form {
+        position: relative;
+        width: 40px;
+        height: 35px;
+        left: 40%;
+        bottom: 10%;
+    }
+
+    .form-home {
+        text-align: left !important;
+    }
+
+    .thanks-box {
+        margin-top: 5%;
+    }
+
+    .heart {
+        width: 40px;
+        height: 35px;
+        left: 55%;
+        bottom: 7%;
+    }
+
+    .formulario input {
+        width: 80% !important;
+    }
+
+    .formulario textarea {
+        width: 80% !important;
+    }
+
+    .formulario input[type="submit"] {
+        width: 50% !important;
+    }    
+
 }
