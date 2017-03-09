@@ -3,6 +3,9 @@ img {
 	height: auto !important;
 }
 
+input[type="radio"]{
+    vertical-align: baseline;
+}
 
 /**
  *
@@ -23,16 +26,21 @@ header {
 }
 
 .navbar {
+    width: 100%;
     margin: 0px !important;
     margin-left: 0px !important;
     height: 51px !important;
     float: right !important;
     margin-right: 5.5% !important;
-    background-color: transparent !important;
+    background-color: #FFF !important;    
 }
 
 .navbar-default {
     border-color: #FFF !important;
+}
+
+.container {
+    width: 100% !important;    
 }
 
 .fa-user-circle-o {
@@ -134,7 +142,7 @@ button.home {
     margin: 2% auto 20% auto;
     background-color: #FF2257;
     font-family: Lato, Arial, Tahoma, sans-serif;
-    font-weight: 900;
+    font-weight: 600;
     font-size: 16px;
     letter-spacing: 2px;
     text-align:center;
@@ -342,15 +350,14 @@ h1.support {
     padding-bottom: 5% !important;
 }
 
-.formulario {
+.contact-form {
     float: left;
     margin-top: 1%;
-    padding-top: 50px;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
     background-color: #F5F6F8;    
 }
 
-.formulario h1 {
+.contact-form h1 {
     color: #436EC6;
     font-family: Lato, Arial, Tahoma, sans-serif;
     font-size: 28px;
@@ -359,7 +366,7 @@ h1.support {
     margin-bottom: 3%;
 }
 
-.formulario h2 {
+.contact-form h2 {
         color: #333;
         font-family: Lato, Arial, Tahoma, sans-serif;
         font-size: 15px;
@@ -369,13 +376,12 @@ h1.support {
 }
 
 
-.formulario input {
+.contact-form input {
     display: block;
-    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 15px;
-    height: 30px;
+    height: 40px;
     border: solid 2px gray;
     border-radius: 5px 5px 5px 5px;
     -moz-border-radius: 5px 5px 5px 5px;
@@ -386,9 +392,8 @@ h1.support {
     font-size: 13px;
 }
 
-.formulario textarea {
+.contact-form textarea {
     display: block;
-    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 15px;
@@ -404,7 +409,7 @@ h1.support {
     font-size: 13px;
 }
 
-.formulario input[type="submit"] {
+.contact-form input[type="submit"] {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -466,6 +471,11 @@ h2.login-register {
     color: #3F7FAF !important;   
 }
 
+.register-button {
+    padding-top: 5% !important;
+    padding-bottom: 5% !important;
+}
+
 
 /**
  * 
@@ -473,15 +483,19 @@ h2.login-register {
  *
  */
 
-input[type="radio"] {
-    margin-left: 0px !important;
-}
-
 .label-register {
     display: block !important;
     font-size: 12px !important;
     text-align: left !important;    
     margin-right: 0.5% !important;    
+}
+
+.gender-label {
+    padding-bottom: 5%;
+}
+
+.gender-text {
+    font-size: 9px !important;
 }
 
 select.label-register {
@@ -531,10 +545,46 @@ select.label-register {
 }
 
 
+
+/**
+ * 
+ * Media Queries
+ * 
+ */
+
+
 /* Extra small <576px */
 
 @media (max-width: 575px) {
     
+    .navbar-default {
+        background-color: #FFF !important;
+    }
+
+    .navbar {
+        background-color: #FFF !important;
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        font-size: 15px !important;
+    }
+
+    .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a {
+        background-color: #FFF !important;
+    }
+
+    .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+        background-color: #FFF !important;
+    }
+
+    .navbar-nav {
+        margin: 0;
+    }
+
+    .container > .navbar-collapse, .container > .navbar-header {
+        margin-left: -30px !important;
+    }   
+
     button.home {
         width: 120px;
         height: 120px;
@@ -580,6 +630,7 @@ select.label-register {
 
     .pink-button {
         height: 30px;
+        font-size: 14px;
     }
 
     .thanks-box {
@@ -593,15 +644,15 @@ select.label-register {
         bottom: 7%;
     }
 
-    .formulario input {
+    .contact-form input {
         width: 90% !important;
     }
 
-    .formulario textarea {
+    .contact-form textarea {
         width: 90% !important;
     }
 
-    .formulario input[type="submit"] {
+    .contact-form input[type="submit"] {
         width: 70% !important;
     }
 
@@ -609,12 +660,43 @@ select.label-register {
         font-size: 18px;
     }
 
+    .first-radio {
+        margin-left: 3.5%;
+    }
 }
 
 
 /* Small ≥576px */
 
 @media (min-width: 576px) and (max-width: 767px) {
+
+    .navbar-default {
+        background-color: #FFF !important;
+    }
+
+    .navbar {
+        background-color: #FFF !important;
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        font-size: 15px !important;
+    }
+
+    .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a {
+        background-color: #FFF !important;
+    }
+
+    .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+        background-color: #FFF !important;
+    }
+
+    .navbar-nav {
+        margin: 0;
+    }
+
+    .container > .navbar-collapse, .container > .navbar-header {
+        margin-left: -30px !important;
+    }
 
     .heart-form {
         position: relative;
@@ -639,16 +721,20 @@ select.label-register {
         bottom: 7%;
     }
 
-    .formulario input {
+    .contact-form input {
         width: 60% !important;
     }
 
-    .formulario textarea {
+    .contact-form textarea {
         width: 60% !important;
     }
 
-    .formulario input[type="submit"] {
+    .contact-form input[type="submit"] {
         width: 40% !important;
+    }
+
+    .first-radio {
+        margin-left: 1.5%;
     }
 
 }
@@ -660,6 +746,11 @@ select.label-register {
 
     .navbar {
         margin-right: 1% !important;    
+        background-color: #FFF !important;
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        font-size: 15px !important;
     }
 
     .heart-form {
@@ -685,16 +776,20 @@ select.label-register {
         bottom: 7%;
     }
 
-    .formulario input {
+    .contact-form input {
         width: 70% !important;
     }
 
-    .formulario textarea {
+    .contact-form textarea {
         width: 70% !important;
     }
 
-    .formulario input[type="submit"] {
+    .contact-form input[type="submit"] {
         width: 60% !important;
+    }
+
+    .first-radio {
+        margin-left: 1.5%;
     }
 
 }
@@ -704,6 +799,10 @@ select.label-register {
 
 @media (min-width: 992px) and (max-width: 1199px) {
 
+    .navbar {
+        background-color: #FFF !important;
+    }
+
     .heart-form {
         position: relative;
         width: 40px;
@@ -727,16 +826,20 @@ select.label-register {
         bottom: 7%;
     }
 
-    .formulario input {
+    .contact-form input {
         width: 80% !important;
     }
 
-    .formulario textarea {
+    .contact-form textarea {
         width: 80% !important;
     }
 
-    .formulario input[type="submit"] {
+    .contact-form input[type="submit"] {
         width: 60% !important;
+    }
+
+    .first-radio {
+        margin-left: 1.5%;
     }
 
 }
@@ -746,6 +849,10 @@ select.label-register {
 
 @media (min-width: 1200px) {
 
+    .navbar {
+        background-color: #FFF !important;
+    }
+
     .heart-form {
         position: relative;
         width: 40px;
@@ -769,16 +876,20 @@ select.label-register {
         bottom: 7%;
     }
 
-    .formulario input {
+    .contact-form input {
         width: 80% !important;
     }
 
-    .formulario textarea {
+    .contact-form textarea {
         width: 80% !important;
     }
 
-    .formulario input[type="submit"] {
+    .contact-form input[type="submit"] {
         width: 50% !important;
     }    
+
+    .first-radio {
+        margin-left: 1.5%;
+    }
 
 }
