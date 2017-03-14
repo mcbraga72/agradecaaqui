@@ -48,7 +48,7 @@ class SocialAuthController extends Controller
      */
     public function callbackGoogle(SocialAccountService $service)
     {
-        $providerUser = Socialite::driver('facebook')->user();
+        $providerUser = Socialite::driver('google')->user();
         return view('site.register')->with('providerUser', $providerUser);
 
         /*$user = $service->createOrGetUser(Socialite::driver('google')->user());
