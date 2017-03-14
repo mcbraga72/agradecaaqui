@@ -100,11 +100,18 @@
             <div class="">
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                     {{ csrf_field() }}
+                    @if (isset($providerUser))
+                        <input type="hidden" name="id" value="{{ $providerUser->getId() }}">                    
+                    @endif    
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4">
                         <div class="label-register form-group{{ $errors->has('name') ? ' has-error' : '' }}">                        
                             <br><br>
                             <label for="name" class="col-lg-4 control-label label-register">NOME</label>                        
-                            <input id="name" type="text" class="form-control label-register" name="name" value="{{ old('name') }}" required autofocus>
+                            @if (isset($providerUser))
+                                <input id="name" type="text" class="form-control label-register" name="name" value="{{ $providerUser->getName() }}" required autofocus>
+                            @else
+                                <input id="name" type="text" class="form-control label-register" name="name" value="{{ old('name') }}" required autofocus>
+                            @endif    
                             @if ($errors->has('name'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -171,8 +178,12 @@
                     <div class="label-register form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <br><br>
                         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-                            <label for="email" class="col-md-4 control-label label-register">E-MAIL</label>                        
-                            <input id="email" type="email" class="form-control label-register" name="email" value="{{ old('email') }}" required autofocus>
+                            <label for="email" class="col-md-4 control-label label-register">E-MAIL</label>
+                            @if (isset($providerUser))
+                                <input id="email" type="email" class="form-control label-register" name="email" value="{{ $providerUser->getEmail() }}" required autofocus>
+                            @else
+                                <input id="email" type="email" class="form-control label-register" name="email" value="{{ old('email') }}" required autofocus>
+                            @endif        
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('email') }}</strong>
@@ -183,8 +194,12 @@
                     <div class="label-register form-group{{ $errors->has('confirmEmail') ? ' has-error' : '' }}">
                         <br><br>
                         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-                            <label for="confirmEmail" class="col-md-12 control-label label-register">CONFIRME SEU E-MAIL</label>                        
-                            <input id="confirmEmail" type="email" class="form-control label-register" name="confirmEmail" value="{{ old('confirmEmail') }}" required autofocus>
+                            <label for="confirmEmail" class="col-md-12 control-label label-register">CONFIRME SEU E-MAIL</label> 
+                            @if (isset($providerUser))
+                                <input id="confirmEmail" type="email" class="form-control label-register" name="confirmEmail" value="{{ $providerUser->getEmail() }}" required autofocus>
+                            @else
+                                <input id="confirmEmail" type="email" class="form-control label-register" name="confirmEmail" value="{{ old('confirmEmail') }}" required autofocus>
+                            @endif    
                             @if ($errors->has('confirmEmail'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('confirmEmail') }}</strong>
