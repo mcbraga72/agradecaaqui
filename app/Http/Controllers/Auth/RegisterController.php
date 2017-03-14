@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SocialAccountService;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -69,17 +70,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],            
-            'surName' => $data['surName'],
-            'gender' => $data['gender'],
-            'dateOfBirth' => $data['dateOfBirth'],
-            'telephone' => $data['telephone'],
-            'email' => $data['email'],
-            'city' => $data['city'],
-            'state' => $data['state'],
-            'password' => bcrypt($data['password']),
-            'role' => 'User'
-        ]);
+        $user = new User();
+
+        $user->name = $data['name'];
+        $user->surName = $data['surName'];
+        $user->gender = $data['gender'];
+        $user->dateOfBirth = $data['dateOfBirth'];
+        $user->telephone = $data['telephone'];
+        $user->email = $data['email'];
+        $user->city = $data['city'];
+        $user->state = $data['state'];
+        $user->password = bcrypt($data['password']);
+
+        $user->save();
+
+        if(isset($data['id'])) {
+            $providerUser = new SocialAccountService;
+            $providerUser->createSocialAccount($user, $data['id']);
+        }    
+        
+        return $user;
     }
 }

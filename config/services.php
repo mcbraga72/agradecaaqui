@@ -38,7 +38,6 @@ return [
     'facebook' => [
         'client_id' => '752484724908381',
         'client_secret' => '6b7ce7175f6cb452e816ede8c117e091',
-        //'redirect' => 'http://agradecaaqui.localhost/callback/facebook',
         'redirect' => 'http://agradecaaqui.herokuapp.com/callback/facebook',
     ],
 
