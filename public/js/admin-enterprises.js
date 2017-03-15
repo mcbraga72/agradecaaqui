@@ -1,5 +1,5 @@
 Vue.http.headers.common['X-CSRF-TOKEN'] = $("#token").attr("value");
-Vue.config.devtools = true
+Vue.config.devtools = true;
 
 new Vue({
 

@@ -2,7 +2,6 @@
 
 @section('content')
 	<script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=0zfrot4cp11wye4w5un16jq685zt2zsd0pqlbmpgobuylmno"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 	<script type="text/javascript">
 	    tinymce.init({ 
 	        selector:'textarea',
@@ -27,13 +26,14 @@
 	                <button id="enterprisesButton" type="button" class="home"><img src="images/empresas.png" /></button>
 	            </div>
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('entrar') }}">                
-                	{{ csrf_field() }}
+                	{{ csrf_field() }}			                
 	                <div id="enterpriseThanks">		                
 			            <div class="form-home form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">
 			                <br><br>			                
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 			                    <label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>
-			                    <input id="enterprise_id" type="text" class="form-control" name="enterprise_id" value="" required autofocus placeholder="Selecione a empresa">
+			                    <input id="enterprise_id" type="text" class="typeahead form-control" name="enterprise_id" required autofocus placeholder="Selecione a empresa"><br>
+			                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnterprise"><i class="fa fa-plus fa-fw"></i>Cadastrar empresa</button>
 			                    {{--<select id="enterprise_id" name="enterprise_id" class="selectpicker form-control">
                                     <option value="">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise) 
@@ -163,15 +163,99 @@
 	    </div>
     </div>
 
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+	<!-- Create Enterprise Modal -->
+	<div class="container administrators" id="enterprises">
+	    <div class="modal fade" id="createEnterprise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	        <div class="modal-dialog" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	                    <h4 class="modal-name" id="myModalLabel">Cadastro de empresas</h4>
+	                </div>
+	                <div class="modal-body">
+	                    <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createEnterprise">
+	                        <div class="form-group">
+	                            <label for="category_id">Categoria:</label>
+	                            <select name="category_id" class="form-control" v-model="newEnterprise.category_id" />
+	                                <option value="">Selecione a categoria</option>
+	                                <option value="@{{ category.id }}" v-for="category in categories">@{{ category.name }}</option>
+	                            </select>
+	                            <span v-if="formErrors['category_id']" class="error text-danger">@{{ formErrors['category_id'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="name">Nome:</label>
+	                            <input type="text" name="name" class="form-control" v-model="newEnterprise.name" />
+	                            <span v-if="formErrors['name']" class="error text-danger">@{{ formErrors['name'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="contact">Contato:</label>
+	                            <input type="text" name="contact" class="form-control" v-model="newEnterprise.contact" />
+	                            <span v-if="formErrors['contact']" class="error text-danger">@{{ formErrors['contact'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="name">E-mail:</label>
+	                            <input type="email" name="email" class="form-control" v-model="newEnterprise.email" />
+	                            <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="telephone">Telefone:</label>
+	                            <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" />
+	                            <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="address">Endereço:</label>
+	                            <input type="text" name="address" class="form-control" v-model="newEnterprise.address" />
+	                            <span v-if="formErrors['address']" class="error text-danger">@{{ formErrors['address'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="password">Senha:</label>
+	                            <input type="password" name="password" class="form-control" v-model="newEnterprise.password" />
+	                            <span v-if="formErrors['password']" class="error text-danger">@{{ formErrors['password'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="password-confirm">Confirmar Senha:</label>
+	                            <input type="password" name="password-confirm" class="form-control" v-model="newEnterprise.password" />
+	                            <span v-if="formErrors['password-confirm']" class="error text-danger">@{{ formErrors['password-confirm'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <button type="submit" class="btn btn-success">Enviar</button>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>    
+
+	<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+    <script type="text/javascript" src="/js/admin-enterprises.js"></script>
 	<script type="text/javascript">
+		var path = '{{ URL('/app/busca/empresa') }}';
+
+	    $('input.typeahead').typeahead({
+	    	templates: {
+            	empty: '<div class="empty-message">Empresa não cadastrada!</div>'
+        	},
+	        source:  function (query, process) {
+	        return $.get(path, { query: query }, function (data) {
+	                return process(data);
+	            });
+	        }
+	    });
+
 		$(document).ready(function() {
     		$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
-	    	$('#enterprisesButton').addClass('button-selected');
+	    	$('#enterprisesButton').addClass('button-selected');	    	
 	    });	
-
+		
 		$('#peopleButton').click(function(){
 	    	$('#enterpriseThanks').hide();
 	    	$('#userThanks').show();
@@ -183,12 +267,6 @@
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');
 	    	$('#peopleButton').removeClass('button-selected');
-	    });
-
-	    $('#enterprise_id').autocomplete({
-	    	minLength: 1,
-	    	autoFocus: true,
-	    	source: '{{ URL('/app/busca/empresa') }}',	    	
 	    });
 	</script>
 

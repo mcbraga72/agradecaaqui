@@ -138,16 +138,14 @@ class AppController extends Controller
      */
     public function findEnterprise(Request $request)
     {
-        $results = [];
-    	$enterprises = Enterprise::where('name', 'LIKE', '%' . $request->term . '%')->orderBy('name', 'asc')->get();
-        
+        $results = array();
+    	$enterprises = Enterprise::where('name', 'LIKE', '%' . $request->input('query') . '%')->orderBy('name', 'asc')->get();
+
     	foreach ($enterprises as $enterprise) {
 	    	$results[] = ['id' => $enterprise->id, 'name' => $enterprise->name];
-            //$results[] = ['name' => $enterprise->name];
 		}
 		
-		//return Response::json($results);
-        return response($results);
+		return response()->json($results);
     }
 
     /**
