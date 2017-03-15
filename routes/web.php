@@ -53,7 +53,7 @@ Route::get('/app/agradecimentos', 'AppController@thanks');
 Route::post('/app/agradecimentos/busca', 'AppController@findThanks');
 Route::get('/app/empresa/criar', 'AppController@createEnterprise');
 Route::post('/app/empresa', 'AppController@storeEnterprise');
-Route::post('/app/busca/empresa', 'AppController@findEnterprise');
+Route::get('/app/busca/empresa', 'AppController@findEnterprise');
 	
 Route::get('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@index');
 Route::get('/app/agradecimento-empresa/criar', 'EnterpriseThanksAppController@create');

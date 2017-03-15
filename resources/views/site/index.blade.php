@@ -32,14 +32,14 @@
 			            <div class="form-home form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">
 			                <br><br>			                
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    {{--<input id="enterprise_id" type="text" class="form-control" name="enterprise_id" value="{{ old('enterprise_id') }}" required autofocus placeholder="Empresa">--}}
 			                    <label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>
-			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control">
+			                    <input id="enterprise_id" type="text" class="form-control" name="enterprise_id" value="" required autofocus placeholder="Selecione a empresa">
+			                    {{--<select id="enterprise_id" name="enterprise_id" class="selectpicker form-control">
                                     <option value="">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise) 
                                     <option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>           
                                     @endforeach                         
-                                </select>
+                                </select>--}}
 			                    @if ($errors->has('enterprise_id'))
 			                        <span class="help-block">
 			                            <strong>{{ $errors->first('enterprise_id') }}</strong>
@@ -183,6 +183,12 @@
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');
 	    	$('#peopleButton').removeClass('button-selected');
+	    });
+
+	    $('#enterprise_id').autocomplete({
+	    	minLength: 1,
+	    	autoFocus: true,
+	    	source: '{{ URL('/app/busca/empresa') }}',	    	
 	    });
 	</script>
 
