@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EnterpriseRequest;
 use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
@@ -9,8 +10,8 @@ use App\Models\User;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\EnterpriseRequest;
 
 class AppController extends Controller
 {	
@@ -137,13 +138,16 @@ class AppController extends Controller
      */
     public function findEnterprise(Request $request)
     {
-    	$enterprises = Enterprise::where('name', 'LIKE', '%' . Input::get('enterpriseName') . '%')->orderBy('name', 'asc');
-    	
+        $results = [];
+    	$enterprises = Enterprise::where('name', 'LIKE', '%' . $request->term . '%')->orderBy('name', 'asc')->get();
+        
     	foreach ($enterprises as $enterprise) {
 	    	$results[] = ['id' => $enterprise->id, 'name' => $enterprise->name];
+            //$results[] = ['name' => $enterprise->name];
 		}
 		
-		return Response::json($results);
+		//return Response::json($results);
+        return response($results);
     }
 
     /**
