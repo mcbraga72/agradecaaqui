@@ -82,6 +82,12 @@ class RegisterController extends Controller
         $user->state = $data['state'];
         $user->password = bcrypt($data['password']);
 
+        if($data['gender'] == 'masculino') {
+            $user->photo = '/images/male.png';
+        } else {
+            $user->photo = '/images/female.png';
+        }
+
         $user->save();
 
         if(isset($data['id'])) {
