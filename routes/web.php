@@ -100,6 +100,7 @@ Route::get('/empresa/agradecimentos', 'EnterpriseAreaController@thanks');
 Route::get('/empresa/agradecimento/{id}/responder', 'EnterpriseAreaController@replica');
 Route::post('/empresa/agradecimento/{id}', 'EnterpriseAreaController@storeReplica');
 Route::get('/empresa/relatorios', 'ReportEnterpriseController@index');
+Route::get('/empresa/api/relatorios', 'ReportEnterpriseController@generateReport');
 
 
 
