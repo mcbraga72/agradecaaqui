@@ -21,7 +21,6 @@
         <header class="main-header">
             <nav class="navbar navbar-default navbar-static-top">                
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/app') }}" title="">HOME</a></li>
                     <li>
                         <ul class="nav navbar-nav navbar-right">
                         @if (Auth::guest())

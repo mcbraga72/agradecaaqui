@@ -523,6 +523,11 @@ select.label-register {
  *
  */
 
+.main-header {
+    padding-left: 10% !important;
+    width: 100% !important;
+}
+
 .button-selected {
     border: 3px solid #FF2257;
     border-radius: 5px;
