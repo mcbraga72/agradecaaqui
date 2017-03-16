@@ -18,7 +18,7 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newEnterprise : {'category_id': '','name': '','contact': '','email': '','telephone': '','address': '','password': ''},
+        newEnterprise : {'category_id': '','name': '','contact': '','email': '','telephone': '','address': '','logo': '','password': ''},
         fillEnterprise : {'category_id': '','name': '','contact': '','email': '','telephone': '','address': '','password': '','id': ''}
     },
 
@@ -65,7 +65,7 @@ new Vue({
 		        var input = this.newEnterprise;
 		        this.$http.post('/admin/empresas',input).then((response) => {
 		            this.changePage(this.pagination.current_page);
-			          this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','telephone': '','address': '','password': ''};
+			          this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','telephone': '','address': '','logo': '','password': ''};
 			          $("#createEnterprise").modal('hide');
 			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
 		        }, (response) => {
