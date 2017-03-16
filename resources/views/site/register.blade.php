@@ -7,7 +7,7 @@
         
     $(document).ready(function () {
     
-        $.getJSON('http://agradecaaqui.localhost/estados_cidades.json', function (data) {
+        $.getJSON('{{ 'http://' . $_SERVER['HTTP_HOST'] . '/estados_cidades.json' }}', function (data) {
 
             var items = [];
             var options = '<option value="">Selecione o estado</option>';    
