@@ -20,7 +20,6 @@
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-8 col-lg-offset-2 col-xl-8 col-xl-offset-2 home">
                 <img class="logo" src="images/logo.png" />
                 <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
-                {{--<input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />--}}                
                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
 	                <button id="peopleButton" type="button" class="home"><img src="images/pessoas.png" /></button>
 	                <button id="enterprisesButton" type="button" class="home"><img src="images/empresas.png" /></button>
@@ -32,14 +31,12 @@
 			                <br><br>			                
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 			                    <label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>
-			                    <input id="enterprise_id" type="text" class="typeahead form-control" name="enterprise_id" required autofocus placeholder="Selecione a empresa"><br>
-			                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnterprise"><i class="fa fa-plus fa-fw"></i>Cadastrar empresa</button>
-			                    {{--<select id="enterprise_id" name="enterprise_id" class="selectpicker form-control">
+			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control chosen-select">
                                     <option value="">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise) 
                                     <option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>           
                                     @endforeach                         
-                                </select>--}}
+                                </select>
 			                    @if ($errors->has('enterprise_id'))
 			                        <span class="help-block">
 			                            <strong>{{ $errors->first('enterprise_id') }}</strong>
@@ -50,7 +47,7 @@
 			            <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 		                    	<label for="content" class="col-md-4 col-lg-6 control-label">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" />
-		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
+		                        <textarea id="content" name="content" class="form-control" placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
 		                                <strong>{{ $errors->first('content') }}</strong>
@@ -59,13 +56,7 @@
 		                    </div>
 		                </div>
 		                <div class="form-group">
-		                    <div class="col-md-6 col-md-offset-4">
-		                    	<button type="button" class="btn social-network facebook-button"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></button>
-		                    	<button type="button" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
-		                    	<button type="button" class="btn social-network google-button"><i class="fa fa-2x fa-google-plus" aria-hidden="true"></i></button>
-		                    	<button type="button" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
-		                        <input type="submit" class="btn pink-button" value="ENVIAR">
-		                    </div>
+		                    <input type="submit" class="btn pink-button" value="ENVIAR">		                    
 		                </div>
 	                </div>
 	            </form>
@@ -76,7 +67,7 @@
 			                <br><br>
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 			                	<label for="userName" class="col-md-4 control-label">PARA</label>
-			                    <input id="userName" type="text" class="form-control" name="userName" value="{{ old('userName') }}" required autofocus placeholder="Nome">
+			                    <input id="userName" type="text" class="form-control" name="userName" value="{{ old('userName') }}" autofocus placeholder="Nome">
 			                    @if ($errors->has('userName'))
 			                        <span class="help-block">
 			                            <strong>{{ $errors->first('userName') }}</strong>
@@ -88,7 +79,7 @@
 		                    <br><br>
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 		                    	<label for="userEmail" class="col-md-4 control-label">E-MAIL</label>
-		                        <input id="userEmail" type="email" class="form-control" name="userEmail" value="{{ old('userEmail') }}" required autofocus placeholder="E-mail do destinatário">
+		                        <input id="userEmail" type="email" class="form-control" name="userEmail" value="{{ old('userEmail') }}" autofocus placeholder="E-mail do destinatário">
 		                        @if ($errors->has('userEmail'))
 		                            <span class="help-block">
 		                                <strong>{{ $errors->first('userEmail') }}</strong>
@@ -99,7 +90,7 @@
 		                <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">		                    
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 		                    	<label for="content" class="col-md-4 col-lg-6 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" />
-		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
+		                        <textarea id="content" name="content" class="form-control" placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
 		                                <strong>{{ $errors->first('content') }}</strong>
@@ -109,11 +100,7 @@
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-md-6 col-md-offset-4">
-		                    	<button type="submit" class="btn social-network facebook-button"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></button>
-		                    	<button type="submit" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
-		                    	<button type="submit" class="btn social-network google-button"><i class="fa fa-2x fa-google-plus" aria-hidden="true"></i></button>
-		                    	<button type="submit" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
-		                        <button type="submit" class="btn pink-button">ENVIAR</button>
+		                    	<button type="submit" class="btn pink-button">ENVIAR</button>
 		                    </div>
 		                </div>
 	                </div>
@@ -144,7 +131,7 @@
 		            </div>
 		        </form>
 	        	@forelse($data['enterpriseThanks'] as $enterpriseThank)
-	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-1 col-xl-3 col-xl-offset-1 thanks-box">
+	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-xl-2 col-xl-offset-1 thanks-box">
 	                    <p class="thanks-title">{{ $enterpriseThank->name }}</p>
 	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>
@@ -158,7 +145,7 @@
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 show-more">
 						<img class="plus" src="images/plus.png" alt="Mostrar mais" title="Mostrar mais" />
 	                </div>
-				@endforelse				
+				@endforelse
 	        </div>    
 	    </div>
     </div>
@@ -208,16 +195,6 @@
 	                            <span v-if="formErrors['address']" class="error text-danger">@{{ formErrors['address'] }}</span>
 	                        </div>
 	                        <div class="form-group">
-	                            <label for="password">Senha:</label>
-	                            <input type="password" name="password" class="form-control" v-model="newEnterprise.password" />
-	                            <span v-if="formErrors['password']" class="error text-danger">@{{ formErrors['password'] }}</span>
-	                        </div>
-	                        <div class="form-group">
-	                            <label for="password-confirm">Confirmar Senha:</label>
-	                            <input type="password" name="password-confirm" class="form-control" v-model="newEnterprise.password" />
-	                            <span v-if="formErrors['password-confirm']" class="error text-danger">@{{ formErrors['password-confirm'] }}</span>
-	                        </div>
-	                        <div class="form-group">
 	                            <button type="submit" class="btn btn-success">Enviar</button>
 	                        </div>
 	                    </form>
@@ -229,26 +206,14 @@
 
 	<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+    <script src="/js/vendor/chosen/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="/js/admin-enterprises.js"></script>
 	<script type="text/javascript">
-		var path = '{{ URL('/app/busca/empresa') }}';
-
-	    $('input.typeahead').typeahead({
-	    	templates: {
-            	empty: '<div class="empty-message">Empresa não cadastrada!</div>'
-        	},
-	        source:  function (query, process) {
-	        return $.get(path, { query: query }, function (data) {
-	                return process(data);
-	            });
-	        }
-	    });
+		$('.chosen-select').chosen();
 
 		$(document).ready(function() {
     		$('#enterpriseThanks').show();
