@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="{{ URL::asset('css/site.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-social.css') }}">
-        <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">            
+        <link rel="stylesheet" href="css/vendor/bootstrap-chosen/bootstrap-chosen.css">
     </head>
     <body>
         <header class="main-header">

@@ -2,7 +2,6 @@
 
 @section('content')
 	<script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=0zfrot4cp11wye4w5un16jq685zt2zsd0pqlbmpgobuylmno"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 	<script type="text/javascript">
 	    tinymce.init({ 
 	        selector:'textarea',
@@ -24,20 +23,17 @@
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-empresa') }}" novalidate>                
                 	{{ csrf_field() }}
 	                <div id="enterpriseThanks">		                
-			            <div class="form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">
-			                <br><br>
-			                <label for="enterprise_id" class="col-md-4 control-label form-home">EMPRESA</label>
-			                <div class="col-md-6">
-			                    {{--<input id="enterprise_id" type="text" class="form-control" name="enterprise_id" value="{{ old('enterprise_id') }}" required autofocus placeholder="Empresa">--}}
-			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control">
+			            <div class="form-home form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">			                
+			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+			                	<label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>			                    
+			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control chosen-select">
                                     <option value="0">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise)
-                                    	<option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>
-                                    	{{--@if (Session::has('enterprise_id') && {{ $enterprise->id }} == Session::get('enterprise_id'))
+                                    	@if (Session::has('enterprise_id') && $enterprise->id == Session::get('enterprise_id'))
                                     		<option value="{{ $enterprise->id }}" selected>{{ $enterprise->name }}</option>
                                     	@else
 											<option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>
-                                    	@endif--}}
+                                    	@endif
                                     @endforeach                         
                                 </select>
 			                    @if ($errors->has('enterprise_id'))
@@ -47,9 +43,9 @@
 			                    @endif
 			                </div>
 			            </div>
-			            <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-		                    <img src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
-		                    <div class="col-md-6">
+			            <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
+		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+		                    	<img class="heart-form" src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
 		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
@@ -60,11 +56,7 @@
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-md-6 col-md-offset-4">
-		                    	<button type="button" class="btn social-network facebook-button"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></button>
-		                    	<button type="button" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
-		                    	<button type="button" class="btn social-network google-button"><i class="fa fa-2x fa-google-plus" aria-hidden="true"></i></button>
-		                    	<button type="button" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
-		                        <input type="submit" class="btn pink-button" value="ENVIAR">
+		                    	<input type="submit" class="btn pink-button" value="ENVIAR">
 		                    </div>
 		                </div>
 	                </div>
@@ -72,10 +64,9 @@
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-usuario') }}" novalidate>
 					{{ csrf_field() }}
 					<div id="userThanks">
-		                <div class="form-group{{ $errors->has('receiptName') ? ' has-error' : '' }}">
-			                <br><br>
-			                <label for="receiptName" class="col-md-4 control-label form-home">PARA</label>
-			                <div class="col-md-6">
+		                <div class="form-home form-group{{ $errors->has('receiptName') ? ' has-error' : '' }}">
+			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+			                	<label for="receiptName" class="col-md-4 control-label form-home">PARA</label>
 			                    <input id="receiptName" type="text" class="form-control" name="receiptName" @if(Session::has('receiptName')) value="{{ Session::get('receiptName') }}" @else value="{{ old('receiptName') }}" @endif required autofocus placeholder="Nome">
 			                    @if ($errors->has('receiptName'))
 			                        <span class="help-block">
@@ -84,10 +75,9 @@
 			                    @endif
 			                </div>
 			            </div>
-			            <div class="form-group{{ $errors->has('receiptEmail') ? ' has-error' : '' }}">
-		                    <br><br>
-		                    <label for="receiptEmail" class="col-md-4 control-label form-home">E-MAIL</label>
-		                    <div class="col-md-6">
+			            <div class="form-home form-group{{ $errors->has('receiptEmail') ? ' has-error' : '' }}">
+		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+		                    	<label for="receiptEmail" class="col-md-4 control-label form-home">E-MAIL</label>
 		                        <input id="receiptEmail" type="email" class="form-control" name="receiptEmail" @if(Session::has('receiptEmail')) value="{{ Session::get('receiptEmail') }}" @else value="{{ old('receiptEmail') }}" @endif required autofocus placeholder="E-mail do destinatário">
 		                        @if ($errors->has('receiptEmail'))
 		                            <span class="help-block">
@@ -96,9 +86,9 @@
 		                        @endif
 		                    </div>
 		                </div>
-		                <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-		                    <img src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
-		                    <div class="col-md-6">
+		                <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
+		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+		                    	<img class="heart-form" src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
 		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
@@ -109,11 +99,7 @@
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-md-6 col-md-offset-4">
-		                    	<button type="submit" class="btn social-network facebook-button"><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></button>
-		                    	<button type="submit" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
-		                    	<button type="submit" class="btn social-network google-button"><i class="fa fa-2x fa-google-plus" aria-hidden="true"></i></button>
-		                    	<button type="submit" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
-		                        <input type="submit" class="btn pink-button" value="ENVIAR">
+		                    	<input type="submit" class="btn pink-button" value="ENVIAR">
 		                    </div>
 		                </div>
 	                </div>
@@ -145,98 +131,95 @@
 		<div class="row">
 			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 	        	@forelse($data['enterpriseThanks'] as $enterpriseThank)
-	        		<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
+	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-xl-2 col-xl-offset-1 thanks-box">
+	                    <p class="thanks-title">{{ $enterpriseThank->name }}</p>
 	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">{{ $enterpriseThank->content }}</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
+	                    <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>
+	                    <img class="user-photo"src="{{ $enterpriseThank->logo }}" alt="Agradecimento" title="Agradecimento" />	                    
 	                </div>    				
 				@empty
-    				<!--<h2>Não existe nenhum agradecimento cadastrado em nossa base de dados!</h2>-->    				
-					<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
+    				<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3 thanks-box">
 	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">Lorem Ipsum</p>
-	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-	                    <img class="user-photo"src="images/cliente1.png" alt="Agradecimento" title="Agradecimento" />
-	                    <span class="user-name">Camila Veiga</span>
+	                    <p class="thaks-content">Ainda não existem agradecimentos cadastrados em nossa plataforma.</p>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 show-more">
 						<img class="plus" src="images/plus.png" alt="Mostrar mais" title="Mostrar mais" />
 	                </div>
-				@endforelse				
+				@endforelse
 	        </div>    
 	    </div>
     </div>
 
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <!-- Create Enterprise Modal -->
+	<div class="container administrators" id="enterprises">
+	    <div class="modal fade" id="createEnterprise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	        <div class="modal-dialog" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	                    <h4 class="modal-name" id="myModalLabel">Cadastro de empresas</h4>
+	                </div>
+	                <div class="modal-body">
+	                    <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createEnterprise">
+	                        <div class="form-group">
+	                            <label for="category_id">Categoria:</label>
+	                            <select name="category_id" class="form-control" v-model="newEnterprise.category_id" />
+	                                <option value="">Selecione a categoria</option>
+	                                <option value="@{{ category.id }}" v-for="category in categories">@{{ category.name }}</option>
+	                            </select>
+	                            <span v-if="formErrors['category_id']" class="error text-danger">@{{ formErrors['category_id'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="name">Nome:</label>
+	                            <input type="text" name="name" class="form-control" v-model="newEnterprise.name" />
+	                            <span v-if="formErrors['name']" class="error text-danger">@{{ formErrors['name'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="contact">Contato:</label>
+	                            <input type="text" name="contact" class="form-control" v-model="newEnterprise.contact" />
+	                            <span v-if="formErrors['contact']" class="error text-danger">@{{ formErrors['contact'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="name">E-mail:</label>
+	                            <input type="email" name="email" class="form-control" v-model="newEnterprise.email" />
+	                            <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="telephone">Telefone:</label>
+	                            <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" />
+	                            <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <label for="address">Endereço:</label>
+	                            <input type="text" name="address" class="form-control" v-model="newEnterprise.address" />
+	                            <span v-if="formErrors['address']" class="error text-danger">@{{ formErrors['address'] }}</span>
+	                        </div>
+	                        <div class="form-group">
+	                            <button type="submit" class="btn btn-success">Enviar</button>
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+    <script src="/js/vendor/chosen/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/admin-enterprises.js"></script>
 	<script type="text/javascript">
+		$('.chosen-select').chosen();
+
 		$(document).ready(function() {
     		$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');
-
-	    	/*$("#enterprise_id").autocomplete('/app/busca/empresa', {
-                selectFirst: true
-            });*/
-		});
+	    });
 
 	    $('#peopleButton').click(function(){
 	    	$('#enterpriseThanks').hide();
