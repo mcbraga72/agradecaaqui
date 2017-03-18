@@ -47,13 +47,14 @@ Route::get('/cadastro', 'SiteController@register');
 // User's Area
 
 Route::get('/app', 'AppController@dashboard');
-Route::get('/app/perfil', 'AppController@edit');
-Route::put('/app/perfil/{id}', 'AppController@update');
+Route::get('/app/perfil', 'AppController@editProfile');
+Route::put('/app/perfil/{id}', 'AppController@updateProfile');
 Route::get('/app/agradecimentos', 'AppController@thanks');
 Route::post('/app/agradecimentos/busca', 'AppController@findThanks');
 Route::get('/app/empresa/criar', 'AppController@createEnterprise');
 Route::post('/app/empresa', 'AppController@storeEnterprise');
 Route::get('/app/busca/empresa', 'AppController@findEnterprise');
+Route::get('/app/categorias', 'AppController@getCategories');
 	
 Route::get('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@index');
 Route::get('/app/agradecimento-empresa/criar', 'EnterpriseThanksAppController@create');

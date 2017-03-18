@@ -38,7 +38,7 @@ class AppController extends Controller
 	 * @return Response
 	 * 
 	 */
-	public function edit()
+	public function editProfile()
     {
     	return view('app.user.profile', ['user' => User::findOrFail(Auth::user()->id)]);
     }
@@ -53,7 +53,7 @@ class AppController extends Controller
 	 * @return Response
 	 * 
 	 */
-    public function update(UserRequest $request, $id)
+    public function updateProfile(UserRequest $request, $id)
     {
     	$user = User::find($id);
 
@@ -92,19 +92,6 @@ class AppController extends Controller
 	 *
 	 * Store enterprise's data.
 	 *
-	 * @return Response
-	 * 
-	 */
-    public function createEnterprise()
-    {
-    	$categories = Category::all();
-    	return view('app.enterprise.create')->with('categories', $categories);
-    }
-
-    /**
-	 *
-	 * Store enterprise's data.
-	 *
 	 * @param EnterpriseRequest $request
 	 *
 	 * @return Response
@@ -114,17 +101,17 @@ class AppController extends Controller
 	{		
     	$enterprise = new Enterprise();
 
+        $enterprise->category_id = $request->category_id;
     	$enterprise->name = $request->name;
-    	$enterprise->cnpj = $request->cnpj;
-    	$enterprise->address = $request->address;
-    	$enterprise->telephone = $request->telephone;
-    	$enterprise->site = $request->site;
-    	$enterprise->email = $request->email;
+    	$enterprise->contact = $request->contact;
+        $enterprise->email = $request->email;
+        $enterprise->telephone = $request->telephone;
+        $enterprise->address = $request->address;    	
     	$enterprise->status = 'Pending';
 
     	$enterprise->save();
 
-    	return view('app.index');
+    	return response()->json($enterprise);
     }
 
     /**
@@ -165,5 +152,23 @@ class AppController extends Controller
 		return view('app.thanks')->with('enterprisesThanks', $enterprisesThanks);
 		
         //$enterprisesThanks = EnterpriseThanks::where('content', 'LIKE', "%{$request->search}%")->get();        
+    }
+
+    /**
+     *
+     * Get all categories.
+     *
+     * @return Response
+     * 
+     */
+    public function getCategories()
+    {
+        $categories = Category::all();
+
+        $response = [        
+            'data' => $categories
+        ];
+        
+        return response()->json($response);        
     }
 }

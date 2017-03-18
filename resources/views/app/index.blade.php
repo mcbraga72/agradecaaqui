@@ -161,11 +161,12 @@
 	                </div>
 	                <div class="modal-body">
 	                    <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createEnterprise">
+	                    	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 	                        <div class="form-group">
 	                            <label for="category_id">Categoria:</label>
 	                            <select name="category_id" class="form-control" v-model="newEnterprise.category_id" />
 	                                <option value="">Selecione a categoria</option>
-	                                <option value="@{{ category.id }}" v-for="category in categories">@{{ category.name }}</option>
+	                                <option value="@{{ category.id }}" v-for="category in categories.data">@{{ category.name }}</option>
 	                            </select>
 	                            <span v-if="formErrors['category_id']" class="error text-danger">@{{ formErrors['category_id'] }}</span>
 	                        </div>
@@ -211,7 +212,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="/js/vendor/chosen/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="/js/admin-enterprises.js"></script>
+    <script type="text/javascript" src="/js/app-enterprises.js"></script>
 	<script type="text/javascript">
 		$('.chosen-select').chosen();
 
