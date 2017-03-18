@@ -7,7 +7,7 @@
         <meta name="author" content="@yield('author')">
         <meta name="description" content="@yield('description')">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <meta name="csrf-token" content="{{{ csrf_token() }}}">
+        <meta id="csrf-token" name="csrf-token" content="{{{ csrf_token() }}}">
         <title>@yield('title', 'Agradeça Aqui')</title>
         <link rel="shortcut icon" href="images/logo.png" />
         <link rel="stylesheet" property="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
