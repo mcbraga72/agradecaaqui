@@ -82,7 +82,8 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createUser"><i class="fa fa-plus fa-fw"></i>Cadastrar usuário</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createUser"><i class="fa fa-plus fa-fw"></i>Cadastrar usuário</button>
+                    <input type="text" class="form-data" placeholder=" Localizar" v-model="filterTerm" style="" />
                 </div>
             </div>
         </div>
@@ -90,11 +91,11 @@
         <!-- User Listing -->
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Nome</th>
+                <th><a href="#" @click="sort($event, 'name')">Nome</a></th>
                 <th>E-mail</th>
                 <th colspan="2">Ação</th>
             </tr>
-            <tr v-for="user in users">
+            <tr v-for="user in users | filterBy filterTerm | orderBy sortProperty sortDirection">
                 <td>@{{ user.name }}</td>
                 <td>@{{ user.email }}</td>
                 <td>    

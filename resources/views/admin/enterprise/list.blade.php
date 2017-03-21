@@ -4,20 +4,21 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnterprise"><i class="fa fa-plus fa-fw"></i>Cadastrar empresa</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnterprise"><i class="fa fa-plus fa-fw"></i>Cadastrar empresa</button>
+                    <input type="text" class="form-data" placeholder=" Localizar" v-model="filterTerm" style="" />
                 </div>
             </div>
         </div>
 
-        <!-- Enterprise Listing -->
+        <!-- Enterprise Listing -->        
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Empresa</th>
+                <th><a href="#" @click="sort($event, 'enterprises.name')">Empresa</a></th>
                 <th>Contato</th>
                 <th>E-mail</th>
                 <th colspan="2">Ação</th>
             </tr>
-            <tr v-for="enterprise in enterprises">
+            <tr v-for="enterprise in enterprises | filterBy filterTerm | orderBy sortProperty sortDirection">
                 <td>@{{ enterprise.name }}</td>
                 <td>@{{ enterprise.contact }}</td>
                 <td>@{{ enterprise.email }}</td>

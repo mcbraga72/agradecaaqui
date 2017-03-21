@@ -4,7 +4,8 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createCategory"><i class="fa fa-plus fa-fw"></i>Cadastrar Categoria</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createCategory"><i class="fa fa-plus fa-fw"></i>Cadastrar Categoria</button>
+                    <input type="text" class="form-data" placeholder=" Localizar" v-model="filterTerm" style="" />
                 </div>
             </div>
         </div>
@@ -12,10 +13,10 @@
         <!-- Category List -->
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Nome</th>
+                <th><a href="#" @click="sort($event, 'name')">Nome</a></th>
                 <th colspan="2">Ação</th>
             </tr>
-            <tr v-for="category in categories">
+            <tr v-for="category in categories | filterBy filterTerm | orderBy sortProperty sortDirection">
                 <td>@{{ category.name }}</td>
                 <td>    
                   <button class="btn btn-primary" @click.prevent="editCategory(category)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>

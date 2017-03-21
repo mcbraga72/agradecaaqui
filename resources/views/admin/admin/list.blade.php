@@ -4,7 +4,8 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createAdmin"><i class="fa fa-plus fa-fw"></i>Cadastrar Administrador</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createAdmin"><i class="fa fa-plus fa-fw"></i>Cadastrar Administrador</button>
+                    <input type="text" class="form-data" placeholder=" Localizar" v-model="filterTerm" style="" />
                 </div>
             </div>
         </div>
@@ -12,11 +13,11 @@
         <!-- Admin Listing -->
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Nome</th>
+                <th><a href="#" @click="sort($event, 'admins.name')">Nome</a></th>
                 <th>E-mail</th>
                 <th colspan="2">Ação</th>
             </tr>
-            <tr v-for="admin in admins">
+            <tr v-for="admin in admins | filterBy filterTerm | orderBy sortProperty sortDirection">
                 <td>@{{ admin.name }}</td>
                 <td>@{{ admin.email }}</td>
                 <td>    
