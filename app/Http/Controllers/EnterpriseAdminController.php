@@ -122,5 +122,21 @@ class EnterpriseAdminController extends Controller
         $delete = Enterprise::findOrFail($id)->delete();        
         return response()->json($delete);
     }
+
+    /**
+     *
+     * Verify the enterprise status.
+     * 
+     * @param int $id
+     *
+     * @return String
+     * 
+     */
+    public function verifyStatus($id)
+    {
+        $status = Enterprise::select('status')->where('id', '=', $id)->get();        
+        return $status;
+    }
+
     
 }

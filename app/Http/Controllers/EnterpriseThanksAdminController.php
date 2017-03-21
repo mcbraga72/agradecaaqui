@@ -71,7 +71,21 @@ class EnterpriseThanksAdminController extends Controller
         $enterpriseThanks->enterprise_id = $request->enterprise_id;
         $enterpriseThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
         $enterpriseThanks->content = $request->content;
-        $enterpriseThanks->status = 'Approved';
+        
+        /**
+         *
+         * @todo generate unique URL for enterprise thanks
+         * 
+         */
+        
+        $enterprise = new EnterpriseAdminController();
+        $status = $enterprise->verifyStatus($request->enterprise_id);
+
+        if($status == 'Pending') {
+            $enterpriseThanks->status = 'Pending';
+        } else {
+            $enterpriseThanks->status = 'Approved';
+        }
 
         $enterpriseThanks->save();
 
