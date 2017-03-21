@@ -19,6 +19,9 @@ new Vue({
         formErrorsUpdate:{},
         newAdmin : {'name':'','email':''},
         fillAdmin : {'name':'','email':'','id':''}
+        sortProperty: 'name',
+        sortDirection: 1,
+        filterTerm: ''
     },
 
     computed: {
@@ -100,6 +103,16 @@ new Vue({
         changePage: function (page) {
             this.pagination.current_page = page;
             this.getAdmins(page);
+        },
+
+        sort (ev, property) {
+            ev.preventDefault();
+            this.setProperty = property;
+            if(this.sortDirection == 1) {
+                this.sortDirection = -1;
+            } else {
+                this.sortDirection = 1;
+            }
         }
 
     }
