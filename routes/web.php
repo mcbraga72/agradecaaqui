@@ -55,21 +55,21 @@ Route::get('/app/empresa/criar', 'AppController@createEnterprise');
 Route::post('/app/empresa', 'AppController@storeEnterprise');
 Route::get('/app/busca/empresa', 'AppController@findEnterprise');
 Route::get('/app/categorias', 'AppController@getCategories');
-	
+
 Route::get('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@index');
 Route::get('/app/agradecimento-empresa/criar', 'EnterpriseThanksAppController@create');
 Route::post('/app/agradecimento-empresa', 'EnterpriseThanksAppController@store');
 Route::post('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@find');
-Route::get('/app/agradecimento-empresa/{id}', 'EnterpriseThanksAppController@show');
 Route::get('/app/agradecimento-empresa/{id}/editar', 'EnterpriseThanksAppController@edit');
 Route::put('/app/agradecimento-empresa/{id}', 'EnterpriseThanksAppController@update');
 Route::delete('/app/agradecimento-empresa/{id}', 'EnterpriseThanksAppController@destroy');
+Route::get('/app/agradecimento-empresa/{hash}', ['as' => 'enterprise-thanks.show', 'uses' => 'EnterpriseThanksAppController@show']);
 
 Route::get('/app/agradecimentos-usuarios', 'UserThanksAppController@index');
 Route::get('/app/agradecimento-usuario/criar', 'UserThanksAppController@create');
 Route::post('/app/agradecimento-usuario', 'UserThanksAppController@store');
 Route::post('/app/agradecimentos-usuarios', 'UserThanksAppController@find');
-Route::get('/app/agradecimento-usuario/{id}', 'UserThanksAppController@show');
+Route::get('/app/agradecimento-usuario/{hash}', ['as' => 'user-thanks.show', 'uses' => 'UserThanksAppController@show']);
 Route::get('/app/agradecimento-usuario/{id}/editar', 'UserThanksAppController@edit');
 Route::put('/app/agradecimento-usuario/{id}', 'UserThanksAppController@update');
 Route::delete('/app/agradecimento-usuario/{id}', 'UserThanksAppController@destroy');

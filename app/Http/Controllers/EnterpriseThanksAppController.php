@@ -24,7 +24,7 @@ class EnterpriseThanksAppController extends Controller
 	 */
     public function index()
     {
-    	$enterprisesThanks = EnterpriseThanks::with('enterprise')->get();
+    	$enterprisesThanks = EnterpriseThanks::where('id', '=', Auth::user()->id)->with('enterprise')->get();
     	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
     }
 
@@ -60,12 +60,25 @@ class EnterpriseThanksAppController extends Controller
     	$enterpriseThanks->enterprise_id = $request->enterprise_id;
         $enterpriseThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
         $enterpriseThanks->content = $request->content;
-    	$enterpriseThanks->status = 'Pending';
+    	
+        /**
+         *
+         * @todo generate unique URL for enterprise thanks
+         * 
+         */
+        
+        $enterprise = new EnterpriseAdminController();
+        $status = $enterprise->verifyStatus($request->enterprise_id);
+
+        if($status == 'Pending') {
+            $enterpriseThanks->status = 'Pending';
+        } else {
+            $enterpriseThanks->status = 'Approved';
+        }
 
     	if($enterpriseThanks->save()) {
 
-            $user = new UserAdminController();
-            $enterprise = new EnterpriseAdminController();
+            $user = new UserAdminController();            
 
             Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user->show(Auth::user()->id), $enterpriseThanks));
 
@@ -78,16 +91,17 @@ class EnterpriseThanksAppController extends Controller
 	 *
 	 * Show enterprise thanks data.
 	 * 
-	 * @param int $id
+	 * @param String $hash
 	 *
 	 * @return Response
 	 * 
 	 */
-    public function show($id)
+    public function show($hash)
     {
-    	return view('app.enterprise-thanks.profile', ['user' => EnterpriseThanks::findOrFail($id)]);
+        $enterpriseThanks = EnterpriseThanks::where('hash', '=', $hash)->with('enterprise')->get();
+        return view('app.enterprise-thanks.show')->with('enterpriseThanks', $enterpriseThanks);
     }
-
+  
     /**
 	 *
 	 * Edit enterprise thanks data.
