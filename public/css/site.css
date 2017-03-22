@@ -549,6 +549,27 @@ select.label-register {
     margin-top: 4%;   
 }
 
+.thanks-single-box {
+    background-color: #FFF;
+    height: 220px;
+    margin-top: 4%;
+    margin-bottom: 4%;
+    border-radius: 3px;
+    padding: 1%;
+}
+
+.whatsapp-button {
+    height: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.fb-share-button {
+    display: inline-block !important;
+}
+
 
 
 /**

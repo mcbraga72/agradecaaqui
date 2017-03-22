@@ -75,14 +75,15 @@
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
                     @foreach($enterpriseThanks as $enterpriseThank)
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-xl-2 col-xl-offset-1 thanks-box">
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-1 thanks-single-box">
                             <p class="thanks-title">{{ $enterpriseThank->enterprise->name }}</p>
                             <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>
                             <img class="user-photo"src="/{{ $enterpriseThank->enterprise->logo }}" alt="Agradecimento" title="Agradecimento" /><br><br>
                             <div class="fb-share-button" data-href="{{ URL::to('/') . '/app/agradecimento-empresa/' . $enterpriseThank->hash }}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartilhar</a></div>
+                            <a href="whatsapp://send?{{ $enterpriseThank->enterprise->name . " - " . strip_tags($enterpriseThank->content) }}" data-action="share/whatsapp/share" class="btn btn-success whatsapp-button" role="button"><i class="fa fa-whatsapp fa-fw icon-bold" aria-hidden="true"></i>Compartilhar</a>
                             <button type="button" class="btn social-network twitter-button"><i class="fa fa-2x fa-twitter" aria-hidden="true"></i></button>
                             <div class="g-plus" data-action="share"></div>
-                            <button type="button" class="btn social-network whatsapp-button"><i class="fa fa-2x fa-whatsapp" aria-hidden="true"></i></button>
+                            
                         </div>
                     @endforeach
                 </div>
