@@ -24,7 +24,8 @@ class AppController extends Controller
 	{
 		$data = array(
 			'enterprises' => Enterprise::all(),
-			'enterpriseThanks' => EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->take(9)->with('enterprise')->get()
+			'enterpriseThanks' => EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->take(9)->with('enterprise')->get(),
+            'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
 		);
         return view('app.index')->with('data', $data);    	
 	}

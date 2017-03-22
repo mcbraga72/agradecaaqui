@@ -49,7 +49,90 @@
         @yield('content')
         <footer class="nopadding">        
             <img src="{{ URL::to('/') }}/images/footer.png" width="100%" />
-        </footer>                                    
+        </footer>
+
+        <!-- User's Complete Register Modal -->
+        <div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-name" id="myModalLabel">Cadastro completo</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createUser">
+                            <div class="form-group">
+                                <label for="name">Nome:</label>
+                                <input type="text" name="name" class="form-control" v-model="newUser.name" />
+                                <span v-if="formErrors['name']" class="error text-danger">@{{ formErrors['name'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="surName">Sobrenome:</label>
+                                <input type="text" name="surName" class="form-control" v-model="newUser.surName" />
+                                <span v-if="formErrors['surName']" class="error text-danger">@{{ formErrors['surName'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Sexo:</label>
+                                <br>
+                                <label class="radio-inline">
+                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="masculino" v-model="gender">MASCULINO
+                                </label>
+                                <label class="radio-inline">    
+                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="feminino" v-model="gender">FEMININO
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="outros" v-model="gender">OUTROS
+                                </label>                                
+                                <span v-if="formErrors['gender']" class="error text-danger">@{{ formErrors['gender'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Data de nascimento:</label>
+                                <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" v-model="newUser.dateOfBirth" maxlength="10" onkeypress="formatDateOfBirth(this)" />
+                                <span v-if="formErrors['dateOfBirth']" class="error text-danger">@{{ formErrors['dateOfBirth'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="telephone">Celular:</label>
+                                <input type="text" id="telephone" name="telephone" class="form-control" v-model="newUser.telephone" maxlength="15" onkeypress="formatCellphone(this)" />
+                                <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">Estado:</label>
+                                <select id="stateCreate" name="state" class="form-control" v-model="newUser.state" />
+                                    <option value="">Selecione o estado</option>                                    
+                                </select>                                
+                                <span v-if="formErrors['state']" class="error text-danger">@{{ formErrors['state'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Cidade:</label>
+                                <select id="cityCreate" name="city" class="form-control" v-model="newUser.city" />
+                                    <option value="">Selecione a cidade</option>                                    
+                                </select>                                
+                                <span v-if="formErrors['city']" class="error text-danger">@{{ formErrors['city'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">E-mail:</label>
+                                <input type="email" name="email" class="form-control" v-model="newUser.email" />
+                                <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Senha:</label>
+                                <input type="password" name="password" class="form-control" v-model="newUser.password" />
+                                <span v-if="formErrors['password']" class="error text-danger">@{{ formErrors['password'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password-confirm">Confirmar Senha:</label>
+                                <input type="password" name="password-confirm" class="form-control" v-model="newUser.password" />
+                                <span v-if="formErrors['password-confirm']" class="error text-danger">@{{ formErrors['password-confirm'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="{{ URL::asset('js/site.js') }}"></script>        
