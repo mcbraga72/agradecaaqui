@@ -11,6 +11,8 @@
 	    });	    
 	</script>
 
+
+
 	<div class="container-fluid">
 		<div class="row">
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
@@ -205,6 +207,21 @@
 	    </div>
 	</div>
 
+	<!-- Complete Register Alert Modal -->
+	<div class="modal fade" id="completeRegisterAlert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-name" id="myModalLabel">Prezado cliente</h4>
+                </div>
+                <div class="modal-body">
+                	<h4 class="modal-name" id="myModalLabel">Preencha seu cadastro completo e concorra a prêmios!</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
 	<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
@@ -214,6 +231,12 @@
     <script src="/js/vendor/chosen/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="/js/app-enterprises.js"></script>
 	<script type="text/javascript">
+		@foreach($data['user'] as $user)
+			@if($user->registerType == 'standard')			
+					$('#completeRegisterAlert').modal('show');			
+			@endif
+		@endforeach
+
 		$('.chosen-select').chosen();
 
 		$(document).ready(function() {
