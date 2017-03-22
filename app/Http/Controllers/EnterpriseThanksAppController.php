@@ -63,7 +63,7 @@ class EnterpriseThanksAppController extends Controller
     	
         /**
          *
-         * @todo generate unique URL for enterprise thanks
+         * @todo store in database a unique URL for enterprise thanks
          * 
          */
         
