@@ -9,15 +9,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <meta id="csrf-token" name="csrf-token" content="{{{ csrf_token() }}}">
 
+        <meta property="og:title" content="Agradeça Aqui" />
+        <meta property="og:type" content="website" />
         @foreach($enterpriseThanks as $enterpriseThank)
-            <meta property="og:url"         content="{{ URL::to('/') . '/app/agradecimento-empresa/' . $enterpriseThank->hash }}" />
-        @endforeach
-        <meta property="og:type"        content="website" />
-        <meta property="og:title"       content="Agradeça Aqui" />
+            <meta property="og:url" content="{{ 'http://agradecaaqui.herokuapp.com/app/agradecimento-empresa/' . $enterpriseThank->hash }}" />
+        @endforeach        
+        <meta property="og:image" content="http://agradecaaqui.herokuapp.com/images/banner.png" />
         <meta property="og:description" content="Faça seu agradecimento em nossa plataforma!" />
-        <meta property="og:image"       content="/images/banner.png" />
         <meta property="og:site_name" content="Agradeça Aqui" />
-        {{--<meta property="fb:app_id" content="184558058632813" />--}}
+        <meta property="fb:app_id" content="752484724908381" />
 
         <title>@yield('title', 'Agradeça Aqui')</title>
         <link rel="shortcut icon" href="images/logo.png" />
