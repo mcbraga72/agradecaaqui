@@ -66,8 +66,7 @@ class AppController extends Controller
         $user->city = $request->city;
         $user->state = $request->state;
     	$user->email = $request->email;
-    	$user->password = bcrypt($request->password);
-
+    	
     	$user->save();
     	
     	return view('app.index');

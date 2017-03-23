@@ -10,9 +10,6 @@
 	        toolbar: 'undo redo | cut copy paste | styleselect | bold italic | link image | emoticons' 
 	    });	    
 	</script>
-
-
-
 	<div class="container-fluid">
 		<div class="row">
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
@@ -124,7 +121,7 @@
 		            </div>
 		            <div class="form-group">
 		                <div class="col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-		                    <button type="submit" class="btn pink-button">Pesquisar</button>	                    
+		                    <button type="submit" class="btn pink-button">Pesquisar</button>
 		                </div>
 		            </div>
 		        </form>
@@ -228,7 +225,6 @@
     </div>
 
 	<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
