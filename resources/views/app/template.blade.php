@@ -45,14 +45,9 @@
                     </li>    
                 </ul>
             </nav>
-        </header>        
-        @yield('content')
-        <footer class="nopadding">        
-            <img src="{{ URL::to('/') }}/images/footer.png" width="100%" />
-        </footer>
-
+        </header>
         <!-- User's Complete Register Modal -->
-        <div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="completeRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -132,6 +127,12 @@
                 </div>
             </div>
         </div>
+        @yield('content')
+        <footer class="nopadding">        
+            <img src="{{ URL::to('/') }}/images/footer.png" width="100%" />
+        </footer>
+
+        
 
         <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

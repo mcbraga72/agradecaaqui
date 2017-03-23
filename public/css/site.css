@@ -570,6 +570,17 @@ select.label-register {
     display: inline-block !important;
 }
 
+.complete-register {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 900 !important;
+    line-height: 1.2em;
+    font-size: 16px;
+    letter-spacing: -1px;
+    color: #F60059 !important;
+    text-align: center;
+}
+
+
 
 
 /**

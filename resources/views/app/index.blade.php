@@ -213,10 +213,15 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-name" id="myModalLabel">Prezado cliente</h4>
+                    <h4 class="modal-name about" id="myModalLabel">Prezado cliente</h4>
                 </div>
                 <div class="modal-body">
-                	<h4 class="modal-name" id="myModalLabel">Preencha seu cadastro completo e concorra a prêmios!</h4>
+                	<img class="logo" src="images/logo.png" />
+                	<h4 class="modal-name complete-register" id="myModalLabel">Preencha seu cadastro completo e concorra a prêmios!</h4><br>
+                </div>	
+                <div class="modal-footer">	
+                	<button type="button" id="openCompleteRegister" class="btn btn-success" data-dismiss="modal" aria-label="Close">Quero preencher<i class="fa fa-check fa-fw" aria-hidden="true"></i></button>
+                	<button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Agora não<i class="fa fa-times fa-fw" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
@@ -233,7 +238,7 @@
 	<script type="text/javascript">
 		@foreach($data['user'] as $user)
 			@if($user->registerType == 'standard')			
-					$('#completeRegisterAlert').modal('show');			
+				$('#completeRegisterAlert').modal('show');
 			@endif
 		@endforeach
 
@@ -256,6 +261,15 @@
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');
 	    	$('#peopleButton').removeClass('button-selected');
+	    });
+
+	    $('#openCompleteRegister').click(function() {
+	    	$('#completeRegisterAlert').modal('hide');
+	    	$('#completeRegister').modal('show');
+	    });
+
+	    $('#closeModal').click(function() {
+	    	$('#completeRegisterAlert').modal('hide');	    	
 	    });
 	</script>
 
