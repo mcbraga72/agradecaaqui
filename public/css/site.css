@@ -580,6 +580,13 @@ select.label-register {
     text-align: center;
 }
 
+.change-password {
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    padding-top: 5% !important;
+    padding-bottom: 5% !important;
+}
+
 
 
 

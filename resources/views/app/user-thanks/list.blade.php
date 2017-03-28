@@ -59,8 +59,7 @@
     </div>
 </div>
 
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script>
+<script type="text/javascript">
     $('div.alert').delay(3000).slideUp(300);
 </script>
 @endsection

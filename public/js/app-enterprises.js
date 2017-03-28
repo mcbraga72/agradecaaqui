@@ -3,12 +3,40 @@ Vue.config.devtools = true;
 
 new Vue({
 
-    el: '#enterprises',
+    el: '#user_area',
 
     data: {
-        categories: [],        
-        formErrors:{},        
-        newEnterprise : {'category_id': '','name': '','contact': '','email': '','telephone': '','address': ''}
+        categories: [],
+        formErrors:{},
+        formErrorsUpdate:{},
+        formErrorsCompleteRegister:{},
+        newEnterprise : {'category_id': '','name': '','contact': '','email': '','telephone': '','address': ''},
+        updatePassword : {'currentPassword':'','password':'','id':''},
+        fillUser: {
+            'name':'',
+            'surName':'',
+            'gender':'',
+            'dateOfBirth':'',
+            'telephone':'',
+            'city':'',
+            'state':'',
+            'country':'',
+            'email':'',
+            'education':'',
+            'profession':'',
+            'maritalStatus':'',
+            'religion':'',
+            'ethnicity':'',
+            'income':'',
+            'sport':'',
+            'soccerTeam':'',
+            'height':'',
+            'weight':'',
+            'hasCar':'',
+            'hasChildren':'',
+            'liveWith':'',
+            'pet':''
+        }
     },
 
     ready : function(){
@@ -32,7 +60,53 @@ new Vue({
             }, (response) => {
                 this.formErrors = response.data;
             });
-        }        
+        },
+
+        changePassword: function(id){
+            var input = this.updatePassword;
+            this.$http.post('/app/alterar-senha/'+id,input).then((response) => {
+                this.updatePassword = {'password':'','id':''};
+                $("#changePasswordModal").modal('hide');
+                toastr.success('Senha alterada com sucesso!', '', {timeOut: 5000});
+            }, (response) => {
+                this.formErrorsUpdate = response.data;
+            });
+        },
+
+        updateUser: function(id){
+            var input = this.fillUser;
+            this.$http.put('/app/usuarios/'+id,input).then((response) => {
+                this.fillUser = {
+                    'name':'',
+                    'surName':'',
+                    'gender':'',
+                    'dateOfBirth':'',
+                    'telephone':'',
+                    'city':'',
+                    'state':'',
+                    'country':'',
+                    'email':'',
+                    'education':'',
+                    'profession':'',
+                    'maritalStatus':'',
+                    'religion':'',
+                    'ethnicity':'',
+                    'income':'',
+                    'sport':'',
+                    'soccerTeam':'',
+                    'height':'',
+                    'weight':'',
+                    'hasCar':'',
+                    'hasChildren':'',
+                    'liveWith':'',
+                    'pet':'',
+                    'id':''};
+                $("#completeRegister").modal('hide');
+                toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
+            }, (response) => {
+                this.formErrorsCompleteRegister = response.data;
+            });
+        }
 
     }
 
