@@ -212,7 +212,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
     <script src="/js/vendor/chosen/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="/js/app-enterprises.js"></script>
+    <script type="text/javascript" src="/js/app-users.js"></script>
 	<script type="text/javascript">
 		$('.chosen-select').chosen();
 
