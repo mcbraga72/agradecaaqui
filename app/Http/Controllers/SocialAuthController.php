@@ -59,7 +59,7 @@ class SocialAuthController extends Controller
         auth()->login($user);
         return redirect()->to('/app');*/
 
-        $providerUser = Socialite::driver('facebook')->user();
+        $providerUser = Socialite::driver('google')->user();
         $user = $service->getUser($providerUser);
         
         if (!is_null($user)) {
