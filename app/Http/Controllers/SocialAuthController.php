@@ -24,13 +24,17 @@ class SocialAuthController extends Controller
      */
     public function callbackFacebook(SocialAccountService $service)
     {   
-        $user = $service->getUser(Socialite::driver('facebook')->user());
+        /*$user = $service->createOrGetUser(Socialite::driver('facebook')->user());
+        auth()->login($user);
+        return redirect()->to('/app');*/
 
-        if ($user) {
+        $providerUser = Socialite::driver('facebook')->user();
+        $user = $service->getUser($providerUser);
+        
+        if (!is_null($user)) {
             auth()->login($user);
             return redirect()->to('/app');
-        } else {    
-            $providerUser = Socialite::driver('facebook')->user();
+        } else {            
             return view('site.register')->with('providerUser', $providerUser);
         }
     }
@@ -51,14 +55,18 @@ class SocialAuthController extends Controller
      */
     public function callbackGoogle(SocialAccountService $service)
     {
-        $user = $service->getUser(Socialite::driver('google')->user());
+        /*$user = $service->createOrGetUser(Socialite::driver('google')->user());
+        auth()->login($user);
+        return redirect()->to('/app');*/
 
-        if ($user) {
+        $providerUser = Socialite::driver('facebook')->user();
+        $user = $service->getUser($providerUser);
+        
+        if (!is_null($user)) {
             auth()->login($user);
             return redirect()->to('/app');
-        } else {    
-            $providerUser = Socialite::driver('google')->user();
+        } else {            
             return view('site.register')->with('providerUser', $providerUser);
-        }        
+        }
     }
 }
