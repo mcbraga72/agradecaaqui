@@ -174,7 +174,7 @@
     <script type="text/javascript" src="//cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript" src="/js/vendor/chosen/chosen.jquery.js"></script>
-    <script type="text/javascript" src="/js/app-enterprises.js"></script>
+    <script type="text/javascript" src="/js/app-users.js"></script>
 
 	<script type="text/javascript">
 		@foreach($data['user'] as $user)
