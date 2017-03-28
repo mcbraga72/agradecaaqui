@@ -40,10 +40,14 @@
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
             "php artisan optimize"
+            "cp FacebookProvider.php vendor/laravel/socialite/src/Two/"
+            "cp AbstractProvider.php vendor/laravel/socialite/src/Two/"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
+            "cp FacebookProvider.php vendor/laravel/socialite/src/Two/"
+            "cp AbstractProvider.php vendor/laravel/socialite/src/Two/"
         ]
     },
     "config": {
