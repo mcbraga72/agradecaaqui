@@ -47,8 +47,8 @@ Route::get('/cadastro', 'SiteController@register');
 // User's Area
 
 Route::get('/app', 'AppController@dashboard');
-Route::get('/app/perfil', 'AppController@editProfile');
-Route::put('/app/perfil/{id}', 'AppController@updateProfile');
+Route::resource('/app/usuarios','UserAppController');
+Route::post('/app/alterar-senha/{id}', 'AppController@changePassword');
 Route::get('/app/agradecimentos', 'AppController@thanks');
 Route::post('/app/agradecimentos/busca', 'AppController@findThanks');
 Route::get('/app/empresa/criar', 'AppController@createEnterprise');
@@ -57,16 +57,14 @@ Route::get('/app/busca/empresa', 'AppController@findEnterprise');
 Route::get('/app/categorias', 'AppController@getCategories');
 
 Route::get('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@index');
-Route::get('/app/agradecimento-empresa/criar', 'EnterpriseThanksAppController@create');
 Route::post('/app/agradecimento-empresa', 'EnterpriseThanksAppController@store');
 Route::post('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@find');
+Route::get('/app/agradecimento-empresa/{hash}', ['as' => 'enterprise-thanks.show', 'uses' => 'EnterpriseThanksAppController@show']);
 Route::get('/app/agradecimento-empresa/{id}/editar', 'EnterpriseThanksAppController@edit');
 Route::put('/app/agradecimento-empresa/{id}', 'EnterpriseThanksAppController@update');
 Route::delete('/app/agradecimento-empresa/{id}', 'EnterpriseThanksAppController@destroy');
-Route::get('/app/agradecimento-empresa/{hash}', ['as' => 'enterprise-thanks.show', 'uses' => 'EnterpriseThanksAppController@show']);
 
 Route::get('/app/agradecimentos-usuarios', 'UserThanksAppController@index');
-Route::get('/app/agradecimento-usuario/criar', 'UserThanksAppController@create');
 Route::post('/app/agradecimento-usuario', 'UserThanksAppController@store');
 Route::post('/app/agradecimentos-usuarios', 'UserThanksAppController@find');
 Route::get('/app/agradecimento-usuario/{hash}', ['as' => 'user-thanks.show', 'uses' => 'UserThanksAppController@show']);

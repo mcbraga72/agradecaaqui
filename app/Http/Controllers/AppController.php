@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EnterpriseRequest;
+use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\CompleteUserRegisterRequest;
 use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use App\Models\User;
 use Auth;
 use DB;
+use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
+use Redirect;
 
 class AppController extends Controller
 {	
@@ -31,45 +35,26 @@ class AppController extends Controller
 	}
 
 	/**
-	 *
-	 * Edit user data.
-	 *
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
-	public function editProfile()
+     *
+     * Change user's password.
+     *
+     * @param Request $request
+     * @param int $id
+     *
+     * @return Response
+     * 
+     */
+    public function changePassword(Request $request, $id)
     {
-    	return view('app.user.profile', ['user' => User::findOrFail(Auth::user()->id)]);
-    }
+        $user = User::find($id);
 
-    /**
-	 *
-	 * Update user's data.
-	 *
-	 * @param Request $request
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function updateProfile(UserRequest $request, $id)
-    {
-    	$user = User::find($id);
-
-    	$user->name = $request->name;
-    	$user->surName = $request->surName;
-        $user->gender = $request->gender;
-        $user->dateOfBirth = $request->dateOfBirth;
-        $user->telephone = $request->telephone;
-        $user->city = $request->city;
-        $user->state = $request->state;
-    	$user->email = $request->email;
-    	
-    	$user->save();
-    	
-    	return view('app.index');
+        if (Hash::check($request->currentPassword, $user->password)) {        
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return Redirect::back()->withSuccess(['msg', 'Senha alterada com sucesso!']);
+        } else {
+            return Redirect::back()->withErrors(['msg', 'Não foi possível alterar sua senha!']);            
+        }
     }
 
 

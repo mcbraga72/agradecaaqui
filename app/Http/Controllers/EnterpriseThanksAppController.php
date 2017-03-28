@@ -30,19 +30,6 @@ class EnterpriseThanksAppController extends Controller
 
     /**
 	 *
-	 * Show the creation form
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function create()
-    {    	
-    	$enterprises = Enterprise::all();
-    	return view('app.enterprise-thanks.create')->with('enterprises', $enterprises);
-    }
-
-    /**
-	 *
 	 * Add new enterprise thanks to the database.
 	 *
 	 * @param Request $request
