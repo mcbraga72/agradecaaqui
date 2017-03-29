@@ -113,25 +113,25 @@
                 <h1 class="support">Comentários</h1>			
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('busca') }}">
 	            {{ csrf_field() }}
-					<div class="form-group{{ $errors->has('busca') ? ' has-error' : '' }}">
+					<div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
 		                <br><br>
 		                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3">
-		                    <input id="busca" type="busca" class="form-control" name="busca" value="{{ old('busca') }}" placeholder="Pesquisar por" required autofocus>
-		                    @if ($errors->has('busca'))
+		                    <input id="search" type="text" class="form-control" name="search" placeholder="Pesquisar por" required autofocus>
+		                    @if ($errors->has('search'))
 		                        <span class="help-block">
-		                            <strong>{{ $errors->first('busca') }}</strong>
+		                            <strong>{{ $errors->first('search') }}</strong>
 		                        </span>
 		                    @endif		                    
 		                </div>
 		            </div>
 		            <div class="form-group">
 		                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-2 col-xl-offset-5">
-		                    <button type="submit" class="btn pink-button">Pesquisar</button>
+		                    <button type="submit" class="btn pink-button search-button">Pesquisar</button>
 		                </div>
 		            </div>
 		        </form>
 	        	@forelse($data['enterpriseThanks'] as $enterpriseThank)
-	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-xl-2 col-xl-offset-1 thanks-box">
+	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">{{ $enterpriseThank->name }}</p>
 	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>

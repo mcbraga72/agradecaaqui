@@ -42,6 +42,7 @@ Route::get('/apoiadores', 'SiteController@support');
 Route::get('/entrar', 'SiteController@login');
 Route::post('/entrar', 'SiteController@loginWithData');
 Route::get('/cadastro', 'SiteController@register');
+Route::post('/busca', 'SiteController@findThanks');
 
 
 // User's Area
