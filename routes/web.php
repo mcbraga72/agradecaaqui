@@ -43,6 +43,7 @@ Route::get('/entrar', 'SiteController@login');
 Route::post('/entrar', 'SiteController@loginWithData');
 Route::get('/cadastro', 'SiteController@register');
 Route::post('/busca', 'SiteController@findThanks');
+Route::post('/cadastro/empresa', 'SiteController@storeEnterprise');
 
 
 // User's Area
@@ -52,7 +53,6 @@ Route::resource('/app/usuarios','UserAppController');
 Route::post('/app/alterar-senha/{id}', 'AppController@changePassword');
 Route::get('/app/agradecimentos', 'AppController@thanks');
 Route::post('/app/agradecimentos/busca', 'AppController@findThanks');
-Route::get('/app/empresa/criar', 'AppController@createEnterprise');
 Route::post('/app/empresa', 'AppController@storeEnterprise');
 Route::get('/app/busca/empresa', 'AppController@findEnterprise');
 Route::get('/app/categorias', 'AppController@getCategories');

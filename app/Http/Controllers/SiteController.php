@@ -113,4 +113,30 @@ class SiteController extends Controller
         
         return view('site.index')->with('data', $data);
     }
+
+    /**
+     *
+     * Store enterprise's data.
+     *
+     * @param EnterpriseRequest $request
+     *
+     * @return Response
+     * 
+     */
+    public function storeEnterprise(EnterpriseRequest $request)
+    {       
+        $enterprise = new Enterprise();
+
+        $enterprise->category_id = $request->category_id;
+        $enterprise->name = $request->name;
+        $enterprise->contact = $request->contact;
+        $enterprise->email = $request->email;
+        $enterprise->telephone = $request->telephone;
+        $enterprise->address = $request->address;       
+        $enterprise->status = 'Pending';
+
+        $enterprise->save();
+
+        return response()->json($enterprise);
+    }
 }
