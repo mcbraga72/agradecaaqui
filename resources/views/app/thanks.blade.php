@@ -33,9 +33,9 @@
 	        		<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-1 col-lg-3 col-lg-offset-1 thanks-box">
 	                    <p class="thanks-title">Meus agradecimentos</p>
 	                    @if($allThank->logo != 'people')
-	                    	<a href="{{ route('enterprise-thanks.show', $allThank->hash) }}"><img class="heart" src="images/heart.png" /></a>
+	                    	<a href="{{ route('enterprise-thanks.show', $allThank->hash) }}"><img class="heart" src="{{ asset('images/heart.png') }}" /></a>
 	                    @else
-	                    	<a href="{{ route('user-thanks.show', $allThank->hash) }}"><img class="heart" src="images/heart.png" /></a>
+	                    	<a href="{{ route('user-thanks.show', $allThank->hash) }}"><img class="heart" src="{{ asset('images/heart.png') }}" /></a>
 	                    @endif
 	                    <p class="thaks-content">{{ $allThank->content }}</p>
 	                    @if($allThank->logo != 'people')

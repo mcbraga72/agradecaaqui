@@ -133,9 +133,9 @@
 	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-xl-2 col-xl-offset-1 thanks-box">
 	                    <p class="thanks-title">{{ $allThank->name }}</p>
 	                    @if($allThank->logo != 'people')
-	                    	<a href="{{ route('enterprise-thanks.show', $allThank->hash) }}"><img class="heart" src="images/heart.png" /></a>
+	                    	<a href="{{ route('enterprise-thanks.show', $allThank->hash) }}"><img class="heart" src="{{ asset('images/heart.png') }}" /></a>
 	                    @else
-	                    	<a href="{{ route('user-thanks.show', $allThank->hash) }}"><img class="heart" src="images/heart.png" /></a>
+	                    	<a href="{{ route('user-thanks.show', $allThank->hash) }}"><img class="heart" src="{{ asset('images/heart.png') }}" /></a>
 	                    @endif
 	                    <p class="thaks-content">{{ strip_tags($allThank->content) }}</p>
 	                    @if($allThank->logo != 'people')

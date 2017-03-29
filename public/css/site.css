@@ -562,7 +562,18 @@ select.label-register {
     padding-bottom: 5% !important;
 }
 
+.show-thanks {
+    padding-top: 5% !important;
+    padding-bottom: 3% !important;
+}
 
+.thanks-box {
+    border-radius: 5px;
+}
+
+.thanks-single-box {
+    border-radius: 10px;
+}
 
 
 /**
