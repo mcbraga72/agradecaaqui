@@ -88,6 +88,29 @@ class EnterpriseAreaController extends Controller
     }
 
     /**
+     *
+     * Change enterprise's password.
+     *
+     * @param Request $request
+     * @param int $id
+     *
+     * @return Response
+     * 
+     */
+    public function changePassword(Request $request, $id)
+    {
+        $enterprise = Enterprise::find($id);
+
+        if (Hash::check($request->currentPassword, $enterprise->password)) {        
+            $enterprise->password = bcrypt($request->password);
+            $enterprise->save();
+            return Redirect::back()->withSuccess(['msg', 'Senha alterada com sucesso!']);
+        } else {
+            return Redirect::back()->withErrors(['msg', 'Não foi possível alterar sua senha!']);            
+        }
+    }
+
+    /**
 	 *
 	 * Shows all enterprise's thanks
      *
