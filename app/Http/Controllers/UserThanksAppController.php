@@ -70,17 +70,18 @@ class UserThanksAppController extends Controller
     }
 
     /**
-	 *
-	 * Show user thanks data.
-	 * 
-	 * @param int $id
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function show($id)
+     *
+     * Show user thanks data.
+     * 
+     * @param String $hash
+     *
+     * @return Response
+     * 
+     */
+    public function show($hash)
     {
-    	return view('app.user-thanks.profile', ['user' => UserThanks::findOrFail($id)]);
+        $userThanks = UserThanks::where('hash', '=', $hash)->with('user')->get();
+        return view('app.user-thanks.show')->with('userThanks', $userThanks);
     }
 
     /**

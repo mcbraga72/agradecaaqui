@@ -166,23 +166,6 @@ button.home {
     color: #FFF;    
 }
 
-.facebook-button {
-    background-color: #2F5893;    
-}
-
-.twitter-button {
-    background-color: #39A7E6;        
-}
-
-.google-button {
-    background-color: #DC4C33;    
-}
-
-.whatsapp-button {
-    background-color: #00A500;
-    margin-right: 20%;
-}
-
 .search {
     margin-left: 50%;
 }
@@ -558,14 +541,6 @@ select.label-register {
     padding: 1%;
 }
 
-.whatsapp-button {
-    height: 20px;
-    font-size: 11px;
-    font-weight: bold;
-    display: table;
-    vertical-align: middle;
-}
-
 .fb-share-button {
     display: inline-block !important;
 }
@@ -587,7 +562,18 @@ select.label-register {
     padding-bottom: 5% !important;
 }
 
+.show-thanks {
+    padding-top: 5% !important;
+    padding-bottom: 3% !important;
+}
 
+.thanks-box {
+    border-radius: 5px;
+}
+
+.thanks-single-box {
+    border-radius: 10px;
+}
 
 
 /**

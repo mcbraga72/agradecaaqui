@@ -26,10 +26,13 @@ class AppController extends Controller
 	 */
 	public function dashboard()
 	{
+        $usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName', 'content', DB::raw("'people'"), 'hash');
+        $allThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->union($usersThanks)->get();
+
 		$data = array(
 			'enterprises' => Enterprise::all(),
-			'enterpriseThanks' => EnterpriseThanks::where('user_id', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->take(9)->with('enterprise')->get(),
-            'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
+            'allThanks' => $allThanks,
+			'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
 		);
         return view('app.index')->with('data', $data);    	
 	}
@@ -67,10 +70,10 @@ class AppController extends Controller
 	 */
 	public function thanks()
     {
-    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"));
-		$enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->union($usersThanks)->get();
+    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"), 'hash');
+		$allThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->union($usersThanks)->get();
 		
-		return view('app.thanks')->with('enterprisesThanks', $enterprisesThanks);
+		return view('app.thanks')->with('allThanks', $allThanks);
     }
 
 	/**
@@ -131,12 +134,10 @@ class AppController extends Controller
      */
     public function findThanks(Request $request)
     {
-    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"));
-		$enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->union($usersThanks)->get();
+        $usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"))->where('content', 'LIKE', "%{$request->search}%");
+		$allThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->where('content', 'LIKE', "%{$request->search}%")->union($usersThanks)->get();
 		
-		return view('app.thanks')->with('enterprisesThanks', $enterprisesThanks);
-		
-        //$enterprisesThanks = EnterpriseThanks::where('content', 'LIKE', "%{$request->search}%")->get();        
+		return view('app.thanks')->with('allThanks', $allThanks);
     }
 
     /**
