@@ -13,8 +13,8 @@
         <!-- Open Graph data -->
         <meta property="og:title" content="Agradeça Aqui" />
         <meta property="og:type" content="website" />
-        @foreach($enterpriseThanks as $enterpriseThank)
-        <meta property="og:url" content="{{ 'http://agradecaaqui.herokuapp.com/app/agradecimento-empresa/' . $enterpriseThank->hash }}" />
+        @foreach($userThanks as $userThank)
+        <meta property="og:url" content="{{ 'http://agradecaaqui.herokuapp.com/app/agradecimento-empresa/' . $userThank->hash }}" />
         @endforeach        
         <meta property="og:image" content="http://agradecaaqui.herokuapp.com/images/banner.png" />
         <meta property="og:description" content="Faça seu agradecimento em nossa plataforma!" />
@@ -100,15 +100,15 @@
             </div>    
             <div class="row">
                 <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
-                    @foreach($enterpriseThanks as $enterpriseThank)
+                    @foreach($userThanks as $userThank)
                         <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-1 thanks-single-box">
-                            <p class="thanks-title">{{ $enterpriseThank->enterprise->name }}</p>
-                            <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>
-                            <img class="user-photo"src="/{{ $enterpriseThank->enterprise->logo }}" alt="Agradecimento" title="Agradecimento" /><br><br>
-                            <div class="fb-share-button" data-href="{{ URL::to('/') . '/app/agradecimento-empresa/' . $enterpriseThank->hash }}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartilhar</a></div>
+                            <p class="thanks-title">{{ $userThank->user->name }}</p>
+                            <p class="thaks-content">{{ strip_tags($userThank->content) }}</p>
+                            <img class="user-photo" src="{{ asset('images/people.png') }}" alt="Agradecimento" title="Agradecimento" /><br><br>
+                            <div class="fb-share-button" data-href="{{ URL::to('/') . '/app/agradecimento-empresa/' . $userThank->hash }}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartilhar</a></div>
                             <div class="g-plus" data-action="share" style="display: inline-block;"></div>
-                            <a href="whatsapp://send?{{ $enterpriseThank->enterprise->name . " - " . strip_tags($enterpriseThank->content) }}" data-action="share/whatsapp/share" class="btn btn-success" role="button" style="display: inline-block;"><i class="fa fa-whatsapp fa-fw icon-bold" aria-hidden="true"></i>Compartilhar</a>
-                            <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ $enterpriseThank->enterprise->name . " - " . strip_tags($enterpriseThank->content) }}">Tweet</a>                            
+                            <a href="whatsapp://send?{{ $userThank->user->name . " - " . strip_tags($userThank->content) }}" data-action="share/whatsapp/share" class="btn btn-success" role="button" style="display: inline-block;"><i class="fa fa-whatsapp fa-fw icon-bold" aria-hidden="true"></i>Compartilhar</a>
+                            <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ $userThank->user->name . " - " . strip_tags($userThank->content) }}">Tweet</a>                            
                         </div>
                     @endforeach
                 </div>
