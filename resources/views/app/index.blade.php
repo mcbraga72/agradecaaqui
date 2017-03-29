@@ -134,12 +134,12 @@
 	                    <p class="thanks-title">{{ $enterpriseThank->enterprise->name }}</p>
 	                    <a href="{{ route('enterprise-thanks.show', $enterpriseThank->hash) }}"><img class="heart" src="images/heart.png" /></a>
 	                    <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>
-	                    <img class="user-photo"src="{{ $enterpriseThank->enterprise->logo }}" alt="Agradecimento" title="Agradecimento" />	                    
+	                    <img class="user-photo"src="{{ $enterpriseThank->enterprise->logo }}" alt="Agradecimento" title="Agradecimento" />
 	                </div>    				
 				@empty
     				<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3 thanks-box">
 	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">Ainda não existem agradecimentos cadastrados em nossa plataforma.</p>
+	                    <p class="thaks-content">Você ainda não fez nenhum agradecimento em nossa plataforma.</p>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 show-more">
 						<img class="plus" src="images/plus.png" alt="Mostrar mais" title="Mostrar mais" />

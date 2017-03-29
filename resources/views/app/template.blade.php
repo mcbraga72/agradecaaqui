@@ -492,7 +492,7 @@
         </div>    
         @yield('content')
         <footer class="nopadding">        
-            <img src="{{ URL::to('/') }}/images/footer.png" width="100%" />
+            <img src="{{ URL::to('/') }}/images/footerUserArea.png" width="100%" />
         </footer>        
     </body>
 </html>
