@@ -19,11 +19,10 @@ class SiteController extends Controller
     {
         $data = array(
             'enterprises' => Enterprise::all(),
-            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->get()
-            //'enterpriseThanks' => EnterpriseThanks::orderBy('thanksDateTime', 'desc')->take(9)->get()
+            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->orderBy('thanksDateTime', 'desc')->take(10)->get()            
         );
         
-        return view('site.index')->with('data', $data);        
+        return view('site.index')->with('data', $data);
     }
 
     /**
@@ -93,6 +92,51 @@ class SiteController extends Controller
      */
     public function register()
     {
-        return view('site.register');  
+        return view('site.register');
+    }
+
+    /**
+     *
+     * Find enterprise and user thanks based in keywords given by the user.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     * 
+     */
+    public function findThanks(Request $request)
+    {
+        $data = array(
+            'enterprises' => Enterprise::all(),
+            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->where('content', 'LIKE', "%{$request->search}%")->orderBy('thanksDateTime', 'desc')->get()
+        );
+        
+        return view('site.index')->with('data', $data);
+    }
+
+    /**
+     *
+     * Store enterprise's data.
+     *
+     * @param EnterpriseRequest $request
+     *
+     * @return Response
+     * 
+     */
+    public function storeEnterprise(EnterpriseRequest $request)
+    {       
+        $enterprise = new Enterprise();
+
+        $enterprise->category_id = $request->category_id;
+        $enterprise->name = $request->name;
+        $enterprise->contact = $request->contact;
+        $enterprise->email = $request->email;
+        $enterprise->telephone = $request->telephone;
+        $enterprise->address = $request->address;       
+        $enterprise->status = 'Pending';
+
+        $enterprise->save();
+
+        return response()->json($enterprise);
     }
 }

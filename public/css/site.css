@@ -139,7 +139,7 @@ button.home {
 }
 
 .pink-button {
-    margin: 2% auto 20% auto;
+    margin: 2% auto 5% auto;
     background-color: #FF2257;
     font-family: Lato, Arial, Tahoma, sans-serif;
     font-weight: 600;
@@ -170,6 +170,11 @@ button.home {
     margin-left: 50%;
 }
 
+.search-button {
+    position: relative;
+    left: 46%;
+}
+
 .thanks {
     padding-top: 3% !important;
 }
@@ -178,7 +183,7 @@ button.home {
     background-color: #FFF;
     height: 220px;
     margin-top: 4%;
-    border-radius: 3px;
+    border-radius: 3px;    
 }
 
 .header-thanks {
@@ -407,6 +412,12 @@ h1.support {
     font-size: 16px;
     font-weight: bold;
 }
+
+.enterprise-register {
+    text-align: center;
+    padding-top: 3%;
+}
+
 
 
 
