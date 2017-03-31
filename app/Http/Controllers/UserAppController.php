@@ -6,8 +6,6 @@ use App\Http\Requests\CompleteUserRegisterRequest;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
-use Image;
-use Storage;
 
 class UserAppController extends Controller
 {    
@@ -119,22 +117,6 @@ class UserAppController extends Controller
     {
         $delete = User::findOrFail($id)->delete();        
         return response()->json($delete);
-    }
-
-    /**
-     *
-     * Get the user's current photo.
-     * 
-     * @param int $id
-     *
-     * @return Response
-     * 
-     */
-    public function getCurrentPhoto($id)
-    {
-        $user = User::find($id);
-        $currentPhoto = $user->photo;
-        return $currentPhoto;
     }
 
 }

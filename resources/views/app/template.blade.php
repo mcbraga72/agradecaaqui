@@ -220,13 +220,19 @@
                             <h4 class="modal-name" id="myModalLabel">Cadastro completo</h4>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateUser({{ Auth::user()->id }})">
+                            <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updatePhoto({{ Auth::user()->id }})">
                                 {{ csrf_field() }}
-                                <div class="form-group col-lg-12">                                    
-                                    <label for="photo" class="btn"><img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /></label>
-                                    <input type="file" name="photo" id="photo" accept="image/*" class="form-control" v-model="fillUser.photo">
-                                    <span v-if="formErrorsCompleteRegister['photo']" class="error text-danger">@{{ formErrorsCompleteRegister['photo'] }}</span>
-                                </div>
+                                <div class="form-group col-lg-12">
+                                    <div class="form-group col-lg-5">
+                                        <label for="photo" class="btn"><img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /></label>
+                                        <button type="submit" class="btn btn-primary" style="display: inline !important;">Atualizar Foto</button>
+                                        <input type="file" name="photo" id="photo" class="form-control" v-model="photo" style="display: inline !important;">
+                                        <span v-if="formErrorsCompleteRegister['photo']" class="error text-danger">@{{ formErrorsCompleteRegister['photo'] }}</span>                                        
+                                    </div>
+                                </div>                                
+                            </form>
+                            <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateUser({{ Auth::user()->id }})">
+                                {{ csrf_field() }}    
                                 <div class="form-group col-lg-4">
                                     <label for="name">Nome:</label>
                                     <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" v-model="fillUser.name" />
