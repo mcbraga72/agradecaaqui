@@ -134,8 +134,8 @@ class AppController extends Controller
      */
     public function findThanks(Request $request)
     {
-        $usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"))->where('content', 'LIKE', "%{$request->search}%");
-		$allThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->where('content', 'LIKE', "%{$request->search}%")->union($usersThanks)->get();
+        $usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"), 'hash')->where('content', 'LIKE', "%{$request->search}%");
+		$allThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->where('content', 'LIKE', "%{$request->search}%")->union($usersThanks)->get();
 		
 		return view('app.thanks')->with('allThanks', $allThanks);
     }
