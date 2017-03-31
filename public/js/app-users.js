@@ -7,11 +7,12 @@ new Vue({
 
     data: {
         categories: [],
-        formErrors:{},
-        formErrorsUpdate:{},
-        formErrorsCompleteRegister:{},
-        newEnterprise : {'category_id': '','name': '','contact': '','email': '','telephone': '','address': ''},
-        updatePassword : {'currentPassword':'','password':'','id':''},
+        formErrors: {},
+        formErrorsUpdate: {},
+        formErrorsCompleteRegister: {},
+        formPhoto: {},
+        newEnterprise: {'category_id': '','name': '','contact': '','email': '','telephone': '','address': ''},
+        updatePassword: {'currentPassword':'','password':'','id':''},
         fillUser: {
             'name':'',
             'surName':'',
@@ -36,7 +37,8 @@ new Vue({
             'hasChildren':'',
             'liveWith':'',
             'pet':''
-        }
+        },
+        photo: ''
     },
 
     ready : function(){
@@ -75,7 +77,7 @@ new Vue({
 
         updateUser: function(id){
             var input = this.fillUser;
-            this.$http.put('/app/usuarios/'+id,input).then((response) => {
+            this.$http.put('/app/usuario/'+id,input).then((response) => {
                 this.fillUser = {
                     'name':'',
                     'surName':'',
@@ -105,6 +107,21 @@ new Vue({
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, (response) => {
                 this.formErrorsCompleteRegister = response.data;
+            });
+        },
+
+        updatePhoto: function(id){            
+            var form = document.querySelector('#photo');
+            var file = form.files[0];
+            var data = new FormData();
+            var image = data.append("photo", file)
+            console.log(image);
+            this.$http.post('/app/alterar-avatar/'+id,data).then((response) => {            
+                this.photo = '';
+                $("#completeRegister").modal('hide');
+                toastr.success('Foto atualizada com sucesso!', '', {timeOut: 5000});
+            }, (response) => {
+                this.formPhoto = response.data;
             });
         }
 

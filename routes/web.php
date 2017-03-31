@@ -49,8 +49,9 @@ Route::post('/cadastro/empresa', 'SiteController@storeEnterprise');
 // User's Area
 
 Route::get('/app', 'AppController@dashboard');
-Route::resource('/app/usuarios','UserAppController');
+Route::resource('/app/usuario','UserAppController');
 Route::post('/app/alterar-senha/{id}', 'AppController@changePassword');
+Route::post('/app/alterar-avatar/{id}', 'AppController@updateAvatar');
 Route::get('/app/agradecimentos', 'AppController@thanks');
 Route::post('/app/agradecimentos/busca', 'AppController@findThanks');
 Route::post('/app/empresa', 'AppController@storeEnterprise');

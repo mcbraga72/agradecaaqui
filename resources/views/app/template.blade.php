@@ -35,12 +35,12 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img src="{{ Auth::user()->photo }}" /><span class="caret"></span>
+                                <img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /><span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="caret-dropdown">
                                         <a href="{{ url('/app/agradecimentos') }}" title="">Agradecimentos</a>                                        
-                                        <a href="{{ url('/app/perfil') }}">Perfil</a>
+                                        <a href="#" data-toggle="modal" data-target="#completeRegister">Perfil</a>
                                         <a href="#" data-toggle="modal" data-target="#changePasswordModal">Alterar senha</a>
                                         <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
@@ -220,8 +220,19 @@
                             <h4 class="modal-name" id="myModalLabel">Cadastro completo</h4>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateUser({{ Auth::user()->id }})">
+                            <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updatePhoto({{ Auth::user()->id }})">
                                 {{ csrf_field() }}
+                                <div class="form-group col-lg-12">
+                                    <div class="form-group col-lg-5">
+                                        <label for="photo" class="btn"><img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /></label>
+                                        <button type="submit" class="btn btn-primary" style="display: inline !important;">Atualizar Foto</button>
+                                        <input type="file" name="photo" id="photo" class="form-control" v-model="photo" style="display: inline !important;">
+                                        <span v-if="formErrorsCompleteRegister['photo']" class="error text-danger">@{{ formErrorsCompleteRegister['photo'] }}</span>                                        
+                                    </div>
+                                </div>                                
+                            </form>
+                            <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateUser({{ Auth::user()->id }})">
+                                {{ csrf_field() }}    
                                 <div class="form-group col-lg-4">
                                     <label for="name">Nome:</label>
                                     <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" v-model="fillUser.name" />

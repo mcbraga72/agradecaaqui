@@ -518,7 +518,7 @@ select.label-register {
  */
 
 .main-header {
-    padding-left: 10% !important;
+    padding-left: 91.5% !important;
     width: 100% !important;
 }
 
@@ -528,7 +528,7 @@ select.label-register {
 }
 
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
-    background-color: #FF2257 !important;
+    /*background-color: #FF2257 !important;*/
 }
 
 .caret-dropdown {

@@ -46,7 +46,7 @@ class CompleteUserRegisterRequest extends FormRequest
             'hasCar' => 'required',
             'hasChildren' => 'required',
             'liveWith' => 'required',
-            'pet' => 'required'            
+            'pet' => 'required'
         ];
     }
 }

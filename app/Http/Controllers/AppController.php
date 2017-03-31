@@ -15,6 +15,7 @@ use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
+use Image;
 use Redirect;
 
 class AppController extends Controller
@@ -60,8 +61,33 @@ class AppController extends Controller
         }
     }
 
+    /**
+     *
+     * Update user's avatar.
+     *
+     * @param Request $request
+     * @param int $id
+     *
+     * @return Response
+     * 
+     */
+    public function updateAvatar(Request $request, $id)
+    {
+        $user = User::find($id);
 
-	/**
+        if(!is_null($request->photo)) {
+            $photo = $request->file('photo');
+            $filename = Auth::user()->email . '.' . $photo->getClientOriginalExtension();
+            Image::make($photo)->resize(40, 40)->save(public_path() . '/images/photos/' . $filename);            
+            $user->photo = '/images/photos/' . $filename;
+            $user->save();            
+            return response()->json($user);
+        } else {
+            return Redirect::back()->withErrors(['msg', 'Não foi possível alterar a foto do perfil!']);
+        }        
+    }
+
+    /**
 	 *
 	 * Shows enterprise and user thanks.
 	 *
@@ -134,8 +160,8 @@ class AppController extends Controller
      */
     public function findThanks(Request $request)
     {
-        $usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"))->where('content', 'LIKE', "%{$request->search}%");
-		$allThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->where('content', 'LIKE', "%{$request->search}%")->union($usersThanks)->get();
+        $usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"), 'hash')->where('content', 'LIKE', "%{$request->search}%");
+		$allThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->where('content', 'LIKE', "%{$request->search}%")->union($usersThanks)->get();
 		
 		return view('app.thanks')->with('allThanks', $allThanks);
     }
