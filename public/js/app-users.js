@@ -13,6 +13,7 @@ new Vue({
         newEnterprise : {'category_id': '','name': '','contact': '','email': '','telephone': '','address': ''},
         updatePassword : {'currentPassword':'','password':'','id':''},
         fillUser: {
+            'photo':'',
             'name':'',
             'surName':'',
             'gender':'',
@@ -75,8 +76,9 @@ new Vue({
 
         updateUser: function(id){
             var input = this.fillUser;
-            this.$http.put('/app/usuarios/'+id,input).then((response) => {
+            this.$http.put('/app/usuario/'+id,input).then((response) => {
                 this.fillUser = {
+                    'photo':'',
                     'name':'',
                     'surName':'',
                     'gender':'',

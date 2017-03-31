@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CompleteUserRegisterRequest;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
+use Image;
+use Storage;
 
 class UserAppController extends Controller
 {    
@@ -38,17 +41,16 @@ class UserAppController extends Controller
 
     /**
      *
-     * Show user's data.
+     * Edit user's data.
      * 
      * @param int $id
      *
      * @return User $user
      * 
      */
-    public function show($id)
-    {
-        $user = User::findOrFail($id);
-        return $user;
+    public function edit($id)
+    {        
+        return view('app.profile')->with('user', Auth::user());
     }
 
     /**
@@ -63,7 +65,7 @@ class UserAppController extends Controller
 	 */
     public function update(CompleteUserRegisterRequest $request, $id)
     {
-    	$user = User::find($id);
+        $user = User::find($id);
 
     	$user->name = $request->name;
     	$user->surName = $request->surName;
@@ -80,17 +82,26 @@ class UserAppController extends Controller
         $user->religion = $request->religion;
         $user->ethnicity = $request->ethnicity;
         $user->income = $request->income;        
-        $user->sport = implode(" ", $request->sport);
+        $user->sport = implode(' ', $request->sport);
         $user->soccerTeam = $request->soccerTeam;
         $user->height = $request->height;
         $user->weight = $request->weight;
         $user->hasCar = $request->hasCar;
         $user->hasChildren = $request->hasChildren;
-        $user->liveWith = $request->liveWith;        
-        $user->pet = implode(" ", $request->pet);        
+        $user->liveWith = $request->liveWith;
+        $user->pet = implode(' ', $request->pet);
         $user->registerType = 'Complete';
+
+        if(!is_null($request->photo)) {
+            $currentPhoto = $this->getCurrentPhoto(Auth::user()->id);
+            Storage::delete($currentPhoto);
+            $photo = $request->file('photo');
+            $filename = Auth::user()->email . '.' . $photo->getClientOriginalExtension();
+            Image::make($photo)->resize(40, 40)->save(public_path() . '/images/photos/' . $filename);
+            $user->photo = '/images/photos/' . $filename;
+        }
     	
-    	$user->save();
+        $user->save();
     	
     	return response()->json($user);
     }
@@ -109,4 +120,21 @@ class UserAppController extends Controller
         $delete = User::findOrFail($id)->delete();        
         return response()->json($delete);
     }
+
+    /**
+     *
+     * Get the user's current photo.
+     * 
+     * @param int $id
+     *
+     * @return Response
+     * 
+     */
+    public function getCurrentPhoto($id)
+    {
+        $user = User::find($id);
+        $currentPhoto = $user->photo;
+        return $currentPhoto;
+    }
+
 }
