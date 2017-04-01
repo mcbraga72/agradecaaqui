@@ -9,6 +9,7 @@ use App\Models\EnterpriseThanks;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
+use Image;
 
 class EnterpriseAreaController extends Controller
 {
@@ -108,6 +109,32 @@ class EnterpriseAreaController extends Controller
         } else {
             return Redirect::back()->withErrors(['msg', 'Não foi possível alterar sua senha!']);            
         }
+    }
+
+    /**
+     *
+     * Update enterprise's logo.
+     *
+     * @param Request $request
+     * @param int $id
+     *
+     * @return Response
+     * 
+     */
+    public function updateLogo(Request $request, $id)
+    {
+        $enterprise = Enterprise::find($id);
+
+        if(!is_null($request->logo)) {
+            $logo = $request->file('logo');
+            $filename = str_replace(' ', '', Auth::guard('enterprises')->user()->name) . '.' . $logo->getClientOriginalExtension();
+            Image::make($logo)->resize(40, 40)->save(public_path() . '/images/enterprises/' . $filename);            
+            $enterprise->logo = '/images/enterprises/' . $filename;
+            $enterprise->save();            
+            return response()->json($enterprise);
+        } else {
+            return Redirect::back()->withErrors(['msg', 'Não foi possível alterar o logo da empresa!']);
+        }        
     }
 
     /**
