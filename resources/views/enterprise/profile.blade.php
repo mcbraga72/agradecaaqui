@@ -13,15 +13,6 @@
         if(telephone.value.length == 9)
             telephone.value = telephone.value + '-';  
     }
-
-    function formatCellphone(cellphone){ 
-        if(cellphone.value.length == 0)
-            cellphone.value = '(' + cellphone.value;
-        if(cellphone.value.length == 3)
-            cellphone.value = cellphone.value + ') ';
-        if(cellphone.value.length == 10)
-            cellphone.value = cellphone.value + '-';  
-    }
     
 </script>
 
@@ -29,6 +20,17 @@
     <div class="row">    
         <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
             <div class="">
+                <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateLogo({{ Auth::guard('enterprises')->user()->id }})">
+                    {{ csrf_field() }}
+                    <div class="form-group col-lg-12">
+                        <div class="form-group col-lg-8">
+                            <label for="logo" class="btn"><img src="{{ URL::to('/') . '/' . Auth::guard('enterprises')->user()->logo }}" style="border-radius: 50%; width: 80px; height: 80px;" /></label>
+                            <button type="submit" class="btn btn-primary" style="display: inline !important;">Atualizar Logo</button>
+                            <input type="file" name="logo" id="logo" class="form-control" v-model="logo" style="display: inline !important;">
+                            <span v-if="formErrors['logo']" class="error text-danger">@{{ formErrors['logo'] }}</span>                                        
+                        </div>
+                    </div>                                
+                </form>
                 <form class="form" role="form" method="POST" action="{{ url('/empresa/perfil/' . $enterprise->id) }}">
                     {{ csrf_field() }}
                     <div class="label-register enterprise-profile form-group{{ $errors->has('category_id') ? ' has-error' : '' }} col-md-8 col-lg-8">

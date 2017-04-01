@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <meta id="_token" name="_token" content="{{ csrf_token() }}">
+        <meta name="_token" content="{{ csrf_token() }}">
         <title>Agradeça Aqui | Admin</title>  
 
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -18,43 +18,41 @@
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>        
                 
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
-        <div id="user_area">
-            <!-- Change password Modal -->            
-            <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <h4 class="modal-name" id="myModalLabel">Alteração de senha</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" role="form" enctype="multipart/form-data" v-on:submit.prevent="changePassword({{ Auth::guard('enterprises')->user()->id }})">
-                                {{ csrf_field() }}
-                                <div class="form-group">
-                                    <label for="currentPassword">Senha atual:</label>
-                                    <input type="password" name="currentPassword" class="form-control" v-model="updatePassword.currentPassword" />
-                                    <span v-if="formErrorsUpdate['currentPassword']" class="error text-danger">@{{ formErrorsUpdate['currentPassword'] }}</span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password">Nova Senha:</label>
-                                    <input type="password" name="password" class="form-control" v-model="updatePassword.password" />
-                                    <span v-if="formErrorsUpdate['password']" class="error text-danger">@{{ formErrorsUpdate['password'] }}</span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="passwordConfirm">Confirmar Nova Senha:</label>
-                                    <input type="password" name="passwordConfirm" class="form-control" v-model="updatePassword.passwordConfirm" />
-                                    <span v-if="formErrorsUpdate['passwordConfirm']" class="error text-danger">@{{ formErrorsUpdate['passwordConfirm'] }}</span>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Enviar</button>
-                                </div>
-                            </form>
-                        </div>
+    <body class="hold-transition skin-blue sidebar-mini" id="enterprise_area">        
+        <!-- Change password Modal -->            
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-name" id="myModalLabel">Alteração de senha</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" role="form" enctype="multipart/form-data" v-on:submit.prevent="changePassword({{ Auth::guard('enterprises')->user()->id }})">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="currentPassword">Senha atual:</label>
+                                <input type="password" name="currentPassword" class="form-control" v-model="updatePassword.currentPassword" />
+                                <span v-if="formErrorsUpdate['currentPassword']" class="error text-danger">@{{ formErrorsUpdate['currentPassword'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Nova Senha:</label>
+                                <input type="password" name="password" class="form-control" v-model="updatePassword.password" />
+                                <span v-if="formErrorsUpdate['password']" class="error text-danger">@{{ formErrorsUpdate['password'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordConfirm">Confirmar Nova Senha:</label>
+                                <input type="password" name="passwordConfirm" class="form-control" v-model="updatePassword.passwordConfirm" />
+                                <span v-if="formErrorsUpdate['passwordConfirm']" class="error text-danger">@{{ formErrorsUpdate['passwordConfirm'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Enviar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>        
         <div class="wrapper">
             <header class="main-header">
                 <a href="#" class="logo"><span class="logo-lg"><b>Área da empresa</b> - Agradeça Aqui</span></a>
