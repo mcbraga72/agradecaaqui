@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EnterpriseRequest;
 use App\Http\Requests\HomeRequest;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
