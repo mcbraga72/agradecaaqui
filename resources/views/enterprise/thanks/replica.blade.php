@@ -11,7 +11,7 @@
                         <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                             <label for="client" class="col-md-4 control-label">Cliente</label>
                             <div class="col-md-6">
-                                <input readonly type="text" id="client" name="client" class="form-control" value="{{ $enterpriseThanks->user->name }}">                                
+                                <input readonly type="text" id="client" name="client" class="form-control" value="{{ $enterpriseThanks->user->name }}">
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
