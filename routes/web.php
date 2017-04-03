@@ -99,7 +99,8 @@ Route::get('/empresa/perfil/{id}/editar', 'EnterpriseAreaController@editProfile'
 Route::post('/empresa/perfil/{id}', 'EnterpriseAreaController@updateProfile');
 Route::post('/empresa/perfil/alterar-senha/{id}', 'EnterpriseAreaController@changePassword');
 Route::post('/empresa/alterar-logo/{id}', 'EnterpriseAreaController@updateLogo');
-Route::get('/empresa/agradecimentos', 'EnterpriseAreaController@thanks');
+Route::get('/empresa/agradecimentos/listar', 'EnterpriseAreaController@list');
+Route::get('/empresas/agradecimentos', ['as' => 'agradecimentos.index', 'uses' => 'EnterpriseAreaController@index']);
 Route::get('/empresa/agradecimento/{id}/responder', 'EnterpriseAreaController@replica');
 Route::post('/empresa/agradecimento/{id}', 'EnterpriseAreaController@storeReplica');
 Route::get('/empresa/relatorios', 'ReportEnterpriseController@index');

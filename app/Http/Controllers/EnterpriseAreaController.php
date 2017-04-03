@@ -6,6 +6,7 @@ use App\Http\Requests\EnterpriseRequest;
 use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
+use App\Models\User;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -22,6 +23,41 @@ class EnterpriseAreaController extends Controller
 	{
 		$this->middleware('enterprise.area');
 	}
+
+    /**
+     * Categories's list page
+     *
+     * @return Response
+     */
+    public function list()
+    {
+        return view('enterprise.thanks.list');
+    }
+
+    /**
+     * Index page
+     *
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->with(['Enterprise', 'User'])->latest()->paginate(5);
+        //$enterpriseThanks = EnterpriseThanks::latest()->paginate(5);
+        
+        $response = [
+            'pagination' => [
+                'total' => $enterpriseThanks->total(),
+                'per_page' => $enterpriseThanks->perPage(),
+                'current_page' => $enterpriseThanks->currentPage(),
+                'last_page' => $enterpriseThanks->lastPage(),
+                'from' => $enterpriseThanks->firstItem(),
+                'to' => $enterpriseThanks->lastItem()
+            ],
+            'data' => $enterpriseThanks
+        ];
+
+        return response()->json($response);
+    }
 
 	/**
 	 *

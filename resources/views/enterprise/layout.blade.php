@@ -82,7 +82,7 @@
                     <ul class="sidebar-menu">      
                         <li><a href="{{ url('/empresa/perfil/' . Auth::guard('enterprises')->user()->id . '/editar') }}"><i class="fa fa-user"></i><span>Perfil</span></a></li>
                         <li><a href="#" data-toggle="modal" data-target="#changePasswordModal"><i class="fa fa-key"></i><span>Alterar senha</span></a><li>
-                        <li><a href="{{ url('/empresa/agradecimentos') }}"><i class="fa fa-heart"></i><span>Agradecimentos</span></a></li>
+                        <li><a href="{{ url('/empresa/agradecimentos/listar') }}"><i class="fa fa-heart"></i><span>Agradecimentos</span></a></li>
                         <li><a href="{{ url('/empresa/relatorios') }}"><i class="fa fa-bar-chart"></i><span>Relatórios</span></a></li>
                         <li><a href="{{ url('/empresa/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i><span>Sair</span></a></li>
                     </ul>
