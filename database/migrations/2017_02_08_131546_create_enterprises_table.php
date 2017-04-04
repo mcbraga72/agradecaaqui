@@ -21,10 +21,11 @@ class CreateEnterprisesTable extends Migration
             $table->string('name')->unique();
             $table->string('contact');
             $table->string('email')->unique();
+            $table->string('site');
             $table->string('telephone');
             $table->string('address');
             $table->string('status');
-            $table->string('profile')->default('standard');
+            $table->string('profile')->default('Padrão');
             $table->string('logo')->nullable();
             $table->string('password');
             $table->rememberToken();
