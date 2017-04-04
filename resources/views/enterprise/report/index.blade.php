@@ -44,6 +44,7 @@ $(document).ready(function() {
 	        });
 	    });
 	});
+
 	$(function(){
 	    $.getJSON("/empresa/api/relatorios/cidade", function (result) {
 
@@ -82,6 +83,7 @@ $(document).ready(function() {
 	        });
 	    });
 	});
+
 	$(function(){
 	    $.getJSON("/empresa/api/relatorios/sexo", function (result) {
 
@@ -124,15 +126,96 @@ $(document).ready(function() {
 </script>
 <div class="row" style="margin-left: 1%;">
 	<p style="margin-top: 2%;">Relatórios</p>
-    <div class="col-md-5 col-md-offset-1">
-        <canvas id="stateThanksGraph" width="1000" height="400"></canvas>
+	<div class="col-md-11">
+		<div class="panel panel-default">
+	    	<div class="panel-heading">Selecione os filtros abaixo para gerar seu relatório personalizado.</div>
+	    	<div class="panel-body reports-fields">	    		
+	    		<select name="reportType" id="reportType" class="col-md-3" style="margin-right: 2%;">
+	    			<option value="">Selecione o tipo do relatório</option>
+	    			<option value="state">Estado</option>
+	    		</select>
+	    		<input type="text" name="start" id="start" placeholder="Data inicial" class="col-md-3" style="margin-right: 2%;">
+	    		<input type="text" name="end" id="end" placeholder="Data final" class="col-md-3" style="margin-right: 2%;">
+	    		<button type="button" class="btn btn-primary col-md-2" data-toggle="modal" data-target="#customReportModal" onclick="generateCustomReport()">Gerar Relatório</button>
+	    	</div>
+		</div>
+	</div>	
+    <div class="col-md-5 reports-box">
+        <canvas id="stateThanksGraph" width="800" height="300"></canvas>
     </div>
-    <div class="col-md-5 col-md-offset-1">
-        <canvas id="cityThanksGraph" width="1000" height="400"></canvas>
+    <div class="col-md-5 reports-box">
+        <canvas id="cityThanksGraph" width="800" height="300"></canvas>
     </div>
-    <div class="col-md-5 col-md-offset-1" style="margin-top: 5%;">
-        <canvas id="genderThanksGraph" width="1000" height="400"></canvas>
+    <div class="col-md-5 reports-box">
+        <canvas id="genderThanksGraph" width="800" height="300"></canvas>
     </div>
 </div>
+
+<!-- Custom Report Modal -->
+<script>
+
+	function generateCustomReport() {
+		var type = document.getElementById('reportType').value;
+		var start = document.getElementById('start').value;
+		var end = document.getElementById('end').value;
+
+	    $.getJSON("/empresa/api/relatorio/" + type + "/" + start + "/" + end, function (result) {
+
+	        var labels = [];
+	        var data = [];
+
+	        for (var i = 0; i < result.length; i++) {
+	            labels.push(result[i].state);
+	            data.push(result[i].thanks);	            
+	        }
+
+	        var buyerData = {
+	            labels : labels,
+	            datasets : [
+	                {
+	                    data : data,
+	                    backgroundColor: [
+                			'rgba(255, 99, 132, 0.2)',
+                			'rgba(54, 162, 235, 0.2)'
+			            ]
+	                }
+	            ]
+	        };
+	        
+	        var buyers = document.getElementById('customReportGraph').getContext('2d');
+	        
+	        var chartInstance = new Chart(buyers, {
+	            type: 'pie',
+	            data: buyerData,
+	            options: {
+	            	title: {
+					    display: true,
+					    text: 'Agradecimentos por estado'
+					}
+				}	            
+	        });
+	    });
+	}    
+
+</script>
+<div class="modal fade" id="customReportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-name" id="myModalLabel">Relatório Personalizado</h4>
+            </div>
+            <div class="modal-body">
+            	<div class="reports-box">
+					<canvas id="customReportGraph" width="80%" height="400"></canvas>
+				</div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+<script type="text/javascript" src="/js/enterprise-reports.js"></script>
 
 @endsection

@@ -107,6 +107,7 @@ Route::get('/empresa/relatorios', 'ReportEnterpriseController@index');
 Route::get('/empresa/api/relatorios/estado', 'ReportEnterpriseController@generateStateReport');
 Route::get('/empresa/api/relatorios/cidade', 'ReportEnterpriseController@generateCityReport');
 Route::get('/empresa/api/relatorios/sexo', 'ReportEnterpriseController@generateGenderReport');
+Route::get('/empresa/api/relatorio/{type}/{start}/{end}', 'ReportEnterpriseController@generateCustomReport');
 
 
 
