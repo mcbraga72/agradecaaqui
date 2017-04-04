@@ -16,12 +16,14 @@
                 <th><a href="#" @click="sort($event, 'enterprises.name')">Empresa</a></th>
                 <th>Contato</th>
                 <th>E-mail</th>
+                <th>Perfil</th>
                 <th colspan="2">Ação</th>
             </tr>
             <tr v-for="enterprise in enterprises | filterBy filterTerm | orderBy sortProperty sortDirection">
                 <td>@{{ enterprise.name }}</td>
                 <td>@{{ enterprise.contact }}</td>
                 <td>@{{ enterprise.email }}</td>
+                <td>@{{ enterprise.profile }}</td>
                 <td>    
                   <button class="btn btn-primary" @click.prevent="editEnterprise(enterprise)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
                   <button class="btn btn-danger" @click.prevent="deleteEnterprise(enterprise)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
