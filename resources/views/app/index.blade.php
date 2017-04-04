@@ -186,7 +186,7 @@
 
 	<script type="text/javascript">
 		@foreach($data['user'] as $user)
-			@if($user->registerType == 'standard')			
+			@if($user->registerType == 'Padrão')			
 				$('#completeRegisterAlert').modal('show');
 			@endif
 		@endforeach

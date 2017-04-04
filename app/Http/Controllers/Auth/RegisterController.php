@@ -81,7 +81,7 @@ class RegisterController extends Controller
         $user->city = $data['city'];
         $user->state = $data['state'];
         $user->password = bcrypt($data['password']);
-        $user->registerType = 'standard';
+        $user->registerType = 'Padrão';
 
         if($data['gender'] == 'masculino') {
             $user->photo = '/images/male.png';

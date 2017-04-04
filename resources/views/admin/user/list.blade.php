@@ -93,11 +93,13 @@
             <tr>
                 <th><a href="#" @click="sort($event, 'name')">Nome</a></th>
                 <th>E-mail</th>
+                <th>Tipo de cadastro</th>
                 <th colspan="2">Ação</th>
             </tr>
             <tr v-for="user in users | filterBy filterTerm | orderBy sortProperty sortDirection">
                 <td>@{{ user.name }}</td>
                 <td>@{{ user.email }}</td>
+                <td>@{{ user.registerType }}</td>
                 <td>    
                   <button class="btn btn-primary" @click.prevent="editUser(user)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
                   <button class="btn btn-danger" @click.prevent="deleteUser(user)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
