@@ -18,7 +18,7 @@ new Vue({
         formErrors:{},
         formErrorsUpdate:{},
         newAdmin : {'name':'','email':''},
-        fillAdmin : {'name':'','email':'','id':''}
+        fillAdmin : {'name':'','email':'','id':''},
         sortProperty: 'name',
         sortDirection: 1,
         filterTerm: ''
