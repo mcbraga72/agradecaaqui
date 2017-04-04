@@ -71,3 +71,29 @@ li.dropdown {
 .enterprise-profile {
 	text-align: left !important;
 }
+
+.reports-box {
+	background-color: #FFF;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	border: 1px solid #E5E5E5;
+	border-radius: 8px;
+	margin-right: 2%;
+	margin-left: 2%;
+	margin-top: 2%;
+}
+
+.reports-fields.select {
+	margin-right: 2%;
+}
+
+.panel-heading {
+	background-color: #3C8DBC !important;
+	color: #FFF !important;
+}
+
+.panel {
+	margin-left: 1%;
+	font-size: 14px !important;
+	font-weight: 600;
+}
