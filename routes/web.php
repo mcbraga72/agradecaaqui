@@ -151,3 +151,7 @@ Route::get('/admin/agradecimentos-usuarios/listar', 'UserThanksAdminController@l
 Route::resource('/admin/agradecimentos-usuarios','UserThanksAdminController');
 
 Route::get('/admin/relatorios', 'ReportAdminController@index');
+Route::get('/admin/api/relatorios/estado', 'ReportAdminController@generateStateReport');
+Route::get('/admin/api/relatorios/cidade', 'ReportAdminController@generateCityReport');
+Route::get('/admin/api/relatorios/sexo', 'ReportAdminController@generateGenderReport');
+Route::get('/admin/api/relatorio/{type}/{start}/{end}', 'ReportAdminController@generateCustomReport');

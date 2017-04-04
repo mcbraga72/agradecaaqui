@@ -14,8 +14,8 @@
         <link rel="stylesheet" href="{{ URL::to('/') }}/css/vendor/admin-lte.min.css">
         <link rel="stylesheet" href="{{ URL::to('/') }}/css/enterprise.css">
 
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>        
-        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>        
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
                 
     </head>
     <body class="hold-transition skin-blue sidebar-mini" id="enterprise_area">        
