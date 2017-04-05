@@ -89,6 +89,11 @@
                                 <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
                             </div>
                             <div class="form-group">
+                                <label for="name">Site:</label>
+                                <input type="text" name="site" class="form-control" v-model="newEnterprise.site" />
+                                <span v-if="formErrors['site']" class="error text-danger">@{{ formErrors['site'] }}</span>
+                            </div>
+                            <div class="form-group">
                                 <label for="telephone">Telefone:</label>
                                 <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" />
                                 <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
@@ -149,6 +154,11 @@
                                 <label for="name">E-mail:</label>
                                 <input type="email" name="email" class="form-control" v-model="fillEnterprise.email" />
                                 <span v-if="formErrorsUpdate['email']" class="error text-danger">@{{ formErrorsUpdate['email'] }}</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Site:</label>
+                                <input type="text" name="site" class="form-control" v-model="fillEnterprise.site" />
+                                <span v-if="formErrorsUpdate['site']" class="error text-danger">@{{ formErrorsUpdate['site'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="telephone">Telefone:</label>

@@ -91,6 +91,16 @@
                             </span>
                         @endif
                     </div>
+                    <div class="label-register enterprise-profile form-group{{ $errors->has('site') ? ' has-error' : '' }} col-md-8 col-lg-8">
+                        <br><br>
+                        <label for="site" class="col-md-8 control-label label-register">Site</label>                        
+                        <input id="site" type="text" class="form-control label-register" name="site" value="{{ $enterprise->site }}" required autofocus>
+                        @if ($errors->has('site'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('site') }}</strong>
+                            </span>
+                        @endif
+                    </div>
                     <div class="label-register enterprise-profile form-group{{ $errors->has('address') ? ' has-error' : '' }} col-md-8 col-lg-8">
                         <br><br>
                         <label for="address" class="col-md-8 control-label label-register">Endereço</label>                        

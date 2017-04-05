@@ -132,6 +132,7 @@ class SiteController extends Controller
         $enterprise->name = $request->name;
         $enterprise->contact = $request->contact;
         $enterprise->email = $request->email;
+        $enterprise->site = $request->site;
         $enterprise->telephone = $request->telephone;
         $enterprise->address = $request->address;       
         $enterprise->status = 'Pending';
