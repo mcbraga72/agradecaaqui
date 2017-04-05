@@ -249,10 +249,10 @@
                                         <option value="">Selecione o sexo</option>
                                         <option value="Feminino" @if(Auth::user()->gender === 'Feminino') selected @endif>Feminino</option>
                                         <option value="Masculino" @if(Auth::user()->gender === 'Masculino') selected @endif>Masculino</option>
-                                        <option value="Outros" @if(Auth::user()->gender === 'Outros') selected @endif>Outros</option>                                    
+                                        <option value="Outros" @if(Auth::user()->gender === 'Outros') selected @endif>Outros</option>
                                     </select>                                
                                     <span v-if="formErrorsCompleteRegister['gender']" class="error text-danger">@{{ formErrorsCompleteRegister['gender'] }}</span>
-                                </div>                            
+                                </div>
                                 <div class="form-group col-lg-4">
                                     <label for="dateOfBirth">Data de nascimento:</label>
                                     <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" value="{{ Auth::user()->dateOfBirth }}" v-model="fillUser.dateOfBirth" maxlength="10" onkeypress="formatDateOfBirth(this)" />

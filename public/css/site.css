@@ -418,6 +418,10 @@ h1.support {
     padding-top: 3%;
 }
 
+.alert {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
 
 
 
@@ -470,6 +474,25 @@ h2.login-register {
     padding-bottom: 5% !important;
 }
 
+a.forgot-password:hover {
+    color: #3b5998 !important;
+    text-decoration: none;
+    cursor: pointer !important;
+}
+
+a.forgot-password:visited {
+    color: #3b5998 !important;
+    text-decoration: none;
+    cursor: pointer !important;
+}
+
+a.forgot-password:active {
+    color: #3b5998 !important;
+    text-decoration: none;
+    cursor: pointer !important;
+}
+
+
 
 /**
  * 
@@ -484,16 +507,8 @@ h2.login-register {
     margin-right: 0.5% !important;    
 }
 
-.gender-label {
-    padding-bottom: 5%;
-}
-
-.gender-text {
-    font-size: 9px !important;
-}
-
 select.label-register {
-    margin-bottom: 8%;
+    margin-bottom: 5%;
 }
 
 .control-label {
@@ -509,6 +524,9 @@ select.label-register {
     margin-left: 17% !important;
 }
 
+.control-label {
+    margin-bottom: 2% !important;
+}
 
 
 /**

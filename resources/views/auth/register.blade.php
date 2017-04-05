@@ -76,7 +76,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
-
                         <div class="label-register form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-4 col-lg-4">
                         <br><br>
                         <label for="name" class="col-md-4 control-label label-register">NOME</label>                        
@@ -97,18 +96,14 @@
                             </span>
                         @endif
                     </div>
-                    <div class="label-register form-group{{ $errors->has('gender') ? ' has-error' : '' }} col-md-10 col-lg-10">
-                        <br><br>
-                        <p style="display: block;" class="col-md-1 control-label">SEXO</p><br><br>
-                        <label class="radio-inline col-lg-3">
-                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="masculino" {{-- @if(in_array("masculino", old('gender'))) checked @endif --}} required>MASCULINO
-                        </label>
-                        <label class="radio-inline col-lg-3">    
-                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="feminino" {{-- @if(in_array("feminino", old('gender'))) checked @endif --}} required>FEMININO
-                        </label>
-                        <label class="radio-inline col-lg-3">
-                            <input type="radio" class="form-control radio-register" id="gender" name="gender" value="outros" {{-- @if(in_array("outros", old('gender'))) checked @endif --}} required>OUTROS
-                        </label>
+                    <div class="form-group col-lg-6">
+                        <label for="gender">Sexo:</label>
+                        <select id="gender" name="gender" class="form-control label-register" />
+                            <option value="">Selecione o sexo</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Outros">Outros</option>
+                        </select>                                
                         @if ($errors->has('gender'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('gender') }}</strong>
@@ -180,10 +175,8 @@
                     </div>
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Senha</label>
-
                             <div class="col-md-4">
                                 <input id="password" type="password" class="form-control" name="password" required>
-
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -191,20 +184,15 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="password-confirm" class="col-md-4 control-label">Confirmar Senha</label>
-
                             <div class="col-md-4">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
+                                <button type="submit" class="btn btn-primary">Register</button>
                             </div>
                         </div>
                     </form>

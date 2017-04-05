@@ -43,6 +43,7 @@ Route::get('/entrar', 'SiteController@login');
 Route::post('/entrar', 'SiteController@loginWithData');
 Route::get('/cadastro', 'SiteController@register');
 Route::post('/busca', 'SiteController@findThanks');
+Route::post('/mensagem', 'SiteController@sendMessageContactForm');
 Route::post('/cadastro/empresa', 'SiteController@storeEnterprise');
 
 

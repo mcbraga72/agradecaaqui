@@ -9,23 +9,31 @@
         </div>
     </div>
     <div class="row">
+        @if (!empty($success))
+            <div class="alert alert-success col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+                {{ $success }}
+            </div>    
+        @endif
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 nopadding">
             <section class="contato">
 	    		<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3 contact-form">
 	    			<h1>Fale conosco</h1>
-	                <h2>Para falar conosco, envie uma mensagem utilizando o formul&aacute;rio abaixo.</h2>		            
-		            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3 contact-form">
-			        	<input type="text" id="nome" placeholder="Digite seu nome">
-			    	</div>			        	
-			        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3 contact-form">
-			        	<input type="email" id="email" placeholder="Digite seu e-mail">
-			    	</div>			        	
-			        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3 contact-form">
-			        	<textarea id="assunto" placeholder="Digite sua mensagem"></textarea>
-			    	</div>			        	
-			        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3 contact-form">
-			        	<input type="submit" id="enviar" value="Enviar mensagem">
-			    	</div>
+	                <h2>Para falar conosco, envie uma mensagem utilizando o formul&aacute;rio abaixo.</h2>
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/mensagem') }}">
+                        {{ csrf_field() }}
+    		            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3 contact-form">
+    			        	<input type="text" name="name" id="name" placeholder="Digite seu nome">
+    			    	</div>			        	
+    			        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3 contact-form">
+    			        	<input type="email" name="email" id="email" placeholder="Digite seu e-mail">
+    			    	</div>			        	
+    			        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3 contact-form">
+    			        	<textarea name="message" id="message" placeholder="Digite sua mensagem"></textarea>
+    			    	</div>			        	
+    			        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3 contact-form">
+    			        	<input type="submit" id="enviar" value="Enviar mensagem">
+    			    	</div>
+                    </form>    
 				</div>    
 			</section>				
         </div>
@@ -89,6 +97,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('div.alert').delay(3000).slideUp(300);
+</script>
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
