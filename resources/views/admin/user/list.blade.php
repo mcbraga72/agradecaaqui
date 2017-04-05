@@ -152,16 +152,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="gender">Sexo:</label>
-                                <br>
-                                <label class="radio-inline">
-                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="masculino" v-model="gender">MASCULINO
-                                </label>
-                                <label class="radio-inline">    
-                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="feminino" v-model="gender">FEMININO
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="outros" v-model="gender">OUTROS
-                                </label>                                
+                                <select id="gender" name="gender" class="form-control" v-model="newUser.gender" />
+                                    <option value="">Selecione o sexo</option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Outros">Outros</option>
+                                </select>                                
                                 <span v-if="formErrors['gender']" class="error text-danger">@{{ formErrors['gender'] }}</span>
                             </div>
                             <div class="form-group">
@@ -234,16 +230,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="gender">Sexo:</label>
-                                <br>
-                                <label class="radio-inline">
-                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="masculino" v-model="fillUser.gender" v-bind:checked="{ fillUser.gender == 'masculino' }">MASCULINO
-                                </label>
-                                <label class="radio-inline">    
-                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="feminino" v-model="fillUser.gender" v-bind:checked="{ fillUser.gender == 'feminino' }">FEMININO
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" class="form-control radio-register" id="gender" name="gender" value="outros" v-model="fillUser.gender" v-bind:checked="{ fillUser.gender == 'outros' }">OUTROS
-                                </label>                                
+                                <select id="gender" name="gender" class="form-control" v-model="fillUser.gender" />
+                                    <option value="">Selecione o sexo</option>
+                                    <option value="Feminino">Feminino</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Outros">Outros</option>
+                                </select>                                
                                 <span v-if="formErrorsUpdate['gender']" class="error text-danger">@{{ formErrorsUpdate['gender'] }}</span>
                             </div>
                             <div class="form-group">

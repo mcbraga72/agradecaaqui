@@ -83,7 +83,7 @@ class RegisterController extends Controller
         $user->password = bcrypt($data['password']);
         $user->registerType = 'Padrão';
 
-        if($data['gender'] == 'masculino') {
+        if($data['gender'] == 'Masculino') {
             $user->photo = '/images/male.png';
         } else {
             $user->photo = '/images/female.png';
