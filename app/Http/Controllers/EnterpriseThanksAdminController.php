@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EnterpriseThanksRequest;
+use App\Mail\EnterpriseThanksMail;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
-use App\Http\Requests\EnterpriseThanksRequest;
 use Auth;
 use Illuminate\Http\Request;
+use Mail;
 
 class EnterpriseThanksAdminController extends Controller
 {
@@ -161,5 +163,27 @@ class EnterpriseThanksAdminController extends Controller
         $data = Enterprise::select('name')->where('name',"LIKE","%{$request->input('query')}%")->get();
         return response()->json($data);
      
-    }    
+    }
+
+    /**
+     *
+     * Approve enterprise's thanks.
+     * 
+     * @param int $id
+     *
+     */
+    public static function approveEnterpriseThanks($enterpriseId)
+    {
+        $enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', $enterpriseId)->get();
+        
+        foreach ($enterpriseThanks as $enterpriseThank) {
+            $enterpriseThank->status = 'Approved';
+            
+            if($enterpriseThank->save()) {
+                $user = new UserAdminController();
+                $enterprise = new EnterpriseAdminController();
+                Mail::to($enterprise->show($enterpriseId)->email)->send(new EnterpriseThanksMail($user->show($enterpriseThank->user_id), $enterpriseThank));
+            }    
+        }
+    }
 }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\EnterpriseThanksAdminController;
+use App\Http\Requests\EnterpriseRequest;
 use App\Models\Category;
 use App\Models\Enterprise;
-use App\Http\Requests\EnterpriseRequest;
 use Illuminate\Http\Request;
 
 class EnterpriseAdminController extends Controller
@@ -138,5 +139,23 @@ class EnterpriseAdminController extends Controller
         return $status;
     }
 
-    
+    /**
+     *
+     * Approve enterprise's register.
+     * 
+     * @param int $id
+     *
+     * @return Response
+     * 
+     */
+    public function approveRegister($id)
+    {
+        $enterprise = Enterprise::findOrFail($id);
+        $enterprise->status = 'Approved';
+        $enterprise->save();
+
+        EnterpriseThanksAdminController::approveEnterpriseThanks($id);
+
+        return response()->json($enterprise);
+    }
 }
