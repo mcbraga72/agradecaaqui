@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactFormRequest;
 use App\Http\Requests\EnterpriseRequest;
 use App\Http\Requests\HomeRequest;
+use App\Mail\SiteContactFormMail;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use DB;
 use Illuminate\Http\Request;
+use Mail;
 
 class SiteController extends Controller
 {
@@ -113,6 +116,21 @@ class SiteController extends Controller
         );
         
         return view('site.index')->with('data', $data);
+    }
+
+    /**
+     *
+     * Send messages from site contact form.
+     *
+     * @param EnterpriseRequest $request
+     *
+     * @return Response
+     * 
+     */
+    public function sendMessageContactForm(ContactFormRequest $request)
+    {
+        Mail::to('mcbraga@hotmail.com')->send(new SiteContactFormMail($request->name, $request->email, $request->message));
+        return view('site.contact')->withSuccess('E-mail enviado com sucesso!');
     }
 
     /**
