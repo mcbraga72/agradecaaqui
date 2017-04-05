@@ -9,7 +9,7 @@
     </div>
     <div class="row login-register">
         <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
-            <img class="logo-login" src="images/logo.png" />
+            <img class="logo-login" src="{{ URL::to('/') }}/images/logo.png" />
             <h1 class="text-center login-register">Faça login para enviar seu agradecimento</h1>            
         </div>
     </div>
@@ -70,8 +70,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 ">
-                            <button type="submit" class="btn pink-button">ENTRAR</button>
-                            <a class="btn btn-link" href="{{ url('/password/reset') }}">Esqueci minha senha?</a>
+                            <button type="submit" class="btn pink-button">Entrar</button>
+                            <a class="btn btn-link forgot-password" href="{{ url('/password/reset') }}">Esqueci minha senha?</a>
                         </div>
                     </div>
                 </form>
@@ -92,7 +92,7 @@
         </div>
         <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 register-button">
             <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-                <a href="{{ url('/cadastro') }}"><button type="button" class="btn pink-button">CADASTRE-SE</button></a>
+                <a href="{{ url('/cadastro') }}"><button type="button" class="btn pink-button">Cadastre-se</button></a>
             </div>    
         </div>
         <br><br><br>        

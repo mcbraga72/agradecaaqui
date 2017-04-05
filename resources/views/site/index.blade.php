@@ -56,7 +56,7 @@
 		                    </div>
 		                </div>
 		                <div class="form-group">
-		                    <input type="submit" class="btn pink-button" value="ENVIAR">		                    
+		                    <input type="submit" class="btn pink-button" value="Enviar">
 		                </div>
 	                </div>
 	            </form>
@@ -99,9 +99,7 @@
 		                    </div>
 		                </div>
 		                <div class="form-group">
-		                    <div class="col-md-6 col-md-offset-4">
-		                    	<button type="submit" class="btn pink-button">ENVIAR</button>
-		                    </div>
+		                    <input type="submit" class="btn pink-button" value="Enviar">
 		                </div>
 	                </div>
 	            </form>                
