@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <meta name="_token" content="{{ csrf_token() }}">
-        <title>Agradeça Aqui | Admin</title>  
+        <title>Agradeça Aqui | Área de Empresa</title>  
 
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -55,26 +55,9 @@
         </div>        
         <div class="wrapper">
             <header class="main-header">
-                <a href="#" class="logo"><span class="logo-lg"><b>Área da empresa</b> - Agradeça Aqui</span></a>
+                <a href="" class="logo"><span class="logo-lg"><img src="{{ URL::to('/') }}/images/logo.png" width="30px" height="30px" style="margin-right: 5%;" /><b>Agradeça Aqui</b></span></a>
                 <nav class="navbar navbar-static-top">
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"><span class="sr-only">Toggle navigation</span></a>
-                    <ul class="nav navbar-nav navbar-right" style="z-index: 1000000">
-                    @if (Auth::guard('enterprises')->guest())
-                        <li><a href="{{ url('/empresa/entrar') }}">Login</a></li>                        
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::guard('enterprises')->user()->name }} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>                                    
-                                    <a href="{{ url('/empresa/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
-                                    <form id="logout-form" action="{{ url('/empresa/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
-                    </ul>
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="color: #FFF;"><span class="sr-only">Toggle navigation</span></a>
                 </nav>
             </header>
             <aside class="main-sidebar">
@@ -90,11 +73,7 @@
             </aside>
             <div class="content-wrapper">
                 <section class="content-header">
-                    <h1>Painel Administrativo</h1>
-                    <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
-                    </ol>
+                    <h1>Área da empresa</h1>                    
                 </section>
                 <div class="row">
                     <div class="col-md-12 col-lg-12">

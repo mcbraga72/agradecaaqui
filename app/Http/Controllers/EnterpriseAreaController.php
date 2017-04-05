@@ -114,7 +114,8 @@ class EnterpriseAreaController extends Controller
     	$enterprise->category_id = $request->category_id;
     	$enterprise->name = $request->name;
     	$enterprise->contact = $request->contact;
-    	$enterprise->email = $request->email;        
+    	$enterprise->email = $request->email;
+        $enterprise->site = $request->site;
     	$enterprise->telephone = $request->telephone;
     	$enterprise->address = $request->address;        
 
