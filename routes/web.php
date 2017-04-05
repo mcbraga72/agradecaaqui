@@ -150,6 +150,8 @@ Route::resource('/admin/usuarios','UserAdminController');
 Route::get('/admin/agradecimentos-usuarios/listar', 'UserThanksAdminController@list');
 Route::resource('/admin/agradecimentos-usuarios','UserThanksAdminController');
 
+Route::put('/admin/empresa/aprovar/{id}', 'EnterpriseAdminController@approveRegister');
+
 Route::get('/admin/relatorios', 'ReportAdminController@index');
 Route::get('/admin/api/relatorios/estado', 'ReportAdminController@generateStateReport');
 Route::get('/admin/api/relatorios/cidade', 'ReportAdminController@generateCityReport');

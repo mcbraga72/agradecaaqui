@@ -107,6 +107,13 @@ new Vue({
             });
         },
 
+        approveEnterpriseRegister: function(enterprise){
+            this.$http.put('/admin/empresa/aprovar/'+enterprise.id).then((response) => {
+                this.changePage(this.pagination.current_page);
+                toastr.success('Cadastro ativado com sucesso!', '', {timeOut: 5000});
+            });
+        },
+
         changePage: function (page) {
             this.pagination.current_page = page;
             this.getEnterprises(page);
