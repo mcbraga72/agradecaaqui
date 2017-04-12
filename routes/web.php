@@ -90,8 +90,6 @@ Route::get('/empresa/trocar-senha', 'EnterpriseAuth\ForgotPasswordController@sho
 Route::post('/empresa/alterar-senha', 'EnterpriseAuth\ResetPasswordController@reset');
 Route::get('/empresa/alterar-senha/{token}', 'EnterpriseAuth\ResetPasswordController@showResetForm');
 
-Route::get('/empresa/cadastro', 'EnterpriseAuth\RegisterController@showRegistrationForm');
-Route::post('/empresa/cadastro', 'EnterpriseAuth\RegisterController@register');
 
 // 2 - Enterprise Admin
 
@@ -129,8 +127,6 @@ Route::get('/admin/trocar-senha', 'AdminAuth\ForgotPasswordController@showLinkRe
 Route::post('/admin/alterar-senha', 'AdminAuth\ResetPasswordController@reset');
 Route::get('/admin/alterar-senha/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
 
-Route::get('/admin/cadastro', 'AdminAuth\RegisterController@showRegistrationForm');
-Route::post('/admin/cadastro', 'AdminAuth\RegisterController@register');
 
 // 2 - Admin
 

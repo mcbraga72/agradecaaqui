@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\EnterpriseAuth;
 
 use App\Models\User;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -86,6 +87,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-            return view('enterprise.register');
+        $categories = Category::all();
+        return view('enterprise-auth.register')->with('categories', $categories);
     }
 }
