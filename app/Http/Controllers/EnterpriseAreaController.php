@@ -25,7 +25,7 @@ class EnterpriseAreaController extends Controller
 	}
 
     /**
-     * Categories's list page
+     * Thnak's list page
      *
      * @return Response
      */
@@ -42,7 +42,6 @@ class EnterpriseAreaController extends Controller
     public function index(Request $request)
     {
         $enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->with(['Enterprise', 'User'])->latest()->paginate(5);
-        //$enterpriseThanks = EnterpriseThanks::latest()->paginate(5);
         
         $response = [
             'pagination' => [
@@ -214,13 +213,21 @@ class EnterpriseAreaController extends Controller
     public function storeReplica(Request $request, $id)
     {
         $enterpriseThank = EnterpriseThanks::findOrFail($id);
-        //dd($enterpriseThank);
         $enterpriseThank->replica = $request->replica;
-
         $enterpriseThank->save();
 
         $enterpriseThanks = EnterpriseThanks::where('enterprise_id', Auth::guard('enterprises')->user()->id)->paginate(10);
         return view('enterprise.thanks.list')->with('enterpriseThanks', $enterpriseThanks);
+    }
+
+    /**
+     * Premium Access Page
+     *
+     * @return Response
+     */
+    public function premium()
+    {
+        return view('enterprise.premium');
     }
     
 }
