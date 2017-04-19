@@ -180,6 +180,18 @@
                         }).change();
                     
                     });
+
+                    $.getJSON('{{ URL::to('/') }}/paises.json', function (data) {
+
+                        var items = [];
+                        var options = '<option value="">Selecione o país</option>';
+
+                        $.each(data, function (key, val) {
+                            options += '<option value="' + val.nome + '" @if(Auth::user()->country === "' + val.nome + '") selected @endif>' + val.nome + '</option>';
+                        });
+                        $("#country").html(options);
+
+                    });    
                 
                 });
 
