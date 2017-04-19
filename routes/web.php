@@ -102,6 +102,7 @@ Route::get('/empresa/agradecimentos/listar', 'EnterpriseAreaController@list');
 Route::get('/empresas/agradecimentos', ['as' => 'agradecimentos.index', 'uses' => 'EnterpriseAreaController@index']);
 Route::get('/empresa/agradecimento/{id}/responder', 'EnterpriseAreaController@replica');
 Route::post('/empresa/agradecimento/{id}', 'EnterpriseAreaController@storeReplica');
+Route::get('/empresa/premium', 'EnterpriseAreaController@premium');
 
 // 3 - Reports
 

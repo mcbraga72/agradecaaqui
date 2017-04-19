@@ -88,12 +88,50 @@ li.dropdown {
 }
 
 .panel-heading {
-	background-color: #3C8DBC !important;
-	color: #FFF !important;
+	font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 600 !important;
+    line-height: 1.2em;
+    font-size: 15px;
+    background-color: #3C8DBC !important;
+	color: #FFF !important;		
 }
 
 .panel {
 	margin-left: 1%;
 	font-size: 14px !important;
 	font-weight: 600;
+}
+
+.premium-access {
+	font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 600 !important;
+    line-height: 1.2em;
+    font-size: 35px;
+    background-color: #3C8DBC !important;
+	color: #FFF !important;
+	text-align: center;
+	height: 80px !important;	
+	text-transform: uppercase;
+}
+
+.button-premium {
+	width: 300px;
+	height: 50px;
+	border-radius: 5px;
+	font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 600 !important;
+    line-height: 1.2em;
+    font-size: 21px;
+    letter-spacing: 1px;
+    color: #FFF !important;
+    margin-left: 40%;
+    margin-top: 4%;
+}
+
+.advantages {
+	width: 33%;
+	text-align: center;
+	margin-top: 5%;
+	margin-bottom: 3%;
+	color: #3C8DBC !important;
 }
