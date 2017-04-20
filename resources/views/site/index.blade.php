@@ -7,7 +7,7 @@
 	        selector:'textarea',
 	        plugins: 'emoticons',
 	        menubar: '',
-	        toolbar: 'undo redo | cut copy paste | styleselect | bold italic | link image | emoticons' 
+	        toolbar: 'undo redo | cut copy paste | removeformat | bold italic | link image | emoticons' 
 	    });	    
 	</script>
 	<div class="container-fluid">
