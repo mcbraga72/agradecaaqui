@@ -40,13 +40,13 @@
     </div>
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 enterprise-register">
-        	<span>Sua empresa ainda não está cadastrada? Clique <a href="#" data-toggle="modal" data-target="#createEnterprise">aqui</a> para cadastrá-la!</span>
+        	<span>Sua empresa ainda não está cadastrada? Clique <a href="#" data-toggle="modal" data-target="#enterprise">aqui</a> para cadastrá-la!</span>
         </div>
     </div>
 </div>
 
 <!-- Create Enterprise Modal -->
-<div class="modal fade" id="createEnterprise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="enterprise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -78,6 +78,11 @@
                         <label for="name">E-mail:</label>
                         <input type="email" name="email" class="form-control" v-model="newEnterprise.email" />
                         <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="site">Site:</label>
+                        <input type="text" name="site" class="form-control" v-model="newEnterprise.site" />
+                        <span v-if="formErrors['site']" class="error text-danger">@{{ formErrors['site'] }}</span>
                     </div>
                     <div class="form-group">
                         <label for="telephone">Telefone:</label>

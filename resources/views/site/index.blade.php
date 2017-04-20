@@ -149,68 +149,64 @@
     </div>
 
 	<!-- Create Enterprise Modal -->
-	<div class="container administrators" id="enterprises">
-	    <div class="modal fade" id="createEnterprise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	        <div class="modal-dialog" role="document">
-	            <div class="modal-content">
-	                <div class="modal-header">
-	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-	                    <h4 class="modal-name" id="myModalLabel">Cadastro de empresas</h4>
-	                </div>
-	                <div class="modal-body">
-	                    <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createEnterprise">
-	                    	<input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
-	                        <div class="form-group">
-	                            <label for="category_id">Categoria:</label>
-	                            <select name="category_id" class="form-control" v-model="newEnterprise.category_id" />
-	                                <option value="">Selecione a categoria</option>
-	                                <option value="@{{ category.id }}" v-for="category in categories.data">@{{ category.name }}</option>
-	                            </select>
-	                            <span v-if="formErrors['category_id']" class="error text-danger">@{{ formErrors['category_id'] }}</span>
-	                        </div>
-	                        <div class="form-group">
-	                            <label for="name">Nome:</label>
-	                            <input type="text" name="name" class="form-control" v-model="newEnterprise.name" />
-	                            <span v-if="formErrors['name']" class="error text-danger">@{{ formErrors['name'] }}</span>
-	                        </div>
-	                        <div class="form-group">
-	                            <label for="contact">Contato:</label>
-	                            <input type="text" name="contact" class="form-control" v-model="newEnterprise.contact" />
-	                            <span v-if="formErrors['contact']" class="error text-danger">@{{ formErrors['contact'] }}</span>
-	                        </div>
-	                        <div class="form-group">
-	                            <label for="name">E-mail:</label>
-	                            <input type="email" name="email" class="form-control" v-model="newEnterprise.email" />
-	                            <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
-	                        </div>
-	                        <div class="form-group">
-	                            <label for="telephone">Telefone:</label>
-	                            <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" />
-	                            <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
-	                        </div>
-	                        <div class="form-group">
-	                            <label for="address">Endereço:</label>
-	                            <input type="text" name="address" class="form-control" v-model="newEnterprise.address" />
-	                            <span v-if="formErrors['address']" class="error text-danger">@{{ formErrors['address'] }}</span>
-	                        </div>
-	                        <div class="form-group">
-	                            <button type="submit" class="btn btn-success">Enviar</button>
-	                        </div>
-	                    </form>
-	                </div>
+	<div class="modal fade" id="enterprise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+	                <h4 class="modal-name" id="myModalLabel">Cadastro de empresas</h4>
+	            </div>
+	            <div class="modal-body">
+	                <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createEnterprise">
+	                    <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
+	                    <div class="form-group">
+	                        <label for="category_id">Categoria:</label>
+	                        <select name="category_id" class="form-control" v-model="newEnterprise.category_id" />
+	                            <option value="">Selecione a categoria</option>
+	                            <option value="@{{ category.id }}" v-for="category in categories.data">@{{ category.name }}</option>
+	                        </select>
+	                        <span v-if="formErrors['category_id']" class="error text-danger">@{{ formErrors['category_id'] }}</span>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="name">Nome:</label>
+	                        <input type="text" name="name" class="form-control" v-model="newEnterprise.name" />
+	                        <span v-if="formErrors['name']" class="error text-danger">@{{ formErrors['name'] }}</span>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="contact">Contato:</label>
+	                        <input type="text" name="contact" class="form-control" v-model="newEnterprise.contact" />
+	                        <span v-if="formErrors['contact']" class="error text-danger">@{{ formErrors['contact'] }}</span>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="email">E-mail:</label>
+	                        <input type="email" name="email" class="form-control" v-model="newEnterprise.email" />
+	                        <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="site">Site:</label>
+	                        <input type="text" name="site" class="form-control" v-model="newEnterprise.site" />
+	                        <span v-if="formErrors['site']" class="error text-danger">@{{ formErrors['site'] }}</span>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="telephone">Telefone:</label>
+	                        <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" />
+	                        <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="address">Endereço:</label>
+	                        <input type="text" name="address" class="form-control" v-model="newEnterprise.address" />
+	                        <span v-if="formErrors['address']" class="error text-danger">@{{ formErrors['address'] }}</span>
+	                    </div>
+	                    <div class="form-group">
+	                        <button type="submit" class="btn btn-success">Enviar</button>
+	                    </div>
+	                </form>
 	            </div>
 	        </div>
 	    </div>
 	</div>    
 
-	<link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
-    <script src="/js/vendor/chosen/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript" src="/js/app-users.js"></script>
+	<script type="text/javascript" src="/js/vendor/chosen/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$('.chosen-select').chosen();
 
@@ -233,5 +229,10 @@
 	    	$('#peopleButton').removeClass('button-selected');
 	    });
 	</script>
+	
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>    
+    <script type="text/javascript" src="/js/site-enterprises.js"></script>	
 
 @endsection

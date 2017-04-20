@@ -24,7 +24,7 @@
         <script type="text/javascript" src="/js/site.js"></script>
 
     </head>
-    <body>
+    <body id="createEnterprise">
         <header class="main-header">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">

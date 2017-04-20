@@ -540,7 +540,7 @@
 
     AbstractChosen.default_single_text = "Select an Option";
 
-    AbstractChosen.default_no_result_text = "Empresa não cadastrada. Clique <a id='enterpriseRegister' data-toggle='modal' data-target='#createEnterprise' href='#'>aqui</a> para cadastrar.";
+    AbstractChosen.default_no_result_text = "Empresa não cadastrada. Clique <a id='enterpriseRegister' data-toggle='modal' data-target='#enterprise' href='#'>aqui</a> para cadastrar.";
 
     return AbstractChosen;
 
