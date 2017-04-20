@@ -48,16 +48,15 @@ class AppController extends Controller
      * @return Response
      * 
      */
-    public function changePassword(Request $request, $id)
+    public function changePassword(Request $request)
     {
-        $user = User::find($id);
-
-        if (Hash::check($request->currentPassword, $user->password)) {        
+        if (Hash::check($request->currentPassword, Auth::user()->password)) {
+            $user = User::find(Auth::user()->id);
             $user->password = bcrypt($request->password);
             $user->save();
-            return Redirect::back()->withSuccess(['msg', 'Senha alterada com sucesso!']);
+            return response()->json(['status' => true]);
         } else {
-            return Redirect::back()->withErrors(['msg', 'Não foi possível alterar sua senha!']);            
+            return response()->json(['status' => false]);
         }
     }
 
