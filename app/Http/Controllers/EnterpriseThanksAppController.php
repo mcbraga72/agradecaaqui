@@ -48,12 +48,6 @@ class EnterpriseThanksAppController extends Controller
         $enterpriseThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
         $enterpriseThanks->content = $request->content;
     	
-        /**
-         *
-         * @todo store in database a unique URL for enterprise thanks
-         * 
-         */
-        
         $enterprise = new EnterpriseAdminController();
         $status = $enterprise->verifyStatus($request->enterprise_id);
 
@@ -64,6 +58,9 @@ class EnterpriseThanksAppController extends Controller
         }
 
     	if($enterpriseThanks->save()) {
+
+            $enterpriseThanks->hash = bcrypt($enterpriseThanks->id);
+            $enterpriseThanks->save();
 
             $user = new UserAdminController();            
 
