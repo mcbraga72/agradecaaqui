@@ -30,8 +30,24 @@
 			            <div class="form-home form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">
 			                <br><br>			                
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    <label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>
-			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control chosen-select">
+			                	@if (!empty($success))
+					                <div class="alert alert-success">
+					                    {{ $success }}
+					                </div>
+					            @endif
+					            @if (!empty($error))
+					                <div class="alert alert-danger">
+					                    {{ $error }}
+					                </div>
+					            @endif
+			                    <label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>			                    
+			                    {{--<select id="enterprise_id" name="enterprise_id" class="selectpicker form-control chosen-select" v-model="enterprise_id">
+		                            <option value="">Selecione a empresa</option>
+		                            <option value="@{{ enterprise.id }}" v-for="enterprise in enterprises.data">@{{ enterprise.name }}</option>
+	                        	</select>
+	                        	<span v-if="formThanksErrors['enterprise_id']" class="error text-danger">@{{ formThanksErrors['enterprise_id'] }}</span>--}}
+
+			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control chosen-select" v-model="enterprise_id">
                                     <option value="">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise) 
                                     <option value="{{ $enterprise->id }}">{{ $enterprise->name }}</option>           
@@ -157,7 +173,7 @@
 	                <h4 class="modal-name" id="myModalLabel">Cadastro de empresas</h4>
 	            </div>
 	            <div class="modal-body">
-	                <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createEnterprise">
+	                <form method="POST" enctype="multipart/form-data" action="/cadastro/empresa">
 	                    <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 	                    <div class="form-group">
 	                        <label for="category_id">Categoria:</label>
@@ -228,6 +244,8 @@
 	    	$('#enterprisesButton').addClass('button-selected');
 	    	$('#peopleButton').removeClass('button-selected');
 	    });
+
+	    $('div.alert').delay(6000).slideUp(300);
 	</script>
 	
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

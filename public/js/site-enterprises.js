@@ -6,13 +6,17 @@ new Vue({
     el: '#createEnterprise',
 
     data: {
+        enterprises: [],
         categories: [],
+        formThanksErrors:{},
         formErrors:{},
-        newEnterprise : {'category_id': '','name': '','contact': '','email': '','site': '','telephone': '','address': ''}        
+        newEnterprise : {'category_id': '','name': '','contact': '','email': '','site': '','telephone': '','address': ''},
+        enterprise_id: '',
     },
 
     ready : function(){
         this.getCategories();
+        this.getEnterprises();
     },
 
     methods : {
@@ -22,12 +26,19 @@ new Vue({
                 this.$set('categories', response.data);
             });
         },
+
+        getEnterprises: function(){
+            this.$http.get('/app/empresas').then((response) => {
+                this.$set('enterprises', response.data);
+            });
+        },
         
         createEnterprise: function(){
             var input = this.newEnterprise;
             this.$http.post('/cadastro/empresa',input).then((response) => {
                 this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': ''};
-                $("#createEnterprise").modal('hide');
+                $("#enterprise").modal('hide');
+                this.getEnterprises();
                 toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
             }, (response) => {
                 this.formErrors = response.data;

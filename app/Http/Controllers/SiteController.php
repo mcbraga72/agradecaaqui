@@ -155,8 +155,17 @@ class SiteController extends Controller
         $enterprise->address = $request->address;       
         $enterprise->status = 'Pending';
 
-        $enterprise->save();
-
-        return response()->json($enterprise);
+        if($enterprise->save()) {
+            //return response()->json($enterprise);
+            $data = array(
+                'enterprises' => Enterprise::all(),
+                'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->orderBy('thanksDateTime', 'desc')->take(10)->get(),
+                'success' => 'Caso você faça um agradecimento para a empresa que acabou de cadastrar, seu agradecimento ficará pendente até que o cadastro seja aprovado pela nossa equipe.'
+            );            
+            return redirect('/')->with('data', $data);
+        } else {
+            $data = array('error' => 'Não foi possível realizar o cadastro. Por favor, tente novamente.');
+            return redirect('/')->withErrors($data);
+        }    
     }
 }
