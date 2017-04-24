@@ -73,11 +73,15 @@ class UserThanksAdminController extends Controller
         $userThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
         $userThanks->content = $request->content;
         
-        $userThanks->save();
+        if($userThanks->save()) {
 
-        /*$user = new UserAdminController();
+            $userThanks->hash = bcrypt($userThanks->id);
+            $userThanks->save();
 
-        Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));*/
+            /*$user = new UserAdminController();
+
+            Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));*/
+        }    
 
         return response()->json($userThanks);
     }

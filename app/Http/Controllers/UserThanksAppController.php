@@ -60,6 +60,9 @@ class UserThanksAppController extends Controller
     	
     	if($userThanks->save()) {
 
+            $userThanks->hash = bcrypt($userThanks->id);
+            $userThanks->save();
+            
             $user = new UserAdminController();
 
             Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));
