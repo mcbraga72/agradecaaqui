@@ -24,7 +24,7 @@ class CreateUserThanksTable extends Migration
             $table->text('content');
             $table->text('replica')->nullable();
             $table->text('rejoinder')->nullable();
-            $table->string('hash');
+            $table->string('hash')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
