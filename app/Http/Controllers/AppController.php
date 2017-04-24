@@ -182,4 +182,22 @@ class AppController extends Controller
         
         return response()->json($response);        
     }
+
+    /**
+     *
+     * Get all enterprises.
+     *
+     * @return Response
+     * 
+     */
+    public function getEnterprises()
+    {
+        $enterprises = Enterprise::all();
+
+        $response = [        
+            'data' => $enterprises
+        ];
+        
+        return response()->json($response);        
+    }
 }

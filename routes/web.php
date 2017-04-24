@@ -58,6 +58,7 @@ Route::post('/app/agradecimentos/busca', 'AppController@findThanks');
 Route::post('/app/empresa', 'AppController@storeEnterprise');
 Route::get('/app/busca/empresa', 'AppController@findEnterprise');
 Route::get('/app/categorias', 'AppController@getCategories');
+Route::get('/app/empresas', 'AppController@getEnterprises');
 
 Route::get('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@index');
 Route::post('/app/agradecimento-empresa', 'EnterpriseThanksAppController@store');
