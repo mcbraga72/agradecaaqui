@@ -29,7 +29,7 @@ class SocialAuthController extends Controller
         return redirect()->to('/app');*/
 
         $providerUser = Socialite::driver('facebook')->user();
-        $user = $service->getUser($providerUser);
+        $user = $service->getUser($providerUser, 'facebook');
         
         if (!is_null($user)) {
             auth()->login($user);
@@ -60,7 +60,7 @@ class SocialAuthController extends Controller
         return redirect()->to('/app');*/
 
         $providerUser = Socialite::driver('google')->user();
-        $user = $service->getUser($providerUser);
+        $user = $service->getUser($providerUser, 'google');
         
         if (!is_null($user)) {
             auth()->login($user);
