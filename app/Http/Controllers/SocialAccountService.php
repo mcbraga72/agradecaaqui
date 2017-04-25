@@ -42,12 +42,13 @@ class SocialAccountService
 
     }
 
-    public function getUser(ProviderUser $providerUser)
+    public function getUser(ProviderUser $providerUser, $provider)
     {
         $user = User::whereEmail($providerUser->getEmail())->first();
+        dd($user);
 
         if ($user) {            
-            $account = SocialAccount::whereProvider('facebook')
+            $account = SocialAccount::whereProvider($provider)
             ->whereProviderUserId($providerUser->getId())
             ->first();
             if(!$account) {
@@ -55,7 +56,9 @@ class SocialAccountService
                 $account->save();
             }    
             return $user;
-        }    
+        } else {
+            return null;
+        }   
     }
 
     public function createSocialAccount(User $user, $id)
