@@ -45,8 +45,7 @@ class SocialAccountService
     public function getUser(ProviderUser $providerUser, $provider)
     {
         $user = User::whereEmail($providerUser->getEmail())->first();
-        dd($user);
-
+        
         if ($user) {            
             $account = SocialAccount::whereProvider($provider)
             ->whereProviderUserId($providerUser->getId())
