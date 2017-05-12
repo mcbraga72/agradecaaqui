@@ -117,7 +117,7 @@
         <footer class="nopadding">        
             <img src="{{ URL::to('/') }}/images/footerUserArea.png" width="100%" />
         </footer>                                    
-        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="{{ URL::asset('js/site.js') }}"></script>                
     </body>
