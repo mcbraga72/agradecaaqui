@@ -11,40 +11,10 @@
 |
 */
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/home', 'HomeController@index');
-*/
+// User's Auth
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-
-
-// Social login
- 
-Route::get('/redirect/facebook', 'SocialAuthController@redirectFacebook');
-Route::get('/callback/facebook', 'SocialAuthController@callbackFacebook');
-
-Route::get('/redirect/google', 'SocialAuthController@redirectGoogle');
-Route::get('/callback/google', 'SocialAuthController@callbackGoogle');
-
-
-// Site 
-
-Route::get('/', 'SiteController@index');
-Route::get('/quem-somos', 'SiteController@about');
-Route::get('/contato', 'SiteController@contact');
-Route::get('/apoiadores', 'SiteController@support');
-Route::get('/entrar', 'SiteController@login');
-Route::post('/entrar', 'SiteController@loginWithData');
-Route::get('/cadastro', 'SiteController@register');
-Route::post('/busca', 'SiteController@findThanks');
-Route::post('/mensagem', 'SiteController@sendMessageContactForm');
-Route::post('/cadastro/empresa', 'SiteController@storeEnterprise');
 
 
 // Admin's Auth
@@ -73,6 +43,32 @@ Route::post('/empresa/alterar-senha', 'EnterpriseAuth\ResetPasswordController@re
 Route::get('/empresa/alterar-senha/{token}', 'EnterpriseAuth\ResetPasswordController@showResetForm');
 
 
+
+// Social login
+ 
+Route::get('/redirect/facebook', 'SocialAuthController@redirectFacebook');
+Route::get('/callback/facebook', 'SocialAuthController@callbackFacebook');
+
+Route::get('/redirect/google', 'SocialAuthController@redirectGoogle');
+Route::get('/callback/google', 'SocialAuthController@callbackGoogle');
+
+
+// Site 
+
+Route::get('/', 'SiteController@index');
+Route::get('/quem-somos', 'SiteController@about');
+Route::get('/contato', 'SiteController@contact');
+Route::get('/apoiadores', 'SiteController@support');
+Route::get('/entrar', 'SiteController@login');
+Route::post('/entrar', 'SiteController@loginWithData');
+Route::get('/cadastro', 'SiteController@register');
+Route::post('/busca', 'SiteController@findThanks');
+Route::post('/mensagem', 'SiteController@sendMessageContactForm');
+Route::post('/cadastro/empresa', 'SiteController@storeEnterprise');
+
+
+
+// Protected URLs
 
 Route::group(['middleware' => 'auth'], function () {
 
