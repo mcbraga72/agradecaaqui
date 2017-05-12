@@ -38,13 +38,13 @@ return [
     'facebook' => [
         'client_id' => '752484724908381',
         'client_secret' => '6b7ce7175f6cb452e816ede8c117e091',
-        'redirect' => 'http://agradecaaqui.herokuapp.com/callback/facebook',
+        'redirect' => 'http://agradecaaqui.site/callback/facebook',
     ],
 
     'google' => [
         'client_id' => '30447960984-nvemu4fjpm86f0jkkpfpudat393ctj55.apps.googleusercontent.com',
         'client_secret' => 'yMRtskRzKlrsVFDMWPcwR8HW',
-        'redirect' => 'http://agradecaaqui.herokuapp.com/callback/google',
+        'redirect' => 'http://agradecaaqui.site/callback/google',
     ],
 
 ];
