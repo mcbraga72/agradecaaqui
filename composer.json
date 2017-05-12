@@ -50,7 +50,8 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize",
             "cp FacebookProvider.php vendor/laravel/socialite/src/Two/",
-            "cp AbstractProvider.php vendor/laravel/socialite/src/Two/"
+            "cp AbstractProvider.php vendor/laravel/socialite/src/Two/",
+            "cp Handler.php app/Exceptions/Handler.php"
         ]
     },
     "config": {
