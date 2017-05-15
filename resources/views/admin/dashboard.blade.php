@@ -55,7 +55,7 @@
                     </ul>
                 </section>            
             </aside>        
-            <div class="content-wrapper">            
+            <div class="content-wrapper">
                 <section class="content-header">
                     <h1>Painel Administrativo</h1>
                     <ol class="breadcrumb">
@@ -70,7 +70,7 @@
                                 <span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Usuários</span>
-                                    <span class="info-box-number">1234</span>
+                                    <span class="info-box-number">{{ $data['users'] }}</span>
                                 </div>    
                             </div>    
                         </div>    
@@ -79,7 +79,7 @@
                                 <span class="info-box-icon bg-red"><i class="fa fa-industry"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Empresas</span>
-                                    <span class="info-box-number">167</span>
+                                    <span class="info-box-number">{{ $data['enterprises'] }}</span>
                                 </div>    
                             </div>    
                         </div>
@@ -89,7 +89,7 @@
                                 <span class="info-box-icon bg-green"><i class="fa fa-sort-alpha-asc"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Categorias de Empresas</span>
-                                    <span class="info-box-number">15</span>
+                                    <span class="info-box-number">{{ $data['categories'] }}</span>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                                 <span class="info-box-icon bg-yellow"><i class="fa fa-heart"></i></span>
                                 <div class="info-box-content">
                                     <span class="info-box-text">Agradecimentos</span>
-                                    <span class="info-box-number">1741</span>
+                                    <span class="info-box-number">{{ $data['thanks'] }}</span>
                                 </div>
                             </div>
                         </div>
