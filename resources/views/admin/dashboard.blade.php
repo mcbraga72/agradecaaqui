@@ -33,25 +33,7 @@
                 <a href="#" class="logo"><span class="logo-lg"><b>Admin</b> - Agradeça Aqui</span></a>
                 <nav class="navbar navbar-static-top">
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"><span class="sr-only">Toggle navigation</span></a>
-                    <ul class="nav navbar-nav navbar-right">
-                    @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                    <a href="{{ url('/perfil') }}">Perfil</a>
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                                </li>
-                            </ul>
-                        </li>
-                    @endif
-                    </ul>
+                    <form id="logout-form" action="{{ url('admin/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>                  
                 </nav>
             </header>
             <aside class="main-sidebar">
@@ -69,6 +51,7 @@
                             </ul>
                         </li>        
                         <li><a href="{{ url('admin/relatorios') }}"><i class="fa fa-bar-chart"></i> <span>Relatórios</span></a></li>
+                        <li><a href="{{ url('admin/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i><span>Sair</span></a></li>
                     </ul>
                 </section>            
             </aside>        
