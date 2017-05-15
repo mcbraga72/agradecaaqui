@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminRequest;
 use App\Models\Admin;
+use App\Models\Category;
+use App\Models\Enterprise;
+use App\Models\EnterpriseThanks;
+use App\Models\User;
+use App\Models\UserThanks;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -25,7 +30,14 @@ class AdminController extends Controller
 	 */
 	public function dashboard()
 	{
-		return view('admin.dashboard');
+		$data = array(
+			'users' => User::count(),
+			'enterprises' => Enterprise::count(),
+			'categories' => Category::count(),
+			'thanks' => UserThanks::count() + EnterpriseThanks::count()
+		);
+
+		return view('admin.dashboard')->with('data', $data);
 	}
 
 	/**

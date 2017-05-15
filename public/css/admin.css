@@ -30,6 +30,32 @@
 	background-color: #333;
 }
 
+.dashboard {
+	margin-top: 0px;
+	margin-right: 2%;
+	margin-bottom: 2%;
+	margin-left: 2%;
+}
+
+.item-title {
+	margin-bottom: 2% !important;
+}
+
+.dashboard-title {
+	margin-top: 3% !important;
+	margin-bottom: 1% !important;
+	margin-left: 3%;
+}
+
+.reports-title {
+	margin-top: 3% !important;
+	margin-left: 2%;
+}
+
+.reports-panel {
+	margin-top: 1% !important;
+}
+
 .btn-add {
 	margin-top: 2%;	
 }
