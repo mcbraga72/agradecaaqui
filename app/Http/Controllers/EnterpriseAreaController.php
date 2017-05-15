@@ -9,8 +9,10 @@ use App\Models\EnterpriseThanks;
 use App\Models\User;
 use Auth;
 use DB;
+use Hash;
 use Illuminate\Http\Request;
 use Image;
+use Redirect;
 
 class EnterpriseAreaController extends Controller
 {
@@ -138,12 +140,12 @@ class EnterpriseAreaController extends Controller
     {
         $enterprise = Enterprise::find($id);
 
-        if (Hash::check($request->currentPassword, $enterprise->password)) {        
+        if (Hash::check($request->currentPassword, $enterprise->password)) {
             $enterprise->password = bcrypt($request->password);
             $enterprise->save();
-            return Redirect::back()->withSuccess(['msg', 'Senha alterada com sucesso!']);
+            return response()->json(['status' => true]);
         } else {
-            return Redirect::back()->withErrors(['msg', 'Não foi possível alterar sua senha!']);            
+            return response()->json(['status' => false]);
         }
     }
 
