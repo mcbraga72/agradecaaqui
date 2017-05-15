@@ -1,8 +1,13 @@
-@extends('admin.dashboard')
+@extends('admin.layout')
 @section('content')
     <div class="container administrators" id="administrators">
         <div class="row">
-            <div class="col-lg-12 margin-tb">
+            <div class="col-lg-12">
+                <h4 class="item-title">Cadastro de Administradores</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="pull-left">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createAdmin"><i class="fa fa-plus fa-fw"></i>Cadastrar Administrador</button>
                     <input type="text" class="form-data" placeholder=" Localizar" v-model="filterTerm" style="" />

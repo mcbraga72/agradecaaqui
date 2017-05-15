@@ -1,4 +1,4 @@
-@extends('admin.dashboard')
+@extends('admin.layout')
 
 @section('content')
 <script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -125,9 +125,9 @@ $(document).ready(function() {
 });
 </script>
 <div class="row" style="margin-left: 1%;">
-	<p style="margin-top: 2%;">Relatórios</p>
+	<h4 class="reports-title">Relatórios</h4>
 	<div class="col-md-11">
-		<div class="panel panel-default">
+		<div class="panel panel-default reports-panel">
 	    	<div class="panel-heading">Selecione os filtros abaixo para gerar seu relatório personalizado.</div>
 	    	<div class="panel-body reports-fields">	    		
 	    		<select name="reportType" id="reportType" class="col-md-3" style="margin-right: 2%;">

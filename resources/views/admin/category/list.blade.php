@@ -1,6 +1,11 @@
-@extends('admin.dashboard')
+@extends('admin.layout')
 @section('content')
     <div class="container administrators" id="categories">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="item-title">Cadastro de Categorias</h4>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
