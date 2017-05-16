@@ -20,7 +20,7 @@ new Vue({
         formErrorsUpdate: {},
         formErrorsThanks: {},
         updatePassword: {'currentPassword':'','password':'','id':''},
-        fillEnterpriseThanks: {'client':'','thanksDateTime':'','content':'','replica':'','rejoinder':'','id':''},
+        fillEnterpriseThanks: {'client':'','thanksDateTime':'','content':'','replica':'','rejoinder':'','hash':''},
         logo: null
     },
 
@@ -82,34 +82,52 @@ new Vue({
             });
         },
 
-        updateLogo: function(id){
+        updateLogo: function(){
             var form = document.querySelector('#logo');
             var file = form.files[0];
             var data = new FormData();
             var image = data.append("logo", file)
-            console.log(image);
             if (this.logo == null) {
-                console.log(this.logo);
                 toastr.error('Por favor, selecione uma imagem.', '', {timeOut: 5000});
             } else {    
-                this.$http.post('/empresa/alterar-logo/'+id,data).then((response) => {            
-                    this.logo = '';
+                this.$http.post('/empresa/alterar-logo',data).then((response) => {            
+                    this.logo = null;
                     toastr.success('Logotipo atualizado com sucesso!', '', {timeOut: 5000});
-                    //this.$route.router.go('/empresa/painel');
-                    window.location.href = 'http://agradecaaqui.localhost/empresa/painel'
+                    setTimeout(function(){window.location.href = '/empresa/painel'} , 5000);
                 }, (response) => {
                     this.formPhoto = response.data;
                 });
-            }    
+            }
         },
 
         replyThanks: function(enterpriseThanks){
+            this.fillEnterpriseThanks.hash = enterpriseThanks.hash;
             this.fillEnterpriseThanks.client = enterpriseThanks.user.name + ' ' + enterpriseThanks.user.surName;
-            this.fillEnterpriseThanks.content = enterpriseThanks.content;
-            this.fillEnterpriseThanks.replica = enterpriseThanks.replica;
-            this.fillEnterpriseThanks.rejoinder = enterpriseThanks.rejoinder;
-            this.fillEnterpriseThanks.id = enterpriseThanks.id;
-            $("#replyThanks").modal('show');
+            this.fillEnterpriseThanks.content = enterpriseThanks.content.replace(/<.+?>/g, '');
+            
+            if (enterpriseThanks.replica == null) {
+                this.fillEnterpriseThanks.replica = enterpriseThanks.replica;
+            } else {
+                this.fillEnterpriseThanks.replica = enterpriseThanks.replica.replace(/<.+?>/g, '');
+            }
+            
+            if (enterpriseThanks.rejoinder == null) {
+                this.fillEnterpriseThanks.rejoinder = enterpriseThanks.rejoinder;
+            } else {
+                this.fillEnterpriseThanks.rejoinder = enterpriseThanks.rejoinder.replace(/<.+?>/g, '');
+            }            
+            
+            $("#replyThanks").modal('show');            
+        },
+
+        updateThanks: function(enterpriseThanks){
+            this.$http.post('/empresa/agradecimento',this.fillEnterpriseThanks).then((response) => {
+                $("#replyThanks").modal('hide');
+                this.changePage(this.pagination.current_page);
+                toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});                
+            }, (response) => {
+                this.formErrorsThanks = response.data;
+            });
         }
 
     }

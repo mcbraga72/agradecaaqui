@@ -8,6 +8,7 @@ use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use App\Models\User;
 use Auth;
+use DateTime;
 use DB;
 use Hash;
 use Illuminate\Http\Request;
@@ -94,10 +95,10 @@ class EnterpriseAreaController extends Controller
 	 * @return Response
 	 * 
 	 */
-    public function editProfile($id)
+    public function editProfile()
     {
         $data = array(
-            'enterprise' => Enterprise::findOrFail($id),
+            'enterprise' => Enterprise::findOrFail(Auth::guard('enterprises')->user()->id),
             'categories' => Category::all()
         );
     	
@@ -108,9 +109,9 @@ class EnterpriseAreaController extends Controller
 	 * Update enterprise's data
 	 * 
 	 */
-    public function updateProfile(EnterpriseRequest $request, $id)
+    public function updateProfile(EnterpriseRequest $request)
     {
-    	$enterprise = Enterprise::findOrFail($id);
+    	$enterprise = Enterprise::findOrFail(Auth::guard('enterprises')->user()->id);
 
     	$enterprise->category_id = $request->category_id;
     	$enterprise->name = $request->name;
@@ -159,13 +160,17 @@ class EnterpriseAreaController extends Controller
      * @return Response
      * 
      */
-    public function updateLogo(Request $request, $id)
+    public function updateLogo(Request $request)
     {
-        $enterprise = Enterprise::find($id);
-
         if(!is_null($request->logo)) {
+            $enterprise = Enterprise::find(Auth::guard('enterprises')->user()->id);
+            if ($enterprise->logo != '/images/enterprises/enterprise.png') {
+                //$imagePath = '../../../public' . $enterprise->logo;
+                unlink(public_path() . $enterprise->logo);
+            }
+            $timestamp = new DateTime();
             $logo = $request->file('logo');
-            $filename = str_replace(' ', '', Auth::guard('enterprises')->user()->name) . '.' . $logo->getClientOriginalExtension();
+            $filename = str_replace(' ', '', Auth::guard('enterprises')->user()->name) . '-' . $timestamp->getTimestamp() . '.' . $logo->getClientOriginalExtension();
             Image::make($logo)->resize(40, 40)->save(public_path() . '/images/enterprises/' . $filename);            
             $enterprise->logo = '/images/enterprises/' . $filename;
             $enterprise->save();            
@@ -190,21 +195,6 @@ class EnterpriseAreaController extends Controller
 
     /**
      *
-     * Shows de enterprise thank
-     *
-     * @param int $id
-     *
-     * @return Response
-     * 
-     */
-    public function replica($id)
-    {
-        $enterpriseThanks = EnterpriseThanks::findOrFail($id);
-        return view('enterprise.thanks.replica')->with('enterpriseThanks', $enterpriseThanks);
-    }
-
-    /**
-     *
      * Save replica in database
      *
      * @param int $id
@@ -212,9 +202,9 @@ class EnterpriseAreaController extends Controller
      * @return Response
      * 
      */
-    public function storeReplica(Request $request, $id)
+    public function storeReplica(Request $request)
     {
-        $enterpriseThank = EnterpriseThanks::findOrFail($id);
+        $enterpriseThank = EnterpriseThanks::whereHash($request->hash)->firstOrFail();
         $enterpriseThank->replica = $request->replica;
         $enterpriseThank->save();
 

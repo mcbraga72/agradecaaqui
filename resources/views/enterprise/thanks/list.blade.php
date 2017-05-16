@@ -58,7 +58,7 @@
                             <h4 class="modal-name" id="myModalLabel">Editar Agradecimento</h4>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="replyThanks(enterpriseThanks.id)">
+                            <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateThanks(enterpriseThanks)">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="client" class="control-label">Cliente</label>
