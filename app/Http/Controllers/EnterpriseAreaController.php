@@ -195,21 +195,6 @@ class EnterpriseAreaController extends Controller
 
     /**
      *
-     * Shows de enterprise thank
-     *
-     * @param int $id
-     *
-     * @return Response
-     * 
-     */
-    public function replica($id)
-    {
-        $enterpriseThanks = EnterpriseThanks::findOrFail($id);
-        return view('enterprise.thanks.replica')->with('enterpriseThanks', $enterpriseThanks);
-    }
-
-    /**
-     *
      * Save replica in database
      *
      * @param int $id
@@ -217,9 +202,9 @@ class EnterpriseAreaController extends Controller
      * @return Response
      * 
      */
-    public function storeReplica(Request $request, $id)
+    public function storeReplica(Request $request)
     {
-        $enterpriseThank = EnterpriseThanks::findOrFail($id);
+        $enterpriseThank = EnterpriseThanks::whereHash($request->hash)->firstOrFail();
         $enterpriseThank->replica = $request->replica;
         $enterpriseThank->save();
 
