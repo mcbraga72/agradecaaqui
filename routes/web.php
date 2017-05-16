@@ -109,10 +109,10 @@ Route::group(['middleware' => 'auth:enterprises'], function () {
 	// Enterprise's Area
 
 	Route::get('/empresa/painel', 'EnterpriseAreaController@dashboard');
-	Route::get('/empresa/perfil/{id}/editar', 'EnterpriseAreaController@editProfile');
-	Route::post('/empresa/perfil/{id}', 'EnterpriseAreaController@updateProfile');
+	Route::get('/empresa/perfil/editar', 'EnterpriseAreaController@editProfile');
+	Route::post('/empresa/perfil/atualizar', 'EnterpriseAreaController@updateProfile');
 	Route::post('/empresa/perfil/alterar-senha/{id}', 'EnterpriseAreaController@changePassword');
-	Route::post('/empresa/alterar-logo/{id}', 'EnterpriseAreaController@updateLogo');
+	Route::post('/empresa/alterar-logo', 'EnterpriseAreaController@updateLogo');
 	Route::get('/empresa/agradecimentos/listar', 'EnterpriseAreaController@list');
 	Route::get('/empresas/agradecimentos', ['as' => 'agradecimentos.index', 'uses' => 'EnterpriseAreaController@index']);
 	Route::get('/empresa/agradecimento/{id}/responder', 'EnterpriseAreaController@replica');

@@ -25,7 +25,7 @@
     <div class="row">    
         <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
             <div class="">                
-                <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateLogo({{ Auth::guard('enterprises')->user()->id }})">
+                <form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateLogo()">
                     {{ csrf_field() }}
                     <div class="form-group col-lg-12">
                         <div class="form-group col-lg-8">
@@ -36,7 +36,7 @@
                         </div>
                     </div>                                
                 </form>
-                <form class="form" role="form" method="POST" action="{{ url('/empresa/perfil/' . $enterprise->id) }}">
+                <form class="form" role="form" method="POST" action="{{ url('/empresa/perfil/atualizar') }}">
                     {{ csrf_field() }}
                     <div class="label-register enterprise-profile form-group{{ $errors->has('category_id') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>

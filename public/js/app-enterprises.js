@@ -82,21 +82,19 @@ new Vue({
             });
         },
 
-        updateLogo: function(id){
+        updateLogo: function(){
+            var id = 1;
             var form = document.querySelector('#logo');
             var file = form.files[0];
             var data = new FormData();
             var image = data.append("logo", file)
-            console.log(image);
             if (this.logo == null) {
-                console.log(this.logo);
                 toastr.error('Por favor, selecione uma imagem.', '', {timeOut: 5000});
             } else {    
-                this.$http.post('/empresa/alterar-logo/'+id,data).then((response) => {            
-                    this.logo = '';
+                this.$http.post('/empresa/alterar-logo',data).then((response) => {            
+                    this.logo = null;
                     toastr.success('Logotipo atualizado com sucesso!', '', {timeOut: 5000});
-                    //this.$route.router.go('/empresa/painel');
-                    window.location.href = 'http://agradecaaqui.localhost/empresa/painel'
+                    setTimeout(function(){window.location.href = '/empresa/painel'} , 5000);                                        
                 }, (response) => {
                     this.formPhoto = response.data;
                 });
