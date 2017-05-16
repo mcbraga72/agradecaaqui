@@ -21,7 +21,7 @@ new Vue({
         formErrorsThanks: {},
         updatePassword: {'currentPassword':'','password':'','id':''},
         fillEnterpriseThanks: {'client':'','thanksDateTime':'','content':'','replica':'','rejoinder':'','id':''},
-        logo: ''
+        logo: null
     },
 
     computed: {
@@ -88,13 +88,19 @@ new Vue({
             var data = new FormData();
             var image = data.append("logo", file)
             console.log(image);
-            this.$http.post('/empresa/alterar-logo/'+id,data).then((response) => {            
-                this.logo = '';
-                $("#completeRegister").modal('hide');
-                toastr.success('Logotipo atualizado com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
-                this.formPhoto = response.data;
-            });
+            if (this.logo == null) {
+                console.log(this.logo);
+                toastr.error('Por favor, selecione uma imagem.', '', {timeOut: 5000});
+            } else {    
+                this.$http.post('/empresa/alterar-logo/'+id,data).then((response) => {            
+                    this.logo = '';
+                    toastr.success('Logotipo atualizado com sucesso!', '', {timeOut: 5000});
+                    //this.$route.router.go('/empresa/painel');
+                    window.location.href = 'http://agradecaaqui.localhost/empresa/painel'
+                }, (response) => {
+                    this.formPhoto = response.data;
+                });
+            }    
         },
 
         replyThanks: function(enterpriseThanks){
