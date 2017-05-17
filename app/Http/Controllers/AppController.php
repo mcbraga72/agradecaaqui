@@ -27,12 +27,13 @@ class AppController extends Controller
 	 */
 	public function dashboard()
 	{
-        $usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName', 'content', DB::raw("'people'"), 'hash');
-        $allThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->union($usersThanks)->get();
+        $usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName', 'content', DB::raw("'people'"), 'hash')->where('user_id', '=', Auth::user()->id)->get();
+        $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->where('user_id', '=', Auth::user()->id)->get();
 
 		$data = array(
 			'enterprises' => Enterprise::all(),
-            'allThanks' => $allThanks,
+            'enterprisesThanks' => $enterprisesThanks,
+            'usersThanks' => $usersThanks,
 			'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
 		);
         return view('app.index')->with('data', $data);    	
@@ -95,10 +96,15 @@ class AppController extends Controller
 	 */
 	public function thanks()
     {
-    	$usersThanks = DB::table('user_thanks')->select('receiptName', 'content', DB::raw("'people'"), 'hash');
-		$allThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->union($usersThanks)->get();
+    	$usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName', 'content', DB::raw("'people'"), 'hash')->where('user_id', '=', Auth::user()->id)->get();
+        $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->where('user_id', '=', Auth::user()->id)->get();
 		
-		return view('app.thanks')->with('allThanks', $allThanks);
+        $data = array(
+            'enterprisesThanks' => $enterprisesThanks,
+            'usersThanks' => $usersThanks        
+        );
+
+		return view('app.thanks')->with('data', $data);
     }
 
 	/**
