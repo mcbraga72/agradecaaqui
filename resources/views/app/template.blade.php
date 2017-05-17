@@ -343,7 +343,6 @@
                                         <option value="Católico(a)">Católico(a)</option>
                                         <option value="Candomblé">Candomblé</option>
                                         <option value="Espírita">Espírita</option>
-                                        <option value="Evangélico">Evangélico</option>
                                         <option value="Islamismo">Hinduismo</option>
                                         <option value="Islamismo">Islamismo</option>
                                         <option value="Judaísmo">Judaísmo</option>
