@@ -13,6 +13,13 @@ input[type="radio"]{
  * 
  */
 
+.active-menu {
+    border: 1px solid #F60059;
+    background-color: transparent;
+    border-radius: 5px;
+    height: 40px;  
+}
+
 header {
 	padding: 0 !important;
     margin: 0 !important;
@@ -49,7 +56,8 @@ header {
 
 ul.nav {
     display: inline;
-    width: 100%;    
+    width: 100%;
+    margin-top: 5px;    
 }
 
 .navbar-default .navbar-nav > li > a {

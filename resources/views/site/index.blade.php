@@ -229,7 +229,9 @@
 		$(document).ready(function() {
     		$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
-	    	$('#enterprisesButton').addClass('button-selected');	    	
+	    	$('#enterprisesButton').addClass('button-selected');
+	    	$('button').blur();
+	    	$('input').blur();
 	    });	
 		
 		$('#peopleButton').click(function(){
