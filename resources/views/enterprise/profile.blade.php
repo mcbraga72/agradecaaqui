@@ -10,7 +10,7 @@
             telephone.value = '(' + telephone.value;
         if(telephone.value.length == 3)
             telephone.value = telephone.value + ') ';
-        if(telephone.value.length == 9)
+        if(telephone.value.length == 10)
             telephone.value = telephone.value + '-';  
     }
     
@@ -79,8 +79,8 @@
                     </div>
                     <div class="label-register enterprise-profile form-group{{ $errors->has('telephone') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
-                        <label for="telephone" class="col-md-6 control-label label-register">Telefone</label>
-                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ $enterprise->telephone }}" required autofocus maxlength="14" onkeypress="formatTelephone(this)">
+                        <label for="telephone" class="col-md-6 control-label label-register">Celular</label>
+                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ $enterprise->telephone }}" required autofocus maxlength="15" onkeypress="formatTelephone(this)">
                         @if ($errors->has('telephone'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('telephone') }}</strong>

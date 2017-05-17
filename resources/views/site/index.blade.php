@@ -205,7 +205,7 @@
 	                    </div>
 	                    <div class="form-group">
 	                        <label for="telephone">Telefone:</label>
-	                        <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" />
+	                        <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" maxlength="15" onkeypress="formatTelephone(this)" />
 	                        <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
 	                    </div>
 	                    <div class="form-group">
@@ -248,6 +248,15 @@
 	    });
 
 	    $('div.alert').delay(6000).slideUp(300);
+
+	    function formatTelephone(telephone){ 
+	        if(telephone.value.length == 0)
+	            telephone.value = '(' + telephone.value;
+	        if(telephone.value.length == 3)
+	            telephone.value = telephone.value + ') ';
+	        if(telephone.value.length == 10)
+	            telephone.value = telephone.value + '-';  
+	    }
 	</script>
 	
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
