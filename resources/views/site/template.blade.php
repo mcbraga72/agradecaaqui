@@ -42,7 +42,7 @@
                             <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
                             <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
                             <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
-                            <li><a href="{{ url('/entrar') }}" title="">LOGIN</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
+                            <li><a href="{{ url('/entrar') }}" title="">ENTRAR</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
                         </ul>
                     </div>
                 </div>
@@ -52,6 +52,14 @@
         <footer class="nopadding">        
             <img src="{{ URL::to('/') }}/images/footer.png" width="100%" />
         </footer>                                    
-        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var url = window.location;
+                $('ul.nav a[href="'+ url +'"]').parent().addClass('active-menu');
+                $('ul.nav a').filter(function() {
+                    return this.href == url;
+                }).parent().addClass('active-menu');
+            });
+        </script> 
     </body>
 </html>
