@@ -21,36 +21,34 @@
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/js/script.js"></script>
 
     </head>
     <body>
         <header class="main-header">
-            <nav class="navbar navbar-default navbar-static-top">                
-                <ul class="nav navbar-nav">
-                    <li>
-                        <ul class="nav navbar-nav navbar-right">
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/entrar') }}">Login</a></li>
-                            <li><a href="{{ url('/cadastro') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /><span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="caret-dropdown">
-                                        <a href="{{ url('/app/agradecimentos') }}" title="">Agradecimentos</a>                                        
-                                        <a href="#" data-toggle="modal" data-target="#completeRegister">Perfil</a>
-                                        <a href="#" data-toggle="modal" data-target="#changePasswordModal">Alterar senha</a>
-                                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                        </ul>
-                    </li>    
-                </ul>
+            <nav class="navbar navbar-default navbar-static-top"> 
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ url('/') }}" title="">HOME</a></li>
+                        <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
+                        <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
+                        <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>                        
+                        <li class="dropdown app-dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /><span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="caret-dropdown">
+                                    <a href="{{ url('/app/agradecimentos') }}" title="">Agradecimentos</a>                                        
+                                    <a href="#" data-toggle="modal" data-target="#completeRegister">Perfil</a>
+                                    <a href="#" data-toggle="modal" data-target="#changePasswordModal">Alterar senha</a>
+                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>                
             </nav>
         </header>
         <div id="user_area">
@@ -343,7 +341,6 @@
                                         <option value="Católico(a)">Católico(a)</option>
                                         <option value="Candomblé">Candomblé</option>
                                         <option value="Espírita">Espírita</option>
-                                        <option value="Evangélico">Evangélico</option>
                                         <option value="Islamismo">Hinduismo</option>
                                         <option value="Islamismo">Islamismo</option>
                                         <option value="Judaísmo">Judaísmo</option>

@@ -28,7 +28,7 @@ header {
 
 .main-header {
     margin: 0px !important;
-    height: 50px !important;    
+    height: 70px !important;    
     background-color: #FFF;    
 }
 
@@ -544,8 +544,12 @@ select.label-register {
  */
 
 .main-header {
-    padding-left: 91.5% !important;
+    padding-left: 11.5% !important;
     width: 100% !important;
+}
+
+.app-dropdown {
+    margin-left: 50%;
 }
 
 .button-selected {

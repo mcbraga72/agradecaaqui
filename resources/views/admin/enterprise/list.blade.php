@@ -167,7 +167,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="telephone">Telefone:</label>
-                                <input type="text" name="telephone" class="form-control" v-model="fillEnterprise.telephone" />
+                                <input type="text" name="telephone" class="form-control" v-model="fillEnterprise.telephone" maxlength="15" onkeypress="formatTelephone(this)" />
                                 <span v-if="formErrorsUpdate['telephone']" class="error text-danger">@{{ formErrorsUpdate['telephone'] }}</span>
                             </div>
                             <div class="form-group">
@@ -195,6 +195,16 @@
         </div>
     </div>
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <script type="text/javascript">
+        function formatTelephone(telephone){ 
+            if(telephone.value.length == 0)
+                telephone.value = '(' + telephone.value;
+            if(telephone.value.length == 3)
+                telephone.value = telephone.value + ') ';
+            if(telephone.value.length == 10)
+                telephone.value = telephone.value + '-';  
+        }
+    </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
