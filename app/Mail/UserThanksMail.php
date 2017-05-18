@@ -14,6 +14,13 @@ class UserThanksMail extends Mailable
     use Queueable, SerializesModels;
 
     /**
+     * The subject of the message.
+     *
+     * @var string
+     */
+    public $subject;
+
+    /**
      * The user that create the enterprise thanks
      * 
      * @var User
@@ -36,6 +43,7 @@ class UserThanksMail extends Mailable
     {
         $this->user = $user;
         $this->userThanks = $userThanks;
+        $this->subject = 'Agradeça Aqui - Você recebeu um agradecimento';
     }
 
     /**
