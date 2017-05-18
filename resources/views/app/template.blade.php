@@ -89,7 +89,7 @@
             </div>
             
             <!-- Create Enterprise Modal -->
-            <div class="modal fade" id="createEnterprise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="enterprise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -140,6 +140,10 @@
                     </div>
                 </div>
             </div>
+            <script type="text/javascript" src="/js/vendor/chosen/chosen.jquery.js" type="text/javascript" charset="utf-8"></script>
+            <script type="text/javascript">
+                $('.chosen-select').chosen();
+            </script>
 
             <!-- User's Complete Register Modal -->        
             <script type="text/javascript"> 
