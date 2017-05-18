@@ -114,9 +114,9 @@
                                 <span v-if="formErrors['password']" class="error text-danger">@{{ formErrors['password'] }}</span>
                             </div>
                             <div class="form-group">
-                                <label for="password-confirm">Confirmar Senha:</label>
-                                <input type="password" name="password-confirm" class="form-control" v-model="newEnterprise.password" />
-                                <span v-if="formErrors['password-confirm']" class="error text-danger">@{{ formErrors['password-confirm'] }}</span>
+                                <label for="passwordConfirm">Confirmar Senha:</label>
+                                <input type="password" name="passwordConfirm" class="form-control" v-model="newEnterprise.passwordConfirm" />
+                                <span v-if="formErrors['passwordConfirm']" class="error text-danger">@{{ formErrors['passwordConfirm'] }}</span>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Enviar</button>
@@ -174,17 +174,7 @@
                                 <label for="address">Endereço:</label>
                                 <input type="text" name="address" class="form-control" v-model="fillEnterprise.address" />
                                 <span v-if="formErrorsUpdate['address']" class="error text-danger">@{{ formErrorsUpdate['address'] }}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Senha:</label>
-                                <input type="password" name="password" class="form-control" v-model="fillEnterprise.password" />
-                                <span v-if="formErrorsUpdate['password']" class="error text-danger">@{{ formErrorsUpdate['password'] }}</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="password-confirm">Confirmar Senha:</label>
-                                <input type="password" name="password-confirm" class="form-control" v-model="fillEnterprise.password" />
-                                <span v-if="formErrorsUpdate['password-confirm']" class="error text-danger">@{{ formErrorsUpdate['password-confirm'] }}</span>
-                            </div>
+                            </div>                            
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Enviar</button>
                             </div>
