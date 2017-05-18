@@ -69,7 +69,8 @@ new Vue({
 		            this.changePage(this.pagination.current_page);
 			        this.newUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':''};
 			        $("#createUser").modal('hide');
-			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
+			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
+                    setTimeout(function(){window.location.href = '/admin/usuarios/listar'} , 3000);
 		        }, (response) => {
 			        this.formErrors = response.data;
 	            });

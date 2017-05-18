@@ -71,12 +71,13 @@ new Vue({
 		            this.changePage(this.pagination.current_page);
 			        this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','logo': '','password': ''};
 			        $("#createEnterprise").modal('hide');
-			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
+			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
+                    setTimeout(function(){window.location.href = '/admin/empresas/listar'} , 3000);
 		        }, (response) => {
 			        this.formErrors = response.data;
 	            });
             } else {
-                toastr.error('OS campos Senha e Confirmar Senha devem possuir valores iguais!', '', {timeOut: 5000});
+                toastr.error('Os campos Senha e Confirmar Senha devem possuir valores iguais!', '', {timeOut: 5000});
             }   
 	    },
 
