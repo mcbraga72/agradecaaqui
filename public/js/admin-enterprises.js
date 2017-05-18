@@ -18,8 +18,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newEnterprise : {'category_id': '','name': '','contact': '','email': '','site': '','telephone': '','address': '','logo': '','password': ''},
-        fillEnterprise : {'category_id': '','name': '','contact': '','email': '','site': '','telephone': '','address': '','password': '','id': ''},
+        newEnterprise : {'category_id': '','name': '','contact': '','email': '','site': '','telephone': '','address': '','logo': '','password': '','passwordConfirm': ''},
+        fillEnterprise : {'category_id': '','name': '','contact': '','email': '','site': '','telephone': '','address': '','id': ''},
         sortProperty: 'name',
         sortDirection: 1,
         filterTerm: ''
@@ -65,16 +65,21 @@ new Vue({
         },
 
         createEnterprise: function(){
+            if (this.newEnterprise.password == this.newEnterprise.passwordConfirm) {
 		        var input = this.newEnterprise;
 		        this.$http.post('/admin/empresas',input).then((response) => {
 		            this.changePage(this.pagination.current_page);
-			          this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','logo': '','password': ''};
-			          $("#createEnterprise").modal('hide');
-			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
+			        this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','logo': '','password': ''};
+			        $("#createEnterprise").modal('hide');
+			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
+                    setTimeout(function(){window.location.href = '/admin/empresas/listar'} , 3000);
 		        }, (response) => {
-			          this.formErrors = response.data;
-	          });
-	      },
+			        this.formErrors = response.data;
+	            });
+            } else {
+                toastr.error('Os campos Senha e Confirmar Senha devem possuir valores iguais!', '', {timeOut: 5000});
+            }   
+	    },
 
         deleteEnterprise: function(enterprise){
             this.$http.delete('/admin/empresas/'+enterprise.id).then((response) => {
@@ -92,7 +97,6 @@ new Vue({
             this.fillEnterprise.site = enterprise.site;
             this.fillEnterprise.telephone = enterprise.telephone;
             this.fillEnterprise.address = enterprise.address;
-            this.fillEnterprise.password = enterprise.password;
             $("#editEnterprise").modal('show');
         },
 
@@ -100,7 +104,7 @@ new Vue({
             var input = this.fillEnterprise;
             this.$http.put('/admin/empresas/'+id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-                this.fillEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','password': '','id':''};
+                this.fillEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','id':''};
                 $("#editEnterprise").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, (response) => {

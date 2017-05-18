@@ -116,7 +116,7 @@ $(document).ready(function() {
 	            options: {
 	            	title: {
 					    display: true,
-					    text: 'Agradecimentos por sexo'
+					    text: 'Agradecimentos por gênero'
 					}
 				}	            
 	        });

@@ -17,8 +17,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newUser : {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':''},
-        fillUser : {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':'','id':''},
+        newUser : {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':'','passwordConfirm':''},
+        fillUser : {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','id':''},
         sortProperty: 'name',
         sortDirection: 1,
         filterTerm: ''
@@ -63,16 +63,21 @@ new Vue({
         },
 
         createUser: function(){
+            if (this.newUser.password == this.newUser.passwordConfirm) {
 		        var input = this.newUser;
 		        this.$http.post('/admin/usuarios',input).then((response) => {
 		            this.changePage(this.pagination.current_page);
-			          this.newUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':''};
-			          $("#createUser").modal('hide');
-			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
+			        this.newUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':''};
+			        $("#createUser").modal('hide');
+			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
+                    setTimeout(function(){window.location.href = '/admin/usuarios/listar'} , 3000);
 		        }, (response) => {
-			          this.formErrors = response.data;
-	          });
-	      },
+			        this.formErrors = response.data;
+	            });
+            } else {
+                toastr.error('Os campos Senha e Confirmar Senha devem possuir valores iguais!', '', {timeOut: 5000});
+            }
+	    },
 
         deleteUser: function(user){
             this.$http.delete('/admin/usuarios/'+user.id).then((response) => {
@@ -91,7 +96,6 @@ new Vue({
             this.fillUser.city = user.city;
             this.fillUser.state = user.state;
             this.fillUser.email = user.email;
-            this.fillUser.password = user.password;
             $("#editUser").modal('show');
         },
 
@@ -99,7 +103,7 @@ new Vue({
             var input = this.fillUser;
             this.$http.put('/admin/usuarios/'+id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-                this.fillUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':'','id':''};
+                this.fillUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','id':''};
                 $("#editUser").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, (response) => {
