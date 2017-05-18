@@ -100,7 +100,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="telephone">Telefone:</label>
-                                <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" />
+                                <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" maxlength="15" onkeypress="formatTelephone(this)" />
                                 <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
                             </div>
                             <div class="form-group">
