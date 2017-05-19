@@ -616,6 +616,42 @@ select.label-register {
     border-radius: 10px;
 }
 
+.form-box {
+    margin-top: 3%;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 6px;    
+    padding: 2%;
+}
+
+.profile-title {
+    margin-top: 5% !important;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 900 !important;
+    line-height: 1.2em;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: #436EC6 !important;
+    text-align: center;   
+}
+
+.profile-form {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 900 !important;
+    line-height: 1em;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #436EC6 !important;
+    text-align: center;
+    text-align: left !important;
+    margin-top: 4% !important;
+}
+
+.profile-item {
+    text-align: left !important;
+    margin-top: 1% !important;
+}
+
 
 /**
  * 

@@ -48,7 +48,8 @@ class UserAppController extends Controller
      */
     public function edit($id)
     {        
-        return view('app.profile')->with('user', Auth::user());
+        $user = Auth::user();
+        return view('app.profile')->with('user', $user);
     }
 
     /**
