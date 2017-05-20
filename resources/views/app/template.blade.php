@@ -21,8 +21,7 @@
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/js/script.js"></script>
-
+        
     </head>
     <body>
         <header class="main-header">
@@ -40,7 +39,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li class="caret-dropdown">
                                     <a href="{{ url('/app/agradecimentos') }}" title="">Agradecimentos</a>                                        
-                                    <a href="#" data-toggle="modal" data-target="#completeRegister">Perfil</a>
+                                    <a href="{{ url('app/usuario/' . Auth::user()->id . '/edit') }}">Perfil</a>
                                     <a href="#" data-toggle="modal" data-target="#changePasswordModal">Alterar senha</a>
                                     <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
