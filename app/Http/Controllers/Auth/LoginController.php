@@ -36,23 +36,5 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);        
-    }
-
-    /**
-     *
-     * Where to redirect user after login
-     * 
-     */
-    /*public function redirectPath()
-    {
-        $type = Session::get('type');
-
-        if ($type === 'userThanks') {
-            $this->redirectTo = '/app/agradecimento-usuario/criar';
-        } else if ($type === 'enterpriseThanks') {
-            $this->redirectTo = '/app/agradecimento-empresa/criar';
-        } else {            
-            $this->redirectTo = '/app';
-        }
-    }*/   
+    }    
 }
