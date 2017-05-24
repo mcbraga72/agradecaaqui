@@ -14,31 +14,6 @@ class UserThanksAppController extends Controller
 {
     /**
 	 *
-	 * Show user's thanks list.
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function index()
-    {
-    	$usersThanks = UserThanks::all();
-    	return view('app.user-thanks.list')->with('usersThanks', $usersThanks);
-    }
-
-    /**
-	 *
-	 * Show de creation form
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function create()
-    {    	
-    	return view('app.user-thanks.create');
-    }
-
-    /**
-	 *
 	 * Add new user thanks to the database.
 	 *
 	 * @param Request $request
@@ -67,8 +42,16 @@ class UserThanksAppController extends Controller
 
             Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));
 
-        	$usersThanks = UserThanks::all();
-        	return view('app.user-thanks.list')->with('usersThanks', $usersThanks)->withSuccess('Agradecimento cadastrado com sucesso!');
+        	$usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName', 'content', DB::raw("'people'"), 'hash')->where('user_id', '=', Auth::user()->id)->get();
+            $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->where('user_id', '=', Auth::user()->id)->get();
+
+            $data = array(
+                'enterprises' => Enterprise::all(),
+                'enterprisesThanks' => $enterprisesThanks,
+                'usersThanks' => $usersThanks,
+                'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
+            );
+            return view('app.index')->with('data', $data)->withSuccess('Agradecimento cadastrado com sucesso!');
         }    
     }
 

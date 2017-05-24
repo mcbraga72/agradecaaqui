@@ -64,33 +64,30 @@
             return t;
         }(document, "script", "twitter-wjs"));</script>
         <header class="main-header">
-            <nav class="navbar navbar-default navbar-static-top">                
-                <ul class="nav navbar-nav">
-                    <li>
-                        <ul class="nav navbar-nav navbar-right">
-                        @if (Auth::guest())
-                            <li><a href="{{ url('/entrar') }}">Login</a></li>
-                            <li><a href="{{ url('/cadastro') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <img src="{{ Auth::user()->photo }}" /><span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li class="caret-dropdown">
-                                        <a href="{{ url('/app/agradecimentos') }}" title="">Agradecimentos</a>
-                                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                        <a href="{{ url('/app/perfil') }}">Perfil</a>
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                        </ul>
-                    </li>    
-                </ul>
+            <nav class="navbar navbar-default navbar-static-top"> 
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{{ url('/') }}" title="">HOME</a></li>
+                        <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
+                        <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
+                        <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
+                        <li><a href="{{ url('/app') }}" title="">MEUS AGRADECIMENTOS</a></li>
+                        <li class="dropdown app-dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /><span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="caret-dropdown">
+                                    <a href="{{ url('app/usuario/' . Auth::user()->id . '/edit') }}">Perfil</a>                                    
+                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>                
             </nav>
-        </header>        
+        </header>
         <div class="container-fluid show-thanks">
             <div class="row">
                 <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">

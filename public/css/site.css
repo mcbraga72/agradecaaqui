@@ -549,7 +549,7 @@ select.label-register {
 }
 
 .app-dropdown {
-    margin-left: 50%;
+    margin-left: 35%;
 }
 
 .button-selected {
@@ -639,7 +639,7 @@ select.label-register {
     font-family: Lato, Arial, Tahoma, sans-serif;
     font-weight: 900 !important;
     line-height: 1em;
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: 1px;
     color: #436EC6 !important;
     text-align: center;
