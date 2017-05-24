@@ -87,7 +87,8 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $categories = Category::all();
-        return view('enterprise-auth.register')->with('categories', $categories);
+        /*$categories = Category::all();
+        return view('enterprise-auth.register')->with('categories', $categories);*/
+        return null;
     }
 }

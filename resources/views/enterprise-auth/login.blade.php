@@ -19,73 +19,40 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url('/empresa/painel') }}">Agradeça Aqui - Área da Empresa</a>
+                    <a class="navbar-brand" href="{{ url('/empresa/entrar') }}"><img class="auth-logo" src="{{ URL::to('/') }}/images/logo.png" /></a>
                 </div>
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
-                    <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
                         @if (!Auth::guest())                        
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::guard('enterprises')->user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('/empresa/logout') }}"
+                                        <a href="{{ url('/empresa/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-
-                                        <form id="logout-form" action="{{ route('/empresa/logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ url('/empresa/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
                                 </ul>
                             </li>
                         @endif
-                    </ul>
-                    {{--<!-- Right Side Of Navbar Enterprise -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guard('enterprises')->user())
-                            @include('layouts.enterprise-dropdown')
-                        @elseif(!Auth::guest()) 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::guard('enterprises')->user()->name }} <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('/empresa/logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-                                        <form id="logout-form" action="{{ route('/empresa/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>                            
-                        @else
-                            <li><a href="{{ route('/empresa/entrar') }}">Login</a></li>
-                            <li><a href="{{ route('empresa/cadastro') }}">Cadastro</a></li>
-                        @endif
-                    </ul>--}}
+                    </ul>                    
                 </div>
             </div>
         </nav>
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default panel-admin">
                         <div class="panel-heading">Login</div>
                         <div class="panel-body">
                             <form class="form-horizontal" role="form" method="POST" action="{{ url('/empresa/entrar') }}">
