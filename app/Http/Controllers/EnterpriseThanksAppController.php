@@ -17,19 +17,6 @@ class EnterpriseThanksAppController extends Controller
 {
     /**
 	 *
-	 * Show enterprise thank's list.
-	 *
-	 * @return Response
-	 * 
-	 */
-    public function index()
-    {
-    	$enterprisesThanks = EnterpriseThanks::where('id', '=', Auth::user()->id)->with('enterprise')->get();
-    	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
-    }
-
-    /**
-	 *
 	 * Add new enterprise thanks to the database.
 	 *
 	 * @param Request $request
@@ -66,8 +53,17 @@ class EnterpriseThanksAppController extends Controller
 
             Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user->show(Auth::user()->id), $enterpriseThanks));
 
-            $enterprisesThanks = EnterpriseThanks::with('Enterprise')->orderBy('thanksDateTime', 'desc')->get();
-            return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks)->withSuccess('Agradecimento cadastrado com sucesso!');
+            $usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName', 'content', DB::raw("'people'"), 'hash')->where('user_id', '=', Auth::user()->id)->get();
+            $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->where('user_id', '=', Auth::user()->id)->get();
+
+            $data = array(
+                'enterprises' => Enterprise::all(),
+                'enterprisesThanks' => $enterprisesThanks,
+                'usersThanks' => $usersThanks,
+                'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
+            );
+            return view('app.index')->with('data', $data)->withSuccess('Agradecimento cadastrado com sucesso!');
+
         }    
     }
 
@@ -97,7 +93,7 @@ class EnterpriseThanksAppController extends Controller
 	 */
     public function edit($id)
     {
-    	return view('app.enterprise-thanks.profile', ['user' => EnterpriseThanks::findOrFail($id)]);
+    	return view('app.enterprise-thanks.show', ['user' => EnterpriseThanks::findOrFail($id)]);
     }
 
     /**
@@ -123,7 +119,7 @@ class EnterpriseThanksAppController extends Controller
         Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user, $enterpriseThanks));
 
     	$enterprisesThanks = EnterpriseThanks::with('enterprise')->get();
-    	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);   	
+    	return view('app.index')->with('enterprisesThanks', $enterprisesThanks);   	
     }
 
     /**
@@ -141,7 +137,7 @@ class EnterpriseThanksAppController extends Controller
     	$enterpriseThanks->delete();
 
     	$enterprisesThanks = EnterpriseThanks::with('enterprise')->get();
-    	return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+    	return view('app.index')->with('enterprisesThanks', $enterprisesThanks);
     }
 
     /**
@@ -156,6 +152,6 @@ class EnterpriseThanksAppController extends Controller
     public function find(Request $request)
     {
         $enterprisesThanks = EnterpriseThanks::where('content', 'LIKE', "%{$request->search}%")->get();
-        return view('app.enterprise-thanks.list')->with('enterprisesThanks', $enterprisesThanks);
+        return view('app.index')->with('enterprisesThanks', $enterprisesThanks);
     }
 }

@@ -13,11 +13,16 @@
 	<div class="container-fluid">
 		<div class="row">
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
-                <img class="logo" src="images/logo.png" />
+            	@if (!empty($success))
+	                <div class="alert alert-success">                
+	                    {{ $success }}                
+	                </div>    
+	            @endif
+                <img class="logo" src="{{ asset('images/logo.png') }}" />
                 <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
-	                <button id="peopleButton" type="button" class="home"><img src="images/pessoas.png" /></button>
-	                <button id="enterprisesButton" type="button" class="home"><img src="images/empresas.png" /></button>
+	                <button id="peopleButton" type="button" class="home"><img src="{{ asset('images/pessoas.png') }}" /></button>
+	                <button id="enterprisesButton" type="button" class="home"><img src="{{ asset('images/empresas.png') }}" /></button>
 	            </div>
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-empresa') }}" novalidate>                
                 	{{ csrf_field() }}
@@ -44,7 +49,7 @@
 			            </div>
 			            <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-		                    	<img class="heart-form" src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
+		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
 		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
@@ -87,7 +92,7 @@
 		                </div>
 		                <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-		                    	<img class="heart-form" src="images/heart.png" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
+		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
 		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        @if ($errors->has('content'))
 		                            <span class="help-block">
@@ -104,8 +109,8 @@
 	                </div>
 	            </form>
 	            <br><br>	
-                <img class="logo-login" src="images/logo.png" />
-                <h1 class="support">Comentários</h1>			
+                <img class="logo-login" src="{{ asset('images/logo.png') }}" />
+                <h1 class="support">Meus agradecimentos</h1>			
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimentos/busca') }}">
 	            {{ csrf_field() }}
 					<div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
@@ -138,11 +143,11 @@
 	                </div>    				
 				@empty
     				<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3 thanks-box">
-	                    <img class="heart" src="images/heart.png" />
+	                    <img class="heart" src="{{ asset('images/heart.png') }}" />
 	                    <p class="thaks-content">Você ainda não fez nenhum agradecimento em nossa plataforma.</p>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 show-more">
-						<img class="plus" src="images/plus.png" alt="Mostrar mais" title="Mostrar mais" />
+						<img class="plus" src="{{ asset('images/plus.png') }}" alt="Mostrar mais" title="Mostrar mais" />
 	                </div>
 				@endforelse
 				@forelse($data['usersThanks'] as $usersThank)
@@ -154,11 +159,11 @@
 	                </div>    				
 				@empty
     				<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3 thanks-box">
-	                    <img class="heart" src="images/heart.png" />
+	                    <img class="heart" src="{{ asset('images/heart.png') }}" />
 	                    <p class="thaks-content">Você ainda não fez nenhum agradecimento em nossa plataforma.</p>
 	                </div>
 	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 show-more">
-						<img class="plus" src="images/plus.png" alt="Mostrar mais" title="Mostrar mais" />
+						<img class="plus" src="{{ asset('images/plus.png') }}" alt="Mostrar mais" title="Mostrar mais" />
 	                </div>
 				@endforelse
 	        </div>    
@@ -174,11 +179,11 @@
                     <h4 class="modal-name about" id="myModalLabel">Prezado cliente</h4>
                 </div>
                 <div class="modal-body">
-                	<img class="logo" src="images/logo.png" />
+                	<img class="logo" src="{{ asset('images/logo.png') }}" />
                 	<h4 class="modal-name complete-register" id="myModalLabel">Preencha seu cadastro completo e concorra a prêmios!</h4><br>
                 </div>	
                 <div class="modal-footer">	
-                	<button type="button" id="openCompleteRegister" class="btn btn-success" data-dismiss="modal" aria-label="Close">Quero preencher<i class="fa fa-check fa-fw" aria-hidden="true"></i></button>
+                	<button type="button" id="openCompleteRegister" onclick="location.href='{{ url('app/usuario/' . Auth::user()->id . '/edit') }}';" class="btn btn-success" data-dismiss="modal" aria-label="Close">Quero preencher<i class="fa fa-check fa-fw" aria-hidden="true"></i></button>
                 	<button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Agora não<i class="fa fa-times fa-fw" aria-hidden="true"></i></button>
                 </div>
             </div>
@@ -188,11 +193,13 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript" src="/js/vendor/chosen/chosen.jquery.js"></script>
     <script type="text/javascript" src="/js/app-users.js"></script>
 
 	<script type="text/javascript">
+		$('div.alert').delay(5000).slideUp(500);
+
 		@foreach($data['user'] as $user)
 			@if($user->registerType == 'Padrão')			
 				$('#completeRegisterAlert').modal('show');

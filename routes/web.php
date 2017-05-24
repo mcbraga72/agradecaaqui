@@ -85,7 +85,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/app/categorias', 'AppController@getCategories');
 	Route::get('/app/empresas', 'AppController@getEnterprises');
 
-	Route::get('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@index');
 	Route::post('/app/agradecimento-empresa', 'EnterpriseThanksAppController@store');
 	Route::post('/app/agradecimentos-empresas', 'EnterpriseThanksAppController@find');
 	Route::get('/app/agradecimento-empresa/{hash}', ['as' => 'enterprise-thanks.show', 'uses' => 'EnterpriseThanksAppController@show']);
@@ -93,7 +92,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('/app/agradecimento-empresa/{id}', 'EnterpriseThanksAppController@update');
 	Route::delete('/app/agradecimento-empresa/{id}', 'EnterpriseThanksAppController@destroy');
 
-	Route::get('/app/agradecimentos-usuarios', 'UserThanksAppController@index');
 	Route::post('/app/agradecimento-usuario', 'UserThanksAppController@store');
 	Route::post('/app/agradecimentos-usuarios', 'UserThanksAppController@find');
 	Route::get('/app/agradecimento-usuario/{hash}', ['as' => 'user-thanks.show', 'uses' => 'UserThanksAppController@show']);

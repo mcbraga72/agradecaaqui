@@ -38,7 +38,7 @@ new Vue({
             'liveWith':'',
             'pet':''
         },
-        photo: ''
+        photo: null
     },
 
     ready : function(){
@@ -109,26 +109,30 @@ new Vue({
                     'liveWith':'',
                     'pet':'',
                     'id':''};
-                $("#completeRegister").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, (response) => {
                 this.formErrorsCompleteRegister = response.data;
             });
         },
 
-        updatePhoto: function(id){            
+        updatePhoto: function(id){
             var form = document.querySelector('#photo');
             var file = form.files[0];
             var data = new FormData();
             var image = data.append("photo", file)
-            console.log(image);
-            this.$http.post('/app/alterar-avatar/'+id,data).then((response) => {            
-                this.photo = '';
-                $("#completeRegister").modal('hide');
-                toastr.success('Foto atualizada com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
-                this.formPhoto = response.data;
-            });
+
+            if (this.photo == null) {
+                toastr.error('Por favor, selecione uma imagem.', '', {timeOut: 5000});
+            } else {    
+                this.$http.post('/app/alterar-avatar/'+id,data).then((response) => {
+                    this.photo = null;
+                    toastr.success('Foto atualizada com sucesso!', '', {timeOut: 5000});
+                    setTimeout(function(){window.location.href = '/app'} , 5000);
+                }, (response) => {
+                    this.formPhoto = response.data;
+                });
+            }
+            
         }
 
     }
