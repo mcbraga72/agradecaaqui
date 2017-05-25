@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Mail\UserThanksMail;
+use App\Models\Enterprise;
 use App\Models\User;
 use App\Models\UserThanks;
 use App\Http\Requests\UserThanksRequest;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Mail;
 
