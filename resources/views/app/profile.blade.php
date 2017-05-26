@@ -141,10 +141,12 @@
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="name">Nome</label>
 		                    <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}" v-model="fillUser.name" />
+		                    <span v-if="formErrorsCompleteRegister['name']" class="error text-danger">@{{ formErrorsCompleteRegister['name'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="surName">Sobrenome</label>
 		                    <input type="text" name="surName" class="form-control" value="{{ Auth::user()->surName }}" v-model="fillUser.surName" />
+		                    <span v-if="formErrorsCompleteRegister['surName']" class="error text-danger">@{{ formErrorsCompleteRegister['surName'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="gender">Sexo</label>
@@ -153,33 +155,39 @@
 		                        <option value="Feminino" @if(Auth::user()->gender === 'Feminino') selected="selected" @endif>Feminino</option>
 		                        <option value="Masculino" @if(Auth::user()->gender === 'Masculino') selected="selected" @endif>Masculino</option>
 		                        <option value="Outros" @if(Auth::user()->gender === 'Outros') selected="selected" @endif>Outros</option>
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['gender']" class="error text-danger">@{{ formErrorsCompleteRegister['gender'] }}</span>                  
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="dateOfBirth">Data de nascimento</label>
-		                    <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" value="{{ Auth::user()->dateOfBirth }}" maxlength="10" onkeypress="formatDateOfBirth(this)" v-model="fillUser.dateOfBirth" />		                    
+		                    <input type="text" id="dateOfBirth" name="dateOfBirth" class="form-control" value="{{ Auth::user()->dateOfBirth }}" maxlength="10" onkeypress="formatDateOfBirth(this)" v-model="fillUser.dateOfBirth" />
+		                    <span v-if="formErrorsCompleteRegister['dateOfBirth']" class="error text-danger">@{{ formErrorsCompleteRegister['dateOfBirth'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="telephone">Celular</label>
-		                    <input type="text" id="telephone" name="telephone" class="form-control" value="{{ Auth::user()->telephone }}" maxlength="15" onkeypress="formatCellphone(this)" v-model="fillUser.telephone" />		                    
+		                    <input type="text" id="telephone" name="telephone" class="form-control" value="{{ Auth::user()->telephone }}" maxlength="15" onkeypress="formatCellphone(this)" v-model="fillUser.telephone" />
+		                    <span v-if="formErrorsCompleteRegister['telephone']" class="error text-danger">@{{ formErrorsCompleteRegister['telephone'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="country">País</label>
 		                    <select id="country" name="country" class="form-control" value="{{ Auth::user()->country }}" v-model="fillUser.country" />
 		                        <option value="">Selecione o país</option>		                        
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['country']" class="error text-danger">@{{ formErrorsCompleteRegister['country'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="state">Estado</label>
 		                    <select id="state" name="state" class="form-control" value="{{ Auth::user()->state }}" v-model="fillUser.state" />
-		                        <option value="">Selecione o estado</option>                                    
-		                    </select>		                    
+		                        <option value="">Selecione o estado</option>
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['state']" class="error text-danger">@{{ formErrorsCompleteRegister['state'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="city">Cidade</label>
 		                    <select id="city" name="city" class="form-control" value="{{ Auth::user()->city }}" v-model="fillUser.city" />
-		                        <option value="">Selecione a cidade</option>                                    
-		                    </select>		                    
+		                        <option value="">Selecione a cidade</option>
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['city']" class="error text-danger">@{{ formErrorsCompleteRegister['city'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="education">Escolaridade</label>
@@ -192,15 +200,18 @@
 		                        <option value="Mestrado" selected="selected">Mestrado</option>
 		                        <option value="Doutorado" @if(Auth::user()->education === 'Doutorado') selected="selected" @endif>Doutorado</option>
 		                        <option value="Pós-Doutorado" @if(Auth::user()->education === 'Pós-Doutorado') selected="selected" @endif>Pós-Doutorado</option>
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['education']" class="error text-danger">@{{ formErrorsCompleteRegister['education'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="email">E-mail</label>
 		                    <input type="email" name="email" class="form-control" value="{{ Auth::user()->email }}" v-model="fillUser.email" />
+		                    <span v-if="formErrorsCompleteRegister['email']" class="error text-danger">@{{ formErrorsCompleteRegister['email'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="profession">Profissão</label>
 		                    <input type="text" name="profession" class="form-control" value="{{ Auth::user()->profession }}" v-model="fillUser.profession" />
+		                    <span v-if="formErrorsCompleteRegister['profession']" class="error text-danger">@{{ formErrorsCompleteRegister['profession'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="maritalStatus">Estado Civil</label>
@@ -211,7 +222,8 @@
 		                        <option value="Separado(a)" @if(Auth::user()->maritalStatus == 'Separado(a)') selected="selected" @endif>Separado(a)</option>
 		                        <option value="Divorciado(a)" @if(Auth::user()->maritalStatus == 'Divorciado(a)') selected="selected" @endif>Divorciado(a)</option>
 		                        <option value="Viúvo(a)" @if(Auth::user()->maritalStatus == 'Viúvo(a)') selected="selected" @endif>Viúvo(a)</option>
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['maritalStatus']" class="error text-danger">@{{ formErrorsCompleteRegister['maritalStatus'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="religion">Religião</label>
@@ -235,6 +247,7 @@
 		                        <option value="Testemunha de Jeová" @if(Auth::user()->religion === 'Testemunha de Jeová') selected="selected" @endif>Testemunha de Jeová</option>
 		                        <option value="Umbanda" @if(Auth::user()->religion === 'Umbanda') selected="selected" @endif>Umbanda</option>
 		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['religion']" class="error text-danger">@{{ formErrorsCompleteRegister['religion'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="ethnicity">Etnia</label>
@@ -244,7 +257,8 @@
 		                        <option value="Mulato(a)" @if(Auth::user()->ethnicity === 'Mulato(a)') selected="selected" @endif>Mulato(a)</option>
 		                        <option value="Negro(a)" @if(Auth::user()->ethnicity === 'Negro(a)') selected="selected" @endif>Negro(a)</option>
 		                        <option value="Pardo(a)" @if(Auth::user()->ethnicity === 'Pardo(a)') selected="selected" @endif>Pardo(a)</option>
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['ethnicity']" class="error text-danger">@{{ formErrorsCompleteRegister['ethnicity'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="income">Renda familiar</label>
@@ -257,7 +271,8 @@
 		                        <option value="De R$ 5.000,01 a R$ 7.500,00" @if(Auth::user()->income === 'De R$ 5.000,01 a R$ 7.500,00') selected="selected" @endif>De R$ 5.000,01 a R$ 7.500,00</option>
 		                        <option value="De R$ 7.500,01 a R$ 10.000,00" @if(Auth::user()->income === 'De R$ 7.500,01 a R$ 10.000,00') selected="selected" @endif>De R$ 7.500,01 a R$ 10.000,00</option>
 		                        <option value="Acima de R$ 10.000,00" @if(Auth::user()->income === 'Acima de R$ 10.000,00') selected="selected" @endif>Acima de R$ 10.000,00</option>
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['income']" class="error text-danger">@{{ formErrorsCompleteRegister['income'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="sport">Pratica esporte(s)</label>
@@ -278,7 +293,8 @@
 		                        <option value="Tênis" @if(Auth::user()->sport === 'Tênis') selected="selected" @endif>Tênis</option>
 		                        <option value="Vôlei" @if(Auth::user()->sport === 'Vôlei') selected="selected" @endif>Vôlei</option>
 		                        <option value="Outros" @if(Auth::user()->sport === 'Outros') selected="selected" @endif>Outros</option>
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['sport']" class="error text-danger">@{{ formErrorsCompleteRegister['sport'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="soccerTeam">Time de futebol</label>
@@ -322,31 +338,36 @@
 		                        <option value="Vasco" @if(Auth::user()->soccerTeam === 'Vasco') selected="selected" @endif>Vasco</option>
 		                        <option value="Vitória" @if(Auth::user()->soccerTeam === 'Vitória') selected="selected" @endif>Vitória</option>
 		                        <option value="Outro" @if(Auth::user()->soccerTeam === 'Outro') selected="selected" @endif>Outro</option>
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['soccerTeam']" class="error text-danger">@{{ formErrorsCompleteRegister['soccerTeam'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="height">Altura(m)</label>
-		                    <input type="text" name="height" class="form-control" value="{{ Auth::user()->height }}" maxlength="4" onkeypress="formatHeight(this)" v-model="fillUser.height" />		                    
+		                    <input type="text" name="height" class="form-control" value="{{ Auth::user()->height }}" maxlength="4" onkeypress="formatHeight(this)" v-model="fillUser.height" />
+		                    <span v-if="formErrorsCompleteRegister['height']" class="error text-danger">@{{ formErrorsCompleteRegister['height'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="weight">Peso(kg)</label>
-		                    <input type="text" name="weight" class="form-control" value="{{ Auth::user()->weight }}" maxlength="3" onkeypress="formatWeight(this,event)" v-model="fillUser.weight" />		                    
+		                    <input type="text" name="weight" class="form-control" value="{{ Auth::user()->weight }}" maxlength="3" onkeypress="formatWeight(this,event)" v-model="fillUser.weight" />
+		                    <span v-if="formErrorsCompleteRegister['weight']" class="error text-danger">@{{ formErrorsCompleteRegister['weight'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="hasCar">Possui automóvel?</label>
 		                    <select id="hasCar" name="hasCar" class="form-control" v-model="fillUser.hasCar" />
 		                        <option value="">Selecione a melhor opção</option>
 		                        <option value="0" @if(Auth::user()->hasCar == 0) selected="selected" @endif>Não</option>
-		                        <option value="1" @if(Auth::user()->hasCar == 1) selected="selected" @endif>Sim</option>                                    
-		                    </select>		                    
+		                        <option value="1" @if(Auth::user()->hasCar == 1) selected="selected" @endif>Sim</option>
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['hasCar']" class="error text-danger">@{{ formErrorsCompleteRegister['hasCar'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="hasChildren">Possui filhos?</label>
 		                    <select id="hasChildren" name="hasChildren" class="form-control" v-model="fillUser.hasChildren" />
 		                        <option value="">Selecione a melhor opção</option>
 		                        <option value="0" @if(Auth::user()->hasChildren == 0) selected="selected" @endif>Não</option>
-		                        <option value="1" @if(Auth::user()->hasChildren == 1) selected="selected" @endif>Sim</option>                                 
-		                    </select>		                    
+		                        <option value="1" @if(Auth::user()->hasChildren == 1) selected="selected" @endif>Sim</option>
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['hasChildren']" class="error text-danger">@{{ formErrorsCompleteRegister['hasChildren'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="liveWith">Mora com quem?</label>
@@ -355,7 +376,8 @@
 		                        <option value="Com a família" @if(Auth::user()->liveWith === 'Com a família') selected="selected" @endif>Com a família</option>
 		                        <option value="Com amigos ou colegas" @if(Auth::user()->liveWith === 'Com amigos ou colegas') selected="selected" @endif>Com amigos ou colegas</option>
 		                        <option value="Sozinho" @if(Auth::user()->liveWith === 'Sozinho') selected="selected" @endif>Sozinho</option>
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['liveWith']" class="error text-danger">@{{ formErrorsCompleteRegister['liveWith'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="pet">Possui animal(ais) de estimação?</label>
@@ -366,7 +388,8 @@
 		                        <option value="Gato" @if(Auth::user()->pet === 'Gato') selected="selected" @endif>Gato</option>
 		                        <option value="Peixe" @if(Auth::user()->pet === 'Peixe') selected="selected" @endif>Peixe</option>
 		                        <option value="Outros" @if(Auth::user()->pet === 'Outros') selected="selected" @endif>Outros</option>
-		                    </select>		                    
+		                    </select>
+		                    <span v-if="formErrorsCompleteRegister['pet']" class="error text-danger">@{{ formErrorsCompleteRegister['pet'] }}</span>
 		                </div>
 		                <div class="form-group">
 		                    <button type="submit" class="btn btn-primary">Atualizar Dados</button>

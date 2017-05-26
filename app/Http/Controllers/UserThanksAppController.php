@@ -44,16 +44,17 @@ class UserThanksAppController extends Controller
 
             Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));
 
-        	$usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName', 'content', DB::raw("'people'"), 'hash')->where('user_id', '=', Auth::user()->id)->get();
+        	$usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName AS name', 'content', DB::raw("'people' AS logo"), 'hash')->where('user_id', '=', Auth::user()->id)->get();
             $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->where('user_id', '=', Auth::user()->id)->get();
+
+            $allThanks = $usersThanks->merge($enterprisesThanks);
 
             $data = array(
                 'enterprises' => Enterprise::all(),
-                'enterprisesThanks' => $enterprisesThanks,
-                'usersThanks' => $usersThanks,
+                'allThanks' => $allThanks,
                 'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
             );
-            return view('app.index')->with('data', $data)->withSuccess('Agradecimento cadastrado com sucesso!');
+            return view('app.index')->with('data', $data)->withSuccess('Agradecimento enviado com sucesso!');
         }    
     }
 
@@ -104,10 +105,17 @@ class UserThanksAppController extends Controller
 
     	$userThanks->save();
 
-    	$usersThanks = UserThanks::all();
-    	return view('app.user-thanks.list')->with('usersThanks', $usersThanks);
+    	$usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName AS name', 'content', DB::raw("'people' AS logo"), 'hash')->where('user_id', '=', Auth::user()->id)->get();
+        $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash')->where('user_id', '=', Auth::user()->id)->get();
 
-    	Mail::to($request->user())->send(new UserThanksMail($user, $userThanks));
+        $allThanks = $usersThanks->merge($enterprisesThanks);
+
+        $data = array(
+            'enterprises' => Enterprise::all(),
+            'allThanks' => $allThanks,
+            'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
+        );
+        return view('app.index')->with('data', $data)->withSuccess('Agradecimento atualizado com sucesso!');
     }
 
     /**

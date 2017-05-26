@@ -29,4 +29,19 @@ class ContactFormRequest extends FormRequest
             'message' => 'required'
         ];
     }
+
+    /**
+     * Chnage default messages that apply to the request validation.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'O campo nome é obrigatório!',
+            'email.required' => 'O campo email é obrigatório!',
+            'email.email' => 'Por favor, digite um e-mail válido!',
+            'message.required' => 'O campo mensagem é obrigatório!'
+        ];
+    }
 }

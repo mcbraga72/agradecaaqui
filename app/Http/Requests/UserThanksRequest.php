@@ -25,8 +25,23 @@ class UserThanksRequest extends FormRequest
     {
         return [
             'receiptName' => 'required',
-            'receiptEmail' => 'required',
+            'receiptEmail' => 'required|email',
             'content' => 'required'
+        ];
+    }
+
+    /**
+     * Chnage default messages that apply to the request validation.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'receiptName.required' => 'O campo nome é obrigatório!',
+            'email.required' => 'O campo email é obrigatório!',
+            'email.email' => 'Por favor, digite um e-mail válido!',
+            'content.required' => 'O campo agradecimento é obrigatório!'
         ];
     }
 }

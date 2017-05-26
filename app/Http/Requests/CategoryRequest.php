@@ -27,4 +27,16 @@ class CategoryRequest extends FormRequest
             'name' => 'required'
         ];
     }
+
+    /**
+     * Chnage default messages that apply to the request validation.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'O campo nome é obrigatório!'            
+        ];
+    }
 }
