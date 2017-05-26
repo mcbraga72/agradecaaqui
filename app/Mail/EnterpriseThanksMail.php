@@ -57,7 +57,8 @@ class EnterpriseThanksMail extends Mailable
                     ->with([
                         'userName' => $this->user->name,
                         'userEmail' => $this->user->email,
-                        'content' => $this->enterpriseThanks->content                        
+                        'content' => $this->enterpriseThanks->content,
+                        'hash' => $this->enterpriseThanks->hash
                     ]);
     }
 }
