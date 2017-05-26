@@ -200,6 +200,7 @@
     		$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');
+	    	$(this).scrollTop(0);
 	    });
 
 	    $('#peopleButton').click(function(){

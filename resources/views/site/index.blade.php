@@ -230,8 +230,7 @@
     		$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');
-	    	$('button').blur();
-	    	$('input').blur();
+	    	$(this).scrollTop(0);
 	    });	
 		
 		$('#peopleButton').click(function(){
