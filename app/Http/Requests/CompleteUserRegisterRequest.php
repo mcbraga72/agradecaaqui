@@ -55,7 +55,7 @@ class CompleteUserRegisterRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function messages()
     {
         return [
             'name.required' => 'O campo nome é obrigatório!',
