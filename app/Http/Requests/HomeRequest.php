@@ -23,9 +23,20 @@ class HomeRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            
+        return [            
             'content' => 'required'
+        ];
+    }
+
+    /**
+     * Chnage default messages that apply to the request validation.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'content.required' => 'O campo agradecimento é obrigatório!'
         ];
     }
 }

@@ -28,4 +28,17 @@ class EnterpriseThanksRequest extends FormRequest
             'content' => 'required'
         ];
     }
+
+    /**
+     * Chnage default messages that apply to the request validation.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'enterprise_id.required' => 'Por favor, selecione uma empresa!',
+            'content.required' => 'O campo agradecimento é obrigatório!'
+        ];
+    }
 }

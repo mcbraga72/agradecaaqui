@@ -35,4 +35,27 @@ class UserRequest extends FormRequest
             'password' => 'required|between:8,255|confirmed'
         ];
     }
+
+    /**
+     * Chnage default messages that apply to the request validation.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'O campo nome é obrigatório!',
+            'surName.required' => 'O campo sobrenome é obrigatório!',
+            'gender.required' => 'O campo sexo é obrigatório!',
+            'dateOfBirth.required' => 'O campo cidade é obrigatório!',
+            'dateOfBirth.before' => 'Para se cadastrar em nosso site, você deve ter no mínimo 13 anos de idade.',
+            'telephone.required' => 'O campo celular é obrigatório!',
+            'city.required' => 'O campo cidade é obrigatório!',
+            'state.required' => 'O campo estado é obrigatório!',            
+            'email.required' => 'O campo email é obrigatório!',
+            'email.email' => 'Por favor, digite um e-mail válido!',
+            'password.required' => 'O campo senha é obrigatório!',
+            'password.between' => 'Sua senha deve possuir pelo menos 8 caracteres!'
+        ];
+    }
 }
