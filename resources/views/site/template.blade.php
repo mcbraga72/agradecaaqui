@@ -50,6 +50,18 @@
                                 <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
                                 <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
                                 <li><a href="{{ url('/app') }}" title="">ÁREA DO CLIENTE</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
+                                <li class="dropdown app-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /><span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li class="caret-dropdown">
+                                            <a href="{{ url('app/usuario/' . Auth::user()->id . '/edit') }}">Perfil</a>                                    
+                                            <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                                        </li>
+                                    </ul>
+                                </li>
                             @endif    
                         </ul>
                     </div>
