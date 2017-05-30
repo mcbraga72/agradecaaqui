@@ -5,6 +5,8 @@
 	<script type="text/javascript">
 	    tinymce.init({ 
 	        selector:'textarea',
+	        forced_root_block : false,
+	        format: 'raw',
 	        plugins: 'emoticons',
 	        menubar: '',
 	        toolbar: 'undo redo | cut copy paste | styleselect | bold italic | link image | emoticons' 
@@ -14,23 +16,26 @@
 		<div class="row">
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
             	@if (!empty($success))
-	                <div class="alert alert-success">                
-	                    {{ $success }}                
-	                </div>    
+	                <div class="alert alert-success">
+	                    {{ $success }}
+	                </div>
 	            @endif
-                <img class="logo" src="{{ asset('images/logo.png') }}" />
+	            <div id="enterpriseThanksSuccess" class="alert alert-success">
+                    <span>Agradecimento enviado com sucesso!</span>
+                </div>
+	            <img class="logo" src="{{ asset('images/logo.png') }}" />
                 <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
 	                <button id="peopleButton" type="button" class="home"><img src="{{ asset('images/pessoas.png') }}" /></button>
 	                <button id="enterprisesButton" type="button" class="home"><img src="{{ asset('images/empresas.png') }}" /></button>
 	            </div>
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-empresa') }}" novalidate>                
+                <form class="form-horizontal" role="form" method="POST" id="enterpriseThanksForm">
                 	{{ csrf_field() }}
 	                <div id="enterpriseThanks">		                
-			            <div class="form-home form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">			                
+			            <div class="form-home form-group">
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 			                	<label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>			                    
-			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control chosen-select">
+			                    <select id="enterprise_id" name="enterprise_id" data-placeholder="Selecione a empresa" class="selectpicker form-control chosen-select" v-model="newEnterpriseThanks.enterprise_id">
                                     <option value="0">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise)
                                     	@if (Session::has('enterprise_id') && $enterprise->id == Session::get('enterprise_id'))
@@ -40,70 +45,60 @@
                                     	@endif
                                     @endforeach                         
                                 </select>
-			                    @if ($errors->has('enterprise_id'))
-			                        <span class="help-block">
-			                            <strong>{{ $errors->first('enterprise_id') }}</strong>
-			                        </span>
-			                    @endif
+			                    <div id="enterprise-error" class="alert alert-danger">
+	                    			<span>Por favor, selecione uma empresa!</span>
+	                			</div>
 			                </div>
 			            </div>
-			            <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
+			            <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
-		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
-		                        @if ($errors->has('content'))
-		                            <span class="help-block">
-		                                <strong>{{ $errors->first('content') }}</strong>
-		                            </span>
-		                        @endif
+		                        <textarea id="content-enterprise" name="content-enterprise" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
+		                        <div id="content-error" class="alert alert-danger">
+	                    			<span>O campo agradecimento é obrigatório!</span>
+	                			</div>
 		                    </div>
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-md-6 col-md-offset-4">
-		                    	<input type="submit" class="btn pink-button" value="ENVIAR">
+		                    	<input type="submit" class="btn pink-button" value="Enviar" id="sendEnterpriseThanks">
 		                    </div>
 		                </div>
 	                </div>
 	            </form>
-				<form class="form-horizontal" role="form" method="POST" action="{{ url('/app/agradecimento-usuario') }}" novalidate>
+				<form class="form-horizontal" role="form" method="POST" id="userThanksForm">
 					{{ csrf_field() }}
 					<div id="userThanks">
-		                <div class="form-home form-group{{ $errors->has('receiptName') ? ' has-error' : '' }}">
+		                <div class="form-home form-group">
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 			                	<label for="receiptName" class="col-md-4 control-label form-home">PARA</label>
-			                    <input id="receiptName" type="text" class="form-control" name="receiptName" @if(Session::has('receiptName')) value="{{ Session::get('receiptName') }}" @else value="{{ old('receiptName') }}" @endif required autofocus placeholder="Nome">
-			                    @if ($errors->has('receiptName'))
-			                        <span class="help-block">
-			                            <strong>{{ $errors->first('receiptName') }}</strong>
-			                        </span>
-			                    @endif
+			                    <input id="receiptName" type="text" class="form-control" name="receiptName" @if(Session::has('receiptName')) value="{{ Session::get('receiptName') }}" @else value="{{ old('receiptName') }}" @endif placeholder="Nome">
+			                    <div id="receiptName-error" class="alert alert-danger">
+	                    			<span>O campo nome é obrigatório!</span>
+	                			</div>
 			                </div>
 			            </div>
-			            <div class="form-home form-group{{ $errors->has('receiptEmail') ? ' has-error' : '' }}">
+			            <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 		                    	<label for="receiptEmail" class="col-md-4 control-label form-home">E-MAIL</label>
-		                        <input id="receiptEmail" type="email" class="form-control" name="receiptEmail" @if(Session::has('receiptEmail')) value="{{ Session::get('receiptEmail') }}" @else value="{{ old('receiptEmail') }}" @endif required autofocus placeholder="E-mail do destinatário">
-		                        @if ($errors->has('receiptEmail'))
-		                            <span class="help-block">
-		                                <strong>{{ $errors->first('receiptEmail') }}</strong>
-		                            </span>
-		                        @endif
+		                        <input id="receiptEmail" type="text" class="form-control" name="receiptEmail" @if(Session::has('receiptEmail')) value="{{ Session::get('receiptEmail') }}" @else value="{{ old('receiptEmail') }}" @endif placeholder="E-mail do destinatário">
+		                        <div id="receiptEmail-error" class="alert alert-danger">
+	                    			<span>O campo e-mail é obrigatório!</span>
+	                			</div>
 		                    </div>
 		                </div>
-		                <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
+		                <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
-		                        <textarea id="content" name="content" class="form-control" required placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
-		                        @if ($errors->has('content'))
-		                            <span class="help-block">
-		                                <strong>{{ $errors->first('content') }}</strong>
-		                            </span>
-		                        @endif
+		                        <textarea id="content-user" name="content-user" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
+		                        <div id="userContent-error" class="alert alert-danger">
+	                    			<span>O campo agradecimento é obrigatório!</span>
+	                			</div>
 		                    </div>
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-md-6 col-md-offset-4">
-		                    	<input type="submit" class="btn pink-button" value="ENVIAR">
+		                    	<input type="submit" class="btn pink-button" value="Enviar" id="sendUserThanks">
 		                    </div>
 		                </div>
 	                </div>
@@ -116,7 +111,7 @@
 					<div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
 		                <br><br>
 		                <div class="col-md-6">
-		                    <input type="text" class="form-control search" id="search" name="search" placeholder="Pesquisar por" required autofocus>
+		                    <input type="text" class="form-control search" id="search" name="search" placeholder="Pesquisar por" required>
 		                    @if ($errors->has('search'))
 		                        <span class="help-block">
 		                            <strong>{{ $errors->first('search') }}</strong>
@@ -196,11 +191,86 @@
 
 		$('.chosen-select').chosen();
 
+		$('#sendEnterpriseThanks').click(function(){
+			$("#enterpriseThanksForm").submit(function(e){
+			    return false;
+			});
+
+			var content = tinymce.get('content-enterprise').getContent();
+
+			if ($('#enterprise_id').val() == null || $('#enterprise_id').val() == 0) {
+				$('#enterprise-error').show();
+    			$('#enterprise-error').delay(3000).slideUp(500);
+                return false;
+            } else if (content == '') {
+            	$('#content-error').show();
+                $('#content-error').delay(3000).slideUp(500);
+                return false;
+            } else {
+            	$.ajax({
+                    url:'/app/agradecimento-empresa',
+                    type:'POST',
+                    async: false,
+                    data: {enterprise_id: $('#enterprise_id').val(), content: content, "_token": "{{ csrf_token() }}"},
+                    success: function(data) {
+                    	$(window).scrollTop(0);
+                    	$('#enterpriseThanksSuccess').show();
+    					$('#enterpriseThanksSuccess').delay(3000).slideUp(500);
+    					$('#enterprise_id').val("Selecione a empresa");
+    					$('#enterprise_id').trigger('chosen:updated');
+    					tinymce.get('content-enterprise').setContent('');
+                    }
+                });
+            }
+        });
+
+        $('#sendUserThanks').click(function(){
+			$("#userThanksForm").submit(function(e){
+			    return false;
+			});
+
+			var content = tinymce.get('content-user').getContent();
+
+			if ($('#receiptName').val() == null || $('#receiptName').val() == '') {
+				$('#receiptName-error').show();
+    			$('#receiptName-error').delay(3000).slideUp(500);
+                return false;
+            } else if ($('#receiptEmail').val() == null || $('#receiptEmail').val() == '') {
+            	$('#receiptEmail-error').show();
+    			$('#receiptEmail-error').delay(3000).slideUp(500);
+                return false;
+            } else if(content == '') {
+            	$('#userContent-error').show();
+                $('#userContent-error').delay(3000).slideUp(500);
+                return false;
+            } else {
+            	$.ajax({
+                    url:'/app/agradecimento-usuario',
+                    type:'POST',
+                    async: false,
+                    data: {receiptName: $('#receiptName').val(), receiptEmail: $('#receiptEmail').val(), content: content, "_token": "{{ csrf_token() }}"},
+                    success: function(data) {
+                    	$(window).scrollTop(0);
+                    	$('#enterpriseThanksSuccess').show();
+    					$('#enterpriseThanksSuccess').delay(3000).slideUp(500);
+    					$('#receiptName').val('');
+    					$('#receiptEmail').val('');
+    					tinymce.get('content-user').setContent('');
+                    }
+                });
+            }
+        });
+	
 		$(document).ready(function() {
     		$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');
-	    	$(this).scrollTop(0);
+	    	$('#enterprise-error').hide();
+	    	$('#content-error').hide();
+	    	$('#receiptName-error').hide();
+	    	$('#receiptEmail-error').hide();
+	    	$('#userContent-error').hide();
+	    	$('#enterpriseThanksSuccess').hide();	    	
 	    });
 
 	    $('#peopleButton').click(function(){
@@ -209,6 +279,7 @@
 	    	$('#peopleButton').addClass('button-selected');
 	    	$('#enterprisesButton').removeClass('button-selected');
 	    });
+
 	    $('#enterprisesButton').click(function() {
 	    	$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
