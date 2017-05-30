@@ -38,6 +38,8 @@ new Vue({
             'liveWith':'',
             'pet':''
         },
+        newEnterpriseThanks: {'enterprise_id': '','content': ''},
+        newUserThanks: {'receiptName':'','receiptEmail':'','content': ''},
         photo: null
     },
 
@@ -133,7 +135,27 @@ new Vue({
                 });
             }
             
-        }
+        },
+
+        storeEnterpriseThanks: function(){
+            var input = this.newEnterpriseThanks;
+            this.$http.post('/app/agradecimento-empresa',input).then((response) => {
+                this.newEnterpriseThanks = {'enterprise_id': '','content': ''};
+                toastr.success('Agradecimento realizado com sucesso!', '', {timeOut: 5000});
+            }, (response) => {
+                this.formErrors = response.data;
+            });
+        },
+
+        storeUserThanks: function(){
+            var input = this.newUserThanks;
+            this.$http.post('/app/agradecimento-usuario',input).then((response) => {
+                this.newUserThanks = {'receiptName':'','receiptEmail':'','content': ''};
+                toastr.success('Agradecimento realizado com sucesso!', '', {timeOut: 5000});
+            }, (response) => {
+                this.formErrors = response.data;
+            });
+        },
 
     }
 
