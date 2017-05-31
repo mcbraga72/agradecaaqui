@@ -170,21 +170,21 @@
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="country">País</label>
-		                    <select id="country" name="country" class="form-control" value="{{ Auth::user()->country }}" v-model="fillUser.country" />
+		                    <select id="country" name="country" class="form-control" v-model="fillUser.country" />
 		                        <option value="">Selecione o país</option>		                        
 		                    </select>
 		                    <span v-if="formErrorsCompleteRegister['country']" class="error text-danger">@{{ formErrorsCompleteRegister['country'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="state">Estado</label>
-		                    <select id="state" name="state" class="form-control" value="{{ Auth::user()->state }}" v-model="fillUser.state" />
+		                    <select id="state" name="state" class="form-control" v-model="fillUser.state" />
 		                        <option value="">Selecione o estado</option>
 		                    </select>
 		                    <span v-if="formErrorsCompleteRegister['state']" class="error text-danger">@{{ formErrorsCompleteRegister['state'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="city">Cidade</label>
-		                    <select id="city" name="city" class="form-control" value="{{ Auth::user()->city }}" v-model="fillUser.city" />
+		                    <select id="city" name="city" class="form-control" v-model="fillUser.city" />
 		                        <option value="">Selecione a cidade</option>
 		                    </select>
 		                    <span v-if="formErrorsCompleteRegister['city']" class="error text-danger">@{{ formErrorsCompleteRegister['city'] }}</span>

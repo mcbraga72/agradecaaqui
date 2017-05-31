@@ -214,7 +214,8 @@ button.home {
 
 .heart {
     position: relative;
-    left: 25%;
+    float: right;
+    margin-right: 10%;
     bottom: 15%;
 }
 
@@ -548,10 +549,6 @@ select.label-register {
     width: 100% !important;
 }
 
-.app-dropdown {
-    margin-left: 35%;
-}
-
 .button-selected {
     border: 3px solid #FF2257;
     border-radius: 5px;
@@ -747,7 +744,8 @@ select.label-register {
     .heart {
         width: 40px;
         height: 35px;
-        left: 40%;
+        float: right;
+        margin-right: 5%;
         bottom: 7%;
     }
 
@@ -824,7 +822,8 @@ select.label-register {
     .heart {
         width: 40px;
         height: 35px;
-        left: 70%;
+        float: right;
+        margin-right: 5%;
         bottom: 7%;
     }
 
@@ -879,7 +878,8 @@ select.label-register {
     .heart {
         width: 40px;
         height: 35px;
-        left: 55%;
+        float: right;
+        margin-right: 5%;
         bottom: 7%;
     }
 
@@ -904,7 +904,7 @@ select.label-register {
 
 /* Large ≥992px */
 
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 992px) and (max-width: 1214px) {
 
     .navbar {
         background-color: #FFF !important;
@@ -929,7 +929,8 @@ select.label-register {
     .heart {
         width: 40px;
         height: 35px;
-        left: 55%;
+        float: right;
+        margin-right: 5%;
         bottom: 7%;
     }
 
@@ -954,7 +955,7 @@ select.label-register {
 
 /* Extra large ≥1200px */
 
-@media (min-width: 1200px) {
+@media (min-width: 1215px) {
 
     .navbar {
         background-color: #FFF !important;
@@ -979,7 +980,8 @@ select.label-register {
     .heart {
         width: 40px;
         height: 35px;
-        left: 55%;
+        float: right;
+        margin-right: 5%;
         bottom: 7%;
     }
 
@@ -997,6 +999,39 @@ select.label-register {
 
     .first-radio {
         margin-left: 1.5%;
+    }
+
+}
+
+
+@media (min-width: 1080px) and (max-width: 1279px) {
+
+    .app-dropdown {
+        margin-left: 5%;
+    }
+
+}
+
+@media (min-width: 1280px) and (max-width: 1449px) {
+
+    .app-dropdown {
+        margin-left: 10%;
+    }
+
+}
+
+@media (min-width: 1450px) and (max-width: 1649px) {
+
+    .app-dropdown {
+        margin-left: 20%;
+    }
+
+}
+
+@media (min-width: 1650px) {
+
+    .app-dropdown {
+        margin-left: 30%;
     }
 
 }
