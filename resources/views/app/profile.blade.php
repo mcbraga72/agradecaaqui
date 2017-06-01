@@ -6,9 +6,9 @@
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 home">
             	<script type="text/javascript"> 
     
-    				$(document).ready(function () {
+    				{{--$(document).ready(function () {
 
-	            		/*$.getJSON('{{ URL::to('/') }}/paises.json', function (data) {
+	            		$.getJSON('{{ URL::to('/') }}/paises.json', function (data) {
 
 	                        var items = [];
 	                        var options = '<option value="">Selecione o país</option>';
@@ -23,7 +23,7 @@
 
 	                        $("#country").html(options);	                        
 	                        
-	                    });*/
+	                    });
 
 	                    $.getJSON('{{ URL::to('/') }}/estados_cidades.json', function (data) {
 
@@ -69,7 +69,7 @@
 
 	                    $(this).trigger('#country');
 
-	            	});
+	            	});--}}
 
 	                function formatCellphone(cellphone){ 
 	                    if(cellphone.value.length == 0)
@@ -186,8 +186,35 @@
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="state">Estado</label>
-		                    <select id="state" name="state" class="form-control" v-model="fillUser.state" />
+		                    <select id="state" name="state" class="form-control" v-model="fillUser.state" v-on:change="onChange"  />
 		                        <option value="">Selecione o estado</option>
+		                        <option value="Acre" @if(Auth::user()->state == 'Acre') selected="selected" @endif>Acre</option>
+		                        <option value="Alagoas" @if(Auth::user()->state == 'Alagoas') selected="selected" @endif>Alagoas</option>
+		                        <option value="Amapá" @if(Auth::user()->state == 'Amapá') selected="selected" @endif>Amapá</option>
+		                        <option value="Amazonas" @if(Auth::user()->state == 'Amazonas') selected="selected" @endif>Amazonas</option>
+		                        <option value="Bahia" @if(Auth::user()->state == 'Bahia') selected="selected" @endif>Bahia</option>
+		                        <option value="Ceará" @if(Auth::user()->state == 'Ceará') selected="selected" @endif>Ceará</option>
+		                        <option value="Distrito Federal" @if(Auth::user()->state == 'Distrito Federal') selected="selected" @endif>Distrito Federal</option>
+		                        <option value="Espírito Santo" @if(Auth::user()->state == 'Espírito Santo') selected="selected" @endif>Espírito Santo</option>
+		                        <option value="Goiás" @if(Auth::user()->state == 'Goiás') selected="selected" @endif>Goiás</option>
+		                        <option value="Maranhão" @if(Auth::user()->state == 'Maranhão') selected="selected" @endif>Maranhão</option>
+		                        <option value="Mato Grosso" @if(Auth::user()->state == 'Mato Grosso') selected="selected" @endif>Mato Grosso</option>
+		                        <option value="Mato Grosso do Sul" @if(Auth::user()->state == 'Mato Grosso do Sul') selected="selected" @endif>Mato Grosso do Sul</option>
+		                        <option value="Minas Gerais" @if(Auth::user()->state == 'Minas Gerais') selected="selected" @endif>Minas Gerais</option>
+		                        <option value="Pará" @if(Auth::user()->state == 'Pará') selected="selected" @endif>Pará</option>
+		                        <option value="Paraíba" @if(Auth::user()->state == 'Paraíba') selected="selected" @endif>Paraíba</option>
+		                        <option value="Paraná" @if(Auth::user()->state == 'Paraná') selected="selected" @endif>Paraná</option>
+		                        <option value="Pernambuco" @if(Auth::user()->state == 'Pernambuco') selected="selected" @endif>Pernambuco</option>
+		                        <option value="Piauí" @if(Auth::user()->state == 'Piauí') selected="selected" @endif>Piauí</option>                        
+		                        <option value="Rio de Janeiro" @if(Auth::user()->state == 'Rio de Janeiro') selected="selected" @endif>Rio de Janeiro</option>
+		                        <option value="Rio Grande do Norte" @if(Auth::user()->state == 'Rio Grande do Norte') selected="selected" @endif>Rio Grande do Norte</option>
+		                        <option value="Rio Grande do Sul" @if(Auth::user()->state == 'Rio Grande do Sul') selected="selected" @endif>Rio Grande do Sul</option>
+		                        <option value="Rondônia" @if(Auth::user()->state == 'Rondônia') selected="selected" @endif>Rondônia</option>
+		                        <option value="Roraima" @if(Auth::user()->state == 'Roraima') selected="selected" @endif>Roraima</option>
+		                        <option value="Santa Catarina" @if(Auth::user()->state == 'Santa Catarina') selected="selected" @endif>Santa Catarina</option>
+		                        <option value="Sergipe" @if(Auth::user()->state == 'Sergipe') selected="selected" @endif>Sergipe</option>
+		                        <option value="São Paulo" @if(Auth::user()->state == 'São Paulo') selected="selected" @endif>São Paulo</option>
+		                        <option value="Tocantins" @if(Auth::user()->state == 'Tocantins') selected="selected" @endif>Tocantins</option>
 		                    </select>
 		                    <span v-if="formErrorsCompleteRegister['state']" class="error text-danger">@{{ formErrorsCompleteRegister['state'] }}</span>
 		                </div>
@@ -195,6 +222,8 @@
 		                    <label for="city">Cidade</label>
 		                    <select id="city" name="city" class="form-control" v-model="fillUser.city" />
 		                        <option value="">Selecione a cidade</option>
+		                        <option v-for="option in options" v-bind:value="option" selected="@{{fillUser.city == option}}">@{{ option }}</option>
+		                        <option value="{{ Auth::user()->city }}" selected="selected">{{ Auth::user()->city }}</option>
 		                    </select>
 		                    <span v-if="formErrorsCompleteRegister['city']" class="error text-danger">@{{ formErrorsCompleteRegister['city'] }}</span>
 		                </div>
