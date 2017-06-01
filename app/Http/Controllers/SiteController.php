@@ -23,7 +23,7 @@ class SiteController extends Controller
     {
         $data = array(
             'enterprises' => Enterprise::all(),
-            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->orderBy('thanksDateTime', 'desc')->take(10)->get()            
+            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'))->orderBy('thanksDateTime', 'desc')->take(10)->get()            
         );
         
         return view('site.index')->with('data', $data);
@@ -112,7 +112,7 @@ class SiteController extends Controller
     {
         $data = array(
             'enterprises' => Enterprise::all(),
-            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->where('content', 'LIKE', "%{$request->search}%")->orderBy('thanksDateTime', 'desc')->get()
+            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'thanksDateTime')->where('content', 'LIKE', "%{$request->search}%")->orderBy('thanksDateTime', 'desc')->get()
         );
         
         return view('site.index')->with('data', $data);
@@ -129,7 +129,7 @@ class SiteController extends Controller
      */
     public function sendMessageContactForm(ContactFormRequest $request)
     {
-        Mail::to('mcbraga@hotmail.com')->send(new SiteContactFormMail($request->name, $request->email, $request->message));
+        Mail::to('agradecaaquicontato@gmail.com')->send(new SiteContactFormMail($request->name, $request->email, $request->message));
         return view('site.contact')->withSuccess('E-mail enviado com sucesso!');
     }
 
@@ -156,7 +156,6 @@ class SiteController extends Controller
         $enterprise->status = 'Pending';
 
         if($enterprise->save()) {
-            //return response()->json($enterprise);
             $data = array(
                 'enterprises' => Enterprise::all(),
                 'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->orderBy('thanksDateTime', 'desc')->take(10)->get(),
