@@ -23,7 +23,7 @@ class SiteController extends Controller
     {
         $data = array(
             'enterprises' => Enterprise::all(),
-            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->orderBy('thanksDateTime', 'desc')->take(10)->get()            
+            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'))->orderBy('thanksDateTime', 'desc')->take(10)->get()            
         );
         
         return view('site.index')->with('data', $data);
@@ -112,7 +112,7 @@ class SiteController extends Controller
     {
         $data = array(
             'enterprises' => Enterprise::all(),
-            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->where('content', 'LIKE', "%{$request->search}%")->orderBy('thanksDateTime', 'desc')->get()
+            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'thanksDateTime')->where('content', 'LIKE', "%{$request->search}%")->orderBy('thanksDateTime', 'desc')->get()
         );
         
         return view('site.index')->with('data', $data);

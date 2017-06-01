@@ -41,12 +41,6 @@
 					                </div>
 					            @endif
 			                    <label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>			                    
-			                    {{--<select id="enterprise_id" name="enterprise_id" class="selectpicker form-control chosen-select" v-model="enterprise_id">
-		                            <option value="">Selecione a empresa</option>
-		                            <option value="@{{ enterprise.id }}" v-for="enterprise in enterprises.data">@{{ enterprise.name }}</option>
-	                        	</select>
-	                        	<span v-if="formThanksErrors['enterprise_id']" class="error text-danger">@{{ formThanksErrors['enterprise_id'] }}</span>--}}
-
 			                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control chosen-select" v-model="enterprise_id">
                                     <option value="">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise) 
@@ -146,10 +140,9 @@
 		        </form>
 	        	@forelse($data['enterpriseThanks'] as $enterpriseThank)
 	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 thanks-box">
-	                    <p class="thanks-title">{{ $enterpriseThank->name }}</p>
+	                    <img class="user-photo"src="{{ $enterpriseThank->logo }}" alt="Agradecimento" title="Agradecimento" /><p class="thanks-title">{{ $enterpriseThank->name . " - " . $enterpriseThank->date }}</p>
 	                    <img class="heart" src="images/heart.png" />
-	                    <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>
-	                    <img class="user-photo"src="{{ $enterpriseThank->logo }}" alt="Agradecimento" title="Agradecimento" />	                    
+	                    <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>	                    
 	                </div>    				
 				@empty
     				<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3 thanks-box">
