@@ -220,8 +220,9 @@
     					$('#enterprise_id').val("Selecione a empresa");
     					$('#enterprise_id').trigger('chosen:updated');
     					tinymce.get('content-enterprise').setContent('');
+    					setTimeout(location.reload(), 5000);
                     }
-                });
+                });                
             }
         });
 
@@ -252,13 +253,14 @@
                     data: {receiptName: $('#receiptName').val(), receiptEmail: $('#receiptEmail').val(), content: content, "_token": "{{ csrf_token() }}"},
                     success: function(data) {
                     	$(window).scrollTop(0);
-                    	$('#enterpriseThanksSuccess').show();
-    					$('#enterpriseThanksSuccess').delay(3000).slideUp(500);
-    					$('#receiptName').val('');
-    					$('#receiptEmail').val('');
-    					tinymce.get('content-user').setContent('');
+    	        		$('#enterpriseThanksSuccess').show();
+						$('#enterpriseThanksSuccess').delay(3000).slideUp(500);				
+                		$('#receiptName').val('');
+						$('#receiptEmail').val('');
+						tinymce.get('content-user').setContent('');
+						setTimeout(location.reload(), 5000);
                     }
-                });
+                });                
             }
         });
 	
