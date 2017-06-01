@@ -66,6 +66,9 @@ Route::post('/busca', 'SiteController@findThanks');
 Route::post('/mensagem', 'SiteController@sendMessageContactForm');
 Route::post('/cadastro/empresa', 'SiteController@storeEnterprise');
 
+// This URL can't be protected, because the data needs to be displayed in site index and contact views 
+
+Route::get('/app/categorias', 'AppController@getCategories');
 
 
 // Protected URLs
@@ -81,8 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/app/agradecimentos', 'AppController@thanks');
 	Route::post('/app/agradecimentos/busca', 'AppController@findThanks');
 	Route::post('/app/empresa', 'AppController@storeEnterprise');
-	Route::get('/app/busca/empresa', 'AppController@findEnterprise');
-	Route::get('/app/categorias', 'AppController@getCategories');
+	Route::get('/app/busca/empresa', 'AppController@findEnterprise');	
 	Route::get('/app/empresas', 'AppController@getEnterprises');
 
 	Route::post('/app/agradecimento-empresa', 'EnterpriseThanksAppController@store');
