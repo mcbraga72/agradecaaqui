@@ -135,13 +135,13 @@
 	                    	<a href="{{ route('enterprise-thanks.show', $allThank->hash) }}"><img class="heart" src="{{ asset('images/heart.png') }}" /></a>
 	                    </div>
 	                    <div class="col-lg-12">
-		                    <p class="thanks-title">{{ $allThank->name }}</p>	                    
-		                    <p class="thaks-content">{{ strip_tags($allThank->content) }}</p>
-		                    @if($allThank->logo == 'people')
+							@if($allThank->logo == 'people')
 		                    	<img class="user-photo" src="{{ URL::to('/') }}/images/people.png" alt="Agradecimento para pessoas" title="Agradecimento para pessoas" />	                    
 		                    @else
 		                    	<img class="user-photo" src="{{ asset($allThank->logo) }}" alt="Agradecimento para empresas" title="Agradecimento para empresas" />
 		                    @endif
+							<p class="thanks-title">{{ $allThank->name . " - " . $allThank->date }}</p>	                    	
+	                    	<p class="thaks-content">{{ strip_tags($allThank->content) }}</p>		                    
 		                </div>    
 	                </div>    				
 				@empty
