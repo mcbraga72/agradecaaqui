@@ -6,6 +6,7 @@ use App\Http\Requests\CompleteUserRegisterRequest;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use URL;
 
 class UserAppController extends Controller
 {    
@@ -47,9 +48,15 @@ class UserAppController extends Controller
      * 
      */
     public function edit($id)
-    {        
+    {
+        $countriesList = new \SplFileObject(URL::to('/') . '/paises.json');
+
+        while (!$countriesList->eof()) {
+            $countries[] = trim($countriesList->fgets());
+        }
+
         $user = Auth::user();
-        return view('app.profile')->with('user', $user);
+        return view('app.profile')->with('countries', $countries);
     }
 
     /**

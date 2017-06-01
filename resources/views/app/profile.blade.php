@@ -8,7 +8,7 @@
     
     				$(document).ready(function () {
 
-	            		$.getJSON('{{ URL::to('/') }}/paises.json', function (data) {
+	            		/*$.getJSON('{{ URL::to('/') }}/paises.json', function (data) {
 
 	                        var items = [];
 	                        var options = '<option value="">Selecione o país</option>';
@@ -21,9 +21,9 @@
 	                            }
 	                        });
 
-	                        $("#country").html(options);
+	                        $("#country").html(options);	                        
 	                        
-	                    });
+	                    });*/
 
 	                    $.getJSON('{{ URL::to('/') }}/estados_cidades.json', function (data) {
 
@@ -66,6 +66,8 @@
 	                        }).change();
                     
 	                    });
+
+	                    $(this).trigger('#country');
 
 	            	});
 
@@ -171,7 +173,14 @@
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="country">País</label>
 		                    <select id="country" name="country" class="form-control" v-model="fillUser.country" />
-		                        <option value="">Selecione o país</option>		                        
+		                    	<option value="">Selecione o país</option>
+		                    	@foreach($countries as $country)
+		                    		@if(Auth::user()->country == $country)
+		                        		<option value="{{ $country }}" selected="selected">{{ $country }}</option>
+		                        	@else
+		                        		<option value="{{ $country }}">{{ $country }}</option>
+		                        	@endif	
+		                        @endforeach
 		                    </select>
 		                    <span v-if="formErrorsCompleteRegister['country']" class="error text-danger">@{{ formErrorsCompleteRegister['country'] }}</span>
 		                </div>

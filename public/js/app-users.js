@@ -45,6 +45,7 @@ new Vue({
 
     ready : function(){
         this.getCategories();
+        this.fetchCountryData();
     },
 
     methods : {
@@ -64,6 +65,21 @@ new Vue({
             }, (response) => {
                 this.formErrors = response.data;
             });
+        },
+
+        fetchCountryData: function () {
+            /*var self = this;
+            this.$http.get('http://agradecaaqui.localhost/paises.json', function( data ) {
+                //self.items = data;
+                console.log(data);
+            });*/
+
+            this.$http.get('http://agradecaaqui.localhost/paises.json').then(function(response) { 
+                console.log(response.json());
+            }).catch(function(error) { 
+                console.error(error); 
+            });
+
         },
 
         changePassword: function(id){
