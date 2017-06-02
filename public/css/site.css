@@ -573,6 +573,10 @@ select.label-register {
     margin-top: 4%;   
 }
 
+.thanks-messages {
+    display: none;
+}
+
 .thanks-single-box {
     background-color: #FFF;
     height: 220px;
