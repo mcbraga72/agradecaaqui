@@ -20,7 +20,7 @@
 	                    {{ $success }}
 	                </div>
 	            @endif
-	            <div id="enterpriseThanksSuccess" class="alert alert-success">
+	            <div id="enterpriseThanksSuccess" class="alert alert-success thanks-messages">
                     <span>Agradecimento enviado com sucesso!</span>
                 </div>
 	            <img class="logo" src="{{ asset('images/logo.png') }}" />
@@ -45,7 +45,7 @@
                                     	@endif
                                     @endforeach                         
                                 </select>
-			                    <div id="enterprise-error" class="alert alert-danger">
+			                    <div id="enterprise-error" class="alert alert-danger thanks-messages">
 	                    			<span>Por favor, selecione uma empresa!</span>
 	                			</div>
 			                </div>
@@ -54,7 +54,7 @@
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-8 col-lg-8 control-label form-home">AGRADEÇA AQUI</label>
 		                        <textarea id="content-enterprise" name="content-enterprise" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
-		                        <div id="content-error" class="alert alert-danger">
+		                        <div id="content-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo agradecimento é obrigatório!</span>
 	                			</div>
 		                    </div>
@@ -73,7 +73,7 @@
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 			                	<label for="receiptName" class="col-md-4 control-label form-home">PARA</label>
 			                    <input id="receiptName" type="text" class="form-control" name="receiptName" @if(Session::has('receiptName')) value="{{ Session::get('receiptName') }}" @else value="{{ old('receiptName') }}" @endif placeholder="Nome">
-			                    <div id="receiptName-error" class="alert alert-danger">
+			                    <div id="receiptName-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo nome é obrigatório!</span>
 	                			</div>
 			                </div>
@@ -82,7 +82,7 @@
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 		                    	<label for="receiptEmail" class="col-md-4 control-label form-home">E-MAIL</label>
 		                        <input id="receiptEmail" type="text" class="form-control" name="receiptEmail" @if(Session::has('receiptEmail')) value="{{ Session::get('receiptEmail') }}" @else value="{{ old('receiptEmail') }}" @endif placeholder="E-mail do destinatário">
-		                        <div id="receiptEmail-error" class="alert alert-danger">
+		                        <div id="receiptEmail-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo e-mail é obrigatório!</span>
 	                			</div>
 		                    </div>
@@ -91,7 +91,7 @@
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
 		                        <textarea id="content-user" name="content-user" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
-		                        <div id="userContent-error" class="alert alert-danger">
+		                        <div id="userContent-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo agradecimento é obrigatório!</span>
 	                			</div>
 		                    </div>
@@ -267,13 +267,7 @@
 		$(document).ready(function() {
     		$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
-	    	$('#enterprisesButton').addClass('button-selected');
-	    	$('#enterprise-error').hide();
-	    	$('#content-error').hide();
-	    	$('#receiptName-error').hide();
-	    	$('#receiptEmail-error').hide();
-	    	$('#userContent-error').hide();
-	    	$('#enterpriseThanksSuccess').hide();	    	
+	    	$('#enterprisesButton').addClass('button-selected');	    	
 	    });
 
 	    $('#peopleButton').click(function(){
