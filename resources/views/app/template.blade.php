@@ -26,7 +26,15 @@
     <body>
         <header class="main-header">
             <nav class="navbar navbar-default navbar-static-top"> 
-                <div class="navbar-collapse collapse">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>                    
+                </div>
+                <div class="navbar-collapse collapse" id="menu">                    
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ url('/') }}" title="">HOME</a></li>
                         <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
@@ -35,7 +43,7 @@
                         <li><a href="{{ url('/app') }}" title="">MEUS AGRADECIMENTOS</a></li>
                         <li class="dropdown app-dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /><span class="caret"></span>
+                            <img class="avatar" src="{{ Auth::user()->photo }}" /><span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li class="caret-dropdown">
