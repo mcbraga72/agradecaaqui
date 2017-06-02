@@ -6,6 +6,8 @@ use App\Http\Requests\ContactFormRequest;
 use App\Http\Requests\EnterpriseRequest;
 use App\Http\Requests\HomeRequest;
 use App\Mail\SiteContactFormMail;
+use App\Mail\EnterpriseRegisterMail;
+use App\Mail\AdminApproveEnterpriseRegisterMail;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use DB;
