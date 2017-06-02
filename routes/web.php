@@ -64,7 +64,8 @@ Route::post('/entrar', 'SiteController@loginWithData');
 Route::get('/cadastro', 'SiteController@register');
 Route::post('/busca', 'SiteController@findThanks');
 Route::post('/mensagem', 'SiteController@sendMessageContactForm');
-Route::post('/cadastro/empresa', 'SiteController@storeEnterprise');
+Route::post('/agradecimento/cadastro/empresa', 'SiteController@storeEnterprise');
+Route::post('/cadastro/empresa', 'SiteController@enterpriseRegister');
 
 // This URL can't be protected, because the data needs to be displayed in site index and contact views 
 

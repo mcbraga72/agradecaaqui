@@ -167,4 +167,37 @@ class SiteController extends Controller
             return redirect('/')->withErrors($data);
         }    
     }
+
+    /**
+     *
+     * Store enterprise's data.
+     *
+     * @param EnterpriseRequest $request
+     *
+     * @return Response
+     * 
+     */
+    public function enterpriseRegister(EnterpriseRequest $request)
+    {       
+        $enterprise = new Enterprise();
+
+        $enterprise->category_id = $request->category_id;
+        $enterprise->name = $request->name;
+        $enterprise->contact = $request->contact;
+        $enterprise->email = $request->email;
+        $enterprise->site = $request->site;
+        $enterprise->telephone = $request->telephone;
+        $enterprise->address = $request->address;       
+        $enterprise->status = 'Pending';
+
+        if($enterprise->save()) {
+            Mail::to($request->email)->send(new EnterpriseRegisterMail());
+
+            /* FINALIZAR */ Mail::to('agradecaaquicontato@gmail.com')->send(new AdminApproveEnterpriseRegisterMail($request->name, $request->email)); /* FINALIZAR */
+            
+            return view('site.contact')->withSuccess('Seu cadastro será avaliado pela nossa equipe e será aprovado em breve!');
+        } else {
+            return view('site.contact')->withErrors('Não foi possível realizar o cadastro. Por favor, tente novamente.');
+        }
+    }
 }
