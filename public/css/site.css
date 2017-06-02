@@ -174,9 +174,6 @@ button.home {
     color: #FFF;    
 }
 
-.search {
-    margin-left: 50%;
-}
 
 .search-button {
     position: relative;
@@ -562,6 +559,10 @@ select.label-register {
 
 .caret-dropdown {
     width: 100px !important;
+}
+
+.avatar {
+    border-radius: 50%;
 }
 
 .enterprise-logo {
@@ -1006,7 +1007,63 @@ select.label-register {
 }
 
 
+@media (min-width: 768px) and (max-width: 879px) {
+
+    .main-header {
+        padding-left: 4% !important;
+    }
+
+    .nav > li > a {
+        padding: 15px 0px;
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        font-size: 13px !important;
+    }
+
+    .app-dropdown {
+        margin-left: 1%;
+    }
+
+    .avatar {
+        width: 29px;
+        height: 29px;
+    }
+
+}
+
+
+@media (min-width: 880px) and (max-width: 1079px) {
+
+    .main-header {
+        padding-left: 8% !important;
+    }
+
+    .nav > li > a {
+        padding: 15px 0px;
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        font-size: 13px !important;
+    }
+
+    .app-dropdown {
+        margin-left: 8%;
+    }
+
+    .avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+}
+
+
 @media (min-width: 1080px) and (max-width: 1279px) {
+
+    .nav > li > a {
+        padding: 15px 0px;
+    }
 
     .app-dropdown {
         margin-left: 5%;

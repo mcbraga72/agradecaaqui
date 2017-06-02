@@ -14,7 +14,7 @@
 	</script>
 	<div class="container-fluid">
 		<div class="row">
-            <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 home">
+            <div class="col-xs-12 col-xs-offset-0 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 home">
             	@if (!empty($success))
 	                <div class="alert alert-success">
 	                    {{ $success }}
@@ -33,8 +33,8 @@
                 	{{ csrf_field() }}
 	                <div id="enterpriseThanks">		                
 			            <div class="form-home form-group">
-			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                	<label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>			                    
+			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+			                	<label for="enterprise_id" class="col-md-8 col-lg-8 control-label">EMPRESA</label>			                    
 			                    <select id="enterprise_id" name="enterprise_id" data-placeholder="Selecione a empresa" class="selectpicker form-control chosen-select" v-model="newEnterpriseThanks.enterprise_id">
                                     <option value="0">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise)
@@ -51,8 +51,8 @@
 			                </div>
 			            </div>
 			            <div class="form-home form-group">
-		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
+		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-8 col-lg-8 control-label form-home">AGRADEÇA AQUI</label>
 		                        <textarea id="content-enterprise" name="content-enterprise" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        <div id="content-error" class="alert alert-danger">
 	                    			<span>O campo agradecimento é obrigatório!</span>
@@ -110,7 +110,7 @@
 	            {{ csrf_field() }}
 					<div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
 		                <br><br>
-		                <div class="col-md-6">
+		                <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 		                    <input type="text" class="form-control search" id="search" name="search" placeholder="Pesquisar por" required>
 		                    @if ($errors->has('search'))
 		                        <span class="help-block">
@@ -130,7 +130,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
 	        	@forelse($data['allThanks'] as $allThank)
-	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-xl-2 col-xl-offset-1 thanks-box">
+	        		<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1 thanks-box">
 	                    <div class="col-lg-12">
 	                    	<a href="{{ route('enterprise-thanks.show', $allThank->hash) }}"><img class="heart" src="{{ asset('images/heart.png') }}" /></a>
 	                    </div>
