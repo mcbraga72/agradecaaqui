@@ -166,7 +166,7 @@
 	                <h4 class="modal-name" id="myModalLabel">Cadastro de empresas</h4>
 	            </div>
 	            <div class="modal-body">
-	                <form method="POST" enctype="multipart/form-data" action="/cadastro/empresa">
+	                <form method="POST" enctype="multipart/form-data" action="/agradecimento/cadastro/empresa">
 	                    <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 	                    <div class="form-group">
 	                        <label for="category_id">Categoria:</label>
