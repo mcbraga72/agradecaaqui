@@ -193,7 +193,7 @@ class SiteController extends Controller
         if($enterprise->save()) {
             Mail::to($request->email)->send(new EnterpriseRegisterMail());
 
-            /* FINALIZAR */ Mail::to('agradecaaquicontato@gmail.com')->send(new AdminApproveEnterpriseRegisterMail($request->name, $request->email)); /* FINALIZAR */
+            Mail::to('agradecaaquicontato@gmail.com')->send(new AdminApproveEnterpriseRegisterMail($request->name));
             
             return view('site.contact')->withSuccess('Seu cadastro será avaliado pela nossa equipe e será aprovado em breve!');
         } else {
