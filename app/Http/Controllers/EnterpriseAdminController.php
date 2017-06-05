@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\EnterpriseThanksAdminController;
 use App\Http\Requests\EnterpriseRequest;
+use App\Mail\EnterpriseConfirmRegisterMail;
 use App\Models\Category;
 use App\Models\Enterprise;
 use Illuminate\Http\Request;
