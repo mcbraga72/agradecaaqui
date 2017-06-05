@@ -24,7 +24,7 @@ class EnterpriseAreaController extends Controller
 	 */
 	public function __construct()
 	{
-		$this->middleware('enterprise.area');
+		
 	}
 
     /**
