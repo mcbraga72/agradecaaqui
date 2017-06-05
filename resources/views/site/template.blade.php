@@ -69,7 +69,11 @@
             </nav>            
         </header>        
         @yield('content')
-        <footer class="nopadding">        
+        <footer class="nopadding">
+            <div class="col-lg-12 social-networks">
+                <a href="https://www.facebook.com/agradecaaqui/" target="_blank"><img src="{{ URL::to('/') }}/images/facebook.png" alt="Perfil no Facebook" title="Perfil no Facebook" /></a>
+                <a href="https://www.instagram.com/agradecaaqui/" target="_blank"><img src="{{ URL::to('/') }}/images/instagram.png" alt="Perfil no Instagram" title="Perfil no Instagram" /></a>
+            </div>
             <img src="{{ URL::to('/') }}/images/footer.png" width="100%" />
         </footer>                                    
         <script type="text/javascript">

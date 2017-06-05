@@ -94,6 +94,18 @@ ul.nav {
 }
 
 
+.social-networks {
+    margin-top: 6%;
+    text-align: center;
+}
+
+.social-networks img {
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+
+
 
 /**
  *
