@@ -561,6 +561,15 @@ select.label-register {
     width: 100px !important;
 }
 
+.item-menu-dropdown {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 900 !important;
+    line-height: 1.2em;
+    font-size: 16px;
+    letter-spacing: -1px;
+    color: #F60059 !important;    
+}
+
 .avatar {
     border-radius: 50%;
 }
@@ -1021,6 +1030,10 @@ select.label-register {
         padding: 15px 0px;
     }
 
+    .item-menu-dropdown {
+        font-size: 13px;
+    }
+
     .navbar-default .navbar-nav > li > a {
         font-size: 13px !important;
     }
@@ -1051,6 +1064,10 @@ select.label-register {
         font-size: 13px !important;
     }
 
+    .item-menu-dropdown {
+        font-size: 13px;
+    }
+
     .app-dropdown {
         margin-left: 8%;
     }
@@ -1067,6 +1084,10 @@ select.label-register {
 
     .nav > li > a {
         padding: 15px 0px;
+    }
+
+    .item-menu-dropdown {
+        font-size: 15px;
     }
 
     .app-dropdown {

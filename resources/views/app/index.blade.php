@@ -52,7 +52,7 @@
 			            </div>
 			            <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-8 col-lg-8 control-label form-home">AGRADEÇA AQUI</label>
+		                    	<label for="content" class="col-md-8 col-lg-8 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" />
 		                        <textarea id="content-enterprise" name="content-enterprise" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        <div id="content-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo agradecimento é obrigatório!</span>
@@ -89,7 +89,7 @@
 		                </div>
 		                <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-		                    	<img class="heart-form" src="{{ asset('images/heart.png') }}" /><label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label>
+		                    	<label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" />
 		                        <textarea id="content-user" name="content-user" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        <div id="userContent-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo agradecimento é obrigatório!</span>
