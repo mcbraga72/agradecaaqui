@@ -42,6 +42,9 @@ Route::get('/empresa/trocar-senha', 'EnterpriseAuth\ForgotPasswordController@sho
 Route::post('/empresa/alterar-senha', 'EnterpriseAuth\ResetPasswordController@reset');
 Route::get('/empresa/alterar-senha/{token}', 'EnterpriseAuth\ResetPasswordController@showResetForm');
 
+Route::get('/empresa/confirmar-cadastro/{confirmationCode}', 'EnterpriseAreaController@showConfirmationPage');
+Route::post('/empresa/confirmar-cadastro/{confirmationCode}', 'EnterpriseAreaController@setPassword');
+
 
 
 // Social login

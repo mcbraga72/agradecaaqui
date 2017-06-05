@@ -153,9 +153,13 @@ class EnterpriseAdminController extends Controller
     {
         $enterprise = Enterprise::findOrFail($id);
         $enterprise->status = 'Approved';
+        $enterprise->confirmation_code = str_random(30);
+        $enterprise->confirmed = 1;
         $enterprise->save();
 
         EnterpriseThanksAdminController::approveEnterpriseThanks($id);
+
+        Mail::to($enterprise->email)->send(new EnterpriseConfirmRegisterMail($enterprise->confirmation_code));
 
         return response()->json($enterprise);
     }

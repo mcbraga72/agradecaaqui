@@ -71,8 +71,8 @@ class EnterpriseAreaController extends Controller
     public function dashboard()
     {
         $data = array(
-            'numberOfIndividualUsersThanking' => EnterpriseThanks::where('enterprise_id', Auth::guard('enterprises')->user()->id)->distinct()->count('user_id'),
-            'enterpriseThanksReceived' => EnterpriseThanks::where('enterprise_id', Auth::guard('enterprises')->user()->id)->count(),
+            'numberOfIndividualUsersThanking' => EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->distinct()->count('user_id'),
+            'enterpriseThanksReceived' => EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->count(),
             'rankingPosition' => DB::table('enterprise_thanks')->select(DB::raw('count(*) as enterpriseThanksCount, enterprise_id'))->groupBy('enterprise_id')->orderBy('enterpriseThanksCount', 'desc')->get()
         );
 
@@ -123,7 +123,7 @@ class EnterpriseAreaController extends Controller
 
     	$enterprise->save();
 
-    	$enterpriseThanks = EnterpriseThanks::where('enterprise_id', Auth::guard('enterprises')->user()->id)->paginate(10);
+    	$enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->paginate(10);
     	return view('enterprise.thanks.list')->with('enterpriseThanks', $enterpriseThanks);
     }
 
@@ -189,7 +189,7 @@ class EnterpriseAreaController extends Controller
 	 */
     public function thanks()
     {
-    	$enterpriseThanks = EnterpriseThanks::where('enterprise_id', Auth::guard('enterprises')->user()->id)->paginate(10);
+    	$enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->paginate(10);
     	return view('enterprise.thanks.list')->with('enterpriseThanks', $enterpriseThanks);
     }
 
@@ -208,7 +208,7 @@ class EnterpriseAreaController extends Controller
         $enterpriseThank->replica = $request->replica;
         $enterpriseThank->save();
 
-        $enterpriseThanks = EnterpriseThanks::where('enterprise_id', Auth::guard('enterprises')->user()->id)->paginate(10);
+        $enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->paginate(10);
         return view('enterprise.thanks.list')->with('enterpriseThanks', $enterpriseThanks);
     }
 
@@ -221,5 +221,30 @@ class EnterpriseAreaController extends Controller
     {
         return view('enterprise.premium');
     }
-    
+
+    /**
+     * Set enterprise's password for the first access
+     *
+     * @return Response
+     */
+    public function showConfirmationPage()
+    {
+        return view('enterprise.confirm-register');
+    }
+
+    /**
+     * Set enterprise's password for the first access
+     *
+     * @return Response
+     */
+    public function setPassword(Request $request, $confirmationCode)
+    {
+        $enterprise = Enterprise::where('confirmation_code', '=', $confirmationCode);
+        $enterprise->password = $request->password;
+        $enterprise->confirmation_code = '';
+        $enterprise->confirmed = 0;
+        $enterprise->save();
+
+        return view('enterprise.dashboard')->withSuccess('Seu cadastro foi confirmado com sucesso!');
+    }
 }
