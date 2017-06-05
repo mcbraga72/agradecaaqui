@@ -28,6 +28,8 @@ class CreateEnterprisesTable extends Migration
             $table->string('profile')->default('Padrão');
             $table->string('logo')->default('/images/enterprises/enterprise.png');
             $table->string('password')->nullable();
+            $table->boolean('confirmed')->default(0);
+            $table->string('confirmation_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
