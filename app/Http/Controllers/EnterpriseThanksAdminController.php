@@ -171,7 +171,7 @@ class EnterpriseThanksAdminController extends Controller
      */
     public static function approveEnterpriseThanks($enterpriseId)
     {
-        $enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', $enterpriseId)->get();
+        $enterpriseThanks = EnterpriseThanks::where([['enterprise_id', '=', $enterpriseId], ['status', '=', 'Pending']])->get();
         
         foreach ($enterpriseThanks as $enterpriseThank) {
             $enterpriseThank->status = 'Approved';
