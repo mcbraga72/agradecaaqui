@@ -7,6 +7,7 @@ use App\Http\Requests\EnterpriseRequest;
 use App\Models\Category;
 use App\Models\Enterprise;
 use Illuminate\Http\Request;
+use Mail;
 
 class EnterpriseAdminController extends Controller
 {
