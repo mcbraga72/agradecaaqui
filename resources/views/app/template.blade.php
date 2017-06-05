@@ -25,36 +25,38 @@
     </head>
     <body>
         <header class="main-header">
-            <nav class="navbar navbar-default navbar-static-top"> 
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>                    
-                </div>
-                <div class="navbar-collapse collapse" id="menu">                    
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ url('/') }}" title="">HOME</a></li>
-                        <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
-                        <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
-                        <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
-                        <li><a href="{{ url('/app') }}" title="">MEUS AGRADECIMENTOS</a></li>
-                        <li class="dropdown app-dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <img class="avatar" src="{{ Auth::user()->photo }}" /><span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="caret-dropdown">
-                                    <a href="{{ url('app/usuario/' . Auth::user()->id . '/edit') }}">Perfil</a>                                    
-                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>                
+            <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>                    
+                    </div>
+                    <div class="navbar-collapse collapse" id="menu">                    
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ url('/') }}" title="">HOME</a></li>
+                            <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
+                            <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
+                            <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
+                            <li><a href="{{ url('/app') }}" title="">MEUS AGRADECIMENTOS</a></li>
+                            <li class="dropdown app-dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <img class="avatar" src="{{ Auth::user()->photo }}" /><span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="caret-dropdown">
+                                        <a href="{{ url('app/usuario/' . Auth::user()->id . '/edit') }}">Perfil</a>                                    
+                                        <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>    
             </nav>
         </header>
         <div id="user_area">
