@@ -239,12 +239,12 @@ class EnterpriseAreaController extends Controller
      */
     public function setPassword(Request $request, $confirmationCode)
     {
-        $enterprise = Enterprise::where('confirmation_code', '=', $confirmationCode);
-        $enterprise->password = $request->password;
+        $enterprise = Enterprise::where('confirmation_code', '=', $confirmationCode)->firstOrFail();
+        $enterprise->password = bcrypt($request->password);
         $enterprise->confirmation_code = '';
         $enterprise->confirmed = 0;
         $enterprise->save();
 
-        return view('enterprise.dashboard')->withSuccess('Seu cadastro foi confirmado com sucesso!');
+        return redirect('/empresa/entrar');
     }
 }
