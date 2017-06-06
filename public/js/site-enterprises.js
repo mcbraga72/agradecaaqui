@@ -22,25 +22,25 @@ new Vue({
     methods : {
 
         getCategories: function(page){
-            this.$http.get('/app/categorias').then((response) => {
+            this.$http.get('/app/categorias').then(function(response) {
                 this.$set('categories', response.data);
             });
         },
 
         getEnterprises: function(){
-            this.$http.get('/app/empresas').then((response) => {
+            this.$http.get('/app/empresas').then(function(response) {
                 this.$set('enterprises', response.data);
             });
         },
         
         createEnterprise: function(){
             var input = this.newEnterprise;
-            this.$http.post('/cadastro/empresa',input).then((response) => {
+            this.$http.post('/cadastro/empresa',input).then(function(response) {
                 this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': ''};
                 $("#enterprise").modal('hide');
                 this.getEnterprises();
                 toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrors = response.data;
             });
         },
