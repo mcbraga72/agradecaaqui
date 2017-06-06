@@ -65,7 +65,8 @@ new Vue({
 		            this.changePage(this.pagination.current_page);
 			          this.newUserThank = {'user_id':'','receiptName':'','receiptEmail':'','content':''};
 			          $("#createUserThank").modal('hide');
-			          toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 5000});
+			          toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 3000});                      
+                      setTimeout(function(){window.location.href = '/admin/agradecimentos-usuarios/listar'} , 3000);
 		        }, (response) => {
 			          this.formErrors = response.data;
 	          });

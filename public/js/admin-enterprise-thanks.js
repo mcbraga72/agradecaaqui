@@ -68,6 +68,7 @@ new Vue({
 			          this.newEnterpriseThank = {'enterprise_id':'','content':''};
 			          $("#createEnterpriseThank").modal('hide');
 			          toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 5000});
+                      setTimeout(function(){window.location.href = '/admin/agradecimentos-empresas/listar'} , 3000);
 		        }, (response) => {
 			          this.formErrors = response.data;
 	          });
