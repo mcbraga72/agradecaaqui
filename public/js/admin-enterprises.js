@@ -57,7 +57,7 @@ new Vue({
     methods : {
 
         getEnterprises: function(page){
-            this.$http.get('/admin/empresas?page='+page).then((response) => {
+            this.$http.get('/admin/empresas?page='+page).then(function(response) {
                 this.$set('enterprises', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
                 this.$set('categories', response.data.categories);
@@ -67,13 +67,13 @@ new Vue({
         createEnterprise: function(){
             if (this.newEnterprise.password == this.newEnterprise.passwordConfirm) {
 		        var input = this.newEnterprise;
-		        this.$http.post('/admin/empresas',input).then((response) => {
+		        this.$http.post('/admin/empresas',input).then(function(response) {
 		            this.changePage(this.pagination.current_page);
 			        this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','logo': '','password': ''};
 			        $("#createEnterprise").modal('hide');
 			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
                     setTimeout(function(){window.location.href = '/admin/empresas/listar'} , 3000);
-		        }, (response) => {
+		        }, function(response) {
 			        this.formErrors = response.data;
 	            });
             } else {
@@ -82,7 +82,7 @@ new Vue({
 	    },
 
         deleteEnterprise: function(enterprise){
-            this.$http.delete('/admin/empresas/'+enterprise.id).then((response) => {
+            this.$http.delete('/admin/empresas/'+enterprise.id).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 toastr.success('Empresa removida com sucesso!', '', {timeOut: 5000});
             });
@@ -102,18 +102,18 @@ new Vue({
 
         updateEnterprise: function(id){
             var input = this.fillEnterprise;
-            this.$http.put('/admin/empresas/'+id,input).then((response) => {
+            this.$http.put('/admin/empresas/'+id,input).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 this.fillEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','id':''};
                 $("#editEnterprise").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsUpdate = response.data;
             });
         },
 
         approveEnterpriseRegister: function(enterprise){
-            this.$http.put('/admin/empresa/aprovar/'+enterprise.id).then((response) => {
+            this.$http.put('/admin/empresa/aprovar/'+enterprise.id).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 toastr.success('Cadastro ativado com sucesso!', '', {timeOut: 5000});
             });

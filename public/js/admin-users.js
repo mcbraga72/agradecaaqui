@@ -56,7 +56,7 @@ new Vue({
     methods : {
 
         getUsers: function(page){
-            this.$http.get('/admin/usuarios?page='+page).then((response) => {
+            this.$http.get('/admin/usuarios?page='+page).then(function(response) {
                 this.$set('users', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
             });
@@ -65,13 +65,13 @@ new Vue({
         createUser: function(){
             if (this.newUser.password == this.newUser.passwordConfirm) {
 		        var input = this.newUser;
-		        this.$http.post('/admin/usuarios',input).then((response) => {
+		        this.$http.post('/admin/usuarios',input).then(function(response) {
 		            this.changePage(this.pagination.current_page);
 			        this.newUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':''};
 			        $("#createUser").modal('hide');
 			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
                     setTimeout(function(){window.location.href = '/admin/usuarios/listar'} , 3000);
-		        }, (response) => {
+		        }, function(response) {
 			        this.formErrors = response.data;
 	            });
             } else {
@@ -80,7 +80,7 @@ new Vue({
 	    },
 
         deleteUser: function(user){
-            this.$http.delete('/admin/usuarios/'+user.id).then((response) => {
+            this.$http.delete('/admin/usuarios/'+user.id).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 toastr.success('Usuário removido com sucesso!', '', {timeOut: 5000});
             });
@@ -101,12 +101,12 @@ new Vue({
 
         updateUser: function(id){
             var input = this.fillUser;
-            this.$http.put('/admin/usuarios/'+id,input).then((response) => {
+            this.$http.put('/admin/usuarios/'+id,input).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 this.fillUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','id':''};
                 $("#editUser").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsUpdate = response.data;
             });
         },

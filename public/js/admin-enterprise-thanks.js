@@ -54,7 +54,7 @@ new Vue({
     methods : {
 
         getEnterpriseThanks: function(page){
-            this.$http.get('/admin/agradecimentos-empresas?page='+page).then((response) => {
+            this.$http.get('/admin/agradecimentos-empresas?page='+page).then(function(response) {
                 this.$set('enterpriseThanks', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
                 this.$set('enterprises', response.data.enterprises);
@@ -63,19 +63,19 @@ new Vue({
 
         createEnterpriseThank: function(){
 		        var input = this.newEnterpriseThank;
-		        this.$http.post('/admin/agradecimentos-empresas',input).then((response) => {
+		        this.$http.post('/admin/agradecimentos-empresas',input).then(function(response) {
 		            this.changePage(this.pagination.current_page);
 			          this.newEnterpriseThank = {'enterprise_id':'','content':''};
 			          $("#createEnterpriseThank").modal('hide');
 			          toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 5000});
                       setTimeout(function(){window.location.href = '/admin/agradecimentos-empresas/listar'} , 3000);
-		        }, (response) => {
+		        }, function(response) {
 			          this.formErrors = response.data;
 	          });
 	      },
 
         deleteEnterpriseThank: function(enterpriseThank){
-            this.$http.delete('/admin/agradecimentos-empresas/'+enterpriseThank.id).then((response) => {
+            this.$http.delete('/admin/agradecimentos-empresas/'+enterpriseThank.id).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 toastr.success('Agradecimento removido com sucesso!', '', {timeOut: 5000});
             });
@@ -90,12 +90,12 @@ new Vue({
 
         updateEnterpriseThank: function(id){
             var input = this.fillEnterpriseThank;
-            this.$http.put('/admin/agradecimentos-empresas/'+id,input).then((response) => {
+            this.$http.put('/admin/agradecimentos-empresas/'+id,input).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 this.fillEnterpriseThank = {'enterprise_id':'','content':'','id':''};
                 $("#editEnterpriseThank").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsUpdate = response.data;
             });
         },

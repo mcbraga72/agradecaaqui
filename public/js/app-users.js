@@ -5794,18 +5794,18 @@ new Vue({
         },
 
         getCategories: function(page){
-            this.$http.get('/app/categorias').then((response) => {
+            this.$http.get('/app/categorias').then(function(response) {
                 this.$set('categories', response.data);
             });
         },
 
         createEnterprise: function(){
             var input = this.newEnterprise;
-            this.$http.post('/app/empresa',input).then((response) => {
+            this.$http.post('/app/empresa',input).then(function(response) {
                 this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','telephone': '','address': ''};
                 $("#createEnterprise").modal('hide');
                 toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrors = response.data;
             });
         },
@@ -5821,8 +5821,7 @@ new Vue({
 
         changePassword: function(id){
             var input = this.updatePassword;
-            this.$http.post('/app/alterar-senha',input).then((response) => {
-                console.log(response);
+            this.$http.post('/app/alterar-senha',input).then(function(response) {
                 if(response.data.status == true) {
                     this.updatePassword = {'password':'','id':''};
                     $("#changePasswordModal").modal('hide');
@@ -5831,16 +5830,16 @@ new Vue({
                     toastr.error('A Senha atual não confere!', '', {timeOut: 5000});
                 }
                 
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsUpdate = response.data;
             });
         },
 
         updateUser: function(id){
             var input = this.fillUser;
-            this.$http.put('/app/usuario/'+id,input).then((response) => {
+            this.$http.put('/app/usuario/'+id,input).then(function(response) {
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsCompleteRegister = response.data;
             });
         },
@@ -5854,11 +5853,11 @@ new Vue({
             if (this.photo == null) {
                 toastr.error('Por favor, selecione uma imagem.', '', {timeOut: 5000});
             } else {    
-                this.$http.post('/app/alterar-avatar/'+id,data).then((response) => {
+                this.$http.post('/app/alterar-avatar/'+id,data).then(function(response) {
                     this.photo = null;
                     toastr.success('Foto atualizada com sucesso!', '', {timeOut: 5000});
                     setTimeout(function(){window.location.href = '/app'} , 5000);
-                }, (response) => {
+                }, function(response) {
                     this.formPhoto = response.data;
                 });
             }
@@ -5867,20 +5866,20 @@ new Vue({
 
         storeEnterpriseThanks: function(){
             var input = this.newEnterpriseThanks;
-            this.$http.post('/app/agradecimento-empresa',input).then((response) => {
+            this.$http.post('/app/agradecimento-empresa',input).then(function(response) {
                 this.newEnterpriseThanks = {'enterprise_id': '','content': ''};
                 toastr.success('Agradecimento realizado com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrors = response.data;
             });
         },
 
         storeUserThanks: function(){
             var input = this.newUserThanks;
-            this.$http.post('/app/agradecimento-usuario',input).then((response) => {
+            this.$http.post('/app/agradecimento-usuario',input).then(function(response) {
                 this.newUserThanks = {'receiptName':'','receiptEmail':'','content': ''};
                 toastr.success('Agradecimento realizado com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrors = response.data;
             });
         },

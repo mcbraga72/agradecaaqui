@@ -53,7 +53,7 @@ new Vue({
     methods : {
 
         getUserThanks: function(page){
-            this.$http.get('/admin/agradecimentos-usuarios?page='+page).then((response) => {
+            this.$http.get('/admin/agradecimentos-usuarios?page='+page).then(function(response) {
                 this.$set('userThanks', response.data.data.data);
                 this.$set('pagination', response.data.pagination);                
             });
@@ -61,19 +61,19 @@ new Vue({
 
         createUserThank: function(){
 		        var input = this.newUserThank;
-		        this.$http.post('/admin/agradecimentos-usuarios',input).then((response) => {
+		        this.$http.post('/admin/agradecimentos-usuarios',input).then(function(response) {
 		            this.changePage(this.pagination.current_page);
 			          this.newUserThank = {'user_id':'','receiptName':'','receiptEmail':'','content':''};
 			          $("#createUserThank").modal('hide');
 			          toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 3000});                      
                       setTimeout(function(){window.location.href = '/admin/agradecimentos-usuarios/listar'} , 3000);
-		        }, (response) => {
+		        }, function(response) {
 			          this.formErrors = response.data;
 	          });
 	      },
 
         deleteUserThank: function(userThank){
-            this.$http.delete('/admin/agradecimentos-usuarios/'+userThank.id).then((response) => {
+            this.$http.delete('/admin/agradecimentos-usuarios/'+userThank.id).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 toastr.success('Agradecimento removido com sucesso!', '', {timeOut: 5000});
             });
@@ -90,12 +90,12 @@ new Vue({
 
         updateUserThank: function(id){
             var input = this.fillUserThank;
-            this.$http.put('/admin/agradecimentos-usuarios/'+id,input).then((response) => {
+            this.$http.put('/admin/agradecimentos-usuarios/'+id,input).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 this.fillUserThank = {'user_id':'','receiptName':'','receiptEmail':'','content':'','id':''};
                 $("#editUserThank").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsUpdate = response.data;
             });
         },

@@ -56,7 +56,7 @@ new Vue({
     methods : {
 
         getCategories: function(page){
-            this.$http.get('/admin/categorias?page='+page).then((response) => {
+            this.$http.get('/admin/categorias?page='+page).then(function(response) {
                 this.$set('categories', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
             });
@@ -64,19 +64,19 @@ new Vue({
 
         createCategory: function(){
 		        var input = this.newCategory;
-		        this.$http.post('/admin/categorias',input).then((response) => {
+		        this.$http.post('/admin/categorias',input).then(function(response) {
 		            this.changePage(this.pagination.current_page);
 			          this.newCategory = {'name':''};
 			          $("#createCategory").modal('hide');
 			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
                       setTimeout(function(){window.location.href = '/admin/categorias/listar'} , 3000);
-		        }, (response) => {
+		        }, function(response) {
 			          this.formErrors = response.data;
 	          });
 	      },
 
         deleteCategory: function(admin){
-            this.$http.delete('/admin/categorias/'+admin.id).then((response) => {
+            this.$http.delete('/admin/categorias/'+admin.id).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 toastr.success('Categoria removida com sucesso!', '', {timeOut: 5000});
             });
@@ -90,12 +90,12 @@ new Vue({
 
         updateCategory: function(id){
             var input = this.fillCategory;
-            this.$http.put('/admin/categorias/'+id,input).then((response) => {
+            this.$http.put('/admin/categorias/'+id,input).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 this.fillCategory = {'name':'','id':''};
                 $("#editCategory").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsUpdate = response.data;
             });
         },

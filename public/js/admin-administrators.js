@@ -56,7 +56,7 @@ new Vue({
     methods : {
 
         getAdmins: function(page){
-            this.$http.get('/admin/administradores?page='+page).then((response) => {
+            this.$http.get('/admin/administradores?page='+page).then(function(response) {
                 this.$set('admins', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
             });
@@ -64,19 +64,19 @@ new Vue({
 
         createAdmin: function(){
 		        var input = this.newAdmin;
-		        this.$http.post('/admin/administradores',input).then((response) => {
+		        this.$http.post('/admin/administradores',input).then(function(response) {
 		            this.changePage(this.pagination.current_page);
 			          this.newAdmin = {'name':'','email':''};
 			          $("#createAdmin").modal('hide');
 			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
                       setTimeout(function(){window.location.href = '/admin/administradores/listar'} , 3000);
-		        }, (response) => {
+		        }, function(response) {
 			          this.formErrors = response.data;
 	          });
 	      },
 
         deleteAdmin: function(admin){
-            this.$http.delete('/admin/administradores/'+admin.id).then((response) => {
+            this.$http.delete('/admin/administradores/'+admin.id).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 toastr.success('Administrador removido com sucesso!', '', {timeOut: 5000});
             });
@@ -91,12 +91,12 @@ new Vue({
 
         updateAdmin: function(id){
             var input = this.fillAdmin;
-            this.$http.put('/admin/administradores/'+id,input).then((response) => {
+            this.$http.put('/admin/administradores/'+id,input).then(function(response) {
                 this.changePage(this.pagination.current_page);
                 this.fillAdmin = {'name':'','email':'','id':''};
                 $("#editAdmin").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsUpdate = response.data;
             });
         },

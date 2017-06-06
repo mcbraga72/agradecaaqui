@@ -56,7 +56,7 @@ new Vue({
     methods : {
 
         getEnterpriseThanks: function(page){
-            this.$http.get('/empresas/agradecimentos?page='+page).then((response) => {
+            this.$http.get('/empresas/agradecimentos?page='+page).then(function(response) {
                 this.$set('enterpriseThanks', response.data.data.data);
                 this.$set('pagination', response.data.pagination);
             });
@@ -69,7 +69,7 @@ new Vue({
 
         changePassword: function(id){
             var input = this.updatePassword;
-            this.$http.post('/empresa/perfil/alterar-senha/'+id,input).then((response) => {
+            this.$http.post('/empresa/perfil/alterar-senha/'+id,input).then(function(response) {
                 if(response.data.status == true) {
                     this.updatePassword = {'password':'','id':''};
                     $("#changePasswordModal").modal('hide');
@@ -77,7 +77,7 @@ new Vue({
                 } else {
                     toastr.error('A Senha atual não confere!', '', {timeOut: 5000});
                 }                
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsUpdate = response.data;
             });
         },
@@ -90,11 +90,11 @@ new Vue({
             if (this.logo == null) {
                 toastr.error('Por favor, selecione uma imagem.', '', {timeOut: 5000});
             } else {    
-                this.$http.post('/empresa/alterar-logo',data).then((response) => {            
+                this.$http.post('/empresa/alterar-logo',data).then(function(response) {            
                     this.logo = null;
                     toastr.success('Logotipo atualizado com sucesso!', '', {timeOut: 5000});
                     setTimeout(function(){window.location.href = '/empresa/painel'} , 5000);
-                }, (response) => {
+                }, function(response) {
                     this.formPhoto = response.data;
                 });
             }
@@ -121,11 +121,11 @@ new Vue({
         },
 
         updateThanks: function(enterpriseThanks){
-            this.$http.post('/empresa/agradecimento',this.fillEnterpriseThanks).then((response) => {
+            this.$http.post('/empresa/agradecimento',this.fillEnterpriseThanks).then(function(response) {
                 $("#replyThanks").modal('hide');
                 this.changePage(this.pagination.current_page);
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});                
-            }, (response) => {
+            }, function(response) {
                 this.formErrorsThanks = response.data;
             });
         }
