@@ -549,6 +549,25 @@ select.label-register {
 }
 
 
+
+
+/**
+ * 
+ * REGISTER
+ *
+ */
+
+.erro404-title {
+    margin-top: 4%;
+}
+
+.erro404-content {
+    margin-top: 4%;
+    text-align: center;
+}
+
+
+
 /**
  *
  * USER AREA 
