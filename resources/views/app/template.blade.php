@@ -40,6 +40,7 @@
                             <li><a href="{{ url('/') }}" title="">HOME</a></li>
                             <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
                             <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
+                            <li><a href="{{ url('/blog') }}" title="">BLOG</a></li>
                             <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
                             <li><a href="{{ url('/app') }}" title="">MEUS AGRADECIMENTOS</a></li>
                             <li class="dropdown app-dropdown">
