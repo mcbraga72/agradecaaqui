@@ -346,7 +346,8 @@ h1.support {
 .conteudo {
     position:relative;
     top:70px;
-    background-color:#F4F4F4
+    background-color:#F4F4F4;
+    padding-bottom: 5%;
 }
 
 .artigos {
@@ -357,13 +358,15 @@ h1.support {
 
 .artigos p {
     font-family:Lato,Arial,Tahoma,sans-serif;
-    font-weight:100;
     line-height:1.3em;
     font-size:.9em;
     letter-spacing:-1px;
     text-align:justify;
     text-justify:inter-word;
-    color:#989CA1
+    color:#333;
+    padding-right: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .artigo h2 {
@@ -433,6 +436,59 @@ h1.support {
     vertical-align:middle;
     color:#fff;
     content:'\f400'
+}
+
+.content-area {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #F4F4F4;
+}
+
+.content-area p {
+    font-family:Lato,Arial,Tahoma,sans-serif;
+    line-height:1.3em;
+    font-size:.9em;
+    letter-spacing:-1px;
+    text-align:justify;
+    text-justify:inter-word;
+    color:#333;
+    padding-right: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#container {
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #F4F4F4;
+}
+
+#container h2 {
+    padding-top: 3%;
+    padding-bottom: 1%;
+    font-family:Lato,Arial,Tahoma,sans-serif;
+    line-height:1.3em;
+    font-size:1.1em;
+    letter-spacing:-1px;
+    text-align:justify;
+    text-justify:inter-word;
+    color:#333;
+}
+
+#container h1 {
+    padding-top: 2%;
+    padding-bottom: 1%;
+    font-family:Lato,Arial,Tahoma,sans-serif;
+    line-height:1.3em;
+    font-size:1.2em;
+    letter-spacing:-1px;
+    text-align:justify;
+    text-justify:inter-word;
+    color:#333;
 }
 
 
@@ -896,6 +952,18 @@ select.label-register {
         bottom: 7%;
     }
 
+    .conteudo {
+        padding-bottom: 25%;
+    }    
+
+    .content-area {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        background-color: #F4F4F4;
+    }  
+
     .contact-form input {
         width: 90% !important;
     }
@@ -974,6 +1042,18 @@ select.label-register {
         bottom: 7%;
     }
 
+    .conteudo {
+        padding-bottom: 15%;
+    }    
+
+    .content-area {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        background-color: #F4F4F4;
+    }  
+
     .contact-form input {
         width: 60% !important;
     }
@@ -1030,6 +1110,18 @@ select.label-register {
         bottom: 7%;
     }
 
+    .conteudo {
+        padding-bottom: 15%;
+    }    
+
+    .content-area {
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        background-color: #F4F4F4;
+    }  
+
     .contact-form input {
         width: 70% !important;
     }
@@ -1081,6 +1173,18 @@ select.label-register {
         bottom: 7%;
     }
 
+    .conteudo {
+        padding-bottom: 12%;
+    }    
+
+    .content-area {
+        padding-left: 15%;
+        padding-right: 15%;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        background-color: #F4F4F4;
+    }  
+
     .contact-form input {
         width: 80% !important;
     }
@@ -1131,6 +1235,10 @@ select.label-register {
         margin-right: 5%;
         bottom: 7%;
     }
+
+    .conteudo {
+        padding-bottom: 10%;
+    }    
 
     .contact-form input {
         width: 80% !important;
@@ -1259,6 +1367,18 @@ select.label-register {
 
     .app-dropdown {
         margin-left: 30%;
+    }
+
+}
+
+@media (max-width: 990px) {
+
+    .widget {
+        padding-top: 3%;
+    }
+
+    .widget h3 {
+        padding-top: 2%;
     }
 
 }
