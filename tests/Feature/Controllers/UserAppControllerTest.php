@@ -57,7 +57,6 @@ class UserAppControllerTest extends TestCase
         $user->profession = 'Desenvolvedor de Sistemas';
         $user->maritalStatus = 'Casado';
         $user->religion = 'Católico';
-        $user->ethnicity = 'Branco';
         $user->income = 'Acima de R$ 10.000,00';
         $user->sport = implode(' ', ['futebol', 'musculação']);
         $user->soccerTeam = 'flamengo';

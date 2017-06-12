@@ -79,7 +79,7 @@ class EnterpriseThanksAdminControllerTest extends TestCase
     		 					'id', 'user_id', 'enterprise_id', 'thanksDateTime', 'content', 'replica', 'rejoinder', 'hash', 'status', 'created_at', 'updated_at', 'deleted_at', 'enterprise' => [
     		 						'id', 'category_id', 'name', 'contact', 'email', 'site', 'telephone', 'address', 'status', 'profile', 'logo', 'created_at', 'updated_at', 'deleted_at'
     		 					], 'user' => [
-    		 						'id', 'name', 'surName', 'gender', 'dateOfBirth', 'telephone', 'city', 'state', 'country', 'email', 'education', 'profession', 'maritalStatus', 'religion', 'ethnicity', 'income', 'sport', 'soccerTeam', 'height', 'weight', 'hasCar', 'hasChildren', 'liveWith', 'pet', 'registerType', 'photo', 'created_at', 'updated_at', 'deleted_at'
+    		 						'id', 'name', 'surName', 'gender', 'dateOfBirth', 'telephone', 'city', 'state', 'country', 'email', 'education', 'profession', 'maritalStatus', 'religion', 'income', 'sport', 'soccerTeam', 'height', 'weight', 'hasCar', 'hasChildren', 'liveWith', 'pet', 'registerType', 'photo', 'created_at', 'updated_at', 'deleted_at'
     		 					]
     		 				]
     		 			]	
