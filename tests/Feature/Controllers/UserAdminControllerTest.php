@@ -52,7 +52,7 @@ class UserAdminControllerTest extends TestCase
     		 		'data' => [
     		 			'total', 'per_page', 'current_page', 'last_page', 'next_page_url', 'prev_page_url', 'from', 'to', 'data' => [
     		 				0 => [
-    		 					'id', 'name', 'surName', 'gender', 'dateOfBirth', 'telephone', 'city', 'state', 'country', 'email', 'education', 'profession', 'maritalStatus', 'religion', 'ethnicity', 'income', 'sport', 'soccerTeam', 'height', 'weight', 'hasCar', 'hasChildren', 'liveWith', 'pet', 'registerType', 'photo', 'created_at', 'updated_at', 'deleted_at'
+    		 					'id', 'name', 'surName', 'gender', 'dateOfBirth', 'telephone', 'city', 'state', 'country', 'email', 'education', 'profession', 'maritalStatus', 'religion', 'income', 'sport', 'soccerTeam', 'height', 'weight', 'hasCar', 'hasChildren', 'liveWith', 'pet', 'registerType', 'photo', 'created_at', 'updated_at', 'deleted_at'
     		 				]
     		 			]	
     		 		],

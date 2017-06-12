@@ -29,7 +29,6 @@ class CreateUsersTable extends Migration
             $table->string('profession')->nullable();
             $table->string('maritalStatus')->nullable();
             $table->string('religion')->nullable();
-            $table->string('ethnicity')->nullable();
             $table->string('income')->nullable();
             $table->string('sport')->nullable();
             $table->string('soccerTeam')->nullable();

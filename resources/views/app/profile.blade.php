@@ -223,17 +223,6 @@
 		                    <span v-if="formErrorsCompleteRegister['religion']" class="error text-danger">@{{ formErrorsCompleteRegister['religion'] }}</span>
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
-		                    <label for="ethnicity">Etnia</label>
-		                    <select id="ethnicity" name="ethnicity" class="form-control" v-model="fillUser.ethnicity" />
-		                        <option value="">Selecione a etnia</option>
-		                        <option value="Branco(a)" @if(Auth::user()->ethnicity === 'Branco(a)') selected="selected" @endif>Branco(a)</option>
-		                        <option value="Mulato(a)" @if(Auth::user()->ethnicity === 'Mulato(a)') selected="selected" @endif>Mulato(a)</option>
-		                        <option value="Negro(a)" @if(Auth::user()->ethnicity === 'Negro(a)') selected="selected" @endif>Negro(a)</option>
-		                        <option value="Pardo(a)" @if(Auth::user()->ethnicity === 'Pardo(a)') selected="selected" @endif>Pardo(a)</option>
-		                    </select>
-		                    <span v-if="formErrorsCompleteRegister['ethnicity']" class="error text-danger">@{{ formErrorsCompleteRegister['ethnicity'] }}</span>
-		                </div>
-		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="income">Renda familiar</label>
 		                    <select id="income" name="income" class="form-control" v-model="fillUser.income" />
 		                        <option value="">Selecione a renda familiar</option>

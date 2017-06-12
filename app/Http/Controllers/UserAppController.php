@@ -86,7 +86,6 @@ class UserAppController extends Controller
         $user->profession = $request->profession;
         $user->maritalStatus = $request->maritalStatus;
         $user->religion = $request->religion;
-        $user->ethnicity = $request->ethnicity;
         $user->income = $request->income;        
         $user->sport = implode(' ', $request->sport);
         $user->soccerTeam = $request->soccerTeam;

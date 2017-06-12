@@ -27,7 +27,6 @@ new Vue({
             'profession':'',
             'maritalStatus':'',
             'religion':'',
-            'ethnicity':'',
             'income':'',
             'sport':'',
             'soccerTeam':'',
