@@ -75,7 +75,13 @@ class UserAppController extends Controller
 
     	$user->name = $request->name;
     	$user->surName = $request->surName;
-        $user->gender = $request->gender;
+
+        if ($request->gender == 'Outro') {
+            $user->gender = $request->otherGender;            
+        } else {
+            $user->gender = $request->gender;
+        }
+        
         $user->dateOfBirth = $request->dateOfBirth;
         $user->telephone = $request->telephone;
         $user->city = $request->city;
@@ -85,16 +91,39 @@ class UserAppController extends Controller
         $user->education = $request->education;
         $user->profession = $request->profession;
         $user->maritalStatus = $request->maritalStatus;
-        $user->religion = $request->religion;
-        $user->income = $request->income;        
-        $user->sport = implode(' ', $request->sport);
-        $user->soccerTeam = $request->soccerTeam;
+        
+        if ($request->religion == 'Outra') {
+            $user->religion = $request->otherReligion;
+        } else {
+            $user->religion = $request->religion;            
+        }
+        
+        $user->income = $request->income;
+
+        if (in_array('Outro(s)', $request->sport)) {
+            $user->sport = $request->otherSport;
+        } else {
+            $user->sport = implode(' ', $request->sport);            
+        }
+
+        if ($request->soccerTeam == 'Outro') {
+            $user->soccerTeam = $request->otherSoccerTeam;
+        } else {
+            $user->soccerTeam = $request->soccerTeam;
+        }
+
         $user->height = $request->height;
         $user->weight = $request->weight;
         $user->hasCar = $request->hasCar;
         $user->hasChildren = $request->hasChildren;
         $user->liveWith = $request->liveWith;
-        $user->pet = implode(' ', $request->pet);
+        
+        if (in_array('Outro(s)', $request->pet)) {
+            $user->pet = $request->otherPet;
+        } else {
+            $user->pet = implode(' ', $request->pet);
+        }
+        
         $user->registerType = 'Complete';
 
         if(!is_null($request->photo)) {
