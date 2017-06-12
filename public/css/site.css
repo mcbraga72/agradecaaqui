@@ -852,6 +852,16 @@ select.label-register {
     margin-top: 1% !important;
 }
 
+.formShow {
+    display: inline-block;
+}
+
+.formHide {
+    display: none;
+}
+
+
+
 
 /**
  * 
