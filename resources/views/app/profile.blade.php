@@ -240,6 +240,7 @@
 		                    <label for="sport">Pratica esporte(s)</label>
 		                    <select multiple id="sport" name="sport" class="form-control" v-model="fillUser.sport" />
 		                        <option value="">Selecione o(s) esporte(s)</option>
+		                        <option value="Nenhum" @if(Auth::user()->sport === 'Nenhum') selected="selected" @endif>Nenhum</option>
 		                        <option value="Atletismo" @if(Auth::user()->sport === 'Atletismo') selected="selected" @endif>Atletismo</option>
 		                        <option value="Basquete" @if(Auth::user()->sport === 'Basquete') selected="selected" @endif>Basquete</option>
 		                        <option value="Ciclismo" @if(Auth::user()->sport === 'Ciclismo') selected="selected" @endif>Ciclismo</option>
@@ -262,6 +263,7 @@
 		                    <label for="soccerTeam">Time de futebol</label>
 		                    <select id="soccerTeam" name="soccerTeam" class="form-control" v-model="fillUser.soccerTeam" />
 		                        <option value="">Selecione o seu time de futebol</option>
+		                        <option value="Nenhum" @if(Auth::user()->soccerTeam === 'Nenhum') selected="selected" @endif>Nenhum</option>
 		                        <option value="ABC" @if(Auth::user()->soccerTeam === 'ABC') selected="selected" @endif>ABC</option>
 		                        <option value="América-MG" @if(Auth::user()->soccerTeam === 'América-MG') selected="selected" @endif>América-MG</option>
 		                        <option value="América-RN" @if(Auth::user()->soccerTeam === 'América-RN') selected="selected" @endif>América-RN</option>
