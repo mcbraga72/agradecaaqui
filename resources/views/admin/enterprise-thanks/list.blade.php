@@ -19,12 +19,14 @@
             <tr>
                 <th>Usuário</th>
                 <th>Empresa</th>
+                <th>Data</th>
                 <th>Agradecimento</th>
                 <th colspan="2">Ação</th>
             </tr>
             <tr v-for="enterpriseThank in enterpriseThanks">
                 <td>@{{ enterpriseThank.user.name }}</td>
                 <td>@{{ enterpriseThank.enterprise.name }}</td>
+                <td>@{{ enterpriseThank.thanksDateTime | formatDate }}</td>
                 <td>@{{ enterpriseThank.content }}</td>
                 <td>    
                   <button class="btn btn-primary" @click.prevent="editEnterpriseThank(enterpriseThank)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>

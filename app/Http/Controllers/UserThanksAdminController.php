@@ -17,8 +17,6 @@ class UserThanksAdminController extends Controller
      */
     public function list()
     {
-        /*$userThanks = UserThanks::with('user')->paginate(5);
-        dd($userThanks);*/
         return view('admin.user-thanks.list');
     }
 
@@ -29,7 +27,7 @@ class UserThanksAdminController extends Controller
      */
     public function index(Request $request)
     {
-        $userThanks = UserThanks::with('user')->paginate(5);
+        $userThanks = UserThanks::with('user')->orderBy('thanksDateTime', 'desc')->paginate(10);
 
         $response = [
             'pagination' => [

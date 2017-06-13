@@ -30,7 +30,7 @@ class EnterpriseThanksAdminController extends Controller
      */
     public function index(Request $request)
     {
-        $enterpriseThanks = EnterpriseThanks::with(['Enterprise', 'User'])->paginate(5);
+        $enterpriseThanks = EnterpriseThanks::with(['Enterprise', 'User'])->orderBy('thanksDateTime', 'desc')->paginate(10);
         $enterprises = Enterprise::all();
 
         $response = [

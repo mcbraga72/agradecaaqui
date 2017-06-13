@@ -25,7 +25,7 @@ class CategoryAdminController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$categories = Category::latest()->paginate(5);
+		$categories = Category::orderBy('name')->paginate(10);
 		
 		$response = [
             'pagination' => [

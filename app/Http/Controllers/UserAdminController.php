@@ -26,7 +26,7 @@ class UserAdminController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::latest()->paginate(5);
+        $users = User::orderBy('name')->paginate(10);
         
         $response = [
             'pagination' => [
