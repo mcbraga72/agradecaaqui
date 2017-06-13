@@ -17,6 +17,7 @@
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//momentjs.com/downloads/moment.min.js"></script>
         <script src="//codeorigin.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
         <script src="{{ URL::asset('js/app.js') }}"></script>
         <script src="{{ URL::asset('js/vendor/adminlte/app.min.js') }}"></script>

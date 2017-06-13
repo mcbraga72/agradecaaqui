@@ -57,7 +57,7 @@ class AdminController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$admins = Admin::latest()->paginate(5);
+		$admins = Admin::latest()->paginate(10);
 
 		$response = [
             'pagination' => [

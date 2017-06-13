@@ -26,7 +26,7 @@ class UserAdminController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::latest()->paginate(5);
+        $users = User::orderBy('name')->paginate(10);
         
         $response = [
             'pagination' => [
@@ -65,6 +65,13 @@ class UserAdminController extends Controller
         $user->state = $request->state;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
+        $user->registerType = 'Padrão';
+
+        if($request->gender == 'Masculino') {
+            $user->photo = '/images/male.png';
+        } else {
+            $user->photo = '/images/female.png';
+        }
 
         $user->save();
         

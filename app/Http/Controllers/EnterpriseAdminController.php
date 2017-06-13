@@ -30,7 +30,7 @@ class EnterpriseAdminController extends Controller
      */
     public function index(Request $request)
     {
-        $enterprises = Enterprise::latest()->paginate(5);
+        $enterprises = Enterprise::orderBy('name')->paginate(10);
         $categories = Category::all();
 
         $response = [

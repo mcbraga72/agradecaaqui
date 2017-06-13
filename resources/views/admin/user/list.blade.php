@@ -2,65 +2,6 @@
 @section('content')
     <script type="text/javascript"> 
             
-        $(document).ready(function () {
-        
-            $.getJSON('{{ URL::to('/') }}/estados_cidades.json', function (data) {
-
-                var items = [];
-                var options = '<option value="">Selecione o estado</option>';    
-
-                $.each(data, function (key, val) {
-                    options += '<option value="' + val.nome + '">' + val.nome + '</option>';
-                });                 
-                $("#stateCreate").html(options);
-                $("#stateUpdate").html(options);
-                
-                $("#stateCreate").change(function () {              
-                
-                    var options_cityCreate = '';
-                    var str = "";                   
-                    
-                    $("#stateCreate option:selected").each(function () {
-                        str += $(this).text();
-                    });
-                    
-                    $.each(data, function (key, val) {
-                        if(val.nome == str) {                           
-                            $.each(val.cidades, function (key_cityCreate, val_cityCreate) {
-                                options_cityCreate += '<option value="' + val_cityCreate + '">' + val_cityCreate + '</option>';
-                            });                         
-                        }
-                    });
-
-                    $("#cityCreate").html(options_cityCreate);
-                    
-                }).change();
-
-                $("#stateUpdate").change(function () {              
-                
-                    var options_cityUpdate = '';
-                    var str = "";                   
-                    
-                    $("#stateUpdate option:selected").each(function () {
-                        str += $(this).text();
-                    });
-                    
-                    $.each(data, function (key, val) {
-                        if(val.nome == str) {                           
-                            $.each(val.cidades, function (key_cityUpdate, val_cityUpdate) {
-                                options_cityUpdate += '<option value="' + val_cityUpdate + '">' + val_cityUpdate + '</option>';
-                            });                         
-                        }
-                    });
-
-                    $("#cityUpdate").html(options_cityUpdate);
-                    
-                }).change();        
-            
-            });
-        
-        });
-
         function formatCellphone(cellphone){ 
             if(cellphone.value.length == 0)
                 cellphone.value = '(' + cellphone.value;
@@ -177,15 +118,43 @@
                             </div>
                             <div class="form-group">
                                 <label for="state">Estado:</label>
-                                <select id="stateCreate" name="state" class="form-control" v-model="newUser.state" />
-                                    <option value="">Selecione o estado</option>                                    
+                                <select id="state" name="state" class="form-control" v-model="newUser.state" />
+                                    <option value="">Selecione o estado</option>
+                                    <option value="Acre">Acre</option>
+                                    <option value="Alagoas">Alagoas</option>
+                                    <option value="Amapá">Amapá</option>
+                                    <option value="Amazonas">Amazonas</option>
+                                    <option value="Bahia">Bahia</option>
+                                    <option value="Ceará">Ceará</option>
+                                    <option value="Distrito Federal">Distrito Federal</option>
+                                    <option value="Espírito Santo">Espírito Santo</option>
+                                    <option value="Goiás">Goiás</option>
+                                    <option value="Maranhão">Maranhão</option>
+                                    <option value="Mato Grosso">Mato Grosso</option>
+                                    <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                                    <option value="Minas Gerais">Minas Gerais</option>
+                                    <option value="Pará">Pará</option>
+                                    <option value="Paraíba">Paraíba</option>
+                                    <option value="Paraná">Paraná</option>
+                                    <option value="Pernambuco">Pernambuco</option>
+                                    <option value="Piauí">Piauí</option>                        
+                                    <option value="Rio de Janeiro">Rio de Janeiro</option>
+                                    <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                                    <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                                    <option value="Rondônia">Rondônia</option>
+                                    <option value="Roraima">Roraima</option>
+                                    <option value="Santa Catarina">Santa Catarina</option>
+                                    <option value="Sergipe">Sergipe</option>
+                                    <option value="São Paulo">São Paulo</option>
+                                    <option value="Tocantins">Tocantins</option>
                                 </select>                                
                                 <span v-if="formErrors['state']" class="error text-danger">@{{ formErrors['state'] }}</span>
                             </div>
                             <div class="form-group">
                                 <label for="city">Cidade:</label>
-                                <select id="cityCreate" name="city" class="form-control" v-model="newUser.city" />
-                                    <option value="">Selecione a cidade</option>                                    
+                                <select id="city" name="city" class="form-control" v-model="newUser.city" />
+                                    <option value="">Selecione a cidade</option>
+                                    <option v-for="option in options" v-bind:value="option">@{{ option }}</option>
                                 </select>                                
                                 <span v-if="formErrors['city']" class="error text-danger">@{{ formErrors['city'] }}</span>
                             </div>

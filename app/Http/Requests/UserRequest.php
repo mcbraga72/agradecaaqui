@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
             'city' => 'required',
             'state' => 'required',
             'email' => 'required|email',
-            'password' => 'required|between:8,255|confirmed'
+            'password' => 'required|between:8,12|same:passwordConfirm'
         ];
     }
 
@@ -55,7 +55,8 @@ class UserRequest extends FormRequest
             'email.required' => 'O campo email é obrigatório!',
             'email.email' => 'Por favor, digite um e-mail válido!',
             'password.required' => 'O campo senha é obrigatório!',
-            'password.between' => 'Sua senha deve possuir pelo menos 8 caracteres!'
+            'password.between' => 'Sua senha deve possuir no mínimo 8 e no máximo 12 caracteres!',
+            'password.confirmed' => 'Os campos senha e confirmar senha devem possuir valores idênticos!'
         ];
     }
 }

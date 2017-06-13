@@ -17,8 +17,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newAdmin : {'name':'','email':''},
-        fillAdmin : {'name':'','email':'','id':''},
+        newAdmin : {'name':'','email':'', 'password':'', 'passwordConfirm':''},
+        fillAdmin : {'name':'','email':'', 'password':'', 'passwordConfirm':'', 'id':''},
         sortProperty: 'name',
         sortDirection: 1,
         filterTerm: ''
@@ -66,7 +66,7 @@ new Vue({
 		        var input = this.newAdmin;
 		        this.$http.post('/admin/administradores',input).then(function(response) {
 		            this.changePage(this.pagination.current_page);
-			          this.newAdmin = {'name':'','email':''};
+			          this.newAdmin = {'name':'','email':'', 'password':'', 'passwordConfirm':''};
 			          $("#createAdmin").modal('hide');
 			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
                       setTimeout(function(){window.location.href = '/admin/administradores/listar'} , 3000);

@@ -30,7 +30,8 @@ class EnterpriseRequest extends FormRequest
             'email' => 'required|email',
             'site' => 'required',
             'telephone' => 'required',
-            'address' => 'required'                        
+            'address' => 'required',
+            'password' => 'required|between:8,12|same:passwordConfirm'                     
         ];
     }
 
@@ -49,7 +50,10 @@ class EnterpriseRequest extends FormRequest
             'email.email' => 'Por favor, digite um e-mail válido!',
             'site.required' => 'O campo site é obrigatório!',
             'telephone.required' => 'O campo celular é obrigatório!',
-            'address.required' => 'O campo endereço é obrigatório!'
+            'address.required' => 'O campo endereço é obrigatório!',
+            'password.required' => 'O campo senha é obrigatório!',
+            'password.between' => 'Sua senha deve possuir no mínimo 8 e no máximo 12 caracteres!',
+            'password.confirmed' => 'Os campos senha e confirmar senha devem possuir valores idênticos!'
         ];
     }
 }

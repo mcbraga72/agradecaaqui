@@ -124,7 +124,7 @@ class UserAppController extends Controller
             $user->pet = implode(' ', $request->pet);
         }
         
-        $user->registerType = 'Complete';
+        $user->registerType = 'Completo';
 
         if(!is_null($request->photo)) {
             $currentPhoto = $this->getCurrentPhoto(Auth::user()->id);
