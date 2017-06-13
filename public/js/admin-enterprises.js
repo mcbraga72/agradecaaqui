@@ -69,7 +69,7 @@ new Vue({
 		        var input = this.newEnterprise;
 		        this.$http.post('/admin/empresas',input).then(function(response) {
 		            this.changePage(this.pagination.current_page);
-			        this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','logo': '','password': ''};
+			        this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','logo': '','password': '','passwordConfirm': ''};
 			        $("#createEnterprise").modal('hide');
 			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
                     setTimeout(function(){window.location.href = '/admin/empresas/listar'} , 3000);
