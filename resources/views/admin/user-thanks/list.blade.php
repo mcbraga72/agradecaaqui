@@ -10,6 +10,7 @@
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createUserThank"><i class="fa fa-plus fa-fw"></i>Cadastrar Agradecimento</button>
+                    <a href="/admin/cadastro/agradecimentos-usuarios/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar cadastro</a>
                     <input type="text" class="form-data search-box" placeholder=" Localizar" v-model="filterTerm" />
                 </div>
             </div>
@@ -30,8 +31,8 @@
                 <td>@{{ userThank.thanksDateTime | formatDate }}</td>
                 <td>@{{ userThank.content }}</td>
                 <td>    
-                  <button class="btn btn-primary" @click.prevent="editUserThank(userThank)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
-                  <button class="btn btn-danger" @click.prevent="deleteUserThank(userThank)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
+                    <button class="btn btn-primary" @click.prevent="editUserThank(userThank)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
+                    <button class="btn btn-danger" @click.prevent="deleteUserThank(userThank)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
                 </td>
             </tr>
         </table>

@@ -10,6 +10,7 @@
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnterprise"><i class="fa fa-plus fa-fw"></i>Cadastrar empresa</button>
+                    <a href="/admin/cadastro/empresas/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar cadastro</a>
                     <input type="text" class="form-data search-box" placeholder=" Localizar" v-model="filterTerm" />
                 </div>
             </div>
@@ -30,9 +31,9 @@
                 <td>@{{ enterprise.email }}</td>
                 <td>@{{ enterprise.profile }}</td>
                 <td>    
-                  <button class="btn btn-primary" @click.prevent="editEnterprise(enterprise)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
-                  <button class="btn btn-danger" @click.prevent="deleteEnterprise(enterprise)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
-                  <button class="btn btn-success" @click.prevent="approveEnterpriseRegister(enterprise)" v-if="enterprise.status == 'Pending'"><i class="fa fa-check fa-fw"></i>Aprovar Cadastro</button>
+                    <button class="btn btn-primary" @click.prevent="editEnterprise(enterprise)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
+                    <button class="btn btn-danger" @click.prevent="deleteEnterprise(enterprise)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
+                    <button class="btn btn-success" @click.prevent="approveEnterpriseRegister(enterprise)" v-if="enterprise.status == 'Pending'"><i class="fa fa-check fa-fw"></i>Aprovar Cadastro</button>
                 </td>
             </tr>
         </table>

@@ -145,16 +145,16 @@ Route::group(['middleware' => 'auth:admins'], function () {
 
 	Route::get('/admin/empresas/listar', 'EnterpriseAdminController@list');
 	Route::resource('/admin/empresas','EnterpriseAdminController');
-
+	
 	Route::get('/admin/agradecimentos-empresas/listar', 'EnterpriseThanksAdminController@list');
 	Route::resource('/admin/agradecimentos-empresas','EnterpriseThanksAdminController');
-
+	
 	Route::get('/admin/usuarios/listar', 'UserAdminController@list');
 	Route::resource('/admin/usuarios','UserAdminController');
-
+	
 	Route::get('/admin/agradecimentos-usuarios/listar', 'UserThanksAdminController@list');
 	Route::resource('/admin/agradecimentos-usuarios','UserThanksAdminController');
-
+	
 	Route::put('/admin/empresa/aprovar/{id}', 'EnterpriseAdminController@approveRegister');
 
 	Route::get('/admin/relatorios', 'ReportAdminController@index');
@@ -162,5 +162,10 @@ Route::group(['middleware' => 'auth:admins'], function () {
 	Route::get('/admin/api/relatorios/cidade', 'ReportAdminController@generateCityReport');
 	Route::get('/admin/api/relatorios/sexo', 'ReportAdminController@generateGenderReport');
 	Route::get('/admin/api/relatorio/{type}/{start}/{end}', 'ReportAdminController@generateCustomReport');
+
+	Route::get('/admin/cadastro/empresas/exportar', 'ServiceAdminController@exportEnterpriseRegister');
+	Route::get('/admin/cadastro/agradecimentos-empresas/exportar', 'ServiceAdminController@exportEnterpriseThanksRegister');
+	Route::get('/admin/cadastro/usuarios/exportar', 'ServiceAdminController@exportUserRegister');
+	Route::get('/admin/cadastro/agradecimentos-usuarios/exportar', 'ServiceAdminController@exportUserThanksRegister');
 
 });

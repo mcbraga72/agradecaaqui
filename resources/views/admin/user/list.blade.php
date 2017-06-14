@@ -29,6 +29,7 @@
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createUser"><i class="fa fa-plus fa-fw"></i>Cadastrar usuário</button>
+                    <a href="/admin/cadastro/usuarios/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar cadastro</a>
                     <input type="text" class="form-data search-box" placeholder=" Localizar" v-model="filterTerm" />                    
                 </div>
             </div>
@@ -47,8 +48,8 @@
                 <td>@{{ user.email }}</td>
                 <td>@{{ user.registerType }}</td>
                 <td>    
-                  <button class="btn btn-primary" @click.prevent="editUser(user)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
-                  <button class="btn btn-danger" @click.prevent="deleteUser(user)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
+                    <button class="btn btn-primary" @click.prevent="editUser(user)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
+                    <button class="btn btn-danger" @click.prevent="deleteUser(user)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
                 </td>
             </tr>
         </table>
