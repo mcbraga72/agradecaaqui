@@ -9,7 +9,8 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnterpriseThank"><i class="fa fa-plus fa-fw"></i>Cadastrar Agradecimento</button>                    
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createEnterpriseThank"><i class="fa fa-plus fa-fw"></i>Cadastrar Agradecimento</button>
+                    <a href="/admin/cadastro/agradecimentos-empresas/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar cadastro</a>
                     <input type="text" class="form-data search-box" placeholder=" Localizar" v-model="filterTerm" />
                 </div>
             </div>
@@ -30,8 +31,8 @@
                 <td>@{{ enterpriseThank.thanksDateTime | formatDate }}</td>
                 <td>@{{ enterpriseThank.content }}</td>
                 <td>    
-                  <button class="btn btn-primary" @click.prevent="editEnterpriseThank(enterpriseThank)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
-                  <button class="btn btn-danger" @click.prevent="deleteEnterpriseThank(enterpriseThank)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
+                    <button class="btn btn-primary" @click.prevent="editEnterpriseThank(enterpriseThank)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
+                    <button class="btn btn-danger" @click.prevent="deleteEnterpriseThank(enterpriseThank)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
                 </td>
             </tr>
         </table>
