@@ -25,7 +25,8 @@ new Vue({
         formErrors:{},
         formErrorsUpdate:{},
         newEnterpriseThank : {'enterprise_id':'','content':''},
-        fillEnterpriseThank : {'enterprise_id':'','content':'','id':''}
+        fillEnterpriseThank : {'enterprise_id':'','content':'','id':''},
+        filterTerm: ''
     },
 
     computed: {
