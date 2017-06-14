@@ -60,10 +60,14 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function generateCustomReport($type='gender', $start='2017-03-01', $end='2017-03-02')
-	{		
-		$genderReport = User::select($type, \DB::raw("count(users.gender) as thanks"))->whereBetween('thanksDateTime', array($start, $end))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.' . $type)->get();
+	public function generateCustomReport($type, $start, $end)
+	{
+		$startDate = \DateTime::createFromFormat('d-m-Y', $start)->format('Y-m-d');
+		$endDate = \DateTime::createFromFormat('d-m-Y', $end)->format('Y-m-d');
+		$attribute = 'users.' . $type;
+
+		$report = User::select($type, \DB::raw("count($attribute) as thanks"))->whereBetween('thanksDateTime', array($startDate, $endDate))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.' . $type)->get();
 		
-		return $genderReport;
+		return $report;
 	}
 }

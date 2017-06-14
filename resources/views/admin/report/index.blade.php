@@ -5,124 +5,132 @@
 
 <script>
 
-$(document).ready(function() {
-	$(function(){
-	    $.getJSON("/admin/api/relatorios/estado", function (result) {
+	function formatDate(date) {
+        if(date.value.length == 2)
+            date.value = date.value + '/';
+        if(date.value.length == 5)
+            date.value = date.value + '/';        
+    }
 
-	        var labels = [];
-	        var data = [];
+	$(document).ready(function() {
+		$(function(){
+		    $.getJSON("/admin/api/relatorios/estado", function (result) {
 
-	        for (var i = 0; i < result.length; i++) {
-	            labels.push(result[i].state);
-	            data.push(result[i].thanks);	            
-	        }
+		        var labels = [];
+		        var data = [];
 
-	        var buyerData = {
-	            labels : labels,
-	            datasets : [
-	                {
-	                    data : data,
-	                    backgroundColor: [
-                			'rgba(255, 99, 132, 0.2)',
-                			'rgba(54, 162, 235, 0.2)'
-			            ]
-	                }
-	            ]
-	        };
-	        
-	        var buyers = document.getElementById('stateThanksGraph').getContext('2d');
-	        
-	        var chartInstance = new Chart(buyers, {
-	            type: 'pie',
-	            data: buyerData,
-	            options: {
-	            	title: {
-					    display: true,
-					    text: 'Agradecimentos por estado'
-					}
-				}	            
-	        });
-	    });
+		        for (var i = 0; i < result.length; i++) {
+		            labels.push(result[i].state);
+		            data.push(result[i].thanks);	            
+		        }
+
+		        var buyerData = {
+		            labels : labels,
+		            datasets : [
+		                {
+		                    data : data,
+		                    backgroundColor: [
+	                			'rgba(255, 99, 132, 0.2)',
+	                			'rgba(54, 162, 235, 0.2)'
+				            ]
+		                }
+		            ]
+		        };
+		        
+		        var buyers = document.getElementById('stateThanksGraph').getContext('2d');
+		        
+		        var chartInstance = new Chart(buyers, {
+		            type: 'pie',
+		            data: buyerData,
+		            options: {
+		            	title: {
+						    display: true,
+						    text: 'Agradecimentos por estado'
+						}
+					}	            
+		        });
+		    });
+		});
+
+		$(function(){
+		    $.getJSON("/admin/api/relatorios/cidade", function (result) {
+
+		        var labels = [];
+		        var data = [];
+
+		        for (var i = 0; i < result.length; i++) {
+		            labels.push(result[i].city);
+		            data.push(result[i].thanks);	            
+		        }
+
+		        var buyerData = {
+		            labels : labels,
+		            datasets : [
+		                {
+		                	data : data,
+		                	backgroundColor: [
+	                			'rgba(255, 206, 86, 0.2)',
+	                			'rgba(75, 192, 192, 0.2)'
+				            ]
+		                }
+		            ]
+		        };
+		        
+		        var buyers = document.getElementById('cityThanksGraph').getContext('2d');
+		        
+		        var chartInstance = new Chart(buyers, {
+		            type: 'pie',
+		            data: buyerData,
+		            options: {
+		            	title: {
+						    display: true,
+						    text: 'Agradecimentos por cidade'
+						}
+					}	            
+		        });
+		    });
+		});
+
+		$(function(){
+		    $.getJSON("/admin/api/relatorios/sexo", function (result) {
+
+		        var labels = [];
+		        var data = [];
+
+		        for (var i = 0; i < result.length; i++) {
+		            labels.push(result[i].gender);
+		            data.push(result[i].thanks);	            
+		        }
+
+		        var buyerData = {
+		            labels : labels,
+		            datasets : [
+		                {
+		                    data : data,
+		                    backgroundColor: [
+	                		    'rgba(153, 102, 255, 0.2)',
+				                'rgba(255, 159, 64, 0.2)'
+				            ]
+		                }
+		            ]
+		        };
+		        
+		        var buyers = document.getElementById('genderThanksGraph').getContext('2d');
+		        
+		        var chartInstance = new Chart(buyers, {
+		            type: 'pie',
+		            data: buyerData,
+		            options: {
+		            	title: {
+						    display: true,
+						    text: 'Agradecimentos por gênero'
+						}
+					}	            
+		        });
+		    });
+		});
 	});
 
-	$(function(){
-	    $.getJSON("/admin/api/relatorios/cidade", function (result) {
-
-	        var labels = [];
-	        var data = [];
-
-	        for (var i = 0; i < result.length; i++) {
-	            labels.push(result[i].city);
-	            data.push(result[i].thanks);	            
-	        }
-
-	        var buyerData = {
-	            labels : labels,
-	            datasets : [
-	                {
-	                	data : data,
-	                	backgroundColor: [
-                			'rgba(255, 206, 86, 0.2)',
-                			'rgba(75, 192, 192, 0.2)'
-			            ]
-	                }
-	            ]
-	        };
-	        
-	        var buyers = document.getElementById('cityThanksGraph').getContext('2d');
-	        
-	        var chartInstance = new Chart(buyers, {
-	            type: 'pie',
-	            data: buyerData,
-	            options: {
-	            	title: {
-					    display: true,
-					    text: 'Agradecimentos por cidade'
-					}
-				}	            
-	        });
-	    });
-	});
-
-	$(function(){
-	    $.getJSON("/admin/api/relatorios/sexo", function (result) {
-
-	        var labels = [];
-	        var data = [];
-
-	        for (var i = 0; i < result.length; i++) {
-	            labels.push(result[i].gender);
-	            data.push(result[i].thanks);	            
-	        }
-
-	        var buyerData = {
-	            labels : labels,
-	            datasets : [
-	                {
-	                    data : data,
-	                    backgroundColor: [
-                		    'rgba(153, 102, 255, 0.2)',
-			                'rgba(255, 159, 64, 0.2)'
-			            ]
-	                }
-	            ]
-	        };
-	        
-	        var buyers = document.getElementById('genderThanksGraph').getContext('2d');
-	        
-	        var chartInstance = new Chart(buyers, {
-	            type: 'pie',
-	            data: buyerData,
-	            options: {
-	            	title: {
-					    display: true,
-					    text: 'Agradecimentos por gênero'
-					}
-				}	            
-	        });
-	    });
-	});
-});
 </script>
 <div class="row" style="margin-left: 1%;">
 	<h4 class="reports-title">Relatórios</h4>
@@ -132,10 +140,18 @@ $(document).ready(function() {
 	    	<div class="panel-body reports-fields">	    		
 	    		<select name="reportType" id="reportType" class="col-md-3" style="margin-right: 2%;">
 	    			<option value="">Selecione o tipo do relatório</option>
-	    			<option value="state">Estado</option>
+	    			<option value="education">Escolaridade</option>
+	    			<option value="profession">Profissão</option>
+	    			<option value="maritalStatus">Estado civil</option>
+	    			<option value="religion">Religião</option>
+	    			<option value="income">Renda mensal</option>
+	    			<option value="soccerTeam">Time de futebol</option>
+	    			<option value="hasCar">Possui automóvel</option>
+	    			<option value="hasChildren">Tem filhos</option>
+	    			<option value="liveWith">Mora com quem</option>
 	    		</select>
-	    		<input type="text" name="start" id="start" placeholder="Data inicial" class="col-md-3" style="margin-right: 2%;">
-	    		<input type="text" name="end" id="end" placeholder="Data final" class="col-md-3" style="margin-right: 2%;">
+	    		<input type="text" name="start" id="start" placeholder="Data inicial" class="col-md-3" maxlength="10" onkeypress="formatDate(this)" style="margin-right: 2%;">
+	    		<input type="text" name="end" id="end" placeholder="Data final" class="col-md-3" maxlength="10" onkeypress="formatDate(this)" style="margin-right: 2%;">
 	    		<button type="button" class="btn btn-primary col-md-2" data-toggle="modal" data-target="#customReportModal" onclick="generateCustomReport()">Gerar Relatório</button>
 	    	</div>
 		</div>
@@ -155,10 +171,12 @@ $(document).ready(function() {
 <script>
 
 	function generateCustomReport() {
+		var reportTypeSelect = document.getElementById("reportType");
+		var reportTypeName = reportTypeSelect.options[reportTypeSelect.selectedIndex].text;
 		var type = document.getElementById('reportType').value;
-		var start = document.getElementById('start').value;
-		var end = document.getElementById('end').value;
-
+		var start = document.getElementById('start').value.replace(/\//g, '-');
+		var end = document.getElementById('end').value.replace(/\//g, '-');
+		
 	    $.getJSON("/admin/api/relatorio/" + type + "/" + start + "/" + end, function (result) {
 
 	        var labels = [];
@@ -166,7 +184,7 @@ $(document).ready(function() {
 
 	        for (var i = 0; i < result.length; i++) {
 	            labels.push(result[i].state);
-	            data.push(result[i].thanks);	            
+	            data.push(result[i].thanks);
 	        }
 
 	        var buyerData = {
@@ -190,12 +208,12 @@ $(document).ready(function() {
 	            options: {
 	            	title: {
 					    display: true,
-					    text: 'Agradecimentos por estado'
+					    text: 'Agradecimentos por ' + reportTypeName
 					}
 				}	            
 	        });
 	    });
-	}    
+	}
 
 </script>
 <div class="modal fade" id="customReportModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
