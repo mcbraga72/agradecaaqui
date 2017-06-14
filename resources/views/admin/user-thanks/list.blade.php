@@ -9,7 +9,8 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createUserThank"><i class="fa fa-plus fa-fw"></i>Cadastrar Agradecimento</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createUserThank"><i class="fa fa-plus fa-fw"></i>Cadastrar Agradecimento</button>
+                    <input type="text" class="form-data search-box" placeholder=" Localizar" v-model="filterTerm" />
                 </div>
             </div>
         </div>
@@ -23,7 +24,7 @@
                 <th>Agradecimento</th>
                 <th colspan="2">Ação</th>
             </tr>
-            <tr v-for="userThank in userThanks">
+            <tr v-for="userThank in userThanks | filterBy filterTerm">
                 <td>@{{ userThank.user.name }}</td>
                 <td>@{{ userThank.receiptName }}</td>
                 <td>@{{ userThank.thanksDateTime | formatDate }}</td>

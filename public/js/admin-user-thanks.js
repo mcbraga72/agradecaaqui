@@ -24,7 +24,8 @@ new Vue({
         formErrors:{},
         formErrorsUpdate:{},
         newUserThank : {'user_id':'','receiptName':'','receiptEmail':'','content':''},
-        fillUserThank : {'user_id':'','receiptName':'','receiptEmail':'','content':'','id':''}
+        fillUserThank : {'user_id':'','receiptName':'','receiptEmail':'','content':'','id':''},
+        filterTerm: ''
     },
 
     computed: {
