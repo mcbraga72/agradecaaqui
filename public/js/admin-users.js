@@ -18,7 +18,36 @@ new Vue({
         formErrors:{},
         formErrorsUpdate:{},
         newUser : {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':'','passwordConfirm':''},
-        fillUser : {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','id':''},
+        fillUser: {
+            'name':'',
+            'surName':'',
+            'gender':'',
+            'otherGender':'',
+            'dateOfBirth':'',
+            'telephone':'',
+            'city':'',
+            'state':'',
+            'country':'',
+            'email':'',
+            'education':'',
+            'profession':'',
+            'maritalStatus':'',
+            'religion':'',
+            'otherReligion':'',
+            'income':'',
+            'sport':'',
+            'otherSport':'',
+            'soccerTeam':'',
+            'otherSoccerTeam':'',
+            'height':'',
+            'weight':'',
+            'hasCar':'',
+            'hasChildren':'',
+            'liveWith':'',
+            'pet':'',
+            'otherPet':'',
+            'id':''
+        },
         sortProperty: 'name',
         sortDirection: 1,
         filterTerm: '',
@@ -5637,7 +5666,7 @@ new Vue({
                 "Wanderlândia",
                 "Xambioá"
             ]
-        }
+        },        
     },
 
     computed: {
@@ -5782,17 +5811,138 @@ new Vue({
 
             return options
        
-        }
-    },
+        },
 
+        editOptions: function() {
+       
+        let options = ''
+
+            switch(this.fillUser.state) {
+
+                case 'Acre':
+                editOptions = this.statesCities.Acre
+                break;
+                
+                case 'Alagoas':
+                editOptions = this.statesCities.Alagoas
+                break;
+
+                case 'Amazonas':
+                editOptions = this.statesCities.Amazonas
+                break;
+
+                case 'Amapá':
+                editOptions = this.statesCities.Amapa
+                break;
+
+                case 'Bahia':
+                editOptions = this.statesCities.Bahia
+                break;
+
+                case 'Ceará':
+                editOptions = this.statesCities.Ceara
+                break;
+
+                case 'Distrito Federal':
+                editOptions = this.statesCities.DistritoFederal
+                break;
+
+                case 'Espírito Santo':
+                editOptions = this.statesCities.EspiritoSanto
+                break;
+
+                case 'Goiás':
+                editOptions = this.statesCities.Goias
+                break;
+                
+                case 'Maranhão':
+                editOptions = this.statesCities.Maranhao
+                break;
+
+                case 'Minas Gerais':
+                editOptions = this.statesCities.MinasGerais
+                break;
+
+                case 'Mato Grosso do Sul':
+                editOptions = this.statesCities.MatoGrossoDoSul
+                break;
+
+                case 'Mato Grosso':
+                editOptions = this.statesCities.MatoGrosso
+                break;
+
+                case 'Pará':
+                editOptions = this.statesCities.Para
+                break;
+
+                case 'Paraíba':
+                editOptions = this.statesCities.Paraiba
+                break;
+                
+                case 'Paraná':
+                editOptions = this.statesCities.Parana
+                break;
+
+                case 'Pernambuco':
+                editOptions = this.statesCities.Pernambuco
+                break;
+                
+                case 'Piauí':
+                editOptions = this.statesCities.Piaui
+                break;
+
+                case 'Rio de Janeiro':
+                editOptions = this.statesCities.RioDeJaneiro
+                break;
+
+                case 'Rio Grande do Norte':
+                editOptions = this.statesCities.RioGrandeDoNorte
+                break;
+
+                case 'Rio Grande do Sul':
+                editOptions = this.statesCities.RioGrandeDoSul
+                break;
+
+                case 'Rondônia':
+                editOptions = this.statesCities.Rondonia
+                break;
+
+                case 'Roraima':
+                editOptions = this.statesCities.Roraima
+                break;
+                
+                case 'Santa Catarina':
+                editOptions = this.statesCities.SantaCatarina
+                break;
+
+                case 'São Paulo':
+                editOptions = this.statesCities.SaoPaulo
+                break;
+
+                case 'Sergipe':
+                editOptions = this.statesCities.Sergipe
+                break;
+                
+                case 'Tocantins':
+                editOptions = this.statesCities.Tocantins
+                break;
+            }
+
+            return editOptions
+       
+        }
+
+    },
+    
     ready : function(){
-  	   	this.getUsers(this.pagination.current_page);
+  	   	this.getUsers(this.pagination.current_page);        
     },
 
     methods : {
 
         onChange: function (){
-            this.options = this.options;            
+            this.options = this.options;
+            this.editOptions = this.editOptions;
         },
 
         getUsers: function(page){
@@ -5836,6 +5986,25 @@ new Vue({
             this.fillUser.city = user.city;
             this.fillUser.state = user.state;
             this.fillUser.email = user.email;
+            this.fillUser.country = user.country;
+            this.fillUser.education = user.education;
+            this.fillUser.profession = user.profession;
+            this.fillUser.maritalStatus = user.maritalStatus;
+            this.fillUser.religion = user.religion;
+            this.fillUser.otherReligion = user.otherReligion;
+            this.fillUser.income = user.income;
+            this.fillUser.sport = user.sport;
+            this.fillUser.otherSport = user.otherSport;
+            this.fillUser.soccerTeam = user.soccerTeam;
+            this.fillUser.otherSoccerTeam = user.otherSoccerTeam;
+            this.fillUser.height = user.height;
+            this.fillUser.weight = user.weight;
+            this.fillUser.hasCar = user.hasCar;
+            this.fillUser.hasChildren = user.hasChildren;
+            this.fillUser.liveWith = user.liveWith;
+            this.fillUser.pet = user.pet;
+            this.fillUser.otherPet = user.otherPet;
+            this.fillUser.id = user.id;
             $("#editUser").modal('show');
         },
 

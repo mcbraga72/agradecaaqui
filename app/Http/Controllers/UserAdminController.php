@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
+use URL;
 
 class UserAdminController extends Controller
 {
@@ -16,7 +17,13 @@ class UserAdminController extends Controller
      */
     public function list()
     {
-        return view('admin.user.list');
+        $countriesList = new \SplFileObject(URL::to('/') . '/paises.json');
+
+        while (!$countriesList->eof()) {
+            $countries[] = trim($countriesList->fgets());
+        }
+        
+        return view('admin.user.list')->with('countries', $countries);
     }
 
     /**
