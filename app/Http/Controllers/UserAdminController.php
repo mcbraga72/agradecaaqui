@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\CompleteUserRegisterRequest;
 use Illuminate\Http\Request;
 use URL;
 
@@ -104,19 +104,60 @@ class UserAdminController extends Controller
      * Update user's data
      * 
      */
-    public function update(UserRequest $request, $id)
+    public function update(CompleteUserRegisterRequest $request, $id)
     {
         $user = User::find($id);
 
         $user->name = $request->name;
         $user->surName = $request->surName;
-        $user->gender = $request->gender;
+
+        if ($request->gender == 'Outro') {
+            $user->gender = $request->otherGender;            
+        } else {
+            $user->gender = $request->gender;
+        }
+        
         $user->dateOfBirth = $request->dateOfBirth;
         $user->telephone = $request->telephone;
         $user->city = $request->city;
-        $user->state = $request->state;
+        $user->state = $request->state;     
+        $user->country = $request->country;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        $user->education = $request->education;
+        $user->profession = $request->profession;
+        $user->maritalStatus = $request->maritalStatus;
+        
+        if ($request->religion == 'Outra') {
+            $user->religion = $request->otherReligion;
+        } else {
+            $user->religion = $request->religion;            
+        }
+        
+        $user->income = $request->income;
+
+        if (in_array('Outro(s)', $request->sport)) {
+            $user->sport = $request->otherSport;
+        } else {
+            $user->sport = json_encode($request->sport);            
+        }
+
+        if ($request->soccerTeam == 'Outro') {
+            $user->soccerTeam = $request->otherSoccerTeam;
+        } else {
+            $user->soccerTeam = $request->soccerTeam;
+        }
+
+        $user->height = $request->height;
+        $user->weight = $request->weight;
+        $user->hasCar = $request->hasCar;
+        $user->hasChildren = $request->hasChildren;
+        $user->liveWith = $request->liveWith;
+        
+        if (in_array('Outro(s)', $request->pet)) {
+            $user->pet = $request->otherPet;
+        } else {
+            $user->pet = json_encode($request->pet);
+        }
 
         $user->save();
 

@@ -35,7 +35,7 @@ new Vue({
             'religion':'',
             'otherReligion':'',
             'income':'',
-            'sport':'',
+            'sport':[],
             'otherSport':'',
             'soccerTeam':'',
             'otherSoccerTeam':'',
@@ -44,10 +44,11 @@ new Vue({
             'hasCar':'',
             'hasChildren':'',
             'liveWith':'',
-            'pet':'',
+            'pet':[],
             'otherPet':'',
             'id':''
         },
+        multiple: true,
         sortProperty: 'name',
         sortDirection: 1,
         filterTerm: '',
@@ -5980,7 +5981,14 @@ new Vue({
             this.fillUser.id = user.id;
             this.fillUser.name = user.name;
             this.fillUser.surName = user.surName;
-            this.fillUser.gender = user.gender;
+            
+            if (user.gender != 'Feminino' && user.gender != 'Masculino') {
+                this.fillUser.gender = 'Outros';
+                this.fillUser.otherGender = user.gender;
+            } else {
+                this.fillUser.gender = user.gender;
+            }
+            
             this.fillUser.dateOfBirth = user.dateOfBirth;
             this.fillUser.telephone = user.telephone;
             this.fillUser.city = user.city;
@@ -5990,13 +5998,81 @@ new Vue({
             this.fillUser.education = user.education;
             this.fillUser.profession = user.profession;
             this.fillUser.maritalStatus = user.maritalStatus;
-            this.fillUser.religion = user.religion;
-            this.fillUser.otherReligion = user.otherReligion;
+            
+            if (user.religion != 'Adventista' && 
+                user.religion != 'Ateísta' && 
+                user.religion != 'Budista' && 
+                user.religion != 'Católico(a)' && 
+                user.religion != 'Candomblé' && 
+                user.religion != 'Espírita' && 
+                user.religion != 'Hinduismo' && 
+                user.religion != 'Islamismo' && 
+                user.religion != 'Judaísmo' && 
+                user.religion != 'Messiânico' && 
+                user.religion != 'Metodista' && 
+                user.religion != 'Mórmom' && 
+                user.religion != 'Ortodoxo(a)' && 
+                user.religion != 'Presbiteriano(a)' && 
+                user.religion != 'Protestante' && 
+                user.religion != 'Testemunha de Jeová' && 
+                user.religion != 'Umbanda' &&
+                user.religion != null) {
+                    this.fillUser.religion = 'Outra';
+                    this.fillUser.otherReligion = user.religion;
+            } else {
+                this.fillUser.religion = user.religion;
+            }
+                
             this.fillUser.income = user.income;
+            
             this.fillUser.sport = user.sport;
             this.fillUser.otherSport = user.otherSport;
-            this.fillUser.soccerTeam = user.soccerTeam;
-            this.fillUser.otherSoccerTeam = user.otherSoccerTeam;
+            
+            if (user.soccerTeam != 'Nenhum' && 
+                user.soccerTeam != 'ABC' && 
+                user.soccerTeam != 'América-MG' && 
+                user.soccerTeam != 'América-RN' && 
+                user.soccerTeam != 'Atlético-GO' && 
+                user.soccerTeam != 'Atlético-MG' && 
+                user.soccerTeam != 'Atlético-PR' && 
+                user.soccerTeam != 'Avaí' && 
+                user.soccerTeam != 'Bahia' && 
+                user.soccerTeam != 'Botafogo' && 
+                user.soccerTeam != 'Ceará' && 
+                user.soccerTeam != 'Chapecoense' && 
+                user.soccerTeam != 'Corinthians' && 
+                user.soccerTeam != 'Coritiba' && 
+                user.soccerTeam != 'CRB' && 
+                user.soccerTeam != 'Cricíúma' && 
+                user.soccerTeam != 'Cruzeiro' && 
+                user.soccerTeam != 'Figueirense' && 
+                user.soccerTeam != 'Flamengo' && 
+                user.soccerTeam != 'Fluminense' && 
+                user.soccerTeam != 'Fortaleza' && 
+                user.soccerTeam != 'Goiás' && 
+                user.soccerTeam != 'Grêmio' && 
+                user.soccerTeam != 'Guarani' && 
+                user.soccerTeam != 'Internacional' && 
+                user.soccerTeam != 'Juventude' && 
+                user.soccerTeam != 'Náutico' && 
+                user.soccerTeam != 'Palmeiras' && 
+                user.soccerTeam != 'Paraná' && 
+                user.soccerTeam != 'Ponte Preta' && 
+                user.soccerTeam != 'Portuguesa' && 
+                user.soccerTeam != 'Paysandu' && 
+                user.soccerTeam != 'Santa Cruz' && 
+                user.soccerTeam != 'Santos' && 
+                user.soccerTeam != 'São Paulo' && 
+                user.soccerTeam != 'Sport' && 
+                user.soccerTeam != 'Vasco' && 
+                user.soccerTeam != 'Vitória' &&
+                user.soccerTeam != null) {
+                    this.fillUser.soccerTeam = 'Outro';
+                    this.fillUser.otherSoccerTeam = user.soccerTeam;
+            } else {
+                this.fillUser.soccerTeam = user.soccerTeam;
+            }
+            
             this.fillUser.height = user.height;
             this.fillUser.weight = user.weight;
             this.fillUser.hasCar = user.hasCar;
@@ -6004,6 +6080,7 @@ new Vue({
             this.fillUser.liveWith = user.liveWith;
             this.fillUser.pet = user.pet;
             this.fillUser.otherPet = user.otherPet;
+            
             this.fillUser.id = user.id;
             $("#editUser").modal('show');
         },
@@ -6012,7 +6089,36 @@ new Vue({
             var input = this.fillUser;
             this.$http.put('/admin/usuarios/'+id,input).then(function(response) {
                 this.changePage(this.pagination.current_page);
-                this.fillUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','id':''};
+                this.fillUser = {
+                    'name':'',
+                    'surName':'',
+                    'gender':'',
+                    'otherGender':'',
+                    'dateOfBirth':'',
+                    'telephone':'',
+                    'city':'',
+                    'state':'',
+                    'country':'',
+                    'email':'',
+                    'education':'',
+                    'profession':'',
+                    'maritalStatus':'',
+                    'religion':'',
+                    'otherReligion':'',
+                    'income':'',
+                    'sport':'',
+                    'otherSport':'',
+                    'soccerTeam':'',
+                    'otherSoccerTeam':'',
+                    'height':'',
+                    'weight':'',
+                    'hasCar':'',
+                    'hasChildren':'',
+                    'liveWith':'',
+                    'pet':[],
+                    'otherPet':'',
+                    'id':''
+                };
                 $("#editUser").modal('hide');
                 toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});
             }, function(response) {
