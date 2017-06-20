@@ -5,48 +5,6 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript"> 
         
-    $(document).ready(function () {
-    
-        $.getJSON('{{ 'http://' . $_SERVER['HTTP_HOST'] . '/estados_cidades.json' }}', function (data) {
-
-            var items = [];
-            var options = '<option value="">Selecione o estado</option>';    
-
-            $.each(data, function (key, val) {
-                options += '<option value="' + val.nome + '">' + val.nome + '</option>';
-            });                 
-            $("#state").html(options);
-            $("#state").val('{{ old('state') }}');
-            
-            $("#state").change(function () {              
-            
-                var options_city = '';
-                var str = "";                   
-                
-                $("#state option:selected").each(function () {
-                    str += $(this).text();
-                });
-                
-                $.each(data, function (key, val) {
-                    if(val.nome == str) {                           
-                        $.each(val.cidades, function (key_city, val_city) {
-                            options_city += '<option value="' + val_city + '">' + val_city + '</option>';
-                        });                         
-                    }
-                });
-
-                $("#city").html(options_city);
-                $("#city").val('{{ old('city') }}');
-                
-            }).change();        
-
-            var options_city = '<option value="">Selecione antes o estado</option>';
-            $("#city").html(options_city);            
-        
-        });
-    
-    });
-
     function formatTelephone(telephone){ 
         if(telephone.value.length == 0)
             telephone.value = '(' + telephone.value;
@@ -207,7 +165,35 @@
                     <br><br>
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
                         <label for="state" class="col-md-4 control-label label-register">ESTADO</label>                        
-                        <select id="state" class="form-control label-register" name="state" value="{{ old('state') }}" required autofocus>
+                        <select id="state" class="form-control label-register" name="state" value="{{ old('state') }}" v-model="state" v-on:change="onChange" required autofocus>
+                            <option value="">Selecione o estado</option>
+                            <option value="Acre">Acre</option>
+                            <option value="Alagoas">Alagoas</option>
+                            <option value="Amapá">Amapá</option>
+                            <option value="Amazonas">Amazonas</option>
+                            <option value="Bahia">Bahia</option>
+                            <option value="Ceará">Ceará</option>
+                            <option value="Distrito Federal">Distrito Federal</option>
+                            <option value="Espírito Santo">Espírito Santo</option>
+                            <option value="Goiás">Goiás</option>
+                            <option value="Maranhão">Maranhão</option>
+                            <option value="Mato Grosso">Mato Grosso</option>
+                            <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                            <option value="Minas Gerais">Minas Gerais</option>
+                            <option value="Pará">Pará</option>
+                            <option value="Paraíba">Paraíba</option>
+                            <option value="Paraná">Paraná</option>
+                            <option value="Pernambuco">Pernambuco</option>
+                            <option value="Piauí">Piauí</option>                        
+                            <option value="Rio de Janeiro">Rio de Janeiro</option>
+                            <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                            <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                            <option value="Rondônia">Rondônia</option>
+                            <option value="Roraima">Roraima</option>
+                            <option value="Santa Catarina">Santa Catarina</option>
+                            <option value="Sergipe">Sergipe</option>
+                            <option value="São Paulo">São Paulo</option>
+                            <option value="Tocantins">Tocantins</option>
                         </select>    
                         @if ($errors->has('state'))
                             <span class="help-block">
@@ -219,7 +205,8 @@
                 <div class="label-register form-group{{ $errors->has('city') ? ' has-error' : '' }}">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
                         <label for="city" class="col-md-4 control-label label-register">CIDADE</label>                        
-                        <select id="city" class="form-control label-register" name="city" value="{{ old('city') }}" required autofocus>
+                        <select id="city" class="form-control label-register" name="city" value="{{ old('city') }}" v-model="city" required autofocus>
+                            <option v-for="option in options" v-bind:value="option">@{{ option }}</option>
                         </select>    
                         @if ($errors->has('city'))
                             <span class="help-block">
@@ -256,7 +243,10 @@
                         <button type="submit" class="btn pink-button">Enviar</button>                        
                     </div>
                 </div>
-            </form>            
+            </form>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+            <script type="text/javascript" src="/js/site-enterprises.js"></script>            
         </div>        
     </div>
 </div>
