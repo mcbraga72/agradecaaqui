@@ -40,14 +40,14 @@
                         <ul class="nav navbar-nav navbar-right">
                             @if (Auth::guest())
                                 <li><a href="{{ url('/') }}" title="">HOME</a></li>
-                                <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
+                                <li><a href="{{ url('/parceiros') }}" title="">PARCEIROS</a></li>
                                 <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
                                 <li><a href="{{ url('/blog/') }}" title="">BLOG</a></li>
                                 <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
                                 <li><a href="{{ url('/entrar') }}" title="">ENTRAR</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
                             @else
                                 <li><a href="{{ url('/') }}" title="">HOME</a></li>
-                                <li><a href="{{ url('/apoiadores') }}" title="">APOIADORES</a></li>
+                                <li><a href="{{ url('/parceiros') }}" title="">PARCEIROS</a></li>
                                 <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
                                 <li><a href="{{ url('/blog/') }}" title="">BLOG</a></li>
                                 <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>

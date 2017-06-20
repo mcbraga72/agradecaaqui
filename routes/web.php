@@ -61,7 +61,7 @@ Route::get('/callback/google', 'SocialAuthController@callbackGoogle');
 Route::get('/', 'SiteController@index');
 Route::get('/quem-somos', 'SiteController@about');
 Route::get('/contato', 'SiteController@contact');
-Route::get('/apoiadores', 'SiteController@support');
+Route::get('/parceiros', 'SiteController@support');
 Route::get('/entrar', 'SiteController@login');
 Route::post('/entrar', 'SiteController@loginWithData');
 Route::get('/cadastro', 'SiteController@register');
