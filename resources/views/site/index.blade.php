@@ -1,7 +1,7 @@
 @extends('site.template')
 
 @section('content')
-	<script src="http://cloud.tinymce.com/stable/tinymce.min.js?apiKey=0zfrot4cp11wye4w5un16jq685zt2zsd0pqlbmpgobuylmno"></script>
+	<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=0zfrot4cp11wye4w5un16jq685zt2zsd0pqlbmpgobuylmno"></script>
 	<script type="text/javascript">
 	    tinymce.init({ 
 	        selector:'textarea',
