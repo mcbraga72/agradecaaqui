@@ -51,7 +51,7 @@
                                 <li><a href="{{ url('/quem-somos') }}" title="">QUEM SOMOS</a></li>
                                 <li><a href="{{ url('/blog/') }}" title="">BLOG</a></li>
                                 <li><a href="{{ url('/contato') }}" title="">CONTATO</a></li>
-                                <li><a href="{{ url('/app') }}" title="">ÁREA DO CLIENTE</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
+                                <li><a href="{{ url('/app') }}" title="">ÁREA DO USUÁRIO</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
                                 <li class="dropdown app-dropdown">
                                     <a href="#" id="home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /><span class="caret"></span>
