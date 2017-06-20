@@ -103,7 +103,7 @@ class UserAppController extends Controller
         if (in_array('Outro(s)', $request->sport)) {
             $user->sport = $request->otherSport;
         } else {
-            $user->sport = implode(' ', $request->sport);            
+            $user->sport = json_encode($request->sport);            
         }
 
         if ($request->soccerTeam == 'Outro') {
@@ -121,7 +121,7 @@ class UserAppController extends Controller
         if (in_array('Outro(s)', $request->pet)) {
             $user->pet = $request->otherPet;
         } else {
-            $user->pet = implode(' ', $request->pet);
+            $user->pet = json_encode($request->pet);
         }
         
         $user->registerType = 'Completo';

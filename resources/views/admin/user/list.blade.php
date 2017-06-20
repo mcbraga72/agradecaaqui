@@ -467,7 +467,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pet">Possui animal(ais) de estimação?</label>
-                                <select multiple id="pet" name="pet" class="form-control" v-model="fillUser.pet" />
+                                <select id="pet" name="pet" class="form-control" v-model="fillUser.pet" v-bind:multiple="multiple" />
                                     <option value="">Selecione o(s) animal(ais) de estimação</option>
                                     <option value="Aves">Aves</option>
                                     <option value="Cachorro">Cachorro</option>
