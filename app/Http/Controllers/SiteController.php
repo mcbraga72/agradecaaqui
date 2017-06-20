@@ -16,6 +16,10 @@ use Mail;
 
 class SiteController extends Controller
 {
+    public function teste()
+    {
+        return view('notifications.password-reset');
+    }
     /**
      * Show the index page
      *
