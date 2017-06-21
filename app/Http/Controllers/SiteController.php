@@ -166,13 +166,22 @@ class SiteController extends Controller
         if($enterprise->save()) {
             $data = array(
                 'enterprises' => Enterprise::all(),
-                'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo')->orderBy('thanksDateTime', 'desc')->take(10)->get(),
+                'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->join('users', 'users.id', '=', 'enterprise_thanks.user_id')->select('users.name AS user', 'photo', 'enterprises.name AS enterprise', 'content', 'logo', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") AS date'))->orderBy('thanksDateTime', 'desc')->take(10)->get(),
+                'page' => 'index',
                 'success' => 'Caso você faça um agradecimento para a empresa que acabou de cadastrar, seu agradecimento ficará pendente até que o cadastro seja aprovado pela nossa equipe.'
-            );            
+            );
+
+            Mail::to('agradecaaquicontato@gmail.com')->send(new AdminApproveEnterpriseRegisterMail($request->name));
+            
             return redirect('/')->with('data', $data);
         } else {
-            $data = array('error' => 'Não foi possível realizar o cadastro. Por favor, tente novamente.');
-            return redirect('/')->withErrors($data);
+            $data = array(
+                'enterprises' => Enterprise::all(),
+                'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->join('users', 'users.id', '=', 'enterprise_thanks.user_id')->select('users.name AS user', 'photo', 'enterprises.name AS enterprise', 'content', 'logo', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") AS date'))->orderBy('thanksDateTime', 'desc')->take(10)->get(),
+                'page' => 'index'
+                'error' => 'Não foi possível realizar o cadastro. Por favor, tente novamente.'
+            );
+            return redirect('/')->with('data', $data);
         }    
     }
 
