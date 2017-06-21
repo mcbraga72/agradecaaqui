@@ -15,7 +15,7 @@
 // User's Auth
 
 Auth::routes();
-Route::get('/teste', 'SiteController@teste');
+
 
 // Admin's Auth
 
