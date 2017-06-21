@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContactFormRequest;
 use App\Http\Requests\EnterpriseRequest;
 use App\Http\Requests\HomeRequest;
+use App\Http\Requests\SiteEnterpriseRegisterRequest;
 use App\Mail\SiteContactFormMail;
 use App\Mail\EnterpriseRegisterMail;
 use App\Mail\AdminApproveEnterpriseRegisterMail;
