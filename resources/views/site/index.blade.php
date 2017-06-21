@@ -30,14 +30,14 @@
 			            <div class="form-home form-group{{ $errors->has('enterprise_id') ? ' has-error' : '' }}">
 			                <br><br>			                
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                	@if (!empty($success))
+			                	@if (!empty($data['success']))
 					                <div class="alert alert-success">
-					                    {{ $success }}
+					                    {{ $data['success'] }}
 					                </div>
 					            @endif
-					            @if (!empty($error))
+					            @if (!empty($data['error']))
 					                <div class="alert alert-danger">
-					                    {{ $error }}
+					                    {{ $data['error'] }}
 					                </div>
 					            @endif
 			                    <label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>			                    
