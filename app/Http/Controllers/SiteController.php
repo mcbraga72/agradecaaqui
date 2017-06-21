@@ -29,7 +29,7 @@ class SiteController extends Controller
     {
         $data = array(
             'enterprises' => Enterprise::all(),
-            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'))->orderBy('thanksDateTime', 'desc')->take(10)->get()            
+            'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->join('users', 'users.id', '=', 'enterprise_thanks.user_id')->select('users.name AS user', 'photo', 'enterprises.name AS enterprise', 'content', 'logo', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") AS date'))->orderBy('thanksDateTime', 'desc')->take(10)->get()            
         );
         
         return view('site.index')->with('data', $data);

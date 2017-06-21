@@ -118,7 +118,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 col-xl-12 col-xl-offset-0 thanks">
 				<img class="logo-login" src="images/logo.png" />
-                <h1 class="support">Comentários</h1>			
+                <h1 class="support">Agradecimentos</h1>			
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('busca') }}">
 	            {{ csrf_field() }}
 					<div class="form-group{{ $errors->has('search') ? ' has-error' : '' }}">
@@ -140,7 +140,8 @@
 		        </form>
 	        	@forelse($data['enterpriseThanks'] as $enterpriseThank)
 	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 thanks-box">
-	                    <img class="user-photo"src="{{ $enterpriseThank->logo }}" alt="Agradecimento" title="Agradecimento" /><p class="thanks-title">{{ $enterpriseThank->name . " - " . $enterpriseThank->date }}</p>
+	        			<img class="user-photo"src="{{ $enterpriseThank->photo }}" alt="Usuário" title="Usuário" /><p class="thanks-title">{{ $enterpriseThank->user }}</p><br>
+	                    <img class="user-photo"src="{{ $enterpriseThank->logo }}" alt="Empresa" title="Empresa" /><p class="thanks-title">{{ $enterpriseThank->enterprise . " - " . $enterpriseThank->date }}</p>
 	                    <img class="heart" src="images/heart.png" />
 	                    <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>	                    
 	                </div>    				
