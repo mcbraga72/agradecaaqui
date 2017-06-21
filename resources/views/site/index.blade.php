@@ -225,6 +225,12 @@
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');
 	    	$(this).scrollTop(0);
+	    	var page = "{!! $data['page'] !!}";
+	    	if(page  == 'search') {
+	    		$('html, body').animate({
+			        scrollTop: $('#search').offset().top - 20
+			    }, 'fast');	    		
+	    	}
 	    });	
 		
 		$('#peopleButton').click(function(){
