@@ -178,7 +178,7 @@ class SiteController extends Controller
             $data = array(
                 'enterprises' => Enterprise::all(),
                 'enterpriseThanks' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->join('users', 'users.id', '=', 'enterprise_thanks.user_id')->select('users.name AS user', 'photo', 'enterprises.name AS enterprise', 'content', 'logo', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") AS date'))->orderBy('thanksDateTime', 'desc')->take(10)->get(),
-                'page' => 'index'
+                'page' => 'index',
                 'error' => 'Não foi possível realizar o cadastro. Por favor, tente novamente.'
             );
             return redirect('/')->with('data', $data);
