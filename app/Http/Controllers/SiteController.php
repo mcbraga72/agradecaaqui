@@ -150,7 +150,7 @@ class SiteController extends Controller
      * @return Response
      * 
      */
-    public function storeEnterprise(EnterpriseRequest $request)
+    public function storeEnterprise(SiteEnterpriseRegisterRequest $request)
     {       
         $enterprise = new Enterprise();
 
