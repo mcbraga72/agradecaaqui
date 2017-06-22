@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EnterpriseRequest;
+use App\Http\Requests\SiteEnterpriseRegisterRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\CompleteUserRegisterRequest;
 use App\Models\Category;
@@ -114,12 +114,12 @@ class AppController extends Controller
 	 *
 	 * Store enterprise's data.
 	 *
-	 * @param EnterpriseRequest $request
+	 * @param SiteEnterpriseRegisterRequest $request
 	 *
 	 * @return Response
 	 * 
 	 */
-	public function storeEnterprise(EnterpriseRequest $request)
+	public function storeEnterprise(SiteEnterpriseRegisterRequest $request)
 	{		
     	$enterprise = new Enterprise();
 
