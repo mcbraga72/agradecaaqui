@@ -6126,6 +6126,12 @@ new Vue({
             });
         },
 
+        resetPassword: function(user){
+            this.$http.put('/password/email'+user.email).then(function(response) {
+                toastr.success('E-mail de alteração de senha enviado para o usuário!', '', {timeOut: 5000});
+            });
+        },
+
         changePage: function (page) {
             this.pagination.current_page = page;
             this.getUsers(page);
