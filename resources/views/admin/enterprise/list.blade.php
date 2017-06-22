@@ -33,7 +33,7 @@
                 <td>    
                     <button class="btn btn-primary" @click.prevent="editEnterprise(enterprise)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
                     <button class="btn btn-danger" @click.prevent="deleteEnterprise(enterprise)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
-                    <button class="btn btn-success" @click.prevent="resetPassword(enterprise)"><i class="fa fa-key-o fa-fw"></i>Alterar Senha</button>
+                    <button class="btn btn-success" @click.prevent="resetPassword(enterprise)"><i class="fa fa-key fa-fw"></i>Alterar Senha</button>
                     <button class="btn btn-success" @click.prevent="approveEnterpriseRegister(enterprise)" v-if="enterprise.status == 'Pending'"><i class="fa fa-check fa-fw"></i>Aprovar Cadastro</button>
                 </td>
             </tr>
