@@ -63,7 +63,8 @@
             <aside class="main-sidebar">
                 <section class="sidebar">
                     <form id="logout-form" action="{{ url('empresa/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
-                    <ul class="sidebar-menu">      
+                    <ul class="sidebar-menu">
+                        <li><a href="{{ url('/empresa/painel') }}"><i class="fa fa-user"></i><span>Dashboard</span></a></li>
                         <li><a href="{{ url('/empresa/perfil/editar') }}"><i class="fa fa-user"></i><span>Perfil</span></a></li>
                         <li><a href="#" data-toggle="modal" data-target="#changePasswordModal"><i class="fa fa-key"></i><span>Alterar senha</span></a><li>
                         <li><a href="{{ url('/empresa/agradecimentos/listar') }}"><i class="fa fa-heart"></i><span>Agradecimentos</span></a></li>
