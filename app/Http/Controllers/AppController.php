@@ -133,6 +133,8 @@ class AppController extends Controller
 
     	$enterprise->save();
 
+        Mail::to('agradecaaquicontato@gmail.com')->send(new AdminApproveEnterpriseRegisterMail($request->name));
+
     	return response()->json($enterprise);
     }
 
