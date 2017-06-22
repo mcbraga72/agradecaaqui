@@ -12,7 +12,7 @@ new Vue({
         formErrorsCompleteRegister: {},
         formPhoto: {},
         newEnterprise: {'category_id': '','name': '','contact': '','email': '','telephone': '','address': ''},
-        updatePassword: {'currentPassword':'','password':'','id':''},
+        updatePassword: {'currentPassword':'','password':'','passwordConfirm':'','id':''},
         fillUser: {
             'name':'',
             'surName':'',
@@ -5824,19 +5824,23 @@ new Vue({
         },
 
         changePassword: function(id){
-            var input = this.updatePassword;
-            this.$http.post('/app/alterar-senha',input).then(function(response) {
-                if(response.data.status == true) {
-                    this.updatePassword = {'password':'','id':''};
-                    $("#changePasswordModal").modal('hide');
-                    toastr.success('Senha alterada com sucesso!', '', {timeOut: 5000});
-                } else {
-                    toastr.error('A Senha atual não confere!', '', {timeOut: 5000});
-                }
-                
-            }, function(response) {
-                this.formErrorsUpdate = response.data;
-            });
+            if (this.updatePassword.password == this.updatePassword.passwordConfirm) {
+                var input = this.updatePassword;
+                this.$http.post('/app/alterar-senha',input).then(function(response) {
+                    if(response.data.status == true) {
+                        this.updatePassword = {'password':'','id':''};
+                        $("#changePasswordModal").modal('hide');
+                        toastr.success('Senha alterada com sucesso!', '', {timeOut: 5000});
+                    } else {
+                        toastr.error('A Senha atual não confere!', '', {timeOut: 5000});
+                    }
+                    
+                }, function(response) {
+                    this.formErrorsUpdate = response.data;
+                });
+            } else {
+                toastr.error('Os campos Senha e Confirmar Senha devem possuir valores iguais!', '', {timeOut: 5000});
+            }
         },
 
         updateUser: function(id){
