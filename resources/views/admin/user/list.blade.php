@@ -49,7 +49,7 @@
                 <td>@{{ user.registerType }}</td>
                 <td>    
                     <button class="btn btn-primary" @click.prevent="editUser(user)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
-                    <button class="btn btn-danger" @click.prevent="resetPassword(user)"><i class="fa fa-trash-o fa-fw"></i>Alterar Senha</button>
+                    <button class="btn btn-success" @click.prevent="resetPassword(user)"><i class="fa fa-key-o fa-fw"></i>Alterar Senha</button>
                     <button class="btn btn-danger" @click.prevent="deleteUser(user)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
                 </td>
             </tr>
