@@ -7,6 +7,7 @@ new Vue({
 
     data: {
         users: [],
+        email: '',
         pagination: {
             total: 0, 
             per_page: 2,
@@ -6127,7 +6128,7 @@ new Vue({
         },
 
         resetPassword: function(user){
-            var input = this.fillUser;
+            var input = user;
             this.$http.post('/password/email',input).then(function(response) {
                 toastr.success('E-mail de alteração de senha enviado para o usuário!', '', {timeOut: 5000});
             });
