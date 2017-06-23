@@ -120,7 +120,7 @@ new Vue({
         },
 
         resetPassword: function(enterprise){
-            var input = this.fillEnterprise;
+            var input = enterprise;
             this.$http.post('/empresa/enviar-senha',input).then(function(response) {
                 toastr.success('E-mail de alteração de senha enviado para a empresa!', '', {timeOut: 5000});
             });

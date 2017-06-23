@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\UserThanks;
 use App\Models\EnterpriseThanks;
+use App\Notifications\UserResetPasswordNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -60,5 +61,16 @@ class User extends Authenticatable
     public function userThanks()
     {
         return $this->hasMany(UserThanks::class);
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+            $this->notify(new UserResetPasswordNotification($token));
     }
 }
