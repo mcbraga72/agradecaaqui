@@ -5972,10 +5972,24 @@ new Vue({
 	    },
 
         deleteUser: function(user){
-            this.$http.delete('/admin/usuarios/'+user.id).then(function(response) {
-                this.changePage(this.pagination.current_page);
-                toastr.success('Usuário removido com sucesso!', '', {timeOut: 5000});
-            });
+            let self = this;
+            swal({
+                    title: "Tem certeza que deseja remover este registro?",
+                    text: "Não será mais possível recuperar os dados desse cadastro!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#D9534F",
+                    confirmButtonText: "Confirmar",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                }, function() {
+                    self.$http.delete('/admin/usuarios/'+user.id).then(function(response) {
+                        self.changePage(self.pagination.current_page);
+                        toastr.success('Usuário removido com sucesso!', '', {timeOut: 5000});
+                    });
+                }    
+            );            
         },
 
         editUser: function(user){            

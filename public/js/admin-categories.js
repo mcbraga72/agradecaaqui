@@ -75,16 +75,30 @@ new Vue({
 	          });
 	      },
 
-        deleteCategory: function(admin){
-            this.$http.delete('/admin/categorias/'+admin.id).then(function(response) {
-                this.changePage(this.pagination.current_page);
-                toastr.success('Categoria removida com sucesso!', '', {timeOut: 5000});
-            });
+        deleteCategory: function(category){
+            let self = this;
+            swal({
+                    title: "Tem certeza que deseja remover este registro?",
+                    text: "Não será mais possível recuperar os dados desse cadastro!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#D9534F",
+                    confirmButtonText: "Confirmar",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                }, function() {
+                    self.$http.delete('/admin/categorias/'+category.id).then(function(response) {
+                        self.changePage(self.pagination.current_page);
+                        toastr.success('Categoria removida com sucesso!', '', {timeOut: 5000});
+                    });
+                }
+            );            
         },
 
-        editCategory: function(admin){
-            this.fillCategory.name = admin.name;
-            this.fillCategory.id = admin.id;
+        editCategory: function(category){
+            this.fillCategory.name = category.name;
+            this.fillCategory.id = category.id;
             $("#editCategory").modal('show');
         },
 
