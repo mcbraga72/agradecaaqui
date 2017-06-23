@@ -16,7 +16,17 @@
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-                
+        <!-- Smartsupp Live Chat script -->
+        <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = '42bc3c37a7c1648d15ba5d3bff2936944006fd5f';
+        window.smartsupp||(function(d) {
+            var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+            s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+            c.type='text/javascript';c.charset='utf-8';c.async=true;
+            c.src='//www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+        })(document);
+        </script>        
     </head>
     <body class="hold-transition skin-blue sidebar-mini" id="enterprise_area">        
         <!-- Change password Modal -->            
