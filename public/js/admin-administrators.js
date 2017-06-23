@@ -21,7 +21,7 @@ new Vue({
         fillAdmin : {'name':'','email':'', 'password':'', 'passwordConfirm':'', 'id':''},
         sortProperty: 'name',
         sortDirection: 1,
-        filterTerm: ''
+        filterTerm: '',        
     },
 
     computed: {
@@ -66,20 +66,34 @@ new Vue({
 		        var input = this.newAdmin;
 		        this.$http.post('/admin/administradores',input).then(function(response) {
 		            this.changePage(this.pagination.current_page);
-			          this.newAdmin = {'name':'','email':'', 'password':'', 'passwordConfirm':''};
-			          $("#createAdmin").modal('hide');
-			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
-                      setTimeout(function(){window.location.href = '/admin/administradores/listar'} , 3000);
+			        this.newAdmin = {'name':'','email':'', 'password':'', 'passwordConfirm':''};
+			        $("#createAdmin").modal('hide');
+			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
+                    setTimeout(function(){window.location.href = '/admin/administradores/listar'} , 3000);
 		        }, function(response) {
-			          this.formErrors = response.data;
-	          });
-	      },
+			        this.formErrors = response.data;
+	        });
+	    },
 
         deleteAdmin: function(admin){
-            this.$http.delete('/admin/administradores/'+admin.id).then(function(response) {
-                this.changePage(this.pagination.current_page);
-                toastr.success('Administrador removido com sucesso!', '', {timeOut: 5000});
-            });
+            let self = this;
+            swal({
+                    title: "Tem certeza que deseja remover este registro?",
+                    text: "Não será mais possível recuperar os dados desse cadastro!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#D9534F",
+                    confirmButtonText: "Confirmar",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                }, function() {
+                    self.$http.delete('/admin/administradores/'+admin.id).then(function(response) {
+                        self.changePage(self.pagination.current_page);
+                        toastr.success('Administrador removido com sucesso!', '', {timeOut: 5000});
+                    });                    
+                }    
+            );
         },
 
         editAdmin: function(admin){

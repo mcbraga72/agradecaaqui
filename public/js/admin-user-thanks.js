@@ -80,10 +80,24 @@ new Vue({
 	      },
 
         deleteUserThank: function(userThank){
-            this.$http.delete('/admin/agradecimentos-usuarios/'+userThank.id).then(function(response) {
-                this.changePage(this.pagination.current_page);
-                toastr.success('Agradecimento removido com sucesso!', '', {timeOut: 5000});
-            });
+            let self = this;
+            swal({
+                    title: "Tem certeza que deseja remover este registro?",
+                    text: "Não será mais possível recuperar os dados desse cadastro!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#D9534F",
+                    confirmButtonText: "Confirmar",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                }, function() {
+                    self.$http.delete('/admin/agradecimentos-usuarios/'+userThank.id).then(function(response) {
+                        self.changePage(self.pagination.current_page);
+                        toastr.success('Agradecimento removido com sucesso!', '', {timeOut: 5000});
+                    });
+                }    
+            );            
         },
 
         editUserThank: function(userThank){

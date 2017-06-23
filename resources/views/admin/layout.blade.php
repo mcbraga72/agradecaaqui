@@ -12,16 +12,18 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
         <link rel="stylesheet" href="{{ URL::to('/') }}/css/vendor/admin-lte.min.css">
         <link rel="stylesheet" href="{{ URL::to('/') }}/css/admin.css">
 
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="//momentjs.com/downloads/moment.min.js"></script>
-        <script src="//codeorigin.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
-        <script src="{{ URL::asset('js/app.js') }}"></script>
-        <script src="{{ URL::asset('js/vendor/adminlte/app.min.js') }}"></script>
-        <script src="{{ URL::asset('js/admin-administrators.js') }}"></script>
+        <script type="text/javascript" src="//codeorigin.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>        
+        <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/vendor/adminlte/app.min.js') }}"></script>
+        <script type="text/javascript" src="{{ URL::asset('js/admin-administrators.js') }}"></script>
         <script>
               window.Laravel = {!! json_encode([
                   'csrfToken' => csrf_token(),
@@ -67,9 +69,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+        </div>        
     </body>
 </html>
