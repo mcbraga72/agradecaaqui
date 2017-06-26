@@ -161,7 +161,7 @@
                 </div>
                 <div class="modal-body">
                 	<img class="logo" src="{{ asset('images/logo.png') }}" />
-                	<h4 class="modal-name complete-register" id="myModalLabel">Preencha seu cadastro completo e concorra a prêmios!</h4><br>
+                	<h4 class="modal-name complete-register" id="myModalLabel">Complete seu cadastro</h4><br>
                 </div>	
                 <div class="modal-footer">	
                 	<button type="button" id="openCompleteRegister" onclick="location.href='{{ url('app/usuario/' . Auth::user()->id . '/edit') }}';" class="btn btn-success" data-dismiss="modal" aria-label="Close">Quero preencher<i class="fa fa-check fa-fw" aria-hidden="true"></i></button>
