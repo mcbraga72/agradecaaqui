@@ -20,9 +20,6 @@
 	                    {{ $success }}
 	                </div>
 	            @endif
-	            <div id="enterpriseThanksSuccess" class="alert alert-success thanks-messages">
-                    <span>Agradecimento enviado com sucesso!</span>
-                </div>
 	            <img class="logo" src="{{ asset('images/logo.png') }}" />
                 <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
@@ -90,7 +87,7 @@
 		                <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
 		                    	<label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" />
-		                        <textarea id="content-user" name="content-user" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
+		                        <textarea id="contentUser" name="contentUser" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        <div id="userContent-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo agradecimento é obrigatório!</span>
 	                			</div>
@@ -215,14 +212,22 @@
                     data: {enterprise_id: $('#enterprise_id').val(), content: content, "_token": "{{ csrf_token() }}"},
                     success: function(data) {
                     	$(window).scrollTop(0);
-                    	$('#enterpriseThanksSuccess').show();
-    					$('#enterpriseThanksSuccess').delay(3000).slideUp(500);
-    					$('#enterprise_id').val("Selecione a empresa");
+                    	$('#enterprise_id').val("Selecione a empresa");
     					$('#enterprise_id').trigger('chosen:updated');
-    					tinymce.get('content-enterprise').setContent('');
-    					setTimeout(location.reload(), 5000);
+    					tinymce.get('content-enterprise').setContent('');    					
                     }
-                });                
+                });
+
+                $.ajax({
+                    url:'/app',
+                    type:'GET',
+                    async: true,
+                    success: function(data) {
+                    	$(document.body).html(data);
+                    	$(window).scrollTop(0);
+                    	toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 3000});
+                    }
+                });
             }
         });
 
@@ -231,7 +236,7 @@
 			    return false;
 			});
 
-			var content = tinymce.get('content-user').getContent();
+			var content = tinymce.get('contentUser').getContent();
 
 			if ($('#receiptName').val() == null || $('#receiptName').val() == '') {
 				$('#receiptName-error').show();
@@ -252,15 +257,22 @@
                     async: false,
                     data: {receiptName: $('#receiptName').val(), receiptEmail: $('#receiptEmail').val(), content: content, "_token": "{{ csrf_token() }}"},
                     success: function(data) {
-                    	$(window).scrollTop(0);
-    	        		$('#enterpriseThanksSuccess').show();
-						$('#enterpriseThanksSuccess').delay(3000).slideUp(500);				
-                		$('#receiptName').val('');
+                    	$('#receiptName').val('');
 						$('#receiptEmail').val('');
-						tinymce.get('content-user').setContent('');
-						setTimeout(location.reload(), 5000);
+						tinymce.get('contentUser').setContent('');						
                     }
-                });                
+                });
+
+                $.ajax({
+                    url:'/app',
+                    type:'GET',
+                    async: true,
+                    success: function(data) {
+                    	$(document.body).html(data);
+                    	$(window).scrollTop(0);
+                    	toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 3000});
+                    }
+                });
             }
         });
 	
