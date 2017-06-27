@@ -104,6 +104,10 @@ ul.nav {
     margin-left: 1%;
 }
 
+.logout-form {
+    display: none;
+}
+
 
 
 

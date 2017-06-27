@@ -13,16 +13,16 @@
 	<div class="container-fluid">
 		<div class="row">
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 nopadding">
-                <img src="{{ URL::to('/') }}/images/banner.png" width="100%" />
+                <img src="{{ URL::to('/') }}/images/banner.png" width="100%" alt="Banner - Agradeça Aqui" title="Banner - Agradeça Aqui" />
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-8 col-lg-offset-2 col-xl-8 col-xl-offset-2 home">
-                <img class="logo" src="images/logo.png" />
+                <img class="logo" src="images/logo.png" alt="Logo - Agradeça Aqui" title="Logo - Agradeça Aqui" />
                 <h1 class="thanks-text">O que você quer </h1><span class="pink"> agradecer </span><h1 class="thanks-text"> hoje?</h1>			
                 <div class="form-group{{ $errors->has('nome') ? ' has-error' : '' }}">
-	                <button id="peopleButton" type="button" class="home"><img src="images/pessoas.png" /></button>
-	                <button id="enterprisesButton" type="button" class="home"><img src="images/empresas.png" /></button>
+	                <button id="peopleButton" type="button" class="home"><img src="images/pessoas.png" alt="Agradeça pessoas" title="Agradeça pessoas" /></button>
+	                <button id="enterprisesButton" type="button" class="home"><img src="images/empresas.png" alt="Agradeça empresas" title="Agradeça empresas" /></button>
 	            </div>
 	            @if(Auth::user())
                 	<form class="form-horizontal" role="form" method="POST" id="enterpriseThanksForm">
@@ -48,7 +48,7 @@
 				            </div>
 				            <div class="form-home form-group">
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-			                    	<label for="content" class="col-md-8 col-lg-8 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" />
+			                    	<label for="content" class="col-md-8 col-lg-8 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
 			                        <textarea id="content-enterprise" name="content-enterprise" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 			                        <div id="content-error" class="alert alert-danger thanks-messages">
 		                    			<span>O campo agradecimento é obrigatório!</span>
@@ -95,7 +95,7 @@
 				            </div>
 				            <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    	<label for="content" class="col-md-4 col-lg-6 control-label">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" />
+			                    	<label for="content" class="col-md-4 col-lg-6 control-label">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" alt="Coração" title="Coração" />
 			                        <textarea id="content" name="content" class="form-control" placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 			                        @if ($errors->has('content'))
 			                            <span class="help-block">
@@ -135,7 +135,7 @@
 			                </div>
 			                <div class="form-home form-group">
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    	<label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" />
+			                    	<label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
 			                        <textarea id="contentUser" name="contentUser" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 			                        <div id="userContent-error" class="alert alert-danger thanks-messages">
 		                    			<span>O campo agradecimento é obrigatório!</span>
@@ -179,7 +179,7 @@
 			                </div>
 			                <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">		                    
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    	<label for="content" class="col-md-4 col-lg-6 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" />
+			                    	<label for="content" class="col-md-4 col-lg-6 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" alt="Coração" title="Coração" />
 			                        <textarea id="content" name="content" class="form-control" placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 			                        @if ($errors->has('content'))
 			                            <span class="help-block">
@@ -198,7 +198,7 @@
 		</div>    
 		<div class="row">
 			<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0 col-xl-12 col-xl-offset-0 thanks">
-				<img class="logo-login" src="images/logo.png" />
+				<img class="logo-login" src="images/logo.png" alt="Logo - Agradeça Aqui" title="Logo - Agradeça Aqui" />
                 <h1 class="support">Agradecimentos</h1>			
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('busca') }}">
 	            {{ csrf_field() }}
@@ -221,19 +221,16 @@
 		        </form>
 	        	@forelse($data['enterpriseThanks'] as $enterpriseThank)
 	        		<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 thanks-box">
-	        			<img class="user-photo"src="{{ $enterpriseThank->photo }}" alt="Usuário" title="Usuário" /><p class="thanks-title">{{ $enterpriseThank->user }}</p><br>
-	                    <img class="user-photo"src="{{ $enterpriseThank->logo }}" alt="Empresa" title="Empresa" /><p class="thanks-title">{{ $enterpriseThank->enterprise . " - " . $enterpriseThank->date }}</p>
-	                    <img class="heart" src="images/heart.png" />
+	        			<img class="user-photo"src="{{ $enterpriseThank->photo }}" alt="Usuário que agradeceu" title="Usuário que agradeceu" /><p class="thanks-title">{{ $enterpriseThank->user }}</p><br>
+	                    <img class="user-photo"src="{{ $enterpriseThank->logo }}" alt="Empresa que recebeu o agradecimento" title="Empresa que recebeu o agradecimento" /><p class="thanks-title">{{ $enterpriseThank->enterprise . " - " . $enterpriseThank->date }}</p>
+	                    <img class="heart" src="images/heart.png" alt="Coração" title="Coração" />
 	                    <p class="thaks-content">{{ strip_tags($enterpriseThank->content) }}</p>	                    
 	                </div>    				
 				@empty
     				<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 col-xl-6 col-xl-offset-3 thanks-box">
-	                    <img class="heart" src="images/heart.png" />
+	                    <img class="heart" src="images/heart.png" alt="Coração" title="Coração" />
 	                    <p class="thaks-content">Ainda não existem agradecimentos cadastrados em nossa plataforma.</p>
-	                </div>
-	                <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 show-more">
-						<img class="plus" src="images/plus.png" alt="Mostrar mais" title="Mostrar mais" />
-	                </div>
+	                </div>	                
 				@endforelse
 	        </div>    
 	    </div>
@@ -245,7 +242,7 @@
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-	                <h4 class="modal-name" id="myModalLabel">Cadastro de empresas</h4>
+	                <span class="modal-name" id="myModalLabel">Cadastro de empresas</span>
 	            </div>
 	            <div class="modal-body">
 	                <form method="POST" enctype="multipart/form-data" action="/agradecimento/cadastro/empresa">

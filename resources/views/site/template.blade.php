@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="keywords" content="@yield('keywords')">
-        <meta name="author" content="@yield('author')">
-        <meta name="description" content="@yield('description')">
+        <meta name="keywords" content="agradeça aqui agradecimento pessoas empresas">
+        <meta name="author" content="Agradeça Aqui">
+        <meta name="description" content="Aqui no nosso site você pode agradecer pessoas e empresas sempre que tiver vontade.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <meta name="csrf-token" content="{{{ csrf_token() }}}">
         <meta name="google-site-verification" content="Gupk_NevOJ8K4Gf-_Ep5EKtOhk7NkL4mAnLXB_HftdA" />
-        <title>@yield('title', 'Agradeça Aqui')</title>
+
+        <meta property="og:title" content="Agradeça Aqui" />
+        <meta property="og:site_name" content="Agradeça Aqui" />
+        <meta property="og:url" content="https://agradecaaqui.site" />
+        <meta property="og:image" content="https://agradecaaqui.site/images/banner.png" />
+        <meta property="og:description" content="Aqui no nosso site você pode agradecer pessoas e empresas sempre que tiver vontade." />
+        <meta property="fb:app_id" content="184558058632813" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@agradecaaqui" />
+        <meta name="twitter:title" content="Agradeça Aqui" />
+        <meta name="twitter:description" content="Aqui no nosso site você pode agradecer pessoas e empresas sempre que tiver vontade." />
+        <meta name="twitter:image" content="https://agradecaaqui.site/images/banner.png" />
+
+        <title>Agradeça Aqui</title>
         <link rel="shortcut icon" href="images/logo.png" />
         
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -20,12 +34,12 @@
         <link rel="stylesheet" href="/css/bootstrap-social.css">
         <link rel="stylesheet" href="/css/vendor/bootstrap-chosen/bootstrap-chosen.css">
 
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/js/site.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" async="async"></script>
+        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" async="async"></script>
+        <script type="text/javascript" src="/js/site.js" async="async"></script>
 
     </head>
-    <body id="createEnterprise">
+    <body id="createEnterprise" itemscope itemtype="http://schema.org/WebPage">
         <header class="main-header">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
@@ -55,13 +69,13 @@
                                 <li><a href="{{ url('/app') }}" title="">ÁREA DO USUÁRIO</a><i class="fa fa-3x fa-user-circle-o" aria-hidden="true"></i></li>
                                 <li class="dropdown app-dropdown">
                                     <a href="#" id="home" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <img src="{{ Auth::user()->photo }}" style="border-radius: 50%;" /><span class="caret"></span>
+                                    <img src="{{ Auth::user()->photo }}" class="avatar" /><span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li class="caret-dropdown">
                                             <a href="{{ url('app/usuario/' . Auth::user()->id . '/edit') }}" class="item-menu-dropdown">PERFIL</a>
                                             <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="item-menu-dropdown">SAIR</a>
-                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="logout-form">{{ csrf_field() }}</form>
                                         </li>
                                     </ul>
                                 </li>

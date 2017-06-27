@@ -1,2 +1,14 @@
 User-agent: *
-Disallow:
+Disallow: /admin/entrar
+Disallow: /admin/trocar-senha
+Disallow: /empresa/entrar
+Disallow: /empresa/trocar-senha
+Disallow: /redirect/facebook
+Disallow: /callback/facebook
+Disallow: /redirect/google
+Disallow: /callback/google
+Disallow: /app/categorias
+Disallow: /login
+Disallow: /register
+Disallow: /password/reset
+
