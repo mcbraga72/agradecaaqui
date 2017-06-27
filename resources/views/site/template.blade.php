@@ -26,20 +26,20 @@
         <title>Agradeça Aqui</title>
         <link rel="shortcut icon" href="images/logo.png" />
         
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-        <link rel="stylesheet" href="/css/site.css">
-        <link rel="stylesheet" href="/css/reset.css">
-        <link rel="stylesheet" href="/css/bootstrap-social.css">
-        <link rel="stylesheet" href="/css/vendor/bootstrap-chosen/bootstrap-chosen.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        <link rel="stylesheet" href="{{ URL::to('/') }}/css/site.css">
+        <link rel="stylesheet" href="{{ URL::to('/') }}/css/reset.css">
+        <link rel="stylesheet" href="{{ URL::to('/') }}/css/bootstrap-social.css">
+        <link rel="stylesheet" href="{{ URL::to('/') }}/css/vendor/bootstrap-chosen/bootstrap-chosen.css">
 
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/js/site.js" async="async"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="{{ URL::to('/') }}/js/site.js"></script>
 
     </head>
-    <body id="createEnterprise" itemscope itemtype="http://schema.org/WebPage">
+    <body id="createEnterprise" itemscope itemtype="https://schema.org/WebPage">
         <header class="main-header">
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
                 <div class="container">
