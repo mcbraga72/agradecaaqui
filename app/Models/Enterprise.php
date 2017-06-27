@@ -28,7 +28,7 @@ class Enterprise extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'contact', 'email', 'telephone', 'address', 'status', 'password'
+        'name', 'contact', 'email', 'telephone', 'address', 'neighborhood', 'city', 'state', 'cpf', 'cnpj', 'status', 'password'
     ];
 
     /**

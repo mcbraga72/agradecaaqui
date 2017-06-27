@@ -10,10 +10,8 @@ new Vue({
         categories: [],
         formThanksErrors:{},
         formErrors:{},
-        newEnterprise : {'category_id': '','name': '','contact': '','email': '','site': '','telephone': '','address': ''},
+        newEnterprise : {'category_id': '','name': '','contact': '','email': '','site': '','telephone': '','address': '','neighborhood': '','city': '','state': '','cpf': '','cnpj': ''},
         enterprise_id: '',
-        city: '',
-        state: '',
         statesCities: {      
             Acre: [
                 "Acrelândia",
@@ -5638,7 +5636,7 @@ new Vue({
        
         let options = ''
 
-            switch(this.state) {
+            switch(this.newEnterprise.state) {
 
                 case 'Acre':
                 options = this.statesCities.Acre
@@ -5781,7 +5779,7 @@ new Vue({
         createEnterprise: function(){
             var input = this.newEnterprise;
             this.$http.post('/cadastro/empresa',input).then(function(response) {
-                this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': ''};
+                this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','site': '','telephone': '','address': '','neighborhood': '','city': '','state': '','cpf': '','cnpj': ''};
                 $("#enterprise").modal('hide');
                 this.getEnterprises();
                 toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});

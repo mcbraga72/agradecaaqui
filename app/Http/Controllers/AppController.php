@@ -128,7 +128,12 @@ class AppController extends Controller
     	$enterprise->contact = $request->contact;
         $enterprise->email = $request->email;
         $enterprise->telephone = $request->telephone;
-        $enterprise->address = $request->address;    	
+        $enterprise->address = $request->address;
+        $enterprise->neighborhood = $request->neighborhood;
+        $enterprise->city = $request->city;
+        $enterprise->state = $request->state;
+        $enterprise->cpf = $request->cpf;
+        $enterprise->cnpj = $request->cnpj;
     	$enterprise->status = 'Pending';
 
     	$enterprise->save();
