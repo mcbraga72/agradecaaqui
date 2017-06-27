@@ -34,8 +34,8 @@
         <link rel="stylesheet" href="/css/bootstrap-social.css">
         <link rel="stylesheet" href="/css/vendor/bootstrap-chosen/bootstrap-chosen.css">
 
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js" async="async"></script>
-        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" async="async"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/js/site.js" async="async"></script>
 
     </head>
@@ -101,8 +101,7 @@
                     return this.href == url;
                 }).parent().addClass('active-menu');
             });
-        </script> 
-        <script>
+        
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
