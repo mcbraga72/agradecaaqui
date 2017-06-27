@@ -8,6 +8,7 @@
         <meta name="description" content="@yield('description')">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <meta name="csrf-token" content="{{{ csrf_token() }}}">
+        <meta name="google-site-verification" content="Gupk_NevOJ8K4Gf-_Ep5EKtOhk7NkL4mAnLXB_HftdA" />
         <title>@yield('title', 'Agradeça Aqui')</title>
         <link rel="shortcut icon" href="images/logo.png" />
         
