@@ -31,7 +31,12 @@ class EnterpriseRequest extends FormRequest
             'site' => 'required',
             'telephone' => 'required',
             'address' => 'required',
-            'password' => 'required|between:8,12|same:passwordConfirm'                     
+            'neighborhood' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'cpf' => 'required_without:cnpj',
+            'cnpj' => 'required_without:cpf',
+            'password' => 'required|between:8,12|same:passwordConfirm'            
         ];
     }
 
@@ -51,6 +56,11 @@ class EnterpriseRequest extends FormRequest
             'site.required' => 'O campo site é obrigatório!',
             'telephone.required' => 'O campo celular é obrigatório!',
             'address.required' => 'O campo endereço é obrigatório!',
+            'neighborhood.required' => 'O campo bairro é obrigatório!',
+            'city.required' => 'O campo cidade é obrigatório!',
+            'state.required' => 'O campo estado é obrigatório!',
+            'cpf.required_without' => 'O campo cpf ou o campo cnpj devem ser preenchidos!',
+            'cnpj.required_without' => 'O campo cnpj ou o campo cpf devem ser preenchidos!',
             'password.required' => 'O campo senha é obrigatório!',
             'password.between' => 'Sua senha deve possuir no mínimo 8 e no máximo 12 caracteres!',
             'password.confirmed' => 'Os campos senha e confirmar senha devem possuir valores idênticos!'

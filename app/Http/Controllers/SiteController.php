@@ -157,7 +157,12 @@ class SiteController extends Controller
         $enterprise->email = $request->email;
         $enterprise->site = $request->site;
         $enterprise->telephone = $request->telephone;
-        $enterprise->address = $request->address;       
+        $enterprise->address = $request->address;
+        $enterprise->neighborhood = $request->neighborhood;
+        $enterprise->city = $request->city;
+        $enterprise->state = $request->state;
+        $enterprise->cpf = $request->cpf;
+        $enterprise->cnpj = $request->cnpj;
         $enterprise->status = 'Pending';
 
         if($enterprise->save()) {
@@ -201,7 +206,12 @@ class SiteController extends Controller
         $enterprise->email = $request->email;
         $enterprise->site = $request->site;
         $enterprise->telephone = $request->telephone;
-        $enterprise->address = $request->address;       
+        $enterprise->address = $request->address;
+        $enterprise->neighborhood = $request->neighborhood;
+        $enterprise->city = $request->city;
+        $enterprise->state = $request->state;
+        $enterprise->cpf = $request->cpf;
+        $enterprise->cnpj = $request->cnpj;
         $enterprise->status = 'Pending';
 
         if($enterprise->save()) {

@@ -11,7 +11,7 @@ new Vue({
         formErrorsUpdate: {},
         formErrorsCompleteRegister: {},
         formPhoto: {},
-        newEnterprise: {'category_id': '','name': '','contact': '','email': '','telephone': '','address': ''},
+        newEnterprise: {'category_id': '','name': '','contact': '','email': '','telephone': '','address': '','neighborhood': '','city': '','state': '','cpf': '','cnpj': ''},
         updatePassword: {'currentPassword':'','password':'','passwordConfirm':'','id':''},
         fillUser: {
             'name':'',
@@ -5665,6 +5665,125 @@ new Vue({
 
     computed: {
        
+        enterpriseOptions: function() {
+       
+        let enterpriseOptions = ''
+
+            switch(this.newEnterprise.state) {
+
+                case 'Acre':
+                enterpriseOptions = this.statesCities.Acre
+                break;
+                
+                case 'Alagoas':
+                enterpriseOptions = this.statesCities.Alagoas
+                break;
+
+                case 'Amazonas':
+                enterpriseOptions = this.statesCities.Amazonas
+                break;
+
+                case 'Amapá':
+                enterpriseOptions = this.statesCities.Amapa
+                break;
+
+                case 'Bahia':
+                enterpriseOptions = this.statesCities.Bahia
+                break;
+
+                case 'Ceará':
+                enterpriseOptions = this.statesCities.Ceara
+                break;
+
+                case 'Distrito Federal':
+                enterpriseOptions = this.statesCities.DistritoFederal
+                break;
+
+                case 'Espírito Santo':
+                enterpriseOptions = this.statesCities.EspiritoSanto
+                break;
+
+                case 'Goiás':
+                enterpriseOptions = this.statesCities.Goias
+                break;
+                
+                case 'Maranhão':
+                enterpriseOptions = this.statesCities.Maranhao
+                break;
+
+                case 'Minas Gerais':
+                enterpriseOptions = this.statesCities.MinasGerais
+                break;
+
+                case 'Mato Grosso do Sul':
+                enterpriseOptions = this.statesCities.MatoGrossoDoSul
+                break;
+
+                case 'Mato Grosso':
+                enterpriseOptions = this.statesCities.MatoGrosso
+                break;
+
+                case 'Pará':
+                enterpriseOptions = this.statesCities.Para
+                break;
+
+                case 'Paraíba':
+                enterpriseOptions = this.statesCities.Paraiba
+                break;
+                
+                case 'Paraná':
+                enterpriseOptions = this.statesCities.Parana
+                break;
+
+                case 'Pernambuco':
+                enterpriseOptions = this.statesCities.Pernambuco
+                break;
+                
+                case 'Piauí':
+                enterpriseOptions = this.statesCities.Piaui
+                break;
+
+                case 'Rio de Janeiro':
+                enterpriseOptions = this.statesCities.RioDeJaneiro
+                break;
+
+                case 'Rio Grande do Norte':
+                enterpriseOptions = this.statesCities.RioGrandeDoNorte
+                break;
+
+                case 'Rio Grande do Sul':
+                enterpriseOptions = this.statesCities.RioGrandeDoSul
+                break;
+
+                case 'Rondônia':
+                enterpriseOptions = this.statesCities.Rondonia
+                break;
+
+                case 'Roraima':
+                enterpriseOptions = this.statesCities.Roraima
+                break;
+                
+                case 'Santa Catarina':
+                enterpriseOptions = this.statesCities.SantaCatarina
+                break;
+
+                case 'São Paulo':
+                enterpriseOptions = this.statesCities.SaoPaulo
+                break;
+
+                case 'Sergipe':
+                enterpriseOptions = this.statesCities.Sergipe
+                break;
+                
+                case 'Tocantins':
+                enterpriseOptions = this.statesCities.Tocantins
+                break;
+            }
+
+            return enterpriseOptions
+       
+        },
+
         options: function() {
        
         let options = ''
@@ -5794,7 +5913,8 @@ new Vue({
     methods : {
 
         onChange: function (){
-            this.options = this.options;            
+            this.options = this.options;
+            this.enterpriseOptions = this.enterpriseOptions;
         },
 
         getCategories: function(page){
@@ -5806,7 +5926,7 @@ new Vue({
         createEnterprise: function(){
             var input = this.newEnterprise;
             this.$http.post('/app/empresa',input).then(function(response) {
-                this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','telephone': '','address': ''};
+                this.newEnterprise = {'category_id': '','name':'','contact': '','email':'','telephone': '','address': '','neighborhood': '','city': '','state': '','cpf': '','cnpj': ''};
                 $("#createEnterprise").modal('hide');
                 toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 5000});
             }, function(response) {
