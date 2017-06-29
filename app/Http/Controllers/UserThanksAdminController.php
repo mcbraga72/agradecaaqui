@@ -73,7 +73,7 @@ class UserThanksAdminController extends Controller
         
         if($userThanks->save()) {
 
-            $userThanks->hash = bcrypt($userThanks->id);
+            $userThanks->hash = preg_replace('/[^A-Za-z0-9\-]/', '', bcrypt($userThanks->id));
             $userThanks->save();
 
             /*$user = new UserAdminController();
