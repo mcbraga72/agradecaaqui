@@ -64,6 +64,28 @@ class SiteController extends Controller
     }
 
     /**
+     * Show the ranking page
+     *
+     * @return Response
+     */
+    public function ranking()
+    {
+        $topCategories = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->join('categories', 'categories.id', '=', 'enterprises.category_id')->select('categories.name AS category', DB::raw('count(*) AS thanks'))->groupBy('categories.name')->orderBy('thanks', 'desc')->take(10)->get();
+
+        foreach ($topCategories as $topCategory) {
+            $enterprisesRankingByCategories[] = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->join('categories', 'categories.id', '=', 'enterprises.category_id')->select('categories.name', 'enterprises.name AS enterprise', DB::raw('count(*) AS thanks'), 'enterprises.logo AS logo')->where('categories.name', '=', $topCategory->category)->groupBy('enterprises.name')->orderBy('thanks', 'desc')->take(10)->get();
+        }
+
+        $data = array(
+            'enterprisesRanking' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('enterprises.name AS enterprise', DB::raw('count(*) AS thanks'), 'enterprises.logo AS logo')->groupBy('enterprises.name')->orderBy('thanks', 'desc')->take(10)->get(),
+            'categoriesRanking' => DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->join('categories', 'categories.id', '=', 'enterprises.category_id')->select('categories.name AS category', DB::raw('count(*) AS thanks'))->groupBy('categories.name')->orderBy('thanks', 'desc')->take(10)->get(),
+            'enterprisesRankingByCategories' => collect($enterprisesRankingByCategories)
+        );
+
+        return view('site.thanks-ranking')->with('data', $data);
+    }
+
+    /**
      * Show the login page
      *
      * @return Response
