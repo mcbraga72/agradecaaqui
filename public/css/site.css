@@ -293,6 +293,7 @@ h1.support {
 }
 
 
+
 /**
  * 
  * QUEM SOMOS
@@ -342,6 +343,69 @@ h1.support {
 
 
 /**
+ * 
+ * +AGRADECIDAS
+ *
+ */
+
+.ranking-title {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-align:center;
+    color: #436EC6 !important;
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+.ranking-box {
+    background-color: #FFF;
+    margin-top: 4%;
+    padding-bottom: 2%;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    height: 580px;
+}
+
+.enterprise-name {    
+    position: relative;
+    display: inline-block;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-align: left;    
+    color: #999;
+    margin-top: 0%;
+    margin-left: 2%;
+}
+
+.category-name {    
+    position: relative;
+    display: inline-block;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-align: left;    
+    color: #999;
+    margin-top: 5%;
+    margin-left: 2%;
+}
+
+.thanks-heart {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 21px;
+    margin-left: 2%;
+}
+
+
+
+
+/**
  *
  * BLOG
  *
@@ -352,12 +416,6 @@ h1.support {
     top:70px;
     background-color:#F4F4F4;
     padding-bottom: 5%;
-}
-
-.artigos {
-}
-
-.artigo {
 }
 
 .artigos p {

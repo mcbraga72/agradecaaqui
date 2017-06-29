@@ -62,6 +62,7 @@ Route::get('/', 'SiteController@index');
 Route::get('/quem-somos', 'SiteController@about');
 Route::get('/contato', 'SiteController@contact');
 Route::get('/parceiros', 'SiteController@support');
+Route::get('/mais-agradecidas', 'SiteController@ranking');
 Route::get('/entrar', 'SiteController@login');
 Route::post('/entrar', 'SiteController@loginWithData');
 Route::get('/cadastro', 'SiteController@register');
