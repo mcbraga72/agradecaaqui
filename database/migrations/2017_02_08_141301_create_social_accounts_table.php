@@ -30,6 +30,6 @@ class CreateSocialAccountsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('social_accounts');
     }
 }
