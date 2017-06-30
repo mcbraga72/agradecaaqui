@@ -206,7 +206,7 @@
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
                         <label for="city" class="col-md-4 control-label label-register">CIDADE</label>                        
                         <select id="city" class="form-control label-register" name="city" value="{{ old('city') }}" v-model="city" required autofocus>
-                            <option v-for="option in options" v-bind:value="option">@{{ option }}</option>
+                            <option v-for="userOption in userOptions" v-bind:value="userOption">@{{ userOption }}</option>
                         </select>    
                         @if ($errors->has('city'))
                             <span class="help-block">
