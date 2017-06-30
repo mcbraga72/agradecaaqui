@@ -12,6 +12,8 @@ new Vue({
         formErrors:{},
         newEnterprise : {'category_id': '','name': '','contact': '','email': '','site': '','telephone': '','address': '','neighborhood': '','city': '','state': '','cpf': '','cnpj': ''},
         enterprise_id: '',
+        state: '',
+        city: '',
         statesCities: {      
             Acre: [
                 "Acrelândia",
@@ -5749,6 +5751,125 @@ new Vue({
 
             return options
        
+        },
+
+        userOptions: function() {
+       
+        let userOptions = ''
+
+            switch(this.state) {
+
+                case 'Acre':
+                userOptions = this.statesCities.Acre
+                break;
+                
+                case 'Alagoas':
+                userOptions = this.statesCities.Alagoas
+                break;
+
+                case 'Amazonas':
+                userOptions = this.statesCities.Amazonas
+                break;
+
+                case 'Amapá':
+                userOptions = this.statesCities.Amapa
+                break;
+
+                case 'Bahia':
+                userOptions = this.statesCities.Bahia
+                break;
+
+                case 'Ceará':
+                userOptions = this.statesCities.Ceara
+                break;
+
+                case 'Distrito Federal':
+                userOptions = this.statesCities.DistritoFederal
+                break;
+
+                case 'Espírito Santo':
+                userOptions = this.statesCities.EspiritoSanto
+                break;
+
+                case 'Goiás':
+                userOptions = this.statesCities.Goias
+                break;
+                
+                case 'Maranhão':
+                userOptions = this.statesCities.Maranhao
+                break;
+
+                case 'Minas Gerais':
+                userOptions = this.statesCities.MinasGerais
+                break;
+
+                case 'Mato Grosso do Sul':
+                userOptions = this.statesCities.MatoGrossoDoSul
+                break;
+
+                case 'Mato Grosso':
+                userOptions = this.statesCities.MatoGrosso
+                break;
+
+                case 'Pará':
+                userOptions = this.statesCities.Para
+                break;
+
+                case 'Paraíba':
+                userOptions = this.statesCities.Paraiba
+                break;
+                
+                case 'Paraná':
+                userOptions = this.statesCities.Parana
+                break;
+
+                case 'Pernambuco':
+                userOptions = this.statesCities.Pernambuco
+                break;
+                
+                case 'Piauí':
+                userOptions = this.statesCities.Piaui
+                break;
+
+                case 'Rio de Janeiro':
+                userOptions = this.statesCities.RioDeJaneiro
+                break;
+
+                case 'Rio Grande do Norte':
+                userOptions = this.statesCities.RioGrandeDoNorte
+                break;
+
+                case 'Rio Grande do Sul':
+                userOptions = this.statesCities.RioGrandeDoSul
+                break;
+
+                case 'Rondônia':
+                userOptions = this.statesCities.Rondonia
+                break;
+
+                case 'Roraima':
+                userOptions = this.statesCities.Roraima
+                break;
+                
+                case 'Santa Catarina':
+                userOptions = this.statesCities.SantaCatarina
+                break;
+
+                case 'São Paulo':
+                userOptions = this.statesCities.SaoPaulo
+                break;
+
+                case 'Sergipe':
+                userOptions = this.statesCities.Sergipe
+                break;
+                
+                case 'Tocantins':
+                userOptions = this.statesCities.Tocantins
+                break;
+            }
+
+            return userOptions
+       
         }
    
     },
@@ -5761,7 +5882,8 @@ new Vue({
     methods : {
 
         onChange: function (){
-            this.options = this.options;            
+            this.options = this.options;
+            this.userOptions = this.userOptions;
         },
 
         getCategories: function(page){
