@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\SocialAccount;
 use App\Models\User;
 use Laravel\Socialite\Contracts\User as ProviderUser;
+use Laravel\Socialite\Facades;
+use Socialite;
 
 class SocialAccountService
 {
