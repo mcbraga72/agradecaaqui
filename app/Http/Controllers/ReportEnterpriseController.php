@@ -60,10 +60,11 @@ class ReportEnterpriseController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function generateCustomReport($type='gender', $start='2017-03-01', $end='2017-03-02')
+	public function generateCustomReport($type, $start='2017-06-01', $end='2017-07-10')
 	{		
-		$genderReport = User::select($type, \DB::raw("count(users.gender) as thanks"))->whereBetween('thanksDateTime', array($start, $end))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.' . $type)->get();
+		$customReport = User::select('users.' . $type, \DB::raw("count(users.gender) as thanks"))->whereBetween('thanksDateTime', array('2017-06-01', '2017-07-10'))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.' . $type)->toSql();
 		
-		return $genderReport;
+		dd($customReport);
+		return response()->json($customReport);		
 	}
 }
