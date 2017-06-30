@@ -89,11 +89,9 @@ class RegisterController extends Controller
             $user->photo = '/images/female.png';
         }
 
-        $user->save();
-
-        if(isset($data['id'])) {
+        if($user->save()) {
             $providerUser = new SocialAccountService;
-            $providerUser->createSocialAccount($user, $data['id']);
+            $providerUser->createSocialAccount($user);
         }    
         
         return $user;

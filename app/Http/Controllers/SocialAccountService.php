@@ -51,6 +51,11 @@ class SocialAccountService
             ->whereProviderUserId($providerUser->getId())
             ->first();
             if(!$account) {
+                $account = new SocialAccount([
+                    'provider_user_id' => $providerUser->getId(),
+                    'provider' => 'facebook'
+                ]);
+
                 $account->user()->associate($user);
                 $account->save();
             }    
@@ -60,15 +65,17 @@ class SocialAccountService
         }   
     }
 
-    public function createSocialAccount(User $user, $id)
+    public function createSocialAccount(User $user)
     {
+        $providerUser = Socialite::driver('facebook')->user();
+
         $account = SocialAccount::whereProvider('facebook')
             ->whereProviderUserId($id)
             ->first();
 
         if(!$account) {
             $account = new SocialAccount([
-                'provider_user_id' => $id,
+                'provider_user_id' => $providerUser->getId(),
                 'provider' => 'facebook'
             ]);
 
