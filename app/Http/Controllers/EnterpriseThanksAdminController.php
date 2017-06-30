@@ -85,7 +85,7 @@ class EnterpriseThanksAdminController extends Controller
 
         $enterpriseThanks->save();
 
-        $enterpriseThanks->hash = bcrypt($enterpriseThanks->id);
+        $enterpriseThanks->hash = preg_replace('/[^A-Za-z0-9\-]/', '', bcrypt($enterpriseThanks->id));
         $enterpriseThanks->save();
 
         /*$user = new UserAdminController();
