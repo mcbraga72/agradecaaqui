@@ -65,7 +65,6 @@ Route::get('/parceiros', 'SiteController@support');
 Route::get('/mais-agradecidas', 'SiteController@ranking');
 Route::get('/entrar', 'SiteController@login');
 Route::post('/entrar', 'SiteController@loginWithData');
-Route::get('/cadastro', 'SiteController@register');
 Route::post('/busca', 'SiteController@findThanks');
 Route::post('/mensagem', 'SiteController@sendMessageContactForm');
 Route::post('/agradecimento/cadastro/empresa', 'SiteController@storeEnterprise');
