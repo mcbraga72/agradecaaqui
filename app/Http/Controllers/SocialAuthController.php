@@ -2,20 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SocialAccount;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades;
 use Socialite;
 
 class SocialAuthController extends Controller
 {
-    	/**
+    /**
 	 * Redirect to Facebook
 	 * @return [type] [description]
 	 */
     public function redirectFacebook()
     {
-        return Socialite::driver('facebook')->redirect();   
-    }   
+        return Socialite::driver('facebook')->fields([
+            'first_name', 'last_name', 'email', 'gender', 'birthday', 'location'
+        ])->scopes([
+            'email', 'user_birthday', 'user_location'
+        ])->redirect();
+    }
 
     /**
      * Callback From Facebook
@@ -23,15 +29,32 @@ class SocialAuthController extends Controller
      * @return Response
      */
     public function callbackFacebook(SocialAccountService $service)
-    {   
-        $providerUser = Socialite::driver('facebook')->user();
+    {
+        $providerUser = Socialite::driver('facebook')->fields([
+            'first_name', 'last_name', 'email', 'gender', 'birthday', 'location'
+        ])->user();
+
         $user = $service->getUser($providerUser, 'facebook');
         
         if (!is_null($user)) {
             auth()->login($user);
             return redirect()->to('/app');
         } else {            
-            return view('site.register')->with('providerUser', $providerUser);
+            $account = new SocialAccount([
+                'provider_user_id' => $providerUser->getId(),
+                'provider' => 'facebook'
+            ]);
+            
+            $user = User::create([
+                'email' => $providerUser->getEmail(),
+                'name' => $providerUser->getName(),
+                'gender' => $providerUser->gender(),
+            ]);
+
+            $account->user()->associate($user);
+            $account->save();
+
+            return redirect()->to('/app');
         }
     }
 
@@ -58,7 +81,21 @@ class SocialAuthController extends Controller
             auth()->login($user);
             return redirect()->to('/app');
         } else {            
-            return view('site.register')->with('providerUser', $providerUser);
+            $account = new SocialAccount([
+                'provider_user_id' => $providerUser->getId(),
+                'provider' => 'google'
+            ]);
+            
+            $user = User::create([
+                'email' => $providerUser->getEmail(),
+                'name' => $providerUser->getName(),
+                'gender' => $providerUser->gender(),
+            ]);
+
+            $account->user()->associate($user);
+            $account->save();
+
+            return redirect()->to('/app');
         }
     }
 }

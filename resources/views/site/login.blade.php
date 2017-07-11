@@ -76,24 +76,6 @@
                     </div>
                 </form>
             </div>            
-        </div>    
-        <br><br>
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-            <div class="col-xs-4 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1">
-                <hr style="border-top: dotted 2px;" />
-            </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                <span class="between-dash">ou</span>
-            </div>
-            <div class="col-xs-4 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1">
-                <hr style="border-top: dotted 2px;" />
-            </div>
-            <br><br><br>
-        </div>
-        <div class="col-xs-6 col-xs-offset-3 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 register-button">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
-                <a href="{{ url('/cadastro') }}"><button type="button" class="btn pink-button">Cadastre-se</button></a>
-            </div>    
         </div>
         <br><br><br>        
     </div>

@@ -50,15 +50,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'surName' => 'required',
-            'gender' => 'required',
-            'dateOfBirth' => 'required|before:13 years ago',
-            'telephone' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6',
-            'password-confirm' => 'required|min:6|same:password'
+            'email' => 'required|email|max:255|unique:users'            
         ]);
     }
 
@@ -73,14 +65,7 @@ class RegisterController extends Controller
         $user = new User();
 
         $user->name = $data['name'];
-        $user->surName = $data['surName'];
-        $user->gender = $data['gender'];
-        $user->dateOfBirth = $data['dateOfBirth'];
-        $user->telephone = $data['telephone'];
         $user->email = $data['email'];
-        $user->city = $data['city'];
-        $user->state = $data['state'];
-        $user->password = bcrypt($data['password']);
         $user->registerType = 'Padrão';
 
         if($data['gender'] == 'Masculino') {
