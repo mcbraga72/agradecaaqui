@@ -16,13 +16,13 @@ class CreateUsersTable extends Migration
         if(Schema::hasTable('users')) return;
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('surName');
-            $table->string('gender');
-            $table->string('dateOfBirth');
-            $table->string('telephone');
-            $table->string('city');
-            $table->string('state');
+            $table->string('name')->nullable();
+            $table->string('surName')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('dateOfBirth')->nullable();
+            $table->string('telephone')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('email')->unique();
             $table->string('education')->nullable();
@@ -39,8 +39,8 @@ class CreateUsersTable extends Migration
             $table->string('liveWith')->nullable();
             $table->string('pet')->nullable();
             $table->string('registerType')->nullable();
-            $table->string('photo');
-            $table->string('password');
+            $table->string('photo')->nullable();
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

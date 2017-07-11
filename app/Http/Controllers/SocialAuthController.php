@@ -47,8 +47,9 @@ class SocialAuthController extends Controller
             
             $user = User::create([
                 'email' => $providerUser->getEmail(),
-                'name' => $providerUser->getName(),
-                'gender' => $providerUser->gender(),
+                'name' => $providerUser->user['first_name'],
+                'gender' => $providerUser->user['gender'],
+                'photo' => $providerUser->avatar,
             ]);
 
             $account->user()->associate($user);
@@ -89,7 +90,7 @@ class SocialAuthController extends Controller
             $user = User::create([
                 'email' => $providerUser->getEmail(),
                 'name' => $providerUser->getName(),
-                'gender' => $providerUser->gender(),
+                'photo' => $providerUser->avatar,
             ]);
 
             $account->user()->associate($user);

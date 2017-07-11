@@ -49,7 +49,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users'            
         ]);
     }
@@ -68,10 +67,19 @@ class RegisterController extends Controller
         $user->email = $data['email'];
         $user->registerType = 'Padrão';
 
-        if($data['gender'] == 'Masculino') {
-            $user->photo = '/images/male.png';
+        if(isset($data['photo'])) {
+            copy($data['photo'], '/images/photos/' . $data['email'] . '.png');
+            $user->photo = '/images/photos/' . $data['email'] . '.png';
         } else {
-            $user->photo = '/images/female.png';
+            if(isset($data['gender'])) {
+                if($data['gender'] == 'male') {
+                    $user->photo = '/images/male.png';
+                } else {
+                    $user->photo = '/images/female.png';
+                }
+            } else {
+                $user->photo = 'images/user.png';
+            }
         }
 
         if($user->save()) {
