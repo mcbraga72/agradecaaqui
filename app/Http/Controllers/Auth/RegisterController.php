@@ -49,7 +49,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => 'required|email|max:255|unique:users'            
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6',
         ]);
     }
 
@@ -65,6 +66,7 @@ class RegisterController extends Controller
 
         $user->name = $data['name'];
         $user->email = $data['email'];
+        $user->password = bcrypt($data['password']);
         $user->registerType = 'Padrão';
 
         if(isset($data['photo'])) {
