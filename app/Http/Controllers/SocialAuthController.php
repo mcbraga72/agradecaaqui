@@ -50,11 +50,13 @@ class SocialAuthController extends Controller
                 'name' => $providerUser->user['first_name'],
                 'gender' => $providerUser->user['gender'],
                 'photo' => $providerUser->avatar,
+                'password' => str_random(10)
             ]);
 
             $account->user()->associate($user);
             $account->save();
 
+            auth()->login($user);
             return redirect()->to('/app');
         }
     }
@@ -91,11 +93,13 @@ class SocialAuthController extends Controller
                 'email' => $providerUser->getEmail(),
                 'name' => $providerUser->getName(),
                 'photo' => $providerUser->avatar,
+                'password' => str_random(10)
             ]);
 
             $account->user()->associate($user);
             $account->save();
 
+            auth()->login($user);
             return redirect()->to('/app');
         }
     }
