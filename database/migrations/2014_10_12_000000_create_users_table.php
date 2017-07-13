@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('religion')->nullable();
             $table->string('income')->nullable();
             $table->string('sport')->nullable();
+            $table->string('otherSport')->nullable();
             $table->string('soccerTeam')->nullable();
             $table->string('height')->nullable();
             $table->string('weight')->nullable();
@@ -38,6 +39,7 @@ class CreateUsersTable extends Migration
             $table->boolean('hasChildren')->nullable();
             $table->string('liveWith')->nullable();
             $table->string('pet')->nullable();
+            $table->string('otherPet')->nullable();
             $table->string('registerType')->nullable();
             $table->string('photo')->nullable();
             $table->string('password')->nullable();
