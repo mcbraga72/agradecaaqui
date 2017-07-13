@@ -6012,6 +6012,18 @@ new Vue({
             });
         },
 
+        inArray: function(value) {
+            var length = this.fillUser.sport.length;
+            for(var i = 0; i < length; i++) {
+                if(this.fillUser.sport[i] == value) {
+                    return true;
+                    console.log(value);
+                } else {
+                    return false;
+                }
+            }            
+        }
+
     }
 
 });

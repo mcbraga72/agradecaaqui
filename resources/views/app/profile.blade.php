@@ -250,31 +250,31 @@
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="sport">Pratica esporte(s)</label>
+		                    <?php $sport = explode(',', Auth::user()->sport); ?>
 		                    <select multiple id="sport" name="sport" class="form-control" v-model="fillUser.sport" />
 		                        <option value="">Selecione o(s) esporte(s)</option>
-		                        <option value="Nenhum" @if(Auth::user()->sport === 'Nenhum') selected="selected" @endif>Nenhum</option>
-		                        <option value="Atletismo" @if(Auth::user()->sport === 'Atletismo') selected="selected" @endif>Atletismo</option>
-		                        <option value="Basquete" @if(Auth::user()->sport === 'Basquete') selected="selected" @endif>Basquete</option>
-		                        <option value="Ciclismo" @if(Auth::user()->sport === 'Ciclismo') selected="selected" @endif>Ciclismo</option>
-		                        <option value="Equitação" @if(Auth::user()->sport === 'Equitação') selected="selected" @endif>Equitação</option>
-		                        <option value="Futebol" @if(Auth::user()->sport === 'Futebol') selected="selected" @endif>Futebol</option>
-		                        <option value="Ginástica" @if(Auth::user()->sport === 'Ginástica') selected="selected" @endif>Ginástica</option>
-		                        <option value="Golfe" @if(Auth::user()->sport === 'Golfe') selected="selected" @endif>Golfe</option>
-		                        <option value="Lutas" @if(Auth::user()->sport === 'Lutas') selected="selected" @endif>Lutas</option>
-		                        <option value="Musculação" @if(Auth::user()->sport === 'Musculação') selected="selected" @endif>Musculação</option>
-		                        <option value="Natação" @if(Auth::user()->sport === 'Natação') selected="selected" @endif>Natação</option>
-		                        <option value="Skate" @if(Auth::user()->sport === 'Skate') selected="selected" @endif>Skate</option>
-		                        <option value="Surf" @if(Auth::user()->sport === 'Surf') selected="selected" @endif>Surf</option>
-		                        <option value="Tênis" @if(Auth::user()->sport === 'Tênis') selected="selected" @endif>Tênis</option>
-		                        <option value="Vôlei" @if(Auth::user()->sport === 'Vôlei') selected="selected" @endif>Vôlei</option>
-		                        <option value="Outro(s)" @if(Auth::user()->sport != 'Nenhum' && Auth::user()->sport != 'Atletismo' && Auth::user()->sport != 'Basquete' && Auth::user()->sport != 'Ciclismo' && Auth::user()->sport != 'Equitação' && Auth::user()->sport != 'Futebol' && Auth::user()->sport != 'Ginástica' && Auth::user()->sport != 'Golfe' && Auth::user()->sport != 'Lutas' && Auth::user()->sport != 'Musculação' && Auth::user()->sport != 'Natação' && Auth::user()->sport != 'Skate' && Auth::user()->sport != 'Surf' && Auth::user()->sport != 'Tênis' && Auth::user()->sport != 'Vôlei' && Auth::user()->sport != NULL) selected="selected" @endif>Outro(s)</option>
+		                        <option value="Nenhum" @if(in_array('Nenhum', $sport)) selected="selected" @endif>Nenhum</option>
+		                        <option value="Atletismo" @if(in_array('Atletismo', $sport)) selected="selected" @endif>Atletismo</option>
+		                        <option value="Basquete" @if(in_array('Basquete', $sport)) selected="selected" @endif>Basquete</option>
+		                        <option value="Ciclismo" @if(in_array('Ciclismo', $sport)) selected="selected" @endif>Ciclismo</option>
+		                        <option value="Equitação" @if(in_array('Equitação', $sport)) selected="selected" @endif>Equitação</option>
+		                        <option value="Futebol" @if(in_array('Futebol', $sport)) selected="selected" @endif>Futebol</option>
+		                        <option value="Ginástica" @if(in_array('Ginástica', $sport)) selected="selected" @endif>Ginástica</option>
+		                        <option value="Golfe" @if(in_array('Golfe', $sport)) selected="selected" @endif>Golfe</option>
+		                        <option value="Lutas" @if(in_array('Lutas', $sport)) selected="selected" @endif>Lutas</option>
+		                        <option value="Musculação" @if(in_array('Musculação', $sport)) selected="selected" @endif>Musculação</option>
+		                        <option value="Natação" @if(in_array('Natação', $sport)) selected="selected" @endif>Natação</option>
+		                        <option value="Skate" @if(in_array('Skate', $sport)) selected="selected" @endif>Skate</option>
+		                        <option value="Surf" @if(in_array('Surf', $sport)) selected="selected" @endif>Surf</option>
+		                        <option value="Tênis" @if(in_array('Tênis', $sport)) selected="selected" @endif>Tênis</option>
+		                        <option value="Vôlei" @if(in_array('Vôlei', $sport)) selected="selected" @endif>Vôlei</option>
+		                        <option value="Outro(s)" @if(in_array('Outro(s)', $sport)) selected="selected" @endif>Outro(s)</option>
 		                    </select>
 		                    <span v-if="formErrorsCompleteRegister['sport']" class="error text-danger">@{{ formErrorsCompleteRegister['sport'] }}</span><br>
-
-		                    @if(Auth::user()->sport != 'Nenhum' && Auth::user()->sport != 'Atletismo' && Auth::user()->sport != 'Basquete' && Auth::user()->sport != 'Ciclismo' && Auth::user()->sport != 'Equitação' && Auth::user()->sport != 'Futebol' && Auth::user()->sport != 'Ginástica' && Auth::user()->sport != 'Golfe' && Auth::user()->sport != 'Lutas' && Auth::user()->sport != 'Musculação' && Auth::user()->sport != 'Natação' && Auth::user()->sport != 'Skate' && Auth::user()->sport != 'Surf' && Auth::user()->sport != 'Tênis' && Auth::user()->sport != 'Vôlei' && Auth::user()->sport != NULL)                    
-		                    	<input type="text" name="otherSport" class="form-control formShow" value="@if(Auth::user()->sport != 'Nenhum' && Auth::user()->sport != 'Atletismo' && Auth::user()->sport != 'Basquete' && Auth::user()->sport != 'Ciclismo' && Auth::user()->sport != 'Equitação' && Auth::user()->sport != 'Futebol' && Auth::user()->sport != 'Ginástica' && Auth::user()->sport != 'Golfe' && Auth::user()->sport != 'Lutas' && Auth::user()->sport != 'Musculação' && Auth::user()->sport != 'Natação' && Auth::user()->sport != 'Skate' && Auth::user()->sport != 'Surf' && Auth::user()->sport != 'Tênis' && Auth::user()->sport != 'Vôlei' && Auth::user()->sport != NULL) {{ Auth::user()->sport }} @else {{ '' }} @endif" v-model="fillUser.otherSport" v-bind:class="{formShow: fillUser.sport == 'Outro(s)', 'formHide': fillUser.sport != 'Outro(s)'}" />
+		                    @if(in_array('Outro(s)', $sport))
+		                    	<input type="text" name="otherSport" class="form-control formShow" value="{{ Auth::user()->otherSport }}" v-model="fillUser.otherSport" v-bind:class="{formShow: fillUser.otherSport != '' || inArray('Outro(s)'), 'formHide': fillUser.otherSport == '' || !inArray('Outro(s)')}" />
 		                    @else
-		                    	<input type="text" name="otherSport" class="form-control formHide" value="@if(Auth::user()->sport != 'Nenhum' && Auth::user()->sport != 'Atletismo' && Auth::user()->sport != 'Basquete' && Auth::user()->sport != 'Ciclismo' && Auth::user()->sport != 'Equitação' && Auth::user()->sport != 'Futebol' && Auth::user()->sport != 'Ginástica' && Auth::user()->sport != 'Golfe' && Auth::user()->sport != 'Lutas' && Auth::user()->sport != 'Musculação' && Auth::user()->sport != 'Natação' && Auth::user()->sport != 'Skate' && Auth::user()->sport != 'Surf' && Auth::user()->sport != 'Tênis' && Auth::user()->sport != 'Vôlei' && Auth::user()->sport != NULL) {{ Auth::user()->sport }} @else {{ '' }} @endif" v-model="fillUser.otherSport" v-bind:class="{formShow: fillUser.sport == 'Outro(s)', 'formHide': fillUser.sport != 'Outro(s)'}" />
+		                    	<input type="text" name="otherSport" class="form-control formHide" value="" v-model="fillUser.otherSport" v-bind:class="{formShow: fillUser.otherSport != '' || inArray('Outro(s)'), 'formHide': fillUser.otherSport == '' || !inArray('Outro(s)')}" />
 		                    @endif
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
@@ -368,19 +368,20 @@
 		                </div>
 		                <div class="form-group col-lg-4 profile-item">
 		                    <label for="pet">Possui animal(ais) de estimação?</label>
-		                    <select multiple id="pet" name="pet" class="form-control" v-model="fillUser.pet" />
-		                        <option value="">Selecione o(s) animal(ais) de estimação</option>
-		                        <option value="Aves" @if(Auth::user()->pet === 'Aves') selected="selected" @endif>Aves</option>
-		                        <option value="Cachorro" @if(Auth::user()->pet === 'Cachorro') selected="selected" @endif>Cachorro</option>
-		                        <option value="Gato" @if(Auth::user()->pet === 'Gato') selected="selected" @endif>Gato</option>
-		                        <option value="Peixe" @if(Auth::user()->pet === 'Peixe') selected="selected" @endif>Peixe</option>
-		                        <option value="Outro(s)" @if(Auth::user()->pet != 'Aves' && Auth::user()->pet != 'Cachorro' && Auth::user()->pet != 'Gato' && Auth::user()->pet != 'Peixe' && Auth::user()->pet != NULL) selected="selected" @endif>Outro(s)</option>
+		                    <?php $pet = explode(',', Auth::user()->pet); ?>
+		                    <select multiple="multiple" id="pet" name="pet[]" size="6" class="form-control" v-model="fillUser.pet" />		                    
+								<option value="">Selecione o(s) animal(ais) de estimação</option>
+		                        <option value="Aves" @if(in_array('Aves', $pet)) selected="selected" @endif>Aves</option>
+		                        <option value="Cachorro" @if(in_array('Cachorro', $pet)) selected="selected" @endif>Cachorro</option>
+		                        <option value="Gato" @if(in_array('Gato', $pet)) selected="selected" @endif>Gato</option>
+		                        <option value="Peixe" @if(in_array('Peixe', $pet)) selected="selected" @endif>Peixe</option>
+		                        <option value="Outro(s)" @if(in_array('Outro(s)', $pet)) selected="selected" @endif>Outro(s)</option>		                    
 		                    </select>
 		                    <span v-if="formErrorsCompleteRegister['pet']" class="error text-danger">@{{ formErrorsCompleteRegister['pet'] }}</span><br>
-		                    @if(Auth::user()->pet != 'Aves' && Auth::user()->pet != 'Cachorro' && Auth::user()->pet != 'Gato' && Auth::user()->pet != 'Peixe' && Auth::user()->pet != NULL)
-		                    	<input type="text" name="otherPet" class="form-control formShow" value="@if(Auth::user()->pet != 'Aves' && Auth::user()->pet != 'Cachorro' && Auth::user()->pet != 'Gato' && Auth::user()->pet != 'Peixe' && Auth::user()->pet != NULL) {{ Auth::user()->pet }} @else {{ '' }} @endif" v-model="fillUser.otherPet" v-bind:class="{formShow: fillUser.pet == 'Outro(s)', 'formHide': fillUser.pet != 'Outro(s)'}" />
+		                    @if(in_array('Outro(s)', $pet))
+		                    	<input type="text" name="otherPet" class="form-control formShow" value="{{ Auth::user()->otherPet }}" v-model="fillUser.otherPet" v-bind:class="{formShow: fillUser.otherPet != '' || inArray('Outro(s)'), 'formHide': fillUser.otherPet == '' || !inArray('Outro(s)')}" />
 		                    @else
-		                    	<input type="text" name="otherPet" class="form-control formHide" value="@if(Auth::user()->pet != 'Aves' && Auth::user()->pet != 'Cachorro' && Auth::user()->pet != 'Gato' && Auth::user()->pet != 'Peixe' && Auth::user()->pet != NULL) {{ Auth::user()->pet }} @else {{ '' }} @endif" v-model="fillUser.otherPet" v-bind:class="{formShow: fillUser.pet == 'Outro(s)', 'formHide': fillUser.pet != 'Outro(s)'}" />
+		                    	<input type="text" name="otherPet" class="form-control formHide" value="" v-model="fillUser.otherPet" v-bind:class="{formShow: fillUser.otherPet != '' || inArray('Outro(s)'), 'formHide': fillUser.otherPet == '' || !inArray('Outro(s)')}" />
 		                    @endif		                    
 		                </div>
 		                <div class="form-group col-lg-6">
