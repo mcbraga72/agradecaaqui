@@ -38,7 +38,7 @@ header {
     margin-left: 0px !important;
     height: 51px !important;
     float: right !important;
-    margin-right: 5.5% !important;
+    margin-right: 5% !important;
     background-color: #FFF !important;    
 }
 
@@ -62,9 +62,9 @@ ul.nav {
 
 .navbar-default .navbar-nav > li > a {
     font-family: Lato, Arial, Tahoma, sans-serif;
-    font-weight: 900 !important;
+    font-weight: 700 !important;
     line-height: 1.2em;
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: -1px;
     color: #F60059 !important;
 }
@@ -347,6 +347,15 @@ h1.support {
  * +AGRADECIDAS
  *
  */
+
+h1.ranking {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 900;
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-align:center;
+    color: #436EC6 !important;
+}
 
 .ranking-title {
     font-family: Lato, Arial, Tahoma, sans-serif;
@@ -734,44 +743,7 @@ a.forgot-password:active {
 
 /**
  * 
- * REGISTER
- *
- */
-
-.label-register {
-    display: block !important;
-    font-size: 12px !important;
-    text-align: left !important;    
-    margin-right: 0.5% !important;    
-}
-
-select.label-register {
-    margin-bottom: 5%;
-}
-
-.control-label {
-    text-align: left !important;
-}
-
-.radio-register {
-    display: inline-block !important; 
-    top: 0px;
-}
-
-.pink-button-register {
-    margin-left: 17% !important;
-}
-
-.control-label {
-    margin-bottom: 2% !important;
-}
-
-
-
-
-/**
- * 
- * REGISTER
+ * PAGE 404
  *
  */
 
@@ -812,7 +784,7 @@ select.label-register {
 
 .item-menu-dropdown {
     font-family: Lato, Arial, Tahoma, sans-serif;
-    font-weight: 900 !important;
+    font-weight: 700 !important;
     line-height: 1.2em;
     font-size: 16px;
     letter-spacing: -1px;
@@ -850,7 +822,7 @@ select.label-register {
 
 .complete-register {
     font-family: Lato, Arial, Tahoma, sans-serif;
-    font-weight: 900 !important;
+    font-weight: 700 !important;
     line-height: 1.2em;
     font-size: 16px;
     letter-spacing: -1px;
@@ -899,7 +871,7 @@ select.label-register {
 
 .profile-form {
     font-family: Lato, Arial, Tahoma, sans-serif;
-    font-weight: 900 !important;
+    font-weight: 700 !important;
     line-height: 1em;
     font-size: 14px;
     letter-spacing: 1px;
@@ -945,7 +917,7 @@ select.label-register {
     }
 
     .navbar-default .navbar-nav > li > a {
-        font-size: 15px !important;
+        font-size: 14px !important;
     }
 
     .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a {
@@ -1071,7 +1043,7 @@ select.label-register {
     }
 
     .navbar-default .navbar-nav > li > a {
-        font-size: 15px !important;
+        font-size: 14px !important;
     }
 
     .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a {
@@ -1155,7 +1127,11 @@ select.label-register {
     }
 
     .navbar-default .navbar-nav > li > a {
-        font-size: 15px !important;
+        font-size: 12px !important;
+    }
+
+    .nav > li {
+        margin-right: 30px !important;
     }
 
     .heart-form {
@@ -1231,6 +1207,10 @@ select.label-register {
 
     .form-home {
         text-align: left !important;
+    }
+
+    .nav > li {
+        margin-right: 30px !important;
     }
 
     .thanks-box {
@@ -1346,7 +1326,11 @@ select.label-register {
     }
 
     .navbar-default .navbar-nav > li > a {
-        font-size: 13px !important;
+        font-size: 12px !important;
+    }
+
+    .nav > li {
+        margin-right: 10px !important;
     }
 
     .app-dropdown {
@@ -1356,6 +1340,69 @@ select.label-register {
     .avatar {
         width: 29px;
         height: 29px;
+    }
+
+    h1.ranking {
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 900;
+        font-size: 20px;
+        letter-spacing: 2px;
+        text-align:center;
+        color: #436EC6 !important;
+    }
+
+    .ranking-title {
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 1px;
+        text-align:center;
+        color: #436EC6 !important;
+        padding-top: 3%;
+        padding-bottom: 2%;
+    }
+
+    .ranking-box {
+        background-color: #FFF;
+        margin-top: 4%;
+        padding-bottom: 2%;
+        border: 1px solid #DDD;
+        border-radius: 5px;
+        height: 400px;
+    }
+
+    .enterprise-name {    
+        position: relative;
+        display: inline-block;
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-align: left;    
+        color: #999;
+        margin-top: 0%;
+        margin-left: 2%;
+    }
+
+    .category-name {    
+        position: relative;
+        display: inline-block;
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-align: left;    
+        color: #999;
+        margin-top: 5%;
+        margin-left: 2%;
+    }
+
+    .thanks-heart {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 17px;
+        margin-left: 2%;
     }
 
 }
@@ -1368,11 +1415,15 @@ select.label-register {
     }
 
     .nav > li > a {
-        padding: 15px 10px;
+        padding: 10px 10px;
     }
 
     .navbar-default .navbar-nav > li > a {
-        font-size: 13px !important;
+        font-size: 12px !important;
+    }
+
+    .nav > li {
+        margin-right: 20px !important;
     }
 
     .item-menu-dropdown {
@@ -1380,12 +1431,75 @@ select.label-register {
     }
 
     .app-dropdown {
-        margin-left: 8%;
+        margin-left: 5%;
     }
 
     .avatar {
         width: 35px;
         height: 35px;
+    }
+
+    h1.ranking {
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 900;
+        font-size: 20px;
+        letter-spacing: 2px;
+        text-align:center;
+        color: #436EC6 !important;
+    }
+
+    .ranking-title {
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 1px;
+        text-align:center;
+        color: #436EC6 !important;
+        padding-top: 3%;
+        padding-bottom: 2%;
+    }
+
+    .ranking-box {
+        background-color: #FFF;
+        margin-top: 4%;
+        padding-bottom: 2%;
+        border: 1px solid #DDD;
+        border-radius: 5px;
+        height: 420px;
+    }
+
+    .enterprise-name {    
+        position: relative;
+        display: inline-block;
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-align: left;    
+        color: #999;
+        margin-top: 0%;
+        margin-left: 2%;
+    }
+
+    .category-name {    
+        position: relative;
+        display: inline-block;
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-align: left;    
+        color: #999;
+        margin-top: 5%;
+        margin-left: 2%;
+    }
+
+    .thanks-heart {
+        position: relative;
+        display: inline-block;
+        width: 20px;
+        height: 17px;
+        margin-left: 2%;
     }
 
 }
@@ -1397,12 +1511,75 @@ select.label-register {
         padding: 10px 10px !important;
     }
 
+    .navbar-default .navbar-nav > li > a {
+        font-size: 14px !important;
+    }
+
+    .nav > li {
+        margin-right: 30px !important;
+    }
+
     .item-menu-dropdown {
-        font-size: 15px;
+        font-size: 13px;
     }
 
     .app-dropdown {
         margin-left: 5%;
+    }
+
+    h1.ranking {
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 900;
+        font-size: 25px;
+        letter-spacing: 2px;
+        text-align:center;
+        color: #436EC6 !important;
+    }
+
+    .ranking-title {
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-align:center;
+        color: #436EC6 !important;
+        padding-top: 3%;
+        padding-bottom: 2%;
+    }
+
+    .ranking-box {
+        background-color: #FFF;
+        margin-top: 4%;
+        padding-bottom: 2%;
+        border: 1px solid #DDD;
+        border-radius: 5px;
+        height: 450px;
+    }
+
+    .enterprise-name {    
+        position: relative;
+        display: inline-block;
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-align: left;    
+        color: #999;
+        margin-top: 0%;
+        margin-left: 2%;
+    }
+
+    .category-name {    
+        position: relative;
+        display: inline-block;
+        font-family: Lato, Arial, Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-align: left;    
+        color: #999;
+        margin-top: 5%;
+        margin-left: 2%;
     }
 
 }
@@ -1411,6 +1588,10 @@ select.label-register {
 
     .nav > li > a {
         padding: 10px 10px !important;
+    }
+
+    .nav > li {
+        margin-right: 40px !important;
     }
 
     .app-dropdown {
@@ -1425,8 +1606,12 @@ select.label-register {
         padding: 10px 10px !important;
     }
 
+    .nav > li {
+        margin-right: 50px !important;
+    }
+
     .app-dropdown {
-        margin-left: 20%;
+        margin-left: 18%;
     }
 
 }
@@ -1438,7 +1623,7 @@ select.label-register {
     }
 
     .app-dropdown {
-        margin-left: 30%;
+        margin-left: 25%;
     }
 
 }

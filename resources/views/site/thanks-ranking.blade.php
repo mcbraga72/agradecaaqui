@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
                 <img class="logo" src="{{ URL::to('/') }}/images/logo.png" />
-                <h1 class="support">Empresas Mais Agradecidas</h1>
+                <h1 class="ranking">Empresas Mais Agradecidas</h1>
                 <div>
                     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-1 ranking-box">
                         <h2 class="ranking-title">Agradecimentos por empresas</h2>
