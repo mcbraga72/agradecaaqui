@@ -121,6 +121,7 @@ Route::group(['middleware' => 'auth:enterprises'], function () {
 	Route::get('/empresas/agradecimentos', ['as' => 'agradecimentos.index', 'uses' => 'EnterpriseAreaController@index']);
 	Route::post('/empresa/agradecimento', 'EnterpriseAreaController@storeReplica');
 	Route::get('/empresa/premium', 'EnterpriseAreaController@premium');
+	Route::get('/empresa/cadastro/agradecimentos/exportar', 'EnterpriseAreaController@exportEnterpriseThanksRegister');
 
 	Route::get('/empresa/relatorios', 'ReportEnterpriseController@index');
 	Route::get('/empresa/api/relatorios/cidade/{start}/{end}', 'ReportEnterpriseController@generateCityReport');

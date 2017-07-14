@@ -2,16 +2,51 @@
 
 @section('content')
 <div class="row" style="margin-left: 1%;">
-	  <p style="margin-top: 2%;">Acesso Premium</p>
+	  <h4 style="margin-top: 2%;">Acesso Premium</h4>
 	  <div class="col-md-11">
 		    <div class="panel panel-default">
 	    	    <div class="panel-heading premium-access">Veja as vantagens que o acesso premium oferece</div>
             <div class="panel-body reports-fields">
-                <ul class="list-inline">
-                    <li class="advantages"><i class="fa fa-bar-chart fa-4x fa-fw"></i><h1>Relatórios Plus</h1></a></li>
-                    <li class="advantages"><i class="fa fa-dashboard fa-4x fa-fw"></i><h1>Dashboard Plus</h1></a></li>
-                    <li class="advantages"><i class="fa fa-line-chart fa-4x fa-fw"></i><h1>Estatísticas</h1></a></li>
-                </ul>
+                <div class="col-md-2 col-md-offset-3 plan-data-box">
+                    <div class="col-md-12 plan-data-box-header">
+                        <h1 class="plan-name">Basic</h1>
+                    </div>
+                    <div class="col-md-12 plan-data-box-body">
+                        <h1 class="features">Ver agradecimentos</h1>
+                        <hr class="dotted">
+                        <h1 class="features">Responder agradecimentos</h1>
+                        <hr class="dotted">
+                        <h1 class="features">Dashboard básico</h1>
+                        <hr class="dotted">
+                        <h1 class="price-free">GRÁTIS</h1>
+                    </div>
+                </div>
+                <div class="col-md-2 col-md-offset-2 plan-data-box">
+                    <div class="col-md-12 plan-data-box-header">
+                        <h1 class="plan-name">Premium</h1>
+                    </div>
+                    <div class="col-md-12 plan-data-box-body">
+                        <h1 class="features">Ver agradecimentos</h1>
+                        <hr class="dotted">
+                        <h1 class="features">Responder agradecimentos</h1>
+                        <hr class="dotted">
+                        <h1 class="features">Dashboard plus</h1>
+                        <hr class="dotted">
+                        <h1 class="features">Relatórios</h1>
+                        <hr class="dotted">
+                        <h1 class="features">Extração de dados</h1>
+                        <hr class="dotted">
+                        <h1 class="features">Identidade Agradeça Aqui</h1>
+                        <hr class="dotted">
+                        <h1 class="features">Parceiro Agradeça Aqui</h1>
+                        <hr class="dotted">
+                        <h1 class="features">Suporte técnico</h1>
+                        <hr class="dotted">
+                        <h1 class="price">R$ 49,90 / mês</h1>
+                        <h1 class="price">ou</h1>
+                        <h1 class="price">R$ 499,00 / ano</h1><h2 class="price">(economize 2 meses)</h1>
+                    </div>
+                </div>
             </div>
 		    </div>
         <button type="button" class="btn btn-primary button-premium">QUERO ASSINAR!</button>
