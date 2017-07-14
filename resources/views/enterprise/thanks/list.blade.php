@@ -4,11 +4,12 @@
 <div class="container-fluid">
     <div class="row">    
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <p style="margin-top: 2%;">Agradecimentos</p>
+            <h4 style="margin-top: 2%;">Agradecimentos</h4><br>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
+            <a href="/empresa/cadastro/agradecimentos/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar cadastro</a>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>Cliente</th>

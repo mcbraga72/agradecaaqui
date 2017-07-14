@@ -14,6 +14,7 @@ use Hash;
 use Illuminate\Http\Request;
 use Image;
 use Redirect;
+use Response;
 
 class EnterpriseAreaController extends Controller
 {
@@ -170,7 +171,6 @@ class EnterpriseAreaController extends Controller
         if(!is_null($request->logo)) {
             $enterprise = Enterprise::find(Auth::guard('enterprises')->user()->id);
             if ($enterprise->logo != '/images/enterprises/enterprise.png') {
-                //$imagePath = '../../../public' . $enterprise->logo;
                 unlink(public_path() . $enterprise->logo);
             }
             $timestamp = new DateTime();
@@ -251,5 +251,33 @@ class EnterpriseAreaController extends Controller
         $enterprise->save();
 
         return redirect('/empresa/entrar');
+    }
+
+    /**
+     *
+     * Export enterprise thanks register to a CSV file.
+     * 
+     * @return Response
+     * 
+     */
+    public function exportEnterpriseThanksRegister()
+    {
+        $enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->with(['Enterprise', 'User'])->orderBy('thanksDateTime', 'desc')->get();
+        $filename = 'agradecimentos-empresa.csv';
+        $handle = fopen($filename, 'w+');
+        fputcsv($handle, array('Cliente', 'Data/Hora', 'Agradecimento', 'Réplica', 'Tréplica'));
+
+        foreach($enterpriseThanks as $enterpriseThank) {
+            $thanksDateTime = \DateTime::createFromFormat('Y-m-d H:i:s', $enterpriseThank['thanksDateTime']);
+            fputcsv($handle, array($enterpriseThank['user']['name'], $thanksDateTime->format('d/m/Y H:i'), $enterpriseThank['content'], $enterpriseThank['replica'], $enterpriseThank['rejoinder']));
+        }
+
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+        );
+
+        return Response::download($filename, 'agradecimentos-empresa.csv', $headers);
     }
 }

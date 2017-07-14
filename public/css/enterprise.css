@@ -126,12 +126,74 @@ li.dropdown {
     color: #FFF !important;
     margin-left: 40%;
     margin-top: 4%;
+    margin-bottom: 10%;
 }
 
-.advantages {
-	width: 33%;
-	text-align: center;
-	margin-top: 5%;
-	margin-bottom: 3%;
-	color: #3C8DBC !important;
+.plan-data-box {
+	border: 1px solid #DDD;
+	border-radius: 5px;
+	height: 760px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	padding: 0 !important;
+}
+
+.plan-data-box-header {
+	background-color: #3C8DBC;
+	height: 80px;	
+}
+
+.plan-data-box-body {
+	background-color: #FFF;
+	height: 660px;	
+}
+
+h1.plan-name {
+	font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 700 !important;
+    line-height: 1.2em;
+    font-size: 25px;
+    color: #FFF !important;
+	text-align: center;	
+}
+
+h1.features {
+	font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 500 !important;
+    line-height: 1.2em;
+    font-size: 16px;
+    color: #888 !important;
+	text-align: center;	
+}
+
+hr.dotted {
+	border-top: 1px dotted #8c8b8b;
+}
+
+h1.price {
+	font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 600 !important;
+    line-height: 1.2em;
+    font-size: 22px;
+    color: #3C8DBC !important;
+	text-align: center;	
+}
+
+h2.price {
+	font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 600 !important;
+    line-height: 1.2em;
+    font-size: 14px;
+    color: #888 !important;
+	text-align: center;	
+}
+
+h1.price-free {
+	font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 600 !important;
+    line-height: 1.2em;
+    font-size: 22px;
+    color: #3C8DBC !important;
+	text-align: center;	
+	margin-top: 195%;	
 }
