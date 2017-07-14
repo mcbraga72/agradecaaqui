@@ -123,9 +123,15 @@ Route::group(['middleware' => 'auth:enterprises'], function () {
 	Route::get('/empresa/premium', 'EnterpriseAreaController@premium');
 
 	Route::get('/empresa/relatorios', 'ReportEnterpriseController@index');
-	Route::get('/empresa/api/relatorios/estado', 'ReportEnterpriseController@generateStateReport');
-	Route::get('/empresa/api/relatorios/cidade', 'ReportEnterpriseController@generateCityReport');
-	Route::get('/empresa/api/relatorios/sexo', 'ReportEnterpriseController@generateGenderReport');
+	Route::get('/empresa/api/relatorios/cidade/{start}/{end}', 'ReportEnterpriseController@generateCityReport');
+	Route::get('/empresa/api/relatorios/estado/{start}/{end}', 'ReportEnterpriseController@generateStateReport');	
+	Route::get('/empresa/api/relatorios/genero/{start}/{end}', 'ReportEnterpriseController@generateGenderReport');
+	Route::get('/empresa/api/relatorios/estado-civil/{start}/{end}', 'ReportEnterpriseController@generateMaritalStatusReport');
+	Route::get('/empresa/api/relatorios/religiao/{start}/{end}', 'ReportEnterpriseController@generateReligionReport');
+	Route::get('/empresa/api/relatorios/escolaridade/{start}/{end}', 'ReportEnterpriseController@generateEducationReport');
+	Route::get('/empresa/api/relatorios/profissao/{start}/{end}', 'ReportEnterpriseController@generateProfessionReport');
+	Route::get('/empresa/api/relatorios/renda-familiar/{start}/{end}', 'ReportEnterpriseController@generateIncomeReport');
+	Route::get('/empresa/api/relatorios/time-de-futebol/{start}/{end}', 'ReportEnterpriseController@generateSoccerTeamReport');
 	Route::get('/empresa/api/relatorio/{type}/{start}/{end}', 'ReportEnterpriseController@generateCustomReport');
 
 });
@@ -158,9 +164,15 @@ Route::group(['middleware' => 'auth:admins'], function () {
 	Route::put('/admin/empresa/aprovar/{id}', 'EnterpriseAdminController@approveRegister');
 
 	Route::get('/admin/relatorios', 'ReportAdminController@index');
-	Route::get('/admin/api/relatorios/estado', 'ReportAdminController@generateStateReport');
-	Route::get('/admin/api/relatorios/cidade', 'ReportAdminController@generateCityReport');
-	Route::get('/admin/api/relatorios/sexo', 'ReportAdminController@generateGenderReport');
+	Route::get('/admin/api/relatorios/cidade/{start}/{end}', 'ReportAdminController@generateCityReport');
+	Route::get('/admin/api/relatorios/estado/{start}/{end}', 'ReportAdminController@generateStateReport');	
+	Route::get('/admin/api/relatorios/genero/{start}/{end}', 'ReportAdminController@generateGenderReport');
+	Route::get('/admin/api/relatorios/estado-civil/{start}/{end}', 'ReportAdminController@generateMaritalStatusReport');
+	Route::get('/admin/api/relatorios/religiao/{start}/{end}', 'ReportAdminController@generateReligionReport');
+	Route::get('/admin/api/relatorios/escolaridade/{start}/{end}', 'ReportAdminController@generateEducationReport');
+	Route::get('/admin/api/relatorios/profissao/{start}/{end}', 'ReportAdminController@generateProfessionReport');
+	Route::get('/admin/api/relatorios/renda-familiar/{start}/{end}', 'ReportAdminController@generateIncomeReport');
+	Route::get('/admin/api/relatorios/time-de-futebol/{start}/{end}', 'ReportAdminController@generateSoccerTeamReport');
 	Route::get('/admin/api/relatorio/{type}/{start}/{end}', 'ReportAdminController@generateCustomReport');
 
 	Route::get('/admin/cadastro/empresas/exportar', 'ServiceAdminController@exportEnterpriseRegister');
