@@ -107,19 +107,10 @@
                             </span>
                         @endif
                     </div>
-                    <div class="label-register enterprise-profile form-group{{ $errors->has('address') ? ' has-error' : '' }} col-md-6 col-lg-6">
-                        <br><br>
-                        <label for="address" class="col-md-6 control-label label-register">Endereço</label>
-                        <input id="address" type="text" class="form-control label-register" name="address" value="{{ $enterprise->address }}" required autofocus>
-                        @if ($errors->has('address'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('address') }}</strong>
-                            </span>
-                        @endif
-                    </div>
                     <div class="label-register enterprise-profile form-group{{ $errors->has('state') ? ' has-error' : '' }} col-md-6 col-lg-6">
+                        <br><br>
                         <label for="state" class="col-md-6 control-label label-register">Estado</label>
-                        <select name="state" id="state" class="form-control label-register">
+                        <select name="state" id="state" class="form-control label-register" v-model="state" />
                             <option value="">Selecione o estado</option>
                             <option value="Acre">Acre</option>
                             <option value="Alagoas">Alagoas</option>
@@ -156,9 +147,12 @@
                         @endif
                     </div>
                     <div class="label-register enterprise-profile form-group{{ $errors->has('city') ? ' has-error' : '' }} col-md-6 col-lg-6">
+                        <br><br>
                         <label for="city" class="col-md-6 control-label label-register">Cidade</label>
-                        <select name="city" id="city" class="form-control label-register">
-                            <option value=""></option>
+                        <select id="city" name="city" class="form-control" v-model="city" />
+                            <option value="">Selecione a cidade</option>
+                            <option v-for="option in options" v-bind:value="option" selected="@{{city == option}}">@{{ option }}</option>
+                            <option value="{{ Auth::user()->city }}" selected="selected">{{ Auth::user()->city }}</option>
                         </select>
                         @if ($errors->has('city'))
                             <span class="help-block">
@@ -167,6 +161,7 @@
                         @endif
                     </div>
                     <div class="label-register enterprise-profile form-group{{ $errors->has('neighborhood') ? ' has-error' : '' }} col-md-6 col-lg-6">
+                        <br><br>
                         <label for="neighborhood" class="col-md-6 control-label label-register">Bairro</label>
                         <input type="text" name="neighborhood" class="form-control label-register" value="{{ $enterprise->neighborhood }}" required autofocus />
                         @if ($errors->has('neighborhood'))
@@ -176,20 +171,22 @@
                         @endif
                     </div>
                     <div class="label-register enterprise-profile form-group{{ $errors->has('address') ? ' has-error' : '' }} col-md-6 col-lg-6">
+                        <br><br>
                         <label for="address" class="col-md-6 control-label label-register">Endereço</label>
-                        <input type="text" name="address" class="form-control" value="{{ $enterprise->address }}" required autofocus />
+                        <input id="address" type="text" class="form-control label-register" name="address" value="{{ $enterprise->address }}" required autofocus>
                         @if ($errors->has('address'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('address') }}</strong>
                             </span>
                         @endif
-                    </div>
-                    <div class="form-group">
-                        <label for="type">Tipo:</label><br>
-                        <input type="radio" name="type" value="pf">Pessoa Física<br>
-                        <input type="radio" name="type" value="pj">Pessoa Jurídica<br>
+                    </div>                    
+                    <div class="label-register enterprise-profile form-group col-md-6 col-lg-6">
+                        <br><br>
+                        <input type="radio" name="type" value="pf" style="margin-left: 4%;"> Pessoa Física
+                        <input type="radio" name="type" value="pj" style="margin-left: 5%;"> Pessoa Jurídica
                     </div>
                     <div class="label-register enterprise-profile form-group{{ $errors->has('cpf') ? ' has-error' : '' }} col-md-6 col-lg-6">
+                        <br><br>
                         <label for="cpf" id="cpfLabel" class="col-md-6 control-label label-register">CPF</label>
                         <input type="text" id="cpf" name="cpf" class="form-control label-register" value="{{ $enterprise->cpf }}" maxlength="14" onkeypress="return formatCPF(this, event)" />
                         @if ($errors->has('cpf'))
@@ -209,7 +206,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-12 col-lg-12">
-                            <button type="submit" class="btn btn-success" style="margin-top: 2%;">Enviar</button>                        
+                            <button type="submit" class="btn btn-success" style="margin-top: 2%;">Atualizar Dados</button>                        
                         </div>
                     </div>
                 </form>
@@ -217,6 +214,9 @@
         </div>        
     </div>
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+<script type="text/javascript" src="/js/app-enterprises.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#cnpjLabel').hide();
