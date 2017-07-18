@@ -135,6 +135,12 @@ Route::group(['middleware' => 'auth:enterprises'], function () {
 	Route::get('/empresa/api/relatorios/time-de-futebol/{start}/{end}', 'ReportEnterpriseController@generateSoccerTeamReport');
 	Route::get('/empresa/api/relatorio/{type}/{start}/{end}', 'ReportEnterpriseController@generateCustomReport');
 
+	// Paypal routes
+
+	Route::get('/empresa/assinatura-premium', ['as' => 'paywithpaypal', 'uses' => 'PaypalController@payWithPaypal']);
+	Route::post('/empresa/paypal', 'PaypalController@postPaymentWithpaypal');
+	Route::get('/empresa/paypal', ['as' => 'payment.status', 'uses' => 'PaypalController@getPaymentStatus']);
+
 });
 
 
