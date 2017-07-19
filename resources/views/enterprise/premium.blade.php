@@ -49,7 +49,7 @@
                 </div>
             </div>
 		    </div>
-        <button type="button" class="btn btn-primary button-premium">QUERO ASSINAR!</button>
+        <a href="{{ URL::to('/') }}/empresa/assinatura-premium" class="btn btn-primary button-premium">QUERO ASSINAR!</a>
 	  </div>
 </div>
 @endsection
