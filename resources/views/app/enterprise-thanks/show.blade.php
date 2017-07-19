@@ -14,9 +14,9 @@
         <meta property="og:title" content="Agradeça Aqui" />
         <meta property="og:type" content="website" />
         @foreach($enterpriseThanks as $enterpriseThank)
-        <meta property="og:url" content="{{ 'http://agradecaaqui.herokuapp.com/app/agradecimento-empresa/' . $enterpriseThank->hash }}" />
+        <meta property="og:url" content="{{ 'https://agradecaaqui.site/app/agradecimento-empresa/' . $enterpriseThank->hash }}" />
         @endforeach        
-        <meta property="og:image" content="http://agradecaaqui.herokuapp.com/images/banner.png" />
+        <meta property="og:image" content="https://agradecaaqui.site/images/banner.png" />
         <meta property="og:description" content="Faça seu agradecimento em nossa plataforma!" />
         <meta property="og:site_name" content="Agradeça Aqui" />
         <meta property="fb:app_id" content="752484724908381" />
@@ -27,15 +27,15 @@
         <meta name="twitter:creator" content="@agradecaaqui">
         <meta name="twitter:title" content="Agradeça Aqui">
         <meta name="twitter:description" content="Faça seu agradecimento em nossa plataforma!">
-        <meta name="twitter:image" content="http://agradecaaqui.herokuapp.com/images/banner.png">
+        <meta name="twitter:image" content="https://agradecaaqui.site/images/banner.png">
         
-        <link rel="shortcut icon" href="images/logo.png" />
+        <link rel="shortcut icon" href="https://agradecaaqui.site/images/logo.png" />
         <link rel="stylesheet" property="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" property="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ URL::asset('css/site.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-social.css') }}">
-        <link rel="stylesheet" href="css/vendor/bootstrap-chosen/bootstrap-chosen.css">
+        <link rel="stylesheet" href="{{ URL::asset('css/vendor/bootstrap-chosen/bootstrap-chosen.css') }}">
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
