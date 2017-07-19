@@ -183,6 +183,14 @@ button.home {
     color: #333 !important;
 }
 
+.heart-form {
+    position: relative;
+    width: 30px;
+    height: 27px;
+    left: 2%;
+    bottom: 10%;
+}
+
 .social-network {
     margin: 2% auto 20% auto;
     width: 55px;
@@ -956,14 +964,6 @@ a.forgot-password:active {
         letter-spacing: 1px;
     }
 
-    .heart-form {
-        position: relative;
-        width: 40px;
-        height: 35px;
-        left: 40%;
-        bottom: 10%;
-    }
-
     .form-home {
         text-align: left !important;
     }
@@ -1062,14 +1062,6 @@ a.forgot-password:active {
         margin-left: -30px !important;
     }
 
-    .heart-form {
-        position: relative;
-        width: 40px;
-        height: 35px;
-        left: 40%;
-        bottom: 10%;
-    }
-
     .form-home {
         text-align: left !important;
     }
@@ -1134,14 +1126,6 @@ a.forgot-password:active {
         margin-right: 30px !important;
     }
 
-    .heart-form {
-        position: relative;
-        width: 40px;
-        height: 35px;
-        left: 40%;
-        bottom: 10%;
-    }
-
     .form-home {
         text-align: left !important;
     }
@@ -1195,14 +1179,6 @@ a.forgot-password:active {
 
     .navbar {
         background-color: #FFF !important;
-    }
-
-    .heart-form {
-        position: relative;
-        width: 40px;
-        height: 35px;
-        left: 40%;
-        bottom: 10%;
     }
 
     .form-home {
@@ -1262,14 +1238,6 @@ a.forgot-password:active {
 
     .navbar {
         background-color: #FFF !important;
-    }
-
-    .heart-form {
-        position: relative;
-        width: 40px;
-        height: 35px;
-        left: 40%;
-        bottom: 10%;
     }
 
     .form-home {

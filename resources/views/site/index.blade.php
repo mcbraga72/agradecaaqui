@@ -30,7 +30,7 @@
 		                <div id="enterpriseThanks">		                
 				            <div class="form-home form-group">
 				                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-				                	<label for="enterprise_id" class="col-md-8 col-lg-8 control-label">EMPRESA</label>			                    
+				                	<label for="enterprise_id" class="control-label form-home">EMPRESA</label>			                    
 				                    <select id="enterprise_id" name="enterprise_id" data-placeholder="Selecione a empresa" class="selectpicker form-control chosen-select" v-model="newEnterpriseThanks.enterprise_id">
 	                                    <option value="0">Selecione a empresa</option>
 	                                    @foreach ($data['enterprises'] as $enterprise)
@@ -48,7 +48,7 @@
 				            </div>
 				            <div class="form-home form-group">
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-			                    	<label for="content" class="col-md-8 col-lg-8 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
+			                    	<label for="content" class="control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
 			                        <textarea id="content-enterprise" name="content-enterprise" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 			                        <div id="content-error" class="alert alert-danger thanks-messages">
 		                    			<span>O campo agradecimento é obrigatório!</span>
@@ -79,7 +79,7 @@
 						                    {{ $data['error'] }}
 						                </div>
 						            @endif
-				                    <label for="enterprise_id" class="col-md-4 control-label">EMPRESA</label>			                    
+				                    <label for="enterprise_id" class="control-label form-home">EMPRESA</label>
 				                    <select id="enterprise_id" name="enterprise_id" class="selectpicker form-control chosen-select" v-model="enterprise_id">
 	                                    <option value="">Selecione a empresa</option>
 	                                    @foreach ($data['enterprises'] as $enterprise) 
@@ -95,7 +95,7 @@
 				            </div>
 				            <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    	<label for="content" class="col-md-4 col-lg-6 control-label">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" alt="Coração" title="Coração" />
+			                    	<label for="content" class="control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
 			                        <textarea id="content" name="content" class="form-control" placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 			                        @if ($errors->has('content'))
 			                            <span class="help-block">
@@ -117,7 +117,7 @@
 						<div id="userThanks">
 			                <div class="form-home form-group">
 				                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-				                	<label for="receiptName" class="col-md-4 control-label form-home">PARA</label>
+				                	<label for="receiptName" class="control-label form-home">PARA</label>
 				                    <input id="receiptName" type="text" class="form-control" name="receiptName" @if(Session::has('receiptName')) value="{{ Session::get('receiptName') }}" @else value="{{ old('receiptName') }}" @endif placeholder="Nome">
 				                    <div id="receiptName-error" class="alert alert-danger thanks-messages">
 		                    			<span>O campo nome é obrigatório!</span>
@@ -126,7 +126,7 @@
 				            </div>
 				            <div class="form-home form-group">
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    	<label for="receiptEmail" class="col-md-4 control-label form-home">E-MAIL</label>
+			                    	<label for="receiptEmail" class="control-label form-home">E-MAIL</label>
 			                        <input id="receiptEmail" type="text" class="form-control" name="receiptEmail" @if(Session::has('receiptEmail')) value="{{ Session::get('receiptEmail') }}" @else value="{{ old('receiptEmail') }}" @endif placeholder="E-mail do destinatário">
 			                        <div id="receiptEmail-error" class="alert alert-danger thanks-messages">
 		                    			<span>O campo e-mail é obrigatório!</span>
@@ -135,7 +135,7 @@
 			                </div>
 			                <div class="form-home form-group">
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    	<label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
+			                    	<label for="content" class="control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
 			                        <textarea id="contentUser" name="contentUser" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 			                        <div id="userContent-error" class="alert alert-danger thanks-messages">
 		                    			<span>O campo agradecimento é obrigatório!</span>
@@ -153,33 +153,33 @@
 					<form class="form-horizontal login-form" role="form" method="POST" action="{{ url('entrar') }}">
 						{{ csrf_field() }}
 						<div id="userThanks">
-			                <div class="form-home form-group{{ $errors->has('userName') ? ' has-error' : '' }}">
+			                <div class="form-home form-group{{ $errors->has('receiptName') ? ' has-error' : '' }}">
 				                <br><br>
 				                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-				                	<label for="userName" class="col-md-4 control-label">PARA</label>
-				                    <input id="userName" type="text" class="form-control" name="userName" value="{{ old('userName') }}" autofocus placeholder="Nome">
-				                    @if ($errors->has('userName'))
+				                	<label for="receiptName" class="control-label form-home">PARA</label>
+				                    <input id="receiptName" type="text" class="form-control" name="receiptName" value="{{ old('receiptName') }}" autofocus placeholder="Nome">
+				                    @if ($errors->has('receiptName'))
 				                        <span class="help-block">
-				                            <strong>{{ $errors->first('userName') }}</strong>
+				                            <strong>{{ $errors->first('receiptName') }}</strong>
 				                        </span>
 				                    @endif
 				                </div>
 				            </div>
-				            <div class="form-home form-group{{ $errors->has('userEmail') ? ' has-error' : '' }}">
+				            <div class="form-home form-group{{ $errors->has('receiptEmail') ? ' has-error' : '' }}">
 			                    <br><br>
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    	<label for="userEmail" class="col-md-4 control-label">E-MAIL</label>
-			                        <input id="userEmail" type="email" class="form-control" name="userEmail" value="{{ old('userEmail') }}" autofocus placeholder="E-mail do destinatário">
-			                        @if ($errors->has('userEmail'))
+			                    	<label for="receiptEmail" class="control-label form-home">E-MAIL</label>
+			                        <input id="receiptEmail" type="email" class="form-control" name="receiptEmail" value="{{ old('receiptEmail') }}" autofocus placeholder="E-mail do destinatário">
+			                        @if ($errors->has('receiptEmail'))
 			                            <span class="help-block">
-			                                <strong>{{ $errors->first('userEmail') }}</strong>
+			                                <strong>{{ $errors->first('receiptEmail') }}</strong>
 			                            </span>
 			                        @endif
 			                    </div>
 			                </div>
 			                <div class="form-home form-group{{ $errors->has('content') ? ' has-error' : '' }}">		                    
 			                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                    	<label for="content" class="col-md-4 col-lg-6 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="images/heart.png" alt="Coração" title="Coração" />
+			                    	<label for="content" class="control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
 			                        <textarea id="content" name="content" class="form-control" placeholder="Seu agradecimento aqui :)">{{ old('content') }}</textarea>
 			                        @if ($errors->has('content'))
 			                            <span class="help-block">

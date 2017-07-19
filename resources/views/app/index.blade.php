@@ -31,7 +31,7 @@
 	                <div id="enterpriseThanks">		                
 			            <div class="form-home form-group">
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-			                	<label for="enterprise_id" class="col-md-8 col-lg-8 control-label">EMPRESA</label>			                    
+			                	<label for="enterprise_id" class="control-label form-home">EMPRESA</label>
 			                    <select id="enterprise_id" name="enterprise_id" data-placeholder="Selecione a empresa" class="selectpicker form-control chosen-select" v-model="newEnterpriseThanks.enterprise_id">
                                     <option value="0">Selecione a empresa</option>
                                     @foreach ($data['enterprises'] as $enterprise)
@@ -49,7 +49,7 @@
 			            </div>
 			            <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-		                    	<label for="content" class="col-md-8 col-lg-8 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" />
+		                    	<label for="content" class="control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
 		                        <textarea id="content-enterprise" name="content-enterprise" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        <div id="content-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo agradecimento é obrigatório!</span>
@@ -68,7 +68,7 @@
 					<div id="userThanks">
 		                <div class="form-home form-group">
 			                <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-			                	<label for="receiptName" class="col-md-4 control-label form-home">PARA</label>
+			                	<label for="receiptName" class="control-label form-home">PARA</label>
 			                    <input id="receiptName" type="text" class="form-control" name="receiptName" @if(Session::has('receiptName')) value="{{ Session::get('receiptName') }}" @else value="{{ old('receiptName') }}" @endif placeholder="Nome">
 			                    <div id="receiptName-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo nome é obrigatório!</span>
@@ -77,7 +77,7 @@
 			            </div>
 			            <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-		                    	<label for="receiptEmail" class="col-md-4 control-label form-home">E-MAIL</label>
+		                    	<label for="receiptEmail" class="control-label form-home">E-MAIL</label>
 		                        <input id="receiptEmail" type="text" class="form-control" name="receiptEmail" @if(Session::has('receiptEmail')) value="{{ Session::get('receiptEmail') }}" @else value="{{ old('receiptEmail') }}" @endif placeholder="E-mail do destinatário">
 		                        <div id="receiptEmail-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo e-mail é obrigatório!</span>
@@ -86,7 +86,7 @@
 		                </div>
 		                <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
-		                    	<label for="content" class="col-md-4 control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" />
+		                    	<label for="content" class="control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
 		                        <textarea id="contentUser" name="contentUser" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        <div id="userContent-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo agradecimento é obrigatório!</span>
