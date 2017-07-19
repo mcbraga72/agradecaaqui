@@ -117,7 +117,7 @@ Route::group(['middleware' => 'auth:enterprises'], function () {
 	Route::post('/empresa/perfil/atualizar', 'EnterpriseAreaController@updateProfile');
 	Route::post('/empresa/perfil/alterar-senha/{id}', 'EnterpriseAreaController@changePassword');
 	Route::post('/empresa/alterar-logo', 'EnterpriseAreaController@updateLogo');
-	Route::get('/empresa/agradecimentos/listar', 'EnterpriseAreaController@list');
+	Route::get('/empresa/agradecimentos/listar', 'EnterpriseAreaController@listAll');
 	Route::get('/empresas/agradecimentos', ['as' => 'agradecimentos.index', 'uses' => 'EnterpriseAreaController@index']);
 	Route::post('/empresa/agradecimento', 'EnterpriseAreaController@storeReplica');
 	Route::get('/empresa/premium', 'EnterpriseAreaController@premium');
@@ -150,22 +150,22 @@ Route::group(['middleware' => 'auth:admins'], function () {
 
 	Route::get('/admin/painel', 'AdminController@dashboard');
 
-	Route::get('/admin/administradores/listar', 'AdminController@list');
+	Route::get('/admin/administradores/listar', 'AdminController@listAll');
 	Route::resource('/admin/administradores','AdminController');
 
-	Route::get('/admin/categorias/listar', 'CategoryAdminController@list');
+	Route::get('/admin/categorias/listar', 'CategoryAdminController@listAll');
 	Route::resource('/admin/categorias','CategoryAdminController');
 
-	Route::get('/admin/empresas/listar', 'EnterpriseAdminController@list');
+	Route::get('/admin/empresas/listar', 'EnterpriseAdminController@listAll');
 	Route::resource('/admin/empresas','EnterpriseAdminController');
 	
-	Route::get('/admin/agradecimentos-empresas/listar', 'EnterpriseThanksAdminController@list');
+	Route::get('/admin/agradecimentos-empresas/listar', 'EnterpriseThanksAdminController@listAll');
 	Route::resource('/admin/agradecimentos-empresas','EnterpriseThanksAdminController');
 	
-	Route::get('/admin/usuarios/listar', 'UserAdminController@list');
+	Route::get('/admin/usuarios/listar', 'UserAdminController@listAll');
 	Route::resource('/admin/usuarios','UserAdminController');
 	
-	Route::get('/admin/agradecimentos-usuarios/listar', 'UserThanksAdminController@list');
+	Route::get('/admin/agradecimentos-usuarios/listar', 'UserThanksAdminController@listAll');
 	Route::resource('/admin/agradecimentos-usuarios','UserThanksAdminController');
 	
 	Route::put('/admin/empresa/aprovar/{id}', 'EnterpriseAdminController@approveRegister');

@@ -15,7 +15,7 @@ class UserAdminController extends Controller
      *
      * @return Response
      */
-    public function list()
+    public function listAll()
     {
         $countriesList = new \SplFileObject(URL::to('/') . '/paises.json');
 

@@ -45,7 +45,7 @@ class AdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function list()
+	public function listAll()
 	{
 		return view('admin.admin.list');
 	}

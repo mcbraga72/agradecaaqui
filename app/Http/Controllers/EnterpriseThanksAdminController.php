@@ -18,7 +18,7 @@ class EnterpriseThanksAdminController extends Controller
      *
      * @return Response
      */
-    public function list()
+    public function listAll()
     {
         return view('admin.enterprise-thanks.list');
     }

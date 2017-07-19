@@ -15,7 +15,7 @@ class UserThanksAdminController extends Controller
      *
      * @return Response
      */
-    public function list()
+    public function listAll()
     {
         return view('admin.user-thanks.list');
     }

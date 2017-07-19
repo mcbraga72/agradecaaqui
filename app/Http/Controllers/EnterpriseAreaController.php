@@ -33,7 +33,7 @@ class EnterpriseAreaController extends Controller
      *
      * @return Response
      */
-    public function list()
+    public function listAll()
     {
         return view('enterprise.thanks.list');
     }
