@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SiteEnterpriseRegisterRequest;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\CompleteUserRegisterRequest;
+use App\Mail\AdminApproveEnterpriseRegisterMail;
 use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
