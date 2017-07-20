@@ -80,7 +80,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('telephone') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="telephone" class="col-md-6 control-label label-register">Celular</label>
-                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ $enterprise->telephone }}" required autofocus maxlength="15" onkeypress="formatTelephone(this)">
+                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ $enterprise->telephone }}" required maxlength="15" onkeypress="formatTelephone(this)">
                         @if ($errors->has('telephone'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('telephone') }}</strong>
@@ -90,7 +90,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="email" class="col-md-6 control-label label-register">E-mail</label>
-                        <input id="email" type="email" class="form-control label-register" name="email" value="{{ $enterprise->email }}" required autofocus>
+                        <input id="email" type="email" class="form-control label-register" name="email" value="{{ $enterprise->email }}" required>
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -100,7 +100,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('site') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="site" class="col-md-6 control-label label-register">Site</label>
-                        <input id="site" type="text" class="form-control label-register" name="site" value="{{ $enterprise->site }}" required autofocus>
+                        <input id="site" type="text" class="form-control label-register" name="site" value="{{ $enterprise->site }}" required>
                         @if ($errors->has('site'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('site') }}</strong>
@@ -163,7 +163,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('neighborhood') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="neighborhood" class="col-md-6 control-label label-register">Bairro</label>
-                        <input type="text" name="neighborhood" class="form-control label-register" value="{{ $enterprise->neighborhood }}" required autofocus />
+                        <input type="text" name="neighborhood" class="form-control label-register" value="{{ $enterprise->neighborhood }}" />
                         @if ($errors->has('neighborhood'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('neighborhood') }}</strong>

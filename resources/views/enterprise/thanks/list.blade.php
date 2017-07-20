@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="content" class="control-label">Agradecimento</label>                        
-                                    <textarea readonly id="content" name="content" class="form-control" required v-model="fillEnterpriseThanks.content" ></textarea>
+                                    <textarea readonly id="content" name="content" class="form-control" v-model="fillEnterpriseThanks.content" ></textarea>
                                     <span v-if="formErrorsThanks['content']" class="error text-danger">@{{ formErrorsThanks['content'] }}</span>
                                 </div>
                                 <div class="form-group">
@@ -78,7 +78,7 @@
                                 </div>                    
                                 <div class="form-group" v-if="fillEnterpriseThanks.rejoinder != null">
                                     <label for="rejoinder" class="control-label">Réplica do cliente</label>
-                                    <textarea readonly id="rejoinder" name="rejoinder" class="form-control" required v-model="fillEnterpriseThanks.rejoinder" ></textarea>
+                                    <textarea readonly id="rejoinder" name="rejoinder" class="form-control" v-model="fillEnterpriseThanks.rejoinder" ></textarea>
                                     <span v-if="formErrorsThanks['rejoinder']" class="error text-danger">@{{ formErrorsThanks['rejoinder'] }}</span>
                                 </div>                    
                                 <div class="form-group">                        
