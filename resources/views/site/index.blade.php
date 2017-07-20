@@ -282,7 +282,7 @@
 	                    </div>
 	                    <div class="form-group">
                             <label for="state">Estado:</label>
-                            <select name="state" id="state" class="form-control" v-model="newEnterprise.state" v-on:change="onChange" required autofocus>
+                            <select name="state" id="state" class="form-control" v-model="newEnterprise.state" v-on:change="onChange">
                                 <option value="">Selecione o estado</option>
                                 <option value="Acre">Acre</option>
                                 <option value="Alagoas">Alagoas</option>
@@ -316,7 +316,7 @@
                         </div>
                         <div class="form-group">
                             <label for="city">Cidade:</label>
-                            <select name="city" id="city" class="form-control" v-model="newEnterprise.city" required autofocus>
+                            <select name="city" id="city" class="form-control" v-model="newEnterprise.city">
                                 <option v-for="option in options" v-bind:value="option">@{{ option }}</option>
                             </select>
                             <span v-if="formErrors['city']" class="error text-danger">@{{ formErrors['city'] }}</span>

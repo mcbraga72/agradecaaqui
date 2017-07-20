@@ -58,7 +58,7 @@
                     <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label for="category_id">Categoria:</label>
-                        <select name="category_id" class="form-control" v-model="newEnterprise.category_id" />
+                        <select name="category_id" class="form-control" v-model="newEnterprise.category_id" required />
                             <option value="">Selecione a categoria</option>
                             <option value="@{{ category.id }}" v-for="category in categories.data">@{{ category.name }}</option>
                         </select>
@@ -66,32 +66,32 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Nome:</label>
-                        <input type="text" name="name" class="form-control" v-model="newEnterprise.name" />
+                        <input type="text" name="name" class="form-control" v-model="newEnterprise.name" required />
                         <span v-if="formErrors['name']" class="error text-danger">@{{ formErrors['name'] }}</span>
                     </div>
                     <div class="form-group">
                         <label for="contact">Contato:</label>
-                        <input type="text" name="contact" class="form-control" v-model="newEnterprise.contact" />
+                        <input type="text" name="contact" class="form-control" v-model="newEnterprise.contact" required />
                         <span v-if="formErrors['contact']" class="error text-danger">@{{ formErrors['contact'] }}</span>
                     </div>
                     <div class="form-group">
                         <label for="name">E-mail:</label>
-                        <input type="email" name="email" class="form-control" v-model="newEnterprise.email" />
+                        <input type="email" name="email" class="form-control" v-model="newEnterprise.email" required />
                         <span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
                     </div>
                     <div class="form-group">
                         <label for="site">Site:</label>
-                        <input type="text" name="site" class="form-control" v-model="newEnterprise.site" />
+                        <input type="text" name="site" class="form-control" v-model="newEnterprise.site" required />
                         <span v-if="formErrors['site']" class="error text-danger">@{{ formErrors['site'] }}</span>
                     </div>
                     <div class="form-group">
                         <label for="telephone">Celular:</label>
-                        <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" maxlength="15" onkeypress="formatTelephone(this)" />
+                        <input type="text" name="telephone" class="form-control" v-model="newEnterprise.telephone" required maxlength="15" onkeypress="formatTelephone(this)" />
                         <span v-if="formErrors['telephone']" class="error text-danger">@{{ formErrors['telephone'] }}</span>
                     </div>
                     <div class="form-group">
                         <label for="state">Estado:</label>
-                        <select name="state" id="state" class="form-control" v-model="newEnterprise.state" v-on:change="onChange" required autofocus>
+                        <select name="state" id="state" class="form-control" v-model="newEnterprise.state" v-on:change="onChange" required>
                             <option value="">Selecione o estado</option>
                             <option value="Acre">Acre</option>
                             <option value="Alagoas">Alagoas</option>
@@ -125,19 +125,19 @@
                     </div>
                     <div class="form-group">
                         <label for="city">Cidade:</label>
-                        <select name="city" id="city" class="form-control" v-model="newEnterprise.city" required autofocus>
+                        <select name="city" id="city" class="form-control" v-model="newEnterprise.city" required>
                             <option v-for="option in options" v-bind:value="option">@{{ option }}</option>
                         </select>
                         <span v-if="formErrors['city']" class="error text-danger">@{{ formErrors['city'] }}</span>
                     </div>
                     <div class="form-group">
                         <label for="neighborhood">Bairro:</label>
-                        <input type="text" name="neighborhood" class="form-control" v-model="newEnterprise.neighborhood" />
+                        <input type="text" name="neighborhood" class="form-control" v-model="newEnterprise.neighborhood" required />
                         <span v-if="formErrors['neighborhood']" class="error text-danger">@{{ formErrors['neighborhood'] }}</span>
                     </div>
                     <div class="form-group">
                         <label for="address">Endereço:</label>
-                        <input type="text" name="address" class="form-control" v-model="newEnterprise.address" />
+                        <input type="text" name="address" class="form-control" v-model="newEnterprise.address" required />
                         <span v-if="formErrors['address']" class="error text-danger">@{{ formErrors['address'] }}</span>
                     </div>
                     <div class="form-group">
