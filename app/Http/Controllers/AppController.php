@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Session;
 use Image;
+use Mail;
 use Redirect;
 
 class AppController extends Controller
