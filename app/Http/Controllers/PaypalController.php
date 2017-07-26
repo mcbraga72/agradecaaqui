@@ -162,6 +162,17 @@ class PaypalController extends Controller
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
             \Session::put('success','Payment success');
+
+            // Store payment data in database
+            $config = [
+                'enterprise_id' => Auth::guard('enterprises')->user()->id,
+                'paypal_id' => $result->getId(),
+                'date' => $result->getTransactions()->amount()->total,
+                'value' => $result->getCreateTime(),
+            ];
+
+            PaymentController::store($config);
+            
             return Redirect::route('paywithpaypal');
         }
         

@@ -18,14 +18,18 @@
                 </div>
                 <?php Session::forget('error');?>
                 @endif
-                <div class="panel-heading">Pagamento com Paypal</div>
+                <div class="panel-heading">Assinatura Premium</div>
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{!! url('/empresa/paypal') !!}" >
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
                             <label for="amount" class="col-md-4 control-label">Valor</label>
                             <div class="col-md-6">
-                                <input id="amount" type="text" class="form-control" name="amount" value="49.90" autofocus>
+                                {{--<input id="amount" type="text" class="form-control" name="amount" value="49.90" autofocus>--}}
+                                <select id="amount" class="form-control" name="amount" autofocus>
+                                    <option value="49.90">Assinatura mensal - R$ 49,90</option>
+                                    <option value="499.00">Assinatura anual - R$ 499,00</option>
+                                </select>
                                 @if ($errors->has('amount'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('amount') }}</strong>
@@ -37,7 +41,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Pagamento com Paypal
+                                    Assinar
                                 </button>
                             </div>
                         </div>
