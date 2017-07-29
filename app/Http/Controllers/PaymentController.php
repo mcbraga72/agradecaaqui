@@ -16,8 +16,12 @@ class PaymentController extends Controller
     	$payment = new Payment();
     	$payment->enterprise_id = $config['enterprise_id'];
     	$payment->paypal_id = $config['paypal_id'];
-    	$payment->date = $config['date'];
-    	$payment->value = $config['value'];
-    	$payment->save();    	
+    	$payment->payment_date = $config['payment_date'];
+        $payment->value = $config['value'];
+    	$payment->save();
+
+        $enterprise = Enterprise::findOrFail(Auth::guard('enterprises')->user()->id);
+        $enterprise->renewal_date = $config['renewal_date'];
+        $enterprise->save();
     }
 }

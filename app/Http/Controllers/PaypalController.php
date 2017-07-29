@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Enterprise;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
@@ -164,11 +166,37 @@ class PaypalController extends Controller
             \Session::put('success','Payment success');
 
             // Store payment data in database
+            
+            $date = new \DateTime();
+            $paymentDate = $date->format('Y-m-d');
+
+            $currentRenewalDate = Auth::guard('enterprises')->user()->renewal_date;
+            
+            // Check if it's monthly plan or anual plan
+            if($result->transactions[0]->amount->total > 200) {
+                $interval = new \DateInterval('P1Y');
+
+                if(PaypalController::checlIfRenewalDateNeedsToBeChanged) {
+                    $renewalDate = $date->add($interval)->format('Y-m-d'); //data atual + 1 ano
+                } else {
+                    $renewalDate = $currentRenewalDate->add($interval)->format('Y-m-d'); // data de renovação + 1 ano
+                }
+            } else {
+                $interval = new \DateInterval('P1M');
+
+                if(PaypalController::checlIfRenewalDateNeedsToBeChanged) {
+                    $renewalDate = $date->add($interval)->format('Y-m-d'); //data atual + 1 mês
+                } else {
+                    $renewalDate = $currentRenewalDate->add($interval)->format('Y-m-d'); // data de renovação + 1 mês
+                }
+            }
+            
             $config = [
                 'enterprise_id' => Auth::guard('enterprises')->user()->id,
                 'paypal_id' => $result->getId(),
-                'date' => $result->getTransactions()->amount()->total,
-                'value' => $result->getCreateTime(),
+                'value' => $result->transactions[0]->amount->total,
+                'payment_date' => $paymentDate,
+                'renewal_date' => $renewalDate,
             ];
 
             PaymentController::store($config);
@@ -179,5 +207,24 @@ class PaypalController extends Controller
         \Session::put('error','Payment failed');
         
         return Redirect::route('paywithpaypal');
+    }
+
+    /**
+     * Check if the renewal_date's day needs to be changed.
+     *
+     * @return boolean
+     */
+    private static function checlIfRenewalDateNeedsToBeChanged()
+    {
+        $date = new \DateTime();
+        $paymentDate = $date->format('Y-m-d');
+
+        $currentRenewalDate = Auth::guard('enterprises')->user()->renewal_date;
+
+        if($currentRenewalDate < $paymentDate) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
