@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('enterprise_id')->unsigned();
             $table->foreign('enterprise_id')->references('id')->on('enterprises');
             $table->string('paypal_id');
-            $table->date('date');
+            $table->date('payment_date');
             $table->decimal('value', 8, 2);
             $table->timestamps();
             $table->softDeletes();

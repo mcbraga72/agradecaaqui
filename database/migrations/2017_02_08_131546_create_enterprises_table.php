@@ -35,6 +35,7 @@ class CreateEnterprisesTable extends Migration
             $table->string('password')->nullable();
             $table->boolean('confirmed')->default(0);
             $table->string('confirmation_code')->nullable();
+            $table->date('renewal_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
