@@ -30,6 +30,34 @@
 	background-color: #333;
 }
 
+.complete-register {
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 700 !important;
+    line-height: 1.5em;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    color: #3C8DBC !important;
+    text-align: center;
+}
+
+.about {
+    margin-top: 1%;
+    margin-bottom: 2%;
+    font-family: Lato, Arial, Tahoma, sans-serif;
+    font-weight: 900;
+    line-height: 1.2em;
+    font-size: 30px;
+    letter-spacing: -1px;
+    text-align:center;
+    color: #3C8DBC !important;
+}
+
+.logo-modal {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .btn-add {
 	margin-top: 2%;	
 }

@@ -71,10 +71,26 @@ class EnterpriseAreaController extends Controller
 	 */
     public function dashboard()
     {
+        $renewalDateDB = DB::table('enterprises')->where('id', '=', Auth::guard('enterprises')->user()->id)->value('renewal_date');
+        $initialRenewalDate = new \DateTime($renewalDateDB);
+        $finalRenewalDate = new \DateTime($renewalDateDB);
+        $today = new \DateTime();
+                
+        $initialAlertDay = $initialRenewalDate->sub(new \DateInterval('P7D'));
+        $finalAlertDay = $finalRenewalDate->add(new \DateInterval('P7D'));
+        
+        if($today >= $initialAlertDay && $today <= $finalAlertDay) {
+            $isRenewalPeriod = true;        
+        } else {
+            $isRenewalPeriod = false;            
+        }
+
         $data = array(
             'numberOfIndividualUsersThanking' => EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->distinct()->count('user_id'),
             'enterpriseThanksReceived' => EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->count(),
-            'rankingPosition' => DB::table('enterprise_thanks')->select(DB::raw('count(*) as enterpriseThanksCount, enterprise_id'))->groupBy('enterprise_id')->orderBy('enterpriseThanksCount', 'desc')->get()
+            'rankingPosition' => DB::table('enterprise_thanks')->select(DB::raw('count(*) as enterpriseThanksCount, enterprise_id'))->groupBy('enterprise_id')->orderBy('enterpriseThanksCount', 'desc')->get(),
+            'isRenewalPeriod' => $isRenewalPeriod,
+            'lastRenewalDay' => $finalAlertDay->format('d/m/Y')
         );
 
         /*$position = 1;
