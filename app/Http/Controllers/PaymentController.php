@@ -22,6 +22,7 @@ class PaymentController extends Controller
 
         $enterprise = Enterprise::findOrFail(Auth::guard('enterprises')->user()->id);
         $enterprise->renewal_date = $config['renewal_date'];
+        $enterprise->profile = 'Premium';
         $enterprise->save();
     }
 }

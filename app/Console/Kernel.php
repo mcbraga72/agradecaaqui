@@ -2,8 +2,11 @@
 
 namespace App\Console;
 
+use App\Models\Enterprise;
+use DB;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +27,21 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+            $renewalDatesDB = DB::table('enterprises')->where('profile', '=', 'Premium')->get();
+            $today = new \DateTime();
+            foreach ($renewalDatesDB as $renewalDateDB) {
+                $renewalDate = new \DateTime($renewalDateDB->renewal_date);
+                $dayToChangeEnterpriseProfile = $renewalDate->add(new \DateInterval('P7D'));
+                if($today > $dayToChangeEnterpriseProfile) {
+                    $enterprise = Enterprise::findOrFail($renewalDateDB->id);
+                    $enterprise->profile = 'Padrão';
+                    $enterprise->save();
+
+                    Mail::to('agradecaaquicontato@gmail.com')->send(new DisablePremiumAccessMail($enterprise->name));
+                }
+            }
+        })->daily();        
     }
 
     /**
