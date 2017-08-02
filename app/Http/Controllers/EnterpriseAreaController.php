@@ -71,18 +71,27 @@ class EnterpriseAreaController extends Controller
 	 */
     public function dashboard()
     {
+        $profile = DB::table('enterprises')->where('id', '=', Auth::guard('enterprises')->user()->id)->value('profile');
         $renewalDateDB = DB::table('enterprises')->where('id', '=', Auth::guard('enterprises')->user()->id)->value('renewal_date');
-        $initialRenewalDate = new \DateTime($renewalDateDB);
-        $finalRenewalDate = new \DateTime($renewalDateDB);
-        $today = new \DateTime();
-                
-        $initialAlertDay = $initialRenewalDate->sub(new \DateInterval('P7D'));
-        $finalAlertDay = $finalRenewalDate->add(new \DateInterval('P7D'));
-        
-        if($today >= $initialAlertDay && $today <= $finalAlertDay) {
-            $isRenewalPeriod = true;        
+
+        if($profile == 'Premium') {
+            $initialRenewalDate = new \DateTime($renewalDateDB);
+            $finalRenewalDate = new \DateTime($renewalDateDB);
+            $today = new \DateTime();
+                    
+            $initialAlertDay = $initialRenewalDate->sub(new \DateInterval('P7D'));
+            $finalAlertDay = $finalRenewalDate->add(new \DateInterval('P7D'));
+
+            $lastRenewalDay = $finalAlertDay->format('d/m/Y');
+            
+            if($today >= $initialAlertDay && $today <= $finalAlertDay) {
+                $isRenewalPeriod = true;        
+            } else {
+                $isRenewalPeriod = false;
+            }
         } else {
-            $isRenewalPeriod = false;            
+            $isRenewalPeriod = false;
+            $lastRenewalDay = '';
         }
 
         $data = array(
@@ -90,7 +99,7 @@ class EnterpriseAreaController extends Controller
             'enterpriseThanksReceived' => EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->count(),
             'rankingPosition' => DB::table('enterprise_thanks')->select(DB::raw('count(*) as enterpriseThanksCount, enterprise_id'))->groupBy('enterprise_id')->orderBy('enterpriseThanksCount', 'desc')->get(),
             'isRenewalPeriod' => $isRenewalPeriod,
-            'lastRenewalDay' => $finalAlertDay->format('d/m/Y')
+            'lastRenewalDay' => $lastRenewalDay
         );
 
         /*$position = 1;
