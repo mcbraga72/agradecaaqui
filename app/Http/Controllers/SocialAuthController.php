@@ -36,9 +36,16 @@ class SocialAuthController extends Controller
 
         $user = $service->getUser($providerUser, 'facebook');
         
-        if (!is_null($user)) {
-            auth()->login($user);
-            return redirect()->to('/app');
+        if (!is_null($user)) { 
+            if($user->deleted_at == null) {
+                auth()->login($user);
+                return redirect()->to('/app'); 
+            } else {
+                $user->deleted_at = null;
+                $user->save();
+                auth()->login($user);
+                return redirect()->to('/app');
+            }
         } else {            
             $account = new SocialAccount([
                 'provider_user_id' => $providerUser->getId(),
