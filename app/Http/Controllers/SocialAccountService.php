@@ -12,7 +12,7 @@ class SocialAccountService
 {
     public function getUser(ProviderUser $providerUser, $provider)
     {
-        $user = User::whereEmail($providerUser->getEmail())->first();
+        $user = User::whereEmail($providerUser->getEmail())->withTrashed()->first();
         
         if ($user) {            
             $account = SocialAccount::whereProvider($provider)
