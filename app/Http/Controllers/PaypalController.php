@@ -97,13 +97,13 @@ class PaypalController extends Controller
             $payment->create($this->_api_context);
         } catch (\PayPal\Exception\PPConnectionException $ex) {
             if (\Config::get('app.debug')) {
-                \Session::put('error','Connection timeout');
+                \Session::put('error','Falha de comunicação com o servidor da Paypal.');
                 return Redirect::route('paywithpaypal');
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                 /** $err_data = json_decode($ex->getData(), true); **/
                 /** exit; **/
             } else {
-                \Session::put('error','Some error occur, sorry for inconvenient');
+                \Session::put('error','Erro desconhecido. Por favor entre em contato com o administrador do sistema.');
                 return Redirect::route('paywithpaypal');
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
@@ -124,7 +124,7 @@ class PaypalController extends Controller
             return Redirect::away($redirect_url);
         }
         
-        \Session::put('error','Unknown error occurred');
+        \Session::put('error','Erro desconhecido. Por favor entre em contato com o administrador do sistema.');
         
         return Redirect::route('paywithpaypal');
     }
@@ -143,7 +143,7 @@ class PaypalController extends Controller
         Session::forget('paypal_payment_id');
         
         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
-            \Session::put('error','Payment failed');
+            \Session::put('error','Falha ao efetuar o pagamento. Por favor tente fazer o pagamento novamente.');
             return Redirect::route('paywithpaypal');
         }
         
@@ -163,7 +163,7 @@ class PaypalController extends Controller
         if ($result->getState() == 'approved') { 
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
-            \Session::put('success','Payment success');
+            \Session::put('success','Pagamento realizado com successo!');
 
             // Store payment data in database
             
@@ -204,7 +204,7 @@ class PaypalController extends Controller
             return Redirect::route('paywithpaypal');
         }
         
-        \Session::put('error','Payment failed');
+        \Session::put('error','Falha ao efetuar o pagamento. Por favor tente fazer o pagamento novamente.');
         
         return Redirect::route('paywithpaypal');
     }
