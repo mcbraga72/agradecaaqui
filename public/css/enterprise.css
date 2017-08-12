@@ -130,16 +130,22 @@ li.dropdown {
 	font-weight: 600;
 }
 
+.premium-title {
+	margin-top: 2%;
+	margin-left: 2%;
+}
+
 .premium-access {
 	font-family: Lato, Arial, Tahoma, sans-serif;
     font-weight: 600 !important;
     line-height: 1.2em;
-    font-size: 35px;
+    font-size: 30px;
     background-color: #3C8DBC !important;
 	color: #FFF !important;
 	text-align: center;
 	height: 80px !important;	
 	text-transform: uppercase;
+	padding-top: 1.5%;
 }
 
 .button-premium {
@@ -223,5 +229,241 @@ h1.price-free {
     font-size: 22px;
     color: #3C8DBC !important;
 	text-align: center;	
-	margin-top: 195%;	
+	margin-top: 125%;	
+}
+
+
+@media (max-width: 575px) {
+	.info-box-text {
+		font-size: 10px;
+	}
+
+	.premium-access {
+	    font-size: 16px;
+	    padding-top: 5%;
+	}
+
+	h1.plan-name {
+	    font-size: 25px;
+	}
+
+	h1.features {
+		font-size: 15px;
+    }
+
+    h1.price {
+	    font-size: 21px;
+	}
+
+	h2.price {
+	    font-size: 15px;
+	}
+
+	h1.price-free {
+	    font-size: 21px;
+	    margin-top: 85%;
+	}
+
+	.button-premium {
+		margin-left: 12%;
+	}
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+	.info-box-text {
+		font-size: 10px;
+	}
+
+	.premium-access {
+	    font-size: 16px;
+	    padding-top: 5%;
+	}
+
+	h1.plan-name {
+	    font-size: 22px;
+	}
+
+	h1.features {
+		font-size: 15px;
+    }
+
+    h1.price {
+	    font-size: 21px;
+	}
+
+	h2.price {
+	    font-size: 15px;
+	}
+
+	h1.price-free {
+	    font-size: 21px;
+	    margin-top: 65%;
+	}
+
+	.button-premium {
+		margin-left: 28%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 879px) {
+	.info-box-text {
+		font-size: 10px;
+	}
+
+	.premium-access {
+	    font-size: 15px;
+	    padding-top: 5%;
+	}
+
+	h1.plan-name {
+	    font-size: 21px;
+	}
+
+	h1.features {
+		font-size: 13px;
+    }
+
+    h1.price {
+	    font-size: 18px;
+	}
+
+	h2.price {
+	    font-size: 12px;
+	}
+
+	h1.price-free {
+	    font-size: 18px;
+	    margin-top: 95%;
+	}
+
+	.button-premium {
+		margin-left: 25%;
+	}
+}
+
+@media (min-width: 880px) and (max-width: 1079px) {
+	.info-box-text {
+		font-size: 13px;
+	}
+
+	.premium-access {
+	    font-size: 18px;
+	    padding-top: 3.5%;
+	}
+
+	h1.plan-name {
+	    font-size: 21px;
+	}
+
+	h1.features {
+		font-size: 13px;
+    }
+
+    h1.price {
+	    font-size: 19px;
+	}
+
+	h2.price {
+	    font-size: 12px;
+	}
+
+	h1.price-free {
+	    font-size: 19px;
+	    margin-top: 95%;
+	}
+
+	.plan-data-box {
+		height: 800px;
+	}
+
+	.button-premium {
+		margin-left: 32%;
+	}
+}
+
+@media (min-width: 1080px) and (max-width: 1279px) {
+	.premium-access {
+	    font-size: 23px;
+	    padding-top: 2.5%;
+	}
+
+	h1.plan-name {
+	    font-size: 21px;
+	}
+
+	h1.features {
+		font-size: 13px;
+    }
+
+    h1.price {
+	    font-size: 21px;
+	}
+
+	h2.price {
+	    font-size: 13px;
+	}
+
+	h1.price-free {
+	    font-size: 21px;
+	    margin-top: 195%;
+	}
+
+	.button-premium {
+		margin-left: 38%;
+	}
+}
+
+@media (min-width: 1280px) and (max-width: 1449px) {
+	.premium-access {
+	    font-size: 25px;
+	    padding-top: 2%;
+	}
+
+	h1.plan-name {
+	    font-size: 22px;
+	}
+
+	h1.features {
+		font-size: 14px;
+    }
+
+    h1.price {
+	    font-size: 21px;
+	}
+
+	h2.price {
+	    font-size: 13px;
+	}
+
+	h1.price-free {
+	    font-size: 21px;
+	    margin-top: 195%;
+	}
+}
+
+@media (min-width: 1450px) and (max-width: 1649px) {
+	.premium-access {
+	    font-size: 26px;
+	}
+
+	h1.plan-name {
+	    font-size: 23px;
+	}
+
+	h1.features {
+		font-size: 15px;
+    }
+
+    h1.price {
+	    font-size: 22px;
+	}
+
+	h2.price {
+	    font-size: 14px;
+	}
+
+	h1.price-free {
+	    font-size: 22px;
+	    margin-top: 165%;
+	}
 }

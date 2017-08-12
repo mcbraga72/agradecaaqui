@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="row" style="margin-left: 1%;">
-	  <h4 style="margin-top: 2%;">Acesso Premium</h4>
-	  <div class="col-md-11">
+	  <h4 class="premium-title">Acesso Premium</h4>
+	  <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
 		    <div class="panel panel-default">
 	    	    <div class="panel-heading premium-access">Veja as vantagens que o acesso premium oferece</div>
             <div class="panel-body reports-fields">
-                <div class="col-md-2 col-md-offset-3 plan-data-box">
+                <div class="col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-1 col-lg-3 col-lg-offset-2 plan-data-box">
                     <div class="col-md-12 plan-data-box-header">
                         <h1 class="plan-name">Basic</h1>
                     </div>
@@ -21,7 +21,7 @@
                         <h1 class="price-free">GRÁTIS</h1>
                     </div>
                 </div>
-                <div class="col-md-2 col-md-offset-2 plan-data-box">
+                <div class="col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-2 plan-data-box">
                     <div class="col-md-12 plan-data-box-header">
                         <h1 class="plan-name">Premium</h1>
                     </div>
