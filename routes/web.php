@@ -169,6 +169,7 @@ Route::group(['middleware' => 'auth:admins'], function () {
 	Route::resource('/admin/agradecimentos-usuarios','UserThanksAdminController');
 	
 	Route::put('/admin/empresa/aprovar/{id}', 'EnterpriseAdminController@approveRegister');
+	Route::put('/admin/empresa/alterar-perfil/{id}', 'EnterpriseAdminController@changeProfileType');
 
 	Route::get('/admin/relatorios', 'ReportAdminController@index');
 	Route::get('/admin/api/relatorios/cidade/{start}/{end}', 'ReportAdminController@generateCityReport');

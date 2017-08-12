@@ -175,4 +175,28 @@ class EnterpriseAdminController extends Controller
 
         return response()->json($enterprise);
     }
+
+    /**
+     *
+     * Change enterprise's profile.
+     * 
+     * @param int $id
+     *
+     * @return Response
+     * 
+     */
+    public function changeProfileType($id)
+    {
+        $enterprise = Enterprise::findOrFail($id);
+        
+        if ($enterprise->profile == 'Padrão') {
+            $enterprise->profile = 'Premium';
+        } else {
+            $enterprise->profile = 'Padrão';
+        }
+
+        $enterprise->save();
+
+        return response()->json($enterprise);
+    }
 }

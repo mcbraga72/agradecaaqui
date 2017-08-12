@@ -6004,6 +6004,13 @@ new Vue({
             });
         },
 
+        changeEnterpriseProfile: function(enterprise){
+            this.$http.put('/admin/empresa/alterar-perfil/'+enterprise.id).then(function(response) {
+                this.changePage(this.pagination.current_page);
+                toastr.success('Perfil alterado com sucesso!', '', {timeOut: 5000});
+            });
+        },
+
         changePage: function (page) {
             this.pagination.current_page = page;
             this.getEnterprises(page);

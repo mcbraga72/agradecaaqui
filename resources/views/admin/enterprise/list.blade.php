@@ -29,7 +29,7 @@
                 <td>@{{ enterprise.name }}</td>
                 <td>@{{ enterprise.contact }}</td>
                 <td>@{{ enterprise.email }}</td>
-                <td>@{{ enterprise.profile }}</td>
+                <td>@{{ enterprise.profile }}&nbsp;&nbsp;<button class="btn btn-success" @click.prevent="changeEnterpriseProfile(enterprise)"><i class="fa fa-pencil-square-o fa-fw"></i>Alterar</button></td>
                 <td>    
                     <button class="btn btn-primary" @click.prevent="editEnterprise(enterprise)"><i class="fa fa-pencil-square-o fa-fw"></i>Editar</button>
                     <button class="btn btn-danger" @click.prevent="deleteEnterprise(enterprise)"><i class="fa fa-trash-o fa-fw"></i>Remover</button>
