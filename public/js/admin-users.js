@@ -5958,11 +5958,15 @@ new Vue({
             if (this.newUser.password == this.newUser.passwordConfirm) {
 		        var input = this.newUser;
 		        this.$http.post('/admin/usuarios',input).then(function(response) {
-		            this.changePage(this.pagination.current_page);
-			        this.newUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':''};
-			        $("#createUser").modal('hide');
-			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
-                    setTimeout(function(){window.location.href = '/admin/usuarios/listar'} , 3000);
+                    if(response.data.status == false) {
+                        toastr.error('Este e-mail já está cadastrado em nosso sistema! Por favor utilize outro endereço de e-mail.', '', {timeOut: 5000});
+                    } else {
+                        this.changePage(this.pagination.current_page);
+                        this.newUser = {'name':'','surName':'','gender':'','dateOfBirth':'','telephone':'','city':'','state':'','email':'','password':''};
+                        $("#createUser").modal('hide');
+                        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
+                        setTimeout(function(){window.location.href = '/admin/usuarios/listar'} , 3000);
+                    }		            
 		        }, function(response) {
 			        this.formErrors = response.data;
 	            });

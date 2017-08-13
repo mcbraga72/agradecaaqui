@@ -65,11 +65,15 @@ new Vue({
         createAdmin: function(){
 		        var input = this.newAdmin;
 		        this.$http.post('/admin/administradores',input).then(function(response) {
-		            this.changePage(this.pagination.current_page);
-			        this.newAdmin = {'name':'','email':'', 'password':'', 'passwordConfirm':''};
-			        $("#createAdmin").modal('hide');
-			        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
-                    setTimeout(function(){window.location.href = '/admin/administradores/listar'} , 3000);
+                    if(response.data.status == false) {
+                        toastr.error('Este e-mail já está cadastrado em nosso sistema! Por favor utilize outro endereço de e-mail.', '', {timeOut: 5000});
+                    } else {
+                        this.changePage(this.pagination.current_page);
+                        this.newAdmin = {'name':'','email':'', 'password':'', 'passwordConfirm':''};
+                        $("#createAdmin").modal('hide');
+                        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
+                        setTimeout(function(){window.location.href = '/admin/administradores/listar'} , 3000);
+                    }
 		        }, function(response) {
 			        this.formErrors = response.data;
 	        });
