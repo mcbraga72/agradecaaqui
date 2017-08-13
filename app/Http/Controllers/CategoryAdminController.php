@@ -53,11 +53,17 @@ class CategoryAdminController extends Controller
 	 */
     public function store(CategoryRequest $request)
     {
-    	$category = new Category();
-    	$category->name = $request->name;
-    	$category->save();
+    	$findCategory = Category::where('name', '=', $request->name)->first();
 
-    	return response()->json($category);
+    	if($findCategory == null) {
+    		$category = new Category();
+	    	$category->name = $request->name;
+    		$category->save();
+
+    		return response()->json($category);    		
+    	} else {
+    		return false;
+    	}
     }
 
     /**

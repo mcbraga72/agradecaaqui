@@ -85,15 +85,19 @@ class AdminController extends Controller
 	 */
     public function store(AdminRequest $request)
     {
-    	$admin = new Admin();
+    	$findAdmin = Admin::where('email', '=', $request->email)->first();
 
-    	$admin->name = $request->name;
-    	$admin->email = $request->email;
-    	$admin->password = bcrypt($request->password);
+    	if($findAdmin == null) {
+    		$admin = new Admin();
+    		$admin->name = $request->name;
+    		$admin->email = $request->email;
+    		$admin->password = bcrypt($request->password);
+	    	$admin->save();
 
-    	$admin->save();
-
-    	return response()->json($admin);
+	    	return response()->json($admin);
+	    } else 
+	    	return false;
+	    }    	
     }
 
     /**

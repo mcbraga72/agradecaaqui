@@ -65,11 +65,15 @@ new Vue({
         createCategory: function(){
 		        var input = this.newCategory;
 		        this.$http.post('/admin/categorias',input).then(function(response) {
-		            this.changePage(this.pagination.current_page);
-			          this.newCategory = {'name':''};
-			          $("#createCategory").modal('hide');
-			          toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
-                      setTimeout(function(){window.location.href = '/admin/categorias/listar'} , 3000);
+                    if(response.data.status == false) {
+                        toastr.error('Esta categoria já está cadastrada no sistema!', '', {timeOut: 5000});
+                    } else {
+                        this.changePage(this.pagination.current_page);
+                        this.newCategory = {'name':''};
+                        $("#createCategory").modal('hide');
+                        toastr.success('Cadastro realizado com sucesso!', '', {timeOut: 3000});
+                        setTimeout(function(){window.location.href = '/admin/categorias/listar'} , 3000);                        
+                    }		            
 		        }, function(response) {
 			          this.formErrors = response.data;
 	          });

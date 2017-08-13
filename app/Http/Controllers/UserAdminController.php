@@ -61,28 +61,34 @@ class UserAdminController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = new User();
+        $findUser = User::where('email', '=', $request->email)->first();
 
-        $user->name = $request->name;
-        $user->surName = $request->surName;
-        $user->gender = $request->gender;
-        $user->dateOfBirth = $request->dateOfBirth;
-        $user->telephone = $request->telephone;
-        $user->city = $request->city;
-        $user->state = $request->state;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->registerType = 'Padrão';
+        if($findUser == null) {
+            $user = new User();
 
-        if($request->gender == 'Masculino') {
-            $user->photo = '/images/male.png';
+            $user->name = $request->name;
+            $user->surName = $request->surName;
+            $user->gender = $request->gender;
+            $user->dateOfBirth = $request->dateOfBirth;
+            $user->telephone = $request->telephone;
+            $user->city = $request->city;
+            $user->state = $request->state;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->registerType = 'Padrão';
+
+            if($request->gender == 'Masculino') {
+                $user->photo = '/images/male.png';
+            } else {
+                $user->photo = '/images/female.png';
+            }
+
+            $user->save();
+            
+            return response()->json($user);
         } else {
-            $user->photo = '/images/female.png';
+            return false;
         }
-
-        $user->save();
-        
-        return response()->json($user);
     }
 
     /**
