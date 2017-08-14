@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
+        <title>Agradeça Aqui</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="keywords" content="agradeça aqui agradecimento pessoas empresas">
@@ -9,23 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <meta name="csrf-token" content="{{{ csrf_token() }}}">
         <meta name="google-site-verification" content="Gupk_NevOJ8K4Gf-_Ep5EKtOhk7NkL4mAnLXB_HftdA" />
-
-        <meta property="og:title" content="Agradeça Aqui" />
-        <meta property="og:site_name" content="Agradeça Aqui" />
-        <meta property="og:url" content="https://agradecaaqui.site" />
-        <meta property="og:image" content="https://agradecaaqui.site/images/banner.png" />
-        <meta property="og:description" content="Aqui no nosso site você pode agradecer pessoas e empresas sempre que tiver vontade." />
-        <meta property="fb:app_id" content="184558058632813" />
-        
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@agradecaaqui" />
-        <meta name="twitter:title" content="Agradeça Aqui" />
-        <meta name="twitter:description" content="Aqui no nosso site você pode agradecer pessoas e empresas sempre que tiver vontade." />
-        <meta name="twitter:image" content="https://agradecaaqui.site/images/banner.png" />
-
-        <title>Agradeça Aqui</title>
-        <link rel="shortcut icon" href="images/logo.png" />
-        
+        <link rel="shortcut icon" href="images/logo.png" />        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
@@ -33,11 +18,9 @@
         <link rel="stylesheet" href="{{ URL::to('/') }}/css/reset.css">
         <link rel="stylesheet" href="{{ URL::to('/') }}/css/bootstrap-social.css">
         <link rel="stylesheet" href="{{ URL::to('/') }}/css/vendor/bootstrap-chosen/bootstrap-chosen.css">
-
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="{{ URL::to('/') }}/js/site.js"></script>
-
     </head>
     <body id="createEnterprise" itemscope itemtype="https://schema.org/WebPage">
         <header class="main-header">
