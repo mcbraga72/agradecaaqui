@@ -108,6 +108,14 @@ ul.nav {
     display: none;
 }
 
+.password-reset {
+    padding-top: 7%;
+}
+
+.panel-heading {
+    color: #FFF !important;
+    background-color: #2579A9 !important;
+}
 
 
 
