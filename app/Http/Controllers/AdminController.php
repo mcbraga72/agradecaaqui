@@ -95,9 +95,9 @@ class AdminController extends Controller
 	    	$admin->save();
 
 	    	return response()->json($admin);
-	    } else 
+	    } else {
 	    	return false;
-	    }    	
+	    }
     }
 
     /**
