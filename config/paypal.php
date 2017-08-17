@@ -2,8 +2,8 @@
 
 return [
 	// Sandbox
-	'client_id' =>'AVc4QxpdLph6UjkfvL3q15jF1IBxQBd-ZlGAFbTwhw1NIvDuRYkRwgMw9UXpEQg7I0owNNZn6UEeycZP',
-	'secret' => 'EN7qf2mvI_f8isRvCuiYVVg8hRa5w1KXoDVPEXOYclWYZ0dwAtELdmRgs28sS_dFDpPPIjZg-lTH0AAD',
+	'client_id' =>'AcWlJha0KqALuglxX-tRvitbkC15BAxXbtV4yWVNyUdGVMHMACtlRzwdSWQX9a_aJIfaz-ou93kFt5ZG',
+	'secret' => 'EFdI0o9QK_bm1JKjgxwZMSVpThVWMiUmgY26CAoyIJpn4tORWAJafIgFriundCd3nXYsbbt2o933meDb',
 	// Production (Live)
 	//'client_id' =>'AQkysL0A7hcLpfsuLRmjn9ecaRVs4K-ZFWBjm9kZbzowjQ2twenTdrQYb_AbpDBHhrHwDypcoT9q5VnZ',
 	//'secret' => 'EFJoxsKnmN-knufnPWm6eC-S-WAAqFyRnml3LkKtgvMZQ00VzRFYAHZjhFGNzdytteY7xudzw-OsNkE4',
