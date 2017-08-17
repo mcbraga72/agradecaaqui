@@ -176,7 +176,7 @@ class PaypalController extends Controller
             if($result->transactions[0]->amount->total > 200) {
                 $interval = new \DateInterval('P1Y');
 
-                if(PaypalController::checlIfRenewalDateNeedsToBeChanged) {
+                if(PaypalController::checlIfRenewalDateNeedsToBeChanged()) {
                     $renewalDate = $date->add($interval)->format('Y-m-d'); //data atual + 1 ano
                 } else {
                     $renewalDate = $currentRenewalDate->add($interval)->format('Y-m-d'); // data de renovação + 1 ano
@@ -184,7 +184,7 @@ class PaypalController extends Controller
             } else {
                 $interval = new \DateInterval('P1M');
 
-                if(PaypalController::checlIfRenewalDateNeedsToBeChanged) {
+                if(PaypalController::checlIfRenewalDateNeedsToBeChanged()) {
                     $renewalDate = $date->add($interval)->format('Y-m-d'); //data atual + 1 mês
                 } else {
                     $renewalDate = $currentRenewalDate->add($interval)->format('Y-m-d'); // data de renovação + 1 mês
