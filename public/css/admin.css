@@ -132,3 +132,33 @@ li.dropdown {
 .formHide {
     display: none;
 }
+
+@media (max-width: 575px) {
+	.sidebar {
+		margin-top: 40%;
+	}
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+	.sidebar {
+		margin-top: 35%;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.sidebar {
+		margin-top: 10%;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1214px) {
+	.sidebar {
+		margin-top: 6%;
+	}
+}
+
+@media (min-width: 1215px) and (max-width: 1449px) {
+	.sidebar {
+		margin-top: 6%;
+	}
+}
