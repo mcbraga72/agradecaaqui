@@ -474,30 +474,39 @@
 		</div>
 	</div>	
     <div class="col-md-5 reports-box">
+    	<a href="/admin/relatorios/estado/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="stateThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+    	<a href="/admin/relatorios/cidade/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="cityThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+    	<a href="/admin/relatorios/genero/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="genderThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+    	<a href="/admin/relatorios/estado-civil/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="maritalStatusThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+    	<a href="/admin/relatorios/religiao/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="religionThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+    	<a href="/admin/relatorios/escolaridade/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="educationThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+    	<a href="/admin/relatorios/profissao/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="professionThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+    	<a href="/admin/relatorios/renda/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="incomeThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+    	<a href="/admin/relatorios/time-de-futebol/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="soccerTeamThanksGraph" width="800" height="300"></canvas>
     </div>
 </div>
