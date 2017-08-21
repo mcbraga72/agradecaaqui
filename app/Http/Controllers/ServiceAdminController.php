@@ -54,7 +54,7 @@ class ServiceAdminController extends Controller
 
         foreach($enterpriseThanks as $enterpriseThank) {
         	$thanksDateTime = \DateTime::createFromFormat('Y-m-d H:i:s', $enterpriseThank['thanksDateTime']);
-            fputcsv($handle, array($enterpriseThank['user']['name'], $enterpriseThank['enterprise']['name'], $thanksDateTime->format('d/m/Y H:i'), $enterpriseThank['content'], $enterpriseThank['replica'], $enterpriseThank['rejoinder']));
+            fputcsv($handle, array($enterpriseThank['user']['name'], $enterpriseThank['enterprise']['name'], $thanksDateTime->format('d/m/Y H:i'), strip_tags($enterpriseThank['content']), strip_tags($enterpriseThank['replica']), strip_tags($enterpriseThank['rejoinder'])));
         }
 
         fclose($handle);
@@ -125,7 +125,7 @@ class ServiceAdminController extends Controller
 
         foreach($userThanks as $userThank) {
         	$thanksDateTime = \DateTime::createFromFormat('Y-m-d H:i:s', $userThank['thanksDateTime']);
-            fputcsv($handle, array($userThank['user']['name'], $userThank['receiptName'], $userThank['receiptEmail'], $thanksDateTime->format('d/m/Y H:i'), $userThank['content'], $userThank['replica'], $userThank['rejoinder']));
+            fputcsv($handle, array($userThank['user']['name'], $userThank['receiptName'], $userThank['receiptEmail'], $thanksDateTime->format('d/m/Y H:i'), strip_tags($userThank['content']), strip_tags($userThank['replica']), strip_tags($userThank['rejoinder'])));
         }
 
         fclose($handle);

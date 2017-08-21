@@ -234,6 +234,10 @@ h1.price-free {
 
 
 @media (max-width: 575px) {
+	.sidebar {
+		margin-top: 40%;
+	}
+
 	.info-box-text {
 		font-size: 10px;
 	}
@@ -270,6 +274,10 @@ h1.price-free {
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
+	.sidebar {
+		margin-top: 35%;
+	}
+
 	.info-box-text {
 		font-size: 10px;
 	}
@@ -306,6 +314,10 @@ h1.price-free {
 }
 
 @media (min-width: 768px) and (max-width: 879px) {
+	.sidebar {
+		margin-top: 10%;
+	}
+
 	.info-box-text {
 		font-size: 10px;
 	}
@@ -342,6 +354,10 @@ h1.price-free {
 }
 
 @media (min-width: 880px) and (max-width: 1079px) {
+	.sidebar {
+		margin-top: 10%;
+	}
+
 	.info-box-text {
 		font-size: 13px;
 	}
@@ -382,6 +398,10 @@ h1.price-free {
 }
 
 @media (min-width: 1080px) and (max-width: 1279px) {
+	.sidebar {
+		margin-top: 8%;
+	}
+
 	.premium-access {
 	    font-size: 23px;
 	    padding-top: 2.5%;
@@ -414,6 +434,10 @@ h1.price-free {
 }
 
 @media (min-width: 1280px) and (max-width: 1449px) {
+	.sidebar {
+		margin-top: 6%;
+	}
+
 	.premium-access {
 	    font-size: 25px;
 	    padding-top: 2%;
