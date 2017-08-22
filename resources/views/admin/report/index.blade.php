@@ -41,9 +41,65 @@
 			if(start == '' && end == '') {
 		    	var url = '/admin/api/relatorios/cidade' + "/" + initialDate + "/" + finalDate;
 		    	var text = 'Agradecimentos por cidade' + " - " + initialDateText + " a " + finalDateText;
+
+		    	//CVS Reports
+		    	var stateUrl = '/admin/relatorios/estado/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("stateData").setAttribute("href", stateUrl);
+
+		    	var cityUrl = '/admin/relatorios/cidade/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("cityData").setAttribute("href", cityUrl);
+
+		    	var genderUrl = '/admin/relatorios/genero/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("genderData").setAttribute("href", genderUrl);
+
+		    	var maritalStatusUrl = '/admin/relatorios/estado-civil/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("maritalStatusData").setAttribute("href", maritalStatusUrl);
+
+		    	var religionUrl = '/admin/relatorios/religiao/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("religionData").setAttribute("href", religionUrl);
+
+		    	var educationUrl = '/admin/relatorios/escolaridade/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("educationData").setAttribute("href", educationUrl);
+
+		    	var professionUrl = '/admin/relatorios/profissao/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("professionData").setAttribute("href", professionUrl);
+
+		    	var incomeUrl = '/admin/relatorios/renda-familiar/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("incomeData").setAttribute("href", incomeUrl);
+
+		    	var soccerTeamUrl = '/admin/relatorios/time-de-futebol/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("soccerTeamData").setAttribute("href", soccerTeamUrl);
 		    } else {
 		    	var url = '/admin/api/relatorios/cidade' + "/" + startDate + "/" + endDate;
 		    	var text = 'Agradecimentos por cidade' + " - " + start + " a " + end;
+
+		    	//CVS Reports
+		    	var stateUrl = '/admin/relatorios/estado/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("stateData").setAttribute("href", stateUrl);
+		    	
+		    	var cityUrl = '/admin/relatorios/cidade/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("cityData").setAttribute("href", cityUrl);
+
+		    	var genderUrl = '/admin/relatorios/genero/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("genderData").setAttribute("href", genderUrl);
+
+		    	var maritalStatusUrl = '/admin/relatorios/estado-civil/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("maritalStatusData").setAttribute("href", maritalStatusUrl);
+
+		    	var religionUrl = '/admin/relatorios/religiao/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("religionData").setAttribute("href", religionUrl);
+
+		    	var educationUrl = '/admin/relatorios/escolaridade/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("educationData").setAttribute("href", educationUrl);
+
+		    	var professionUrl = '/admin/relatorios/profissao/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("professionData").setAttribute("href", professionUrl);
+
+		    	var incomeUrl = '/admin/relatorios/renda-familiar/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("incomeData").setAttribute("href", incomeUrl);
+
+		    	var soccerTeamUrl = '/admin/relatorios/time-de-futebol/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("soccerTeamData").setAttribute("href", soccerTeamUrl);
 		    }
 
 		    $.getJSON(url, function (result) {
@@ -62,8 +118,8 @@
 		                {
 		                	data : data,
 		                	backgroundColor: [
-	                			'rgba(255, 206, 86, 0.2)',
-	                			'rgba(75, 192, 192, 0.2)'
+	                			'rgb(255, 206, 86)',
+	                			'rgb(75, 192, 192)'
 				            ]
 		                }
 		            ]
@@ -109,8 +165,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                			'rgba(255, 99, 132, 0.2)',
-	                			'rgba(54, 162, 235, 0.2)'
+	                			'rgb(255, 99, 132)',
+	                			'rgb(54, 162, 235)'
 				            ]
 		                }
 		            ]
@@ -156,8 +212,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -203,8 +259,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -250,8 +306,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -297,8 +353,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -344,8 +400,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -391,8 +447,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -438,8 +494,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -474,39 +530,39 @@
 		</div>
 	</div>	
     <div class="col-md-5 reports-box">
-    	<a href="/admin/relatorios/estado/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
+    	<a href="" id="stateData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="stateThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
-    	<a href="/admin/relatorios/cidade/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
+    	<a href="" id="cityData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="cityThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
-    	<a href="/admin/relatorios/genero/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
+    	<a href="" id="genderData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="genderThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
-    	<a href="/admin/relatorios/estado-civil/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
+    	<a href="" id="maritalStatusData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="maritalStatusThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
-    	<a href="/admin/relatorios/religiao/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
+    	<a href="" id="religionData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="religionThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
-    	<a href="/admin/relatorios/escolaridade/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
+    	<a href="" id="educationData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="educationThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
-    	<a href="/admin/relatorios/profissao/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
+    	<a href="" id="professionData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="professionThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
-    	<a href="/admin/relatorios/renda/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
+    	<a href="" id="incomeData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="incomeThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
-    	<a href="/admin/relatorios/time-de-futebol/exportar" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
+    	<a href="" id="soccerTeamData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="soccerTeamThanksGraph" width="800" height="300"></canvas>
     </div>
 </div>

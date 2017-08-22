@@ -7,6 +7,7 @@ use App\Models\EnterpriseThanks;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Response;
 
 class ReportAdminController extends Controller
 {
@@ -133,9 +134,9 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function exportStateData()
+	public function exportStateData($start, $end)
 	{
-		$stateReport = User::select('state', \DB::raw("count(users.state) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.state')->get();
+		$thanksByStates = User::select('state', \DB::raw("count(users.state) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.state')->get();
 
         $filename = 'agradecimentos-por-estado.csv';
         $handle = fopen($filename, 'w+');
@@ -159,16 +160,16 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function exportCityData()
+	public function exportCityData($start, $end)
 	{
-		$cityReport = User::select('city', \DB::raw("count(users.city) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.city')->get();
+		$thanksByCities = User::select('city', \DB::raw("count(users.city) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.city')->get();
 
         $filename = 'agradecimentos-por-cidade.csv';
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Cidade', 'Número de agradecimentos'));
 
         foreach($thanksByCities as $thanksByCity) {
-        	fputcsv($handle, array($thanksByState['city'], $thanksByState['thanks']));
+        	fputcsv($handle, array($thanksByCity['city'], $thanksByCity['thanks']));
         }
 
         fclose($handle);
@@ -185,16 +186,16 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function exportGenderData()
+	public function exportGenderData($start, $end)
 	{
-		$genderReport = User::select('gender', \DB::raw("count(users.gender) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.gender')->get();
+		$thanksByGenders = User::select('gender', \DB::raw("count(users.gender) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.gender')->get();
 
         $filename = 'agradecimentos-por-genero.csv';
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Gênero', 'Número de agradecimentos'));
 
         foreach($thanksByGenders as $thanksByGender) {
-        	fputcsv($handle, array($thanksByState['gender'], $thanksByState['thanks']));
+        	fputcsv($handle, array($thanksByGender['gender'], $thanksByGender['thanks']));
         }
 
         fclose($handle);
@@ -211,16 +212,16 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function exportMaritalStatusData()
+	public function exportMaritalStatusData($start, $end)
 	{
-		$maritalStatusReport = User::select('maritalStatus', \DB::raw("count(users.maritalStatus) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.maritalStatus')->get();
+		$thanksByMaritalStatuses = User::select('maritalStatus', \DB::raw("count(users.maritalStatus) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.maritalStatus')->get();
 
         $filename = 'agradecimentos-por-estado-civil.csv';
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Estado civil', 'Número de agradecimentos'));
 
         foreach($thanksByMaritalStatuses as $thanksByMaritalStatus) {
-        	fputcsv($handle, array($thanksByState['maritalStatus'], $thanksByState['thanks']));
+        	fputcsv($handle, array($thanksByMaritalStatus['maritalStatus'], $thanksByMaritalStatus['thanks']));
         }
 
         fclose($handle);
@@ -237,16 +238,16 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function exportReligionData()
+	public function exportReligionData($start, $end)
 	{
-		$religionReport = User::select('religion', \DB::raw("count(users.religion) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.religion')->get();
+		$thanksByReligions = User::select('religion', \DB::raw("count(users.religion) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.religion')->get();
 
         $filename = 'agradecimentos-por-religiao.csv';
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Religião', 'Número de agradecimentos'));
 
         foreach($thanksByReligions as $thanksByReligion) {
-        	fputcsv($handle, array($thanksByState['religion'], $thanksByState['thanks']));
+        	fputcsv($handle, array($thanksByReligion['religion'], $thanksByReligion['thanks']));
         }
 
         fclose($handle);
@@ -263,16 +264,16 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function exportEducationData()
+	public function exportEducationData($start, $end)
 	{
-		$educationReport = User::select('education', \DB::raw("count(users.education) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.education')->get();
+		$thanksByEducationLevels = User::select('education', \DB::raw("count(users.education) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.education')->get();
 
         $filename = 'agradecimentos-por-escolaridade.csv';
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Escolaridade', 'Número de agradecimentos'));
 
         foreach($thanksByEducationLevels as $thanksByEducationLevel) {
-        	fputcsv($handle, array($thanksByState['education'], $thanksByState['thanks']));
+        	fputcsv($handle, array($thanksByEducationLevel['education'], $thanksByEducationLevel['thanks']));
         }
 
         fclose($handle);
@@ -289,16 +290,16 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function exportProfessionData()
+	public function exportProfessionData($start, $end)
 	{
-		$professionReport = User::select('profession', \DB::raw("count(users.profession) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.profession')->get();
+		$thanksByProfessions = User::select('profession', \DB::raw("count(users.profession) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.profession')->get();
 
         $filename = 'agradecimentos-por-profissao.csv';
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Profissão', 'Número de agradecimentos'));
 
         foreach($thanksByProfessions as $thanksByProfession) {
-        	fputcsv($handle, array($thanksByState['profession'], $thanksByState['thanks']));
+        	fputcsv($handle, array($thanksByProfession['profession'], $thanksByProfession['thanks']));
         }
 
         fclose($handle);
@@ -315,16 +316,16 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function exportIncomeData()
+	public function exportIncomeData($start, $end)
 	{
-		$incomeReport = User::select('income', \DB::raw("count(users.income) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.income')->get();
+		$thanksByIncomeLevels = User::select('income', \DB::raw("count(users.income) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.income')->get();
 
         $filename = 'agradecimentos-por-renda.csv';
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Renda', 'Número de agradecimentos'));
 
         foreach($thanksByIncomeLevels as $thanksByIncomeLevel) {
-        	fputcsv($handle, array($thanksByState['income'], $thanksByState['thanks']));
+        	fputcsv($handle, array($thanksByIncomeLevel['income'], $thanksByIncomeLevel['thanks']));
         }
 
         fclose($handle);
@@ -341,16 +342,16 @@ class ReportAdminController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function exportSoccerTeamData()
+	public function exportSoccerTeamData($start, $end)
 	{
-		$soccerTeamReport = User::select('soccerTeam', \DB::raw("count(users.soccerTeam) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.soccerTeam')->get();
+		$thanksBySoccerTeams = User::select('soccerTeam', \DB::raw("count(users.soccerTeam) as thanks"))->whereBetween('thanksDateTime', array(new Carbon($start), new Carbon($end)))->join('enterprise_thanks', 'enterprise_thanks.user_id', '=', 'users.id')->groupBy('users.soccerTeam')->get();
 
         $filename = 'agradecimentos-por-time-de-futebol.csv';
         $handle = fopen($filename, 'w+');
         fputcsv($handle, array('Time', 'Número de agradecimentos'));
 
         foreach($thanksBySoccerTeams as $thanksBySoccerTeam) {
-        	fputcsv($handle, array($thanksByState['soccerTeam'], $thanksByState['thanks']));
+        	fputcsv($handle, array($thanksBySoccerTeam['soccerTeam'], $thanksBySoccerTeam['thanks']));
         }
 
         fclose($handle);
