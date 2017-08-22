@@ -1,3 +1,9 @@
+Vue.filter('formatDate', function(value) {
+    if (value) {
+        return moment(String(value)).format('DD/MM/YYYY hh:mm')
+    }
+});
+
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="_token"]').attr('content');
 Vue.config.devtools = true;
 

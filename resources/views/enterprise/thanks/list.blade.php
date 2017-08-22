@@ -20,7 +20,7 @@
                 <tr v-for="enterpriseThank in enterpriseThanks">
                     <td>@{{ enterpriseThank.user.name + ' ' + enterpriseThank.user.surName }}</td>
                     <td>@{{ enterpriseThank.user.email }}</td>
-                    <td>@{{ enterpriseThank.thanksDateTime }}</td>
+                    <td>@{{ enterpriseThank.thanksDateTime | formatDate }}</td>
                     <td v-if="enterpriseThank.replica != null && enterpriseThank.rejoinder != null"><a href="#" @click.prevent="replyThanks(enterpriseThank)"><i class="fa fa-check" style="color:#00A65A;" title="Agradecimento finalizado"></i></a></td>
                     <td v-if="enterpriseThank.replica != null && enterpriseThank.rejoinder == null"><a href="#" @click.prevent="replyThanks(enterpriseThank)"><i class="fa fa-comments-o" style="color:#F39C12;" title="Aguardando tréplica do cliente"></i></a></td>
                     <td v-if="enterpriseThank.replica == null"><a href="#" @click.prevent="replyThanks(enterpriseThank)"><i class="fa fa-bell" style="color:red;" title="Aguardando resposta da empresa"></i></a></td>

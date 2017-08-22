@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EnterpriseRequest;
+use App\Mail\EnterpriseThanksUserMail;
 use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
@@ -13,6 +14,7 @@ use DB;
 use Hash;
 use Illuminate\Http\Request;
 use Image;
+use Mail;
 use Redirect;
 use Response;
 
@@ -234,9 +236,12 @@ class EnterpriseAreaController extends Controller
      */
     public function storeReplica(Request $request)
     {
-        $enterpriseThank = EnterpriseThanks::whereHash($request->hash)->firstOrFail();
+        $enterpriseThank = EnterpriseThanks::whereHash($request->hash)->with(['Enterprise', 'User'])->firstOrFail();
         $enterpriseThank->replica = $request->replica;
-        $enterpriseThank->save();
+
+        if ($enterpriseThank->save()) {
+            Mail::to($enterpriseThank->User->email)->send(new EnterpriseThanksUserMail($enterpriseThank->Enterprise, $enterpriseThank));
+        }
 
         $enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->paginate(10);
         return view('enterprise.thanks.list')->with('enterpriseThanks', $enterpriseThanks);
