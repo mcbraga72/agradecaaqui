@@ -29,8 +29,8 @@ class AppController extends Controller
 	 */
 	public function dashboard()
 	{
-        $usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName AS name', 'content', DB::raw("'people' AS logo"), 'hash', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'))->where('user_id', '=', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->get();
-        $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'))->where('user_id', '=', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->get();
+        $usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName AS name', 'content', DB::raw("'people' AS logo"), 'hash', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'), DB::raw("'userThanks' AS type"))->where('user_id', '=', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->get();
+        $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'), DB::raw("'enterpriseThanks' AS type"))->where('user_id', '=', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->get();
 
         $allThanks = $usersThanks->merge($enterprisesThanks);
         

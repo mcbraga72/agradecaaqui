@@ -129,7 +129,11 @@
 	        	@forelse($data['allThanks'] as $allThank)
 	        		<div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1 thanks-box">
 	                    <div class="col-lg-12">
-	                    	<a href="{{ route('enterprise-thanks.show', $allThank->hash) }}"><img class="heart" src="{{ asset('images/heart.png') }}" /></a>
+	                    	@if($allThank->type == 'enterpriseThanks')
+	                    		<a href="{{ route('enterprise-thanks.show', $allThank->hash) }}"><img class="heart" src="{{ asset('images/heart.png') }}" /></a>
+	                    	@else
+	                    		<a href="{{ route('user-thanks.show', $allThank->hash) }}"><img class="heart" src="{{ asset('images/heart.png') }}" /></a>
+	                    	@endif
 	                    </div>
 	                    <div class="col-lg-12">
 							@if($allThank->logo == 'people')

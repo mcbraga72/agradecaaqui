@@ -14,7 +14,7 @@
         <meta property="og:title" content="Agradeça Aqui" />
         <meta property="og:type" content="website" />
         @foreach($userThanks as $userThank)
-        <meta property="og:url" content="{{ 'https://agradecaaqui.site/app/agradecimento-empresa/' . $userThank->hash }}" />
+        <meta property="og:url" content="{{ 'https://agradecaaqui.site/app/agradecimento-usuario/' . $userThank->hash }}" />
         @endforeach        
         <meta property="og:image" content="https://agradecaaqui.site/images/banner.png" />
         <meta property="og:description" content="Faça seu agradecimento em nossa plataforma!" />
@@ -101,13 +101,28 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     @foreach($userThanks as $userThank)
                         <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 thanks-single-box">
-                            <p class="thanks-title">{{ $userThank->user->name }}</p>
-                            <p class="thaks-content">{{ strip_tags($userThank->content) }}</p>
-                            <img class="user-photo" src="{{ asset('images/people.png') }}" alt="Agradecimento" title="Agradecimento" /><br><br>
-                            <a href="whatsapp://send?{{ $userThank->user->name . " - " . strip_tags($userThank->content) }}" data-action="share/whatsapp/share" class="btn btn-success" role="button" style="display: inline-block;"><i class="fa fa-whatsapp fa-fw icon-bold" aria-hidden="true"></i>Compartilhar</a>
-                            <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ $userThank->user->name . " - " . strip_tags($userThank->content) }}">Tweet</a>
-                            <div class="fb-share-button" data-href="{{ URL::to('/') . '/app/agradecimento-empresa/' . $userThank->hash }}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartilhar</a></div>
-                            <div class="g-plus" data-action="share" style="display: inline-block;"></div>                            
+                            <img class="user-photo" src="{{ asset('images/people.png') }}" alt="Agradecimento" title="Agradecimento" />
+                            <p class="thanks-title">{{ $userThank->user->name }}</p><br><br>
+                            <p class="thanks-stage">Agradecimento</p>
+                            <p class="thanks-content-show">{{ strip_tags($userThank->content) }}</p>
+                            <p class="thanks-stage">Réplica</p>
+                            @if($userThank->replica != null && $enterpriseThank->replica != '')
+                            <p class="thanks-content-show">{{ strip_tags($userThank->replica) }}</p>
+                            @else
+                            <p class="thanks-content-show">Aguardando a resposta da pessoa que recebeu o agradecimento.</p>
+                            @endif
+                            <p class="thanks-stage">Tréplica</p>
+                            @if($userThank->rejoinder != null && $enterpriseThank->rejoinder != '')
+                            <p class="thanks-content-show">{{ strip_tags($userThank->rejoinder) }}</p>
+                            @else
+                            <p class="thanks-content-show">Aguarde a pessoa que recebeu o agradecimento responder para fazer sua tréplica.</p>
+                            @endif
+                            <div class="social-media-share">
+                                <a href="whatsapp://send?{{ $userThank->user->name . " - " . strip_tags($userThank->content) }}" data-action="share/whatsapp/share" class="btn btn-success" role="button" style="display: inline-block;"><i class="fa fa-whatsapp fa-fw icon-bold" aria-hidden="true"></i>Compartilhar</a>
+                                <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ $userThank->user->name . " - " . strip_tags($userThank->content) }}">Tweet</a>
+                                <div class="fb-share-button" data-href="{{ URL::to('/') . '/app/agradecimento-usuario/' . $userThank->hash }}" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Compartilhar</a></div>
+                                <div class="g-plus" data-action="share" style="display: inline-block;"></div>
+                            </div>                            
                         </div>
                     @endforeach
                 </div>

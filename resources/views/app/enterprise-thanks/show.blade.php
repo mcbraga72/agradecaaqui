@@ -106,17 +106,17 @@
                             <p class="thanks-stage">Agradecimento</p>
                             <p class="thanks-content-show">{{ strip_tags($enterpriseThank->content) }}</p>
                             <p class="thanks-stage">Réplica</p>
-			    @if($enterpriseThank->replica != null && $enterpriseThank->replica != '')
+			                @if($enterpriseThank->replica != null && $enterpriseThank->replica != '')
                             <p class="thanks-content-show">{{ strip_tags($enterpriseThank->replica) }}</p>
-			    @else
+			                @else
                             <p class="thanks-content-show">Aguardando a empresa.</p>
-			    @endif
+			                @endif
                             <p class="thanks-stage">Tréplica</p>
-			    @if($enterpriseThank->rejoinder != null && $enterpriseThank->rejoinder != '')
+			                @if($enterpriseThank->rejoinder != null && $enterpriseThank->rejoinder != '')
                             <p class="thanks-content-show">{{ strip_tags($enterpriseThank->rejoinder) }}</p>
-			    @else
+			                @else
                             <p class="thanks-content-show">Aguarde a empresa responder para fazer sua tréplica.</p>
-			    @endif
+			                @endif
                             <div class="social-media-share">
                                 <a href="whatsapp://send?{{ $enterpriseThank->enterprise->name . " - " . strip_tags($enterpriseThank->content) }}" data-action="share/whatsapp/share" class="btn btn-success" role="button" style="display: inline-block;"><i class="fa fa-whatsapp fa-fw icon-bold" aria-hidden="true"></i>Compartilhar</a>
                                 <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ $enterpriseThank->enterprise->name . " - " . strip_tags($enterpriseThank->content) }}">Tweet</a>
