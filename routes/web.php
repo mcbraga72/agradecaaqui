@@ -135,6 +135,16 @@ Route::group(['middleware' => 'auth:enterprises'], function () {
 	Route::get('/empresa/api/relatorios/time-de-futebol/{start}/{end}', 'ReportEnterpriseController@generateSoccerTeamReport');
 	Route::get('/empresa/api/relatorio/{type}/{start}/{end}', 'ReportEnterpriseController@generateCustomReport');
 
+	Route::get('/empresa/relatorios/estado/exportar/{start}/{end}', 'ReportEnterpriseController@exportStateData');
+	Route::get('/empresa/relatorios/cidade/exportar/{start}/{end}', 'ReportEnterpriseController@exportCityData');
+	Route::get('/empresa/relatorios/genero/exportar/{start}/{end}', 'ReportEnterpriseController@exportGenderData');
+	Route::get('/empresa/relatorios/estado-civil/exportar/{start}/{end}', 'ReportEnterpriseController@exportMaritalStatusData');
+	Route::get('/empresa/relatorios/religiao/exportar/{start}/{end}', 'ReportEnterpriseController@exportReligionData');
+	Route::get('/empresa/relatorios/escolaridade/exportar/{start}/{end}', 'ReportEnterpriseController@exportEducationData');
+	Route::get('/empresa/relatorios/profissao/exportar/{start}/{end}', 'ReportEnterpriseController@exportProfessionData');
+	Route::get('/empresa/relatorios/renda-familiar/exportar/{start}/{end}', 'ReportEnterpriseController@exportIncomeData');
+	Route::get('/empresa/relatorios/time-de-futebol/exportar/{start}/{end}', 'ReportEnterpriseController@exportSoccerTeamData');
+
 	// Paypal routes
 
 	Route::get('/empresa/assinatura-premium', ['as' => 'paywithpaypal', 'uses' => 'PaypalController@payWithPaypal']);

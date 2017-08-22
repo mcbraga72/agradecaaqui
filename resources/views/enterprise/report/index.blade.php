@@ -41,9 +41,65 @@
 			if(start == '' && end == '') {
 		    	var url = '/empresa/api/relatorios/cidade' + "/" + initialDate + "/" + finalDate;
 		    	var text = 'Agradecimentos por cidade' + " - " + initialDateText + " a " + finalDateText;
+
+		    	//CVS Reports
+		    	var stateUrl = '/empresa/relatorios/estado/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("stateData").setAttribute("href", stateUrl);
+
+		    	var cityUrl = '/empresa/relatorios/cidade/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("cityData").setAttribute("href", cityUrl);
+
+		    	var genderUrl = '/empresa/relatorios/genero/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("genderData").setAttribute("href", genderUrl);
+
+		    	var maritalStatusUrl = '/empresa/relatorios/estado-civil/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("maritalStatusData").setAttribute("href", maritalStatusUrl);
+
+		    	var religionUrl = '/empresa/relatorios/religiao/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("religionData").setAttribute("href", religionUrl);
+
+		    	var educationUrl = '/empresa/relatorios/escolaridade/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("educationData").setAttribute("href", educationUrl);
+
+		    	var professionUrl = '/empresa/relatorios/profissao/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("professionData").setAttribute("href", professionUrl);
+
+		    	var incomeUrl = '/empresa/relatorios/renda-familiar/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("incomeData").setAttribute("href", incomeUrl);
+
+		    	var soccerTeamUrl = '/empresa/relatorios/time-de-futebol/exportar' + "/" + initialDate + "/" + finalDate;
+		    	document.getElementById("soccerTeamData").setAttribute("href", soccerTeamUrl);
 		    } else {
 		    	var url = '/empresa/api/relatorios/cidade' + "/" + startDate + "/" + endDate;
 		    	var text = 'Agradecimentos por cidade' + " - " + start + " a " + end;
+
+		    	//CVS Reports
+		    	var stateUrl = '/empresa/relatorios/estado/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("stateData").setAttribute("href", stateUrl);
+		    	
+		    	var cityUrl = '/empresa/relatorios/cidade/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("cityData").setAttribute("href", cityUrl);
+
+		    	var genderUrl = '/empresa/relatorios/genero/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("genderData").setAttribute("href", genderUrl);
+
+		    	var maritalStatusUrl = '/empresa/relatorios/estado-civil/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("maritalStatusData").setAttribute("href", maritalStatusUrl);
+
+		    	var religionUrl = '/empresa/relatorios/religiao/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("religionData").setAttribute("href", religionUrl);
+
+		    	var educationUrl = '/empresa/relatorios/escolaridade/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("educationData").setAttribute("href", educationUrl);
+
+		    	var professionUrl = '/empresa/relatorios/profissao/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("professionData").setAttribute("href", professionUrl);
+
+		    	var incomeUrl = '/empresa/relatorios/renda-familiar/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("incomeData").setAttribute("href", incomeUrl);
+
+		    	var soccerTeamUrl = '/empresa/relatorios/time-de-futebol/exportar' + "/" + startDate + "/" + endDate;
+		    	document.getElementById("soccerTeamData").setAttribute("href", soccerTeamUrl);
 		    }
 
 		    $.getJSON(url, function (result) {
@@ -52,6 +108,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].city == '' || result[i].city == null) {
+		        		result[i].city = "Não informado";
+		        	}
 		            labels.push(result[i].city);
 		            data.push(result[i].thanks);	            
 		        }
@@ -62,8 +121,8 @@
 		                {
 		                	data : data,
 		                	backgroundColor: [
-	                			'rgba(255, 206, 86, 0.2)',
-	                			'rgba(75, 192, 192, 0.2)'
+	                			'rgb(255, 206, 86)',
+	                			'rgb(75, 192, 192)'
 				            ]
 		                }
 		            ]
@@ -99,6 +158,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].state == '' || result[i].state == null) {
+		        		result[i].state = "Não informado";
+		        	}
 		            labels.push(result[i].state);
 		            data.push(result[i].thanks);	            
 		        }
@@ -109,8 +171,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                			'rgba(255, 99, 132, 0.2)',
-	                			'rgba(54, 162, 235, 0.2)'
+	                			'rgb(255, 99, 132)',
+	                			'rgb(54, 162, 235)'
 				            ]
 		                }
 		            ]
@@ -146,6 +208,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].gender == '' || result[i].gender == null) {
+		        		result[i].gender = "Não informado";
+		        	}
 		            labels.push(result[i].gender);
 		            data.push(result[i].thanks);	            
 		        }
@@ -156,8 +221,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -193,6 +258,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].maritalStatus == '' || result[i].maritalStatus == null) {
+		        		result[i].maritalStatus = "Não informado";
+		        	}
 		            labels.push(result[i].maritalStatus);
 		            data.push(result[i].thanks);	            
 		        }
@@ -203,8 +271,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -240,6 +308,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].religion == '' || result[i].religion == null) {
+		        		result[i].religion = "Não informado";
+		        	}
 		            labels.push(result[i].religion);
 		            data.push(result[i].thanks);	            
 		        }
@@ -250,8 +321,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -287,6 +358,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].education == '' || result[i].education == null) {
+		        		result[i].education = "Não informado";
+		        	}
 		            labels.push(result[i].education);
 		            data.push(result[i].thanks);	            
 		        }
@@ -297,8 +371,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -334,6 +408,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].profession == '' || result[i].profession == null) {
+		        		result[i].profession = "Não informado";
+		        	}
 		            labels.push(result[i].profession);
 		            data.push(result[i].thanks);	            
 		        }
@@ -344,8 +421,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -381,6 +458,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].income == '' || result[i].income == null) {
+		        		result[i].income = "Não informado";
+		        	}
 		            labels.push(result[i].income);
 		            data.push(result[i].thanks);	            
 		        }
@@ -391,8 +471,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -428,6 +508,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].soccerTeam == '' || result[i].soccerTeam == null) {
+		        		result[i].soccerTeam = "Não informado";
+		        	}
 		            labels.push(result[i].soccerTeam);
 		            data.push(result[i].thanks);	            
 		        }
@@ -438,8 +521,8 @@
 		                {
 		                    data : data,
 		                    backgroundColor: [
-	                		    'rgba(153, 102, 255, 0.2)',
-				                'rgba(255, 159, 64, 0.2)'
+	                		    'rgb(153, 102, 255)',
+				                'rgb(255, 159, 64)'
 				            ]
 		                }
 		            ]
@@ -474,30 +557,39 @@
 		</div>
 	</div>	
     <div class="col-md-5 reports-box">
+    	<a href="" id="stateData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="stateThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+		<a href="" id="cityData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="cityThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+		<a href="" id="genderData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="genderThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+		<a href="" id="maritalStatusData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="maritalStatusThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+		<a href="" id="religionData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="religionThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+		<a href="" id="educationData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="educationThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+		<a href="" id="professionData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="professionThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+		<a href="" id="incomeData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="incomeThanksGraph" width="800" height="300"></canvas>
     </div>
     <div class="col-md-5 reports-box">
+		<a href="" id="soccerTeamData" class="btn btn-primary"><i class="fa fa-file-excel-o fa-fw"></i>Exportar dados</a>
         <canvas id="soccerTeamThanksGraph" width="800" height="300"></canvas>
     </div>
 </div>
