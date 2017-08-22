@@ -183,15 +183,15 @@ Route::group(['middleware' => 'auth:admins'], function () {
 	Route::get('/admin/api/relatorios/time-de-futebol/{start}/{end}', 'ReportAdminController@generateSoccerTeamReport');
 	Route::get('/admin/api/relatorio/{type}/{start}/{end}', 'ReportAdminController@generateCustomReport');
 
-	Route::get('/admin/relatorios/estado/exportar', 'ReportAdminController@exportStateData');
-	Route::get('/admin/relatorios/cidade/exportar', 'ReportAdminController@exportCityData');
-	Route::get('/admin/relatorios/genero/exportar', 'ReportAdminController@exportGenderData');
-	Route::get('/admin/relatorios/estado-civil/exportar', 'ReportAdminController@exportMaritalStatusData');
-	Route::get('/admin/relatorios/religiao/exportar', 'ReportAdminController@exportReligionData');
-	Route::get('/admin/relatorios/escolaridade/exportar', 'ReportAdminController@exportEducationData');
-	Route::get('/admin/relatorios/profissao/exportar', 'ReportAdminController@exportProfessionData');
-	Route::get('/admin/relatorios/renda/exportar', 'ReportAdminController@exportIncomeData');
-	Route::get('/admin/relatorios/time-de-futebol/exportar', 'ReportAdminController@exportSoccerTeamData');
+	Route::get('/admin/relatorios/estado/exportar/{start}/{end}', 'ReportAdminController@exportStateData');
+	Route::get('/admin/relatorios/cidade/exportar/{start}/{end}', 'ReportAdminController@exportCityData');
+	Route::get('/admin/relatorios/genero/exportar/{start}/{end}', 'ReportAdminController@exportGenderData');
+	Route::get('/admin/relatorios/estado-civil/exportar/{start}/{end}', 'ReportAdminController@exportMaritalStatusData');
+	Route::get('/admin/relatorios/religiao/exportar/{start}/{end}', 'ReportAdminController@exportReligionData');
+	Route::get('/admin/relatorios/escolaridade/exportar/{start}/{end}', 'ReportAdminController@exportEducationData');
+	Route::get('/admin/relatorios/profissao/exportar/{start}/{end}', 'ReportAdminController@exportProfessionData');
+	Route::get('/admin/relatorios/renda-familiar/exportar/{start}/{end}', 'ReportAdminController@exportIncomeData');
+	Route::get('/admin/relatorios/time-de-futebol/exportar/{start}/{end}', 'ReportAdminController@exportSoccerTeamData');
 
 	Route::get('/admin/cadastro/empresas/exportar', 'ServiceAdminController@exportEnterpriseRegister');
 	Route::get('/admin/cadastro/agradecimentos-empresas/exportar', 'ServiceAdminController@exportEnterpriseThanksRegister');
