@@ -108,6 +108,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].city == '' || result[i].city == null) {
+		        		result[i].city = "Não informado";
+		        	}
 		            labels.push(result[i].city);
 		            data.push(result[i].thanks);	            
 		        }
@@ -155,6 +158,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].state == '' || result[i].state == null) {
+		        		result[i].state = "Não informado";
+		        	}
 		            labels.push(result[i].state);
 		            data.push(result[i].thanks);	            
 		        }
@@ -202,6 +208,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].gender == '' || result[i].gender == null) {
+		        		result[i].gender = "Não informado";
+		        	}
 		            labels.push(result[i].gender);
 		            data.push(result[i].thanks);	            
 		        }
@@ -249,6 +258,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].maritalStatus == '' || result[i].maritalStatus == null) {
+		        		result[i].maritalStatus = "Não informado";
+		        	}
 		            labels.push(result[i].maritalStatus);
 		            data.push(result[i].thanks);	            
 		        }
@@ -296,6 +308,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].religion == '' || result[i].religion == null) {
+		        		result[i].religion = "Não informado";
+		        	}
 		            labels.push(result[i].religion);
 		            data.push(result[i].thanks);	            
 		        }
@@ -343,6 +358,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].education == '' || result[i].education == null) {
+		        		result[i].education = "Não informado";
+		        	}
 		            labels.push(result[i].education);
 		            data.push(result[i].thanks);	            
 		        }
@@ -390,6 +408,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].profession == '' || result[i].profession == null) {
+		        		result[i].profession = "Não informado";
+		        	}
 		            labels.push(result[i].profession);
 		            data.push(result[i].thanks);	            
 		        }
@@ -437,6 +458,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].income == '' || result[i].income == null) {
+		        		result[i].income = "Não informado";
+		        	}
 		            labels.push(result[i].income);
 		            data.push(result[i].thanks);	            
 		        }
@@ -484,6 +508,9 @@
 		        var data = [];
 
 		        for (var i = 0; i < result.length; i++) {
+		        	if (result[i].soccerTeam == '' || result[i].soccerTeam == null) {
+		        		result[i].soccerTeam = "Não informado";
+		        	}
 		            labels.push(result[i].soccerTeam);
 		            data.push(result[i].thanks);	            
 		        }

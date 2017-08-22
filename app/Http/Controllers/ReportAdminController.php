@@ -143,6 +143,9 @@ class ReportAdminController extends Controller
         fputcsv($handle, array('Estado', 'Número de agradecimentos'));
 
         foreach($thanksByStates as $thanksByState) {
+        	if ($thanksByState['state'] == '' || $thanksByState['state'] == null) {
+        		$thanksByState['state'] = "Não informado";
+        	}
         	fputcsv($handle, array($thanksByState['state'], $thanksByState['thanks']));
         }
 
@@ -169,6 +172,9 @@ class ReportAdminController extends Controller
         fputcsv($handle, array('Cidade', 'Número de agradecimentos'));
 
         foreach($thanksByCities as $thanksByCity) {
+        	if ($thanksByCity['city'] == '' || $thanksByCity['city'] == null) {
+        		$thanksByCity['city'] = "Não informado";
+        	}
         	fputcsv($handle, array($thanksByCity['city'], $thanksByCity['thanks']));
         }
 
@@ -195,6 +201,9 @@ class ReportAdminController extends Controller
         fputcsv($handle, array('Gênero', 'Número de agradecimentos'));
 
         foreach($thanksByGenders as $thanksByGender) {
+        	if ($thanksByGender['gender'] == '' || $thanksByGender['gender'] == null) {
+        		$thanksByGender['gender'] = "Não informado";
+        	}
         	fputcsv($handle, array($thanksByGender['gender'], $thanksByGender['thanks']));
         }
 
@@ -221,6 +230,9 @@ class ReportAdminController extends Controller
         fputcsv($handle, array('Estado civil', 'Número de agradecimentos'));
 
         foreach($thanksByMaritalStatuses as $thanksByMaritalStatus) {
+        	if ($thanksByMaritalStatus['maritalStatus'] == '' || $thanksByMaritalStatus['maritalStatus'] == null) {
+        		$thanksByMaritalStatus['maritalStatus'] = "Não informado";
+        	}
         	fputcsv($handle, array($thanksByMaritalStatus['maritalStatus'], $thanksByMaritalStatus['thanks']));
         }
 
@@ -247,6 +259,9 @@ class ReportAdminController extends Controller
         fputcsv($handle, array('Religião', 'Número de agradecimentos'));
 
         foreach($thanksByReligions as $thanksByReligion) {
+        	if ($thanksByReligion['religion'] == '' || $thanksByReligion['religion'] == null) {
+        		$thanksByReligion['religion'] = "Não informado";
+        	}
         	fputcsv($handle, array($thanksByReligion['religion'], $thanksByReligion['thanks']));
         }
 
@@ -273,6 +288,9 @@ class ReportAdminController extends Controller
         fputcsv($handle, array('Escolaridade', 'Número de agradecimentos'));
 
         foreach($thanksByEducationLevels as $thanksByEducationLevel) {
+        	if ($thanksByEducationLevel['education'] == '' || $thanksByEducationLevel['education'] == null) {
+        		$thanksByEducationLevel['education'] = "Não informado";
+        	}
         	fputcsv($handle, array($thanksByEducationLevel['education'], $thanksByEducationLevel['thanks']));
         }
 
@@ -299,6 +317,9 @@ class ReportAdminController extends Controller
         fputcsv($handle, array('Profissão', 'Número de agradecimentos'));
 
         foreach($thanksByProfessions as $thanksByProfession) {
+        	if ($thanksByProfession['profession'] == '' || $thanksByProfession['profession'] == null) {
+        		$thanksByProfession['profession'] = "Não informado";
+        	}
         	fputcsv($handle, array($thanksByProfession['profession'], $thanksByProfession['thanks']));
         }
 
@@ -325,6 +346,9 @@ class ReportAdminController extends Controller
         fputcsv($handle, array('Renda', 'Número de agradecimentos'));
 
         foreach($thanksByIncomeLevels as $thanksByIncomeLevel) {
+        	if ($thanksByIncomeLevel['income'] == '' || $thanksByIncomeLevel['income'] == null) {
+        		$thanksByIncomeLevel['income'] = "Não informado";
+        	}
         	fputcsv($handle, array($thanksByIncomeLevel['income'], $thanksByIncomeLevel['thanks']));
         }
 
@@ -351,6 +375,9 @@ class ReportAdminController extends Controller
         fputcsv($handle, array('Time', 'Número de agradecimentos'));
 
         foreach($thanksBySoccerTeams as $thanksBySoccerTeam) {
+        	if ($thanksBySoccerTeam['soccerTeam'] == '' || $thanksBySoccerTeam['soccerTeam'] == null) {
+        		$thanksBySoccerTeam['soccerTeam'] = "Não informado";
+        	}
         	fputcsv($handle, array($thanksBySoccerTeam['soccerTeam'], $thanksBySoccerTeam['thanks']));
         }
 
