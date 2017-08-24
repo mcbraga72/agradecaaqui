@@ -8,12 +8,12 @@
         <meta name="author" content="@yield('author')">
         <meta name="description" content="Agradeça Aqui - Plataforma de agradecimentos on-line">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <meta id="csrf-token" name="csrf-token" content="{{{ csrf_token() }}}">
+        <meta id="token" name="token" value="{{ csrf_token() }}">
 
         <!-- Open Graph data -->
         <meta property="og:title" content="Agradeça Aqui" />
         <meta property="og:type" content="website" />
-        @foreach($enterpriseThanks as $enterpriseThank)
+        @foreach($data['enterpriseThanks'] as $enterpriseThank)        
         <meta property="og:url" content="{{ 'https://agradecaaqui.site/app/agradecimento-empresa/' . $enterpriseThank->hash }}" />
         @endforeach        
         <meta property="og:image" content="https://agradecaaqui.site/images/banner.png" />
@@ -32,10 +32,15 @@
         <link rel="shortcut icon" href="https://agradecaaqui.site/images/logo.png" />
         <link rel="stylesheet" property="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" property="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
         <link rel="stylesheet" href="{{ URL::asset('css/site.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/reset.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/bootstrap-social.css') }}">
         <link rel="stylesheet" href="{{ URL::asset('css/vendor/bootstrap-chosen/bootstrap-chosen.css') }}">
+        
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script src="https://apis.google.com/js/platform.js" async defer></script>
     </head>
     <body>
@@ -99,24 +104,31 @@
             </div>    
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
-                    @foreach($enterpriseThanks as $enterpriseThank)
+                    @foreach($data['enterpriseThanks'] as $enterpriseThank)
                         <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 thanks-single-box">
                             <img class="user-photo" src="{{ asset($enterpriseThank->enterprise->logo) }}" alt="Agradecimento" title="Agradecimento" />
                             <p class="thanks-title">{{ $enterpriseThank->enterprise->name }}</p><br><br>
                             <p class="thanks-stage">Agradecimento</p>
                             <p class="thanks-content-show">{{ strip_tags($enterpriseThank->content) }}</p>
-                            <p class="thanks-stage">Réplica</p>
-			                @if($enterpriseThank->replica != null && $enterpriseThank->replica != '')
+                            <p class="thanks-stage">Réplica</p>			                
+                            @if($enterpriseThank->replica != null && $enterpriseThank->replica != '')
                             <p class="thanks-content-show">{{ strip_tags($enterpriseThank->replica) }}</p>
 			                @else
-                            <p class="thanks-content-show">Aguardando a empresa.</p>
+                            <p class="thanks-content-show">Aguardando a empresa reponder o agradecimento.</p>
 			                @endif
                             <p class="thanks-stage">Tréplica</p>
-			                @if($enterpriseThank->rejoinder != null && $enterpriseThank->rejoinder != '')
+                            @if($enterpriseThank->rejoinder != null && $enterpriseThank->rejoinder != '')                            
                             <p class="thanks-content-show">{{ strip_tags($enterpriseThank->rejoinder) }}</p>
-			                @else
+                            @elseif($enterpriseThank->replica != null && $enterpriseThank->replica != '' && $enterpriseThank->rejoinder == null)
+                            <p class="thanks-content-show"></p>
+                            @else
                             <p class="thanks-content-show">Aguarde a empresa responder para fazer sua tréplica.</p>
-			                @endif
+                            @endif
+                            @if($enterpriseThank->replica != null && $enterpriseThank->replica != '' && $enterpriseThank->rejoinder == null)
+                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#writeRejoinder">Enviar Tréplica</button>
+                            @else
+                                <button type="submit" class="btn btn-primary" disabled>Enviar Tréplica</button>
+                            @endif
                             <div class="social-media-share">
                                 <a href="whatsapp://send?{{ $enterpriseThank->enterprise->name . " - " . strip_tags($enterpriseThank->content) }}" data-action="share/whatsapp/share" class="btn btn-success" role="button" style="display: inline-block;"><i class="fa fa-whatsapp fa-fw icon-bold" aria-hidden="true"></i>Compartilhar</a>
                                 <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text={{ $enterpriseThank->enterprise->name . " - " . strip_tags($enterpriseThank->content) }}">Tweet</a>
@@ -128,11 +140,43 @@
                 </div>
             </div>
         </div>
+
+        <!-- Write Rejoinder Modal -->
+        <div class="modal fade" id="writeRejoinder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h4 class="modal-name" id="myModalLabel">Responder Agradecimento</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{!! '/app/agradecimento-empresa/treplica/' . collect(request()->segments())->last() !!}">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="name">Mensagem</label>
+                                <textarea id="rejoinder" name="rejoinder" class="form-control"></textarea>                                
+                            </div>                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <footer class="nopadding">        
             <img src="{{ URL::to('/') }}/images/footerUserArea.png" width="100%" />
-        </footer>                                    
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="{{ URL::asset('js/site.js') }}"></script>                
+        </footer>
+
+        <script type="text/javascript">            
+            $(document).ready(function() {
+                var showMessage = '{{ $data['showMessage'] }}';
+                
+                if(showMessage == 'true') {
+                    toastr.success('Agradecimento atualizado com sucesso!', '', {timeOut: 5000});                
+                }
+            });
+        </script>
     </body>
 </html>

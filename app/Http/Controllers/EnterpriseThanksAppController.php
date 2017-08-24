@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\EnterpriseAdminController;
 use App\Http\Requests\EnterpriseThanksRequest;
 use App\Mail\EnterpriseThanksMail;
+use App\Mail\EnterpriseThanksRejoinderMail;
 use App\Models\Enterprise;
 use App\Models\EnterpriseThanks;
 use App\Models\User;
@@ -79,8 +80,12 @@ class EnterpriseThanksAppController extends Controller
 	 */
     public function show($hash)
     {
-        $enterpriseThanks = EnterpriseThanks::where('hash', '=', $hash)->with('enterprise')->get();
-        return view('app.enterprise-thanks.show')->with('enterpriseThanks', $enterpriseThanks);
+        $data = array(
+            'enterpriseThanks' => EnterpriseThanks::where('hash', '=', $hash)->with('enterprise')->get(),
+            'showMessage' => 'false'
+        );
+
+        return view('app.enterprise-thanks.show')->with('data', $data);
     }
   
     /**
@@ -159,5 +164,31 @@ class EnterpriseThanksAppController extends Controller
     {
         $enterprisesThanks = EnterpriseThanks::where('content', 'LIKE', "%{$request->search}%")->get();
         return view('app.index')->with('enterprisesThanks', $enterprisesThanks);
+    }
+
+    /**
+     *
+     * Store rejoinder in enterprise thanks.
+     *
+     * @param String $hash
+     *
+     * @return Response
+     * 
+     */
+    public function writeRejoinder(Request $request, $hash)
+    {
+        $enterpriseThanks = EnterpriseThanks::with(['user', 'enterprise'])->findOrFail($hash);
+        $enterpriseThanks->rejoinder = $request->rejoinder;
+
+        if ($enterpriseThanks->save()) {
+            Mail::to($enterpriseThanks->enterprise->email)->send(new EnterpriseThanksRejoinderMail($enterpriseThanks->user, $enterpriseThanks));
+        }
+
+        $data = array(
+            'enterpriseThanks' => EnterpriseThanks::where('hash', '=', $hash)->with('enterprise')->get(),
+            'showMessage' => 'true'
+        );
+
+        return view('app.enterprise-thanks.show')->with('data', $data);        
     }
 }

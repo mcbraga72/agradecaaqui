@@ -97,6 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/app/agradecimento-empresa/{id}/editar', 'EnterpriseThanksAppController@edit');
 	Route::put('/app/agradecimento-empresa/{id}', 'EnterpriseThanksAppController@update');
 	Route::delete('/app/agradecimento-empresa/{id}', 'EnterpriseThanksAppController@destroy');
+	Route::post('/app/agradecimento-empresa/treplica/{hash}', 'EnterpriseThanksAppController@writeRejoinder');
 
 	Route::post('/app/agradecimento-usuario', 'UserThanksAppController@store');
 	Route::post('/app/agradecimentos-usuarios', 'UserThanksAppController@find');
@@ -104,6 +105,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/app/agradecimento-usuario/{id}/editar', 'UserThanksAppController@edit');
 	Route::put('/app/agradecimento-usuario/{id}', 'UserThanksAppController@update');
 	Route::delete('/app/agradecimento-usuario/{id}', 'UserThanksAppController@destroy');
+	Route::post('/app/agradecimento-usuario/treplica/{hash}', 'UserThanksAppController@writeRejoinder');
 
 });
 
