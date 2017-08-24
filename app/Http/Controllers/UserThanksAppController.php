@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\UserThanksMail;
+use App\Mail\UserThanksRejoinderMail;
 use App\Models\Enterprise;
 use App\Models\User;
 use App\Models\UserThanks;
@@ -69,8 +70,12 @@ class UserThanksAppController extends Controller
      */
     public function show($hash)
     {
-        $userThanks = UserThanks::where('hash', '=', $hash)->with('user')->get();
-        return view('app.user-thanks.show')->with('userThanks', $userThanks);
+        $data = array(
+            'userThanks' => UserThanks::where('hash', '=', $hash)->with('user')->get(),
+            'showMessage' => 'false'
+        );
+
+        return view('app.user-thanks.show')->with('data', $data);
     }
 
     /**
@@ -149,5 +154,31 @@ class UserThanksAppController extends Controller
     {
         $usersThanks = UserThanks::where('content', 'LIKE', "%{$request->search}%")->get();
         return view('app.user-thanks.list')->with('usersThanks', $usersThanks);
+    }
+
+    /**
+     *
+     * Store rejoinder in user thanks.
+     *
+     * @param String $hash
+     *
+     * @return Response
+     * 
+     */
+    public function writeRejoinder(Request $request, $hash)
+    {
+        $userThanks = UserThanks::with('user')->findOrFail($hash);
+        $userThanks->rejoinder = $request->rejoinder;
+
+        if ($userThanks->save()) {
+            Mail::to($userThanks->receiptEmail)->send(new UserThanksRejoinderMail($userThanks->user, $userThanks));
+        }
+                
+        $data = array(
+            'userThanks' => UserThanks::where('hash', '=', $hash)->with('user')->get(),
+            'showMessage' => 'true'
+        );
+
+        return view('app.user-thanks.show')->with('data', $data);
     }
 }
