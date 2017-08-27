@@ -167,7 +167,7 @@ class UserThanksAppController extends Controller
      */
     public function writeRejoinder(Request $request, $hash)
     {
-        $userThanks = UserThanks::with('user')->findOrFail($hash);
+        $userThanks = UserThanks::with('user')->where('hash', '=', $hash)->first();
         $userThanks->rejoinder = $request->rejoinder;
 
         if ($userThanks->save()) {

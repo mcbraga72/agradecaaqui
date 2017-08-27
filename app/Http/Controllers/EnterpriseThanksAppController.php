@@ -177,7 +177,7 @@ class EnterpriseThanksAppController extends Controller
      */
     public function writeRejoinder(Request $request, $hash)
     {
-        $enterpriseThanks = EnterpriseThanks::with(['user', 'enterprise'])->findOrFail($hash);
+        $enterpriseThanks = EnterpriseThanks::with(['enterprise', 'user'])->where('hash', '=', $hash)->first();
         $enterpriseThanks->rejoinder = $request->rejoinder;
 
         if ($enterpriseThanks->save()) {
