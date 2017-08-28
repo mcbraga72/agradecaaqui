@@ -26,7 +26,7 @@
 	                <button id="peopleButton" type="button" class="home"><img src="{{ asset('images/pessoas.png') }}" /></button>
 	                <button id="enterprisesButton" type="button" class="home"><img src="{{ asset('images/empresas.png') }}" /></button>
 	            </div>
-                <form class="form-horizontal" role="form" method="POST" id="enterpriseThanksForm">
+                <form class="form-horizontal" role="form" method="POST" id="enterpriseThanksForm" action="/app/agradecimento-empresa">
                 	{{ csrf_field() }}
 	                <div id="enterpriseThanks">		                
 			            <div class="form-home form-group">
@@ -50,7 +50,7 @@
 			            <div class="form-home form-group">
 		                    <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
 		                    	<label for="content" class="control-label form-home">AGRADEÇA AQUI</label><img class="heart-form" src="{{ asset('images/heart.png') }}" alt="Coração" title="Coração" />
-		                        <textarea id="content-enterprise" name="content-enterprise" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
+		                        <textarea id="contentEnterprise" name="contentEnterprise" class="form-control" placeholder="Seu agradecimento aqui :)">@if(Session::has('content')) {{ Session::get('content') }} @endif</textarea>
 		                        <div id="content-error" class="alert alert-danger thanks-messages">
 	                    			<span>O campo agradecimento é obrigatório!</span>
 	                			</div>
@@ -58,7 +58,7 @@
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-md-6 col-md-offset-4">
-		                    	<input type="submit" class="btn pink-button" value="Enviar" id="sendEnterpriseThanks">
+		                    	<input type="submit" class="btn pink-button" value="Enviar">
 		                    </div>
 		                </div>
 	                </div>
@@ -192,48 +192,6 @@
 		@endforeach
 
 		$('.chosen-select').chosen();
-
-		$('#sendEnterpriseThanks').click(function(){
-			$("#enterpriseThanksForm").submit(function(e){
-			    return false;
-			});
-
-			var content = tinymce.get('content-enterprise').getContent();
-
-			if ($('#enterprise_id').val() == null || $('#enterprise_id').val() == 0) {
-				$('#enterprise-error').show();
-    			$('#enterprise-error').delay(3000).slideUp(500);
-                return false;
-            } else if (content == '') {
-            	$('#content-error').show();
-                $('#content-error').delay(3000).slideUp(500);
-                return false;
-            } else {
-            	$.ajax({
-                    url:'/app/agradecimento-empresa',
-                    type:'POST',
-                    async: false,
-                    data: {enterprise_id: $('#enterprise_id').val(), content: content, "_token": "{{ csrf_token() }}"},
-                    success: function(data) {
-                    	$(window).scrollTop(0);
-                    	$('#enterprise_id').val("Selecione a empresa");
-    					$('#enterprise_id').trigger('chosen:updated');
-    					tinymce.get('content-enterprise').setContent('');    					
-                    }
-                });
-
-                $.ajax({
-                    url:'/app',
-                    type:'GET',
-                    async: true,
-                    success: function(data) {
-                    	$(document.body).html(data);
-                    	$(window).scrollTop(0);
-                    	toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 3000});
-                    }
-                });
-            }
-        });
 
         $('#sendUserThanks').click(function(){
 			$("#userThanksForm").submit(function(e){
