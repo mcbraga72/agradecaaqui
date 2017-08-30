@@ -26,7 +26,7 @@
 	                <button id="peopleButton" type="button" class="home"><img src="{{ asset('images/pessoas.png') }}" /></button>
 	                <button id="enterprisesButton" type="button" class="home"><img src="{{ asset('images/empresas.png') }}" /></button>
 	            </div>
-                <form class="form-horizontal" role="form" method="POST" id="enterpriseThanksForm" action="/app/agradecimento-empresa">
+                <form class="form-horizontal" role="form" method="POST" action="/app/agradecimento-empresa">
                 	{{ csrf_field() }}
 	                <div id="enterpriseThanks">		                
 			            <div class="form-home form-group">
@@ -63,7 +63,7 @@
 		                </div>
 	                </div>
 	            </form>
-				<form class="form-horizontal" role="form" method="POST" id="userThanksForm">
+				<form class="form-horizontal" role="form" method="POST" action="/app/agradecimento-usuario">
 					{{ csrf_field() }}
 					<div id="userThanks">
 		                <div class="form-home form-group">
@@ -95,7 +95,7 @@
 		                </div>
 		                <div class="form-group">
 		                    <div class="col-md-6 col-md-offset-4">
-		                    	<input type="submit" class="btn pink-button" value="Enviar" id="sendUserThanks">
+		                    	<input type="submit" class="btn pink-button" value="Enviar">
 		                    </div>
 		                </div>
 	                </div>
@@ -193,52 +193,7 @@
 
 		$('.chosen-select').chosen();
 
-        $('#sendUserThanks').click(function(){
-			$("#userThanksForm").submit(function(e){
-			    return false;
-			});
-
-			var content = tinymce.get('contentUser').getContent();
-
-			if ($('#receiptName').val() == null || $('#receiptName').val() == '') {
-				$('#receiptName-error').show();
-    			$('#receiptName-error').delay(3000).slideUp(500);
-                return false;
-            } else if ($('#receiptEmail').val() == null || $('#receiptEmail').val() == '') {
-            	$('#receiptEmail-error').show();
-    			$('#receiptEmail-error').delay(3000).slideUp(500);
-                return false;
-            } else if(content == '') {
-            	$('#userContent-error').show();
-                $('#userContent-error').delay(3000).slideUp(500);
-                return false;
-            } else {
-            	$.ajax({
-                    url:'/app/agradecimento-usuario',
-                    type:'POST',
-                    async: false,
-                    data: {receiptName: $('#receiptName').val(), receiptEmail: $('#receiptEmail').val(), content: content, "_token": "{{ csrf_token() }}"},
-                    success: function(data) {
-                    	$('#receiptName').val('');
-						$('#receiptEmail').val('');
-						tinymce.get('contentUser').setContent('');						
-                    }
-                });
-
-                $.ajax({
-                    url:'/app',
-                    type:'GET',
-                    async: true,
-                    success: function(data) {
-                    	$(document.body).html(data);
-                    	$(window).scrollTop(0);
-                    	toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 3000});
-                    }
-                });
-            }
-        });
-	
-		$(document).ready(function() {
+        $(document).ready(function() {
     		$('#enterpriseThanks').show();
 	    	$('#userThanks').hide();
 	    	$('#enterprisesButton').addClass('button-selected');	    	

@@ -173,8 +173,10 @@
             $(document).ready(function() {
                 var showMessage = '{{ $data['showMessage'] }}';
                 
-                if(showMessage == 'true') {
+                if (showMessage == 'true') {
                     toastr.success('Agradecimento atualizado com sucesso!', '', {timeOut: 5000});                
+                } else if (showMessage == 'new') {
+                    toastr.success('Agradecimento cadastrado com sucesso!', '', {timeOut: 5000});
                 }
             });
         </script>

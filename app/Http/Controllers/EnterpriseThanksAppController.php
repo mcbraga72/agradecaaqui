@@ -54,25 +54,12 @@ class EnterpriseThanksAppController extends Controller
 
             Mail::to($enterprise->show($request->enterprise_id)->email)->send(new EnterpriseThanksMail($user->show(Auth::user()->id), $enterpriseThanks));
 
-            /*$usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName AS name', 'content', DB::raw("'people' AS logo"), 'hash', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'))->where('user_id', '=', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->get();
-            $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'))->where('user_id', '=', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->get();
-
-            $allThanks = $usersThanks->merge($enterprisesThanks);
-
-            $data = array(
-                'enterprises' => Enterprise::all(),
-                'allThanks' => $allThanks,
-                'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
-            );
-            return view('app.index')->with('data', $data)->withSuccess('Agradecimento enviado com sucesso!');*/
-
-	    $data = array(
+    	    $data = array(
                 'enterpriseThanks' => EnterpriseThanks::where('hash', '=', $enterpriseThanks->hash)->with('enterprise')->get(),
                 'showMessage' => 'new'
             );
 
             return view('app.enterprise-thanks.show')->with('data', $data);
-
         }    
     }
 
