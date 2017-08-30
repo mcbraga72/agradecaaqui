@@ -34,7 +34,7 @@ class UserThanksAppController extends Controller
     	$userThanks->receiptName = $request->receiptName;
     	$userThanks->receiptEmail = $request->receiptEmail;
         $userThanks->thanksDateTime = $date->format('Y-m-d H:i:s');
-        $userThanks->content = $request->content;
+        $userThanks->content = $request->contentUser;
     	
     	if($userThanks->save()) {
 
@@ -45,17 +45,12 @@ class UserThanksAppController extends Controller
 
             Mail::to($request->receiptEmail)->send(new UserThanksMail($user->show(Auth::user()->id), $userThanks));
 
-        	$usersThanks = DB::table('user_thanks')->join('users', 'users.id', '=', 'user_thanks.user_id')->select('receiptName AS name', 'content', DB::raw("'people' AS logo"), 'hash', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'))->where('user_id', '=', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->get();
-            $enterprisesThanks = DB::table('enterprise_thanks')->join('enterprises', 'enterprises.id', '=', 'enterprise_thanks.enterprise_id')->select('name', 'content', 'logo', 'hash', DB::raw('DATE_FORMAT(thanksDateTime, "%d/%m/%Y") as date'))->where('user_id', '=', Auth::user()->id)->orderBy('thanksDateTime', 'desc')->get();
-
-            $allThanks = $usersThanks->merge($enterprisesThanks);
-
-            $data = array(
-                'enterprises' => Enterprise::all(),
-                'allThanks' => $allThanks,
-                'user' => User::select('registerType')->where('id', '=', Auth::user()->id)->get()
+        	$data = array(
+                'userThanks' => UserThanks::where('hash', '=', $userThanks->hash)->with('user')->get(),
+                'showMessage' => 'new'
             );
-            return view('app.index')->with('data', $data)->withSuccess('Agradecimento enviado com sucesso!');
+
+            return view('app.user-thanks.show')->with('data', $data);
         }    
     }
 

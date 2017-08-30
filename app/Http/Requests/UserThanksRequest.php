@@ -26,7 +26,7 @@ class UserThanksRequest extends FormRequest
         return [
             'receiptName' => 'required',
             'receiptEmail' => 'required|email',
-            'content' => 'required'
+            'contentUser' => 'required'
         ];
     }
 
@@ -41,7 +41,7 @@ class UserThanksRequest extends FormRequest
             'receiptName.required' => 'O campo nome é obrigatório!',
             'receiptEmail.required' => 'O campo email é obrigatório!',
             'receiptEmail.email' => 'Por favor, digite um e-mail válido!',
-            'content.required' => 'O campo agradecimento é obrigatório!'
+            'contentUser.required' => 'O campo agradecimento é obrigatório!'
         ];
     }
 }

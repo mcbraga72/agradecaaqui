@@ -5992,26 +5992,6 @@ new Vue({
             
         },
 
-        storeEnterpriseThanks: function(){
-            var input = this.newEnterpriseThanks;
-            this.$http.post('/app/agradecimento-empresa',input).then(function(response) {
-                this.newEnterpriseThanks = {'enterprise_id': '','content': ''};
-                toastr.success('Agradecimento realizado com sucesso!', '', {timeOut: 5000});
-            }, function(response) {
-                this.formErrors = response.data;
-            });
-        },
-
-        storeUserThanks: function(){
-            var input = this.newUserThanks;
-            this.$http.post('/app/agradecimento-usuario',input).then(function(response) {
-                this.newUserThanks = {'receiptName':'','receiptEmail':'','content': ''};
-                toastr.success('Agradecimento realizado com sucesso!', '', {timeOut: 5000});
-            }, function(response) {
-                this.formErrors = response.data;
-            });
-        },
-
         inArray: function(value) {
             var length = this.fillUser.sport.length;
             for(var i = 0; i < length; i++) {
