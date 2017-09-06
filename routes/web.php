@@ -14,7 +14,20 @@
 
 // User's Auth
 
-Auth::routes();
+//Auth::routes();
+
+//Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+//Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+//Route::post('register', 'Auth\RegisterController@register');
+
+Route::get('/app/trocar-senha', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/app/enviar-senha', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+
+Route::get('/app/alterar-senha/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('/app/alterar-senha', 'Auth\ResetPasswordController@reset');
 
 
 // Admin's Auth
@@ -23,11 +36,11 @@ Route::get('/admin/entrar', 'AdminAuth\LoginController@showLoginForm');
 Route::post('/admin/entrar', 'AdminAuth\LoginController@login');
 Route::post('/admin/logout', 'AdminAuth\LoginController@logout');
 
-Route::post('/admin/enviar-senha', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail');
 Route::get('/admin/trocar-senha', 'AdminAuth\ForgotPasswordController@showLinkRequestForm');
+Route::post('/admin/enviar-senha', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail');
 
-Route::post('/admin/alterar-senha', 'AdminAuth\ResetPasswordController@reset');
 Route::get('/admin/alterar-senha/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
+Route::post('/admin/alterar-senha', 'AdminAuth\ResetPasswordController@reset');
 
 
 // Enterprise's Auth
