@@ -43,7 +43,7 @@ class EnterpriseResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         $token = $this->token;
-        return (new MailMessage)->view('notifications.password-reset', compact('token'))->from('contato@agradecaaqui.site', 'Contato - Agradeça Aqui')->subject('Agradeça Aqui - Link para alteração de senha');
+        return (new MailMessage)->view('notifications.enterprise.password-reset', compact('token'))->from('contato@agradecaaqui.site', 'Contato - Agradeça Aqui')->subject('Agradeça Aqui - Link para alteração de senha');
     }
 
     /**
