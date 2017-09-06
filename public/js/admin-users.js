@@ -6147,7 +6147,7 @@ new Vue({
 
         resetPassword: function(user){
             var input = user;
-            this.$http.post('/password/email',input).then(function(response) {
+            this.$http.post('/app/enviar-senha',input).then(function(response) {
                 toastr.success('E-mail de alteração de senha enviado para o usuário!', '', {timeOut: 5000});
             });
         },
