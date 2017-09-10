@@ -127,10 +127,11 @@ class EnterpriseAreaController extends Controller
     {
         $data = array(
             'enterprise' => Enterprise::findOrFail(Auth::guard('enterprises')->user()->id),
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'status' => 'edit'
         );
     	
-        return view('enterprise.profile')->with($data);
+        return view('enterprise.profile')->with('data', $data);
     }
 
     /**
@@ -154,10 +155,21 @@ class EnterpriseAreaController extends Controller
         $enterprise->cpf = $request->cpf;
         $enterprise->cnpj = $request->cnpj;
 
-    	$enterprise->save();
-
-    	$enterpriseThanks = EnterpriseThanks::where('enterprise_id', '=', Auth::guard('enterprises')->user()->id)->paginate(10);
-    	return view('enterprise.thanks.list')->with('enterpriseThanks', $enterpriseThanks);
+    	if ($enterprise->save()) {
+            $data = array(
+                'enterprise' => Enterprise::findOrFail(Auth::guard('enterprises')->user()->id),
+                'categories' => Category::all(),
+                'status' => 'true'
+            );
+            return view('enterprise.profile')->with('data', $data);
+        } else {
+            $data = array(
+                'enterprise' => Enterprise::findOrFail(Auth::guard('enterprises')->user()->id),
+                'categories' => Category::all(),
+                'status' => 'false'
+            );
+            return view('enterprise.profile')->with('data', $data);
+        }
     }
 
     /**
