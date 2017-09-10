@@ -235,7 +235,6 @@
 
     $('#submitButton').click(function () {
         if ($('#cpf').val().length > 0 && $('#cnpj').val().length > 0) {
-            alert("Teste");
             $('#profileForm').submit(function(e){
                 e.preventDefault();
             });
