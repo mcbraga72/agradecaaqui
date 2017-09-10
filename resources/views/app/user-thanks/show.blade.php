@@ -85,8 +85,8 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li class="caret-dropdown">
-                                    <a href="{{ url('app/usuario/' . Auth::user()->id . '/edit') }}">Perfil</a>                                    
-                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                    <a href="{{ url('app/usuario/' . Auth::user()->id . '/edit') }}" class="item-menu-dropdown">Perfil</a>                                    
+                                    <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="item-menu-dropdown">Logout</a>
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
                                 </li>
                             </ul>
