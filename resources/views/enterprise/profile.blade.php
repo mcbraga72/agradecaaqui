@@ -2,24 +2,10 @@
 
 @section('content')
 
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript"> 
-        
-    function formatTelephone(telephone){ 
-        if(telephone.value.length == 0)
-            telephone.value = '(' + telephone.value;
-        if(telephone.value.length == 3)
-            telephone.value = telephone.value + ') ';
-        if(telephone.value.length == 10)
-            telephone.value = telephone.value + '-';  
-    }
-    
-</script>
-
 <div class="container-fluid login-register">
     <div class="row">    
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <p style="margin-top: 2%;">Perfil</p>
+            <h3 style="margin-top: 2%;">Perfil</h3>
         </div>
     </div>
     <div class="row">    
@@ -36,15 +22,15 @@
                         </div>
                     </div>                                
                 </form>
-                <form class="form" role="form" method="POST" action="{{ url('/empresa/perfil/atualizar') }}">
+                <form class="form" id="profileForm" role="form" method="POST" action="{{ url('/empresa/perfil/atualizar') }}">
                     {{ csrf_field() }}
                     <div class="label-register enterprise-profile form-group{{ $errors->has('category_id') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="category_id" class="col-md-6 control-label label-register">Categoria</label>
                         <select name="category_id" class="form-control" />
                             <option value="">Selecione a categoria</option>
-                            @foreach($categories as $category)
-                                @if($enterprise->category_id == $category->id)
+                            @foreach($data['categories'] as $category)
+                                @if($data['enterprise']->category_id == $category->id)
                                     <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                 @else
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -60,7 +46,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('name') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="name" class="col-md-9 control-label label-register">Nome da empresa</label>
-                        <input id="name" type="text" class="form-control label-register" name="name" value="{{ $enterprise->name }}" required autofocus>
+                        <input id="name" type="text" class="form-control label-register" name="name" value="{{ $data['enterprise']->name }}" required autofocus>
                         @if ($errors->has('name'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -70,7 +56,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('contact') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="contact" class="col-md-6 control-label label-register">Contato</label>
-                        <input id="contact" type="text" class="form-control label-register" name="contact" value="{{ $enterprise->contact }}" required autofocus>
+                        <input id="contact" type="text" class="form-control label-register" name="contact" value="{{ $data['enterprise']->contact }}" required autofocus>
                         @if ($errors->has('contact'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('contact') }}</strong>
@@ -80,7 +66,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('telephone') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="telephone" class="col-md-6 control-label label-register">Celular</label>
-                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ $enterprise->telephone }}" required maxlength="15" onkeypress="formatTelephone(this)">
+                        <input id="telephone" type="text" class="form-control label-register" name="telephone" value="{{ $data['enterprise']->telephone }}" required maxlength="15" onkeypress="formatTelephone(this)">
                         @if ($errors->has('telephone'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('telephone') }}</strong>
@@ -90,7 +76,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('email') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="email" class="col-md-6 control-label label-register">E-mail</label>
-                        <input id="email" type="email" class="form-control label-register" name="email" value="{{ $enterprise->email }}" required>
+                        <input id="email" type="email" class="form-control label-register" name="email" value="{{ $data['enterprise']->email }}" required>
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -100,7 +86,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('site') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="site" class="col-md-6 control-label label-register">Site</label>
-                        <input id="site" type="text" class="form-control label-register" name="site" value="{{ $enterprise->site }}" required>
+                        <input id="site" type="text" class="form-control label-register" name="site" value="{{ $data['enterprise']->site }}" required>
                         @if ($errors->has('site'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('site') }}</strong>
@@ -139,6 +125,7 @@
                             <option value="Sergipe">Sergipe</option>
                             <option value="São Paulo">São Paulo</option>
                             <option value="Tocantins">Tocantins</option>
+                            <option value="{{ Auth::user()->state }}" selected="selected">{{ Auth::user()->state }}</option>
                         </select>    
                         @if ($errors->has('state'))
                             <span class="help-block">
@@ -163,7 +150,7 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('neighborhood') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="neighborhood" class="col-md-6 control-label label-register">Bairro</label>
-                        <input type="text" name="neighborhood" class="form-control label-register" value="{{ $enterprise->neighborhood }}" />
+                        <input type="text" name="neighborhood" class="form-control label-register" value="{{ $data['enterprise']->neighborhood }}" />
                         @if ($errors->has('neighborhood'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('neighborhood') }}</strong>
@@ -173,22 +160,22 @@
                     <div class="label-register enterprise-profile form-group{{ $errors->has('address') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="address" class="col-md-6 control-label label-register">Endereço</label>
-                        <input id="address" type="text" class="form-control label-register" name="address" value="{{ $enterprise->address }}" required autofocus>
+                        <input id="address" type="text" class="form-control label-register" name="address" value="{{ $data['enterprise']->address }}" required autofocus>
                         @if ($errors->has('address'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('address') }}</strong>
                             </span>
                         @endif
                     </div>                    
-                    <div class="label-register enterprise-profile form-group col-md-6 col-lg-6">
+                    <div class="label-register enterprise-profile form-group col-md-12 col-lg-12">
                         <br><br>
-                        <input type="radio" name="type" value="pf" style="margin-left: 4%;"> Pessoa Física
-                        <input type="radio" name="type" value="pj" style="margin-left: 5%;"> Pessoa Jurídica
+                        <input type="radio" id="cpfRadio" name="type" value="pf" style="margin-left: 4%;"> Pessoa Física
+                        <input type="radio" id="cnpjRadio" name="type" value="pj" style="margin-left: 5%;"> Pessoa Jurídica
                     </div>
                     <div class="label-register enterprise-profile form-group{{ $errors->has('cpf') ? ' has-error' : '' }} col-md-6 col-lg-6">
                         <br><br>
                         <label for="cpf" id="cpfLabel" class="col-md-6 control-label label-register">CPF</label>
-                        <input type="text" id="cpf" name="cpf" class="form-control label-register" value="{{ $enterprise->cpf }}" maxlength="14" onkeypress="return formatCPF(this, event)" />
+                        <input type="text" id="cpf" name="cpf" class="form-control label-register" value="{{ $data['enterprise']->cpf }}" maxlength="14" onkeypress="return formatCPF(this, event)" />
                         @if ($errors->has('cpf'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('cpf') }}</strong>
@@ -196,8 +183,8 @@
                         @endif
                     </div>
                     <div class="label-register enterprise-profile form-group{{ $errors->has('cnpj') ? ' has-error' : '' }} col-md-6 col-lg-6">
-                        <label for="cnpj" id="cnpjLabel" class="col-md-6 control-label label-register">CNPJ</label>
-                        <input type="text" id="cnpj" name="cnpj" class="form-control label-register" value="{{ $enterprise->cnpj }}" maxlength="18" onkeypress="return formatCNPJ(this, event)" />
+                        <br><br><label for="cnpj" id="cnpjLabel" class="col-md-6 control-label label-register">CNPJ</label>
+                        <input type="text" id="cnpj" name="cnpj" class="form-control label-register" value="{{ $data['enterprise']->cnpj }}" maxlength="18" onkeypress="return formatCNPJ(this, event)" />
                         @if ($errors->has('cnpj'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('cnpj') }}</strong>
@@ -206,7 +193,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-12 col-lg-12">
-                            <button type="submit" class="btn btn-success" style="margin-top: 2%;">Atualizar Dados</button>                        
+                            <button type="submit" id="submitButton" class="btn btn-success" style="margin-top: 2%; margin-bottom: 6%;">Atualizar Dados</button>
                         </div>
                     </div>
                 </form>
@@ -214,26 +201,72 @@
         </div>        
     </div>
 </div>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
 <script type="text/javascript" src="/js/app-enterprises.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#cnpjLabel').hide();
-        $('#cnpj').hide();
+        var enterpriseCnpj = '{{ $data['enterprise']->cnpj }}';
+        var enterpriseCpf = '{{ $data['enterprise']->cpf }}';
+
+        if (enterpriseCnpj == '' && enterpriseCpf == '') {
+            $('#cpfLabel').prop('disabled', true);
+            $('#cpf').prop('disabled', true);
+            $('#cnpjRadio').prop("checked", true)
+        } else if (enterpriseCnpj != '' && enterpriseCpf == '') {
+            $('#cpfLabel').prop('disabled', true);
+            $('#cpf').prop('disabled', true);
+            $('#cnpjRadio').prop("checked", true)
+        } else if (enterpriseCnpj == '' && enterpriseCpf != '') {
+            $('#cnpjLabel').prop('disabled', true);
+            $('#cnpj').prop('disabled', true);
+            $('#cpfRadio').prop("checked", true)
+        }
+
+        var status = '{{ $data['status'] }}';
+        
+        if(status == 'true') {
+            toastr.success('Dados atualizados com sucesso!', '', {timeOut: 5000});                
+        } else if(status == 'false') {
+            toastr.success('Não foi possível atualizar os dados do perfil! Por favor, tente novamente.', '', {timeOut: 5000});                
+        }
     });
+
+    $('#submitButton').click(function () {
+        if ($('#cpf').val().length > 0 && $('#cnpj').val().length > 0) {
+            alert("Teste");
+            $('#profileForm').submit(function(e){
+                e.preventDefault();
+            });
+            toastr.success('Preencha somente o CPF ou o CNPJ!', '', {timeOut: 5000});
+            return false;
+        }
+    });
+
+    if ($('input[name=type]:checked').val() == 'pj') {
+        $('#cnpjLabel').prop('disabled', false);
+        $('#cnpj').prop('disabled', false);
+        $('#cpfLabel').prop('disabled', true);
+        $('#cpf').prop('disabled', true);
+    } else if ($('input[name=type]:checked').val() == 'pf') {
+        $('#cpfLabel').prop('disabled', false);
+        $('#cpf').prop('disabled', false);
+        $('#cnpjLabel').prop('disabled', true);
+        $('#cnpj').prop('disabled', true);
+    }
 
     $('input[name=type]').on('click', function(e) {
         if ($('input[name=type]:checked').val() == 'pj') {
-            $('#cnpjLabel').show();
-            $('#cnpj').show();
-            $('#cpfLabel').hide();
-            $('#cpf').hide();
-        } else {                
-            $('#cpfLabel').show();
-            $('#cpf').show();
-            $('#cnpjLabel').hide();
-            $('#cnpj').hide();
+            $('#cnpjLabel').prop('disabled', false);
+            $('#cnpj').prop('disabled', false);
+            $('#cpfLabel').prop('disabled', true);
+            $('#cpf').prop('disabled', true);
+        } else if ($('input[name=type]:checked').val() == 'pf') {                
+            $('#cpfLabel').prop('disabled', false);
+            $('#cpf').prop('disabled', false);
+            $('#cnpjLabel').prop('disabled', true);
+            $('#cnpj').prop('disabled', true);
         }
     });
 
