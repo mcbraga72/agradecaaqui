@@ -27,7 +27,7 @@ Route::get('/app/trocar-senha', 'Auth\ForgotPasswordController@showLinkRequestFo
 Route::post('/app/enviar-senha', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 
 Route::get('/app/alterar-senha/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('/app/alterar-senha', 'Auth\ResetPasswordController@reset');
+Route::post('/app/atualizar-senha', 'Auth\ResetPasswordController@reset');
 
 
 // Admin's Auth
